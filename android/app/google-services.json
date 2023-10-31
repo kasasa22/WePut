@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "123627311592",
+    "project_id": "maker-81caf",
+    "storage_bucket": "maker-81caf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:123627311592:android:edac2c26b2675214c4945d",
+        "android_client_info": {
+          "package_name": "com.example.maker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJE4wg22YtR_yhiR8vUihNgh7jBT3kizY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
