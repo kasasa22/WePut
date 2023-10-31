@@ -82,13 +82,13 @@ class _RegisterPageState extends State<RegisterPage> {
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             //logo
             Icon(
-              Icons.person,
+              Icons.task_alt,
               size: 100,
-              color: Theme.of(context).colorScheme.inversePrimary,
+              color: Colors.green,
             ),
 
             //app name
-            Text('M A K E R',
+            Text('W E P U T',
                 style: TextStyle(
                   fontSize: 40,
                   fontWeight: FontWeight.bold,
