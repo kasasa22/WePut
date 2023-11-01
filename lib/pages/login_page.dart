@@ -6,7 +6,7 @@ import 'package:maker/components/my_textfeild.dart';
 class LoginPage extends StatefulWidget {
   final void Function()? onTap;
 
-  LoginPage({
+  const LoginPage({
     super.key,
     required this.onTap,
   });
@@ -37,15 +37,19 @@ class _LoginPageState extends State<LoginPage> {
           email: emailController.text, password: passwordController.text);
 
       //pop loading indicator
+      // ignore: use_build_context_synchronously
       Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
       //pop loading indicator
+      // ignore: use_build_context_synchronously
       Navigator.pop(context);
 
       //show the error message
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(e.message!),
+          // ignore: use_build_context_synchronously
           backgroundColor: Theme.of(context).colorScheme.error,
         ),
       );
@@ -61,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
           padding: const EdgeInsets.all(25.0),
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             //logo
-            Icon(
+            const Icon(
               Icons.task_alt,
               size: 100,
               color: Colors.green,
