@@ -79,7 +79,7 @@ class _LoginPageState extends State<LoginPage> {
                   color: Theme.of(context).colorScheme.inversePrimary,
                 )),
 
-            const SizedBox(height: 50),
+            const SizedBox(height: 36),
             //email textfield
             MyTextFeild(
               hintText: "Email",
@@ -109,7 +109,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
 
             //dont have an account, register here
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

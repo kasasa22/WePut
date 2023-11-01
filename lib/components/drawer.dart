@@ -21,7 +21,7 @@ class MyDrawer extends StatelessWidget {
               child: Icon(
                 Icons.task_alt,
                 size: 100,
-                color: Theme.of(context).colorScheme.inversePrimary,
+                color: Colors.green[900],
               ),
             ),
             const SizedBox(height: 2),
@@ -29,8 +29,10 @@ class MyDrawer extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 20),
               child: ListTile(
-                leading: Icon(Icons.home,
-                    color: Theme.of(context).colorScheme.inversePrimary),
+                leading: Icon(
+                  Icons.home,
+                  color: Colors.green[400],
+                ),
                 title: Text("H O M E",
                     style: Theme.of(context).textTheme.titleSmall),
                 onTap: () {
@@ -47,8 +49,10 @@ class MyDrawer extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 20),
               child: ListTile(
-                leading: Icon(Icons.dashboard,
-                    color: Theme.of(context).colorScheme.inversePrimary),
+                leading: Icon(
+                  Icons.dashboard,
+                  color: Colors.green[400],
+                ),
                 title: Text("D A S H B O A R D",
                     style: Theme.of(context).textTheme.titleSmall),
                 onTap: () {
@@ -66,8 +70,10 @@ class MyDrawer extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 20),
               child: ListTile(
-                leading: Icon(Icons.people,
-                    color: Theme.of(context).colorScheme.inversePrimary),
+                leading: Icon(
+                  Icons.people,
+                  color: Colors.green[400],
+                ),
                 title: Text("T E A M S",
                     style: Theme.of(context).textTheme.titleSmall),
                 onTap: () {
@@ -85,8 +91,10 @@ class MyDrawer extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 20),
               child: ListTile(
-                leading: Icon(Icons.book,
-                    color: Theme.of(context).colorScheme.inversePrimary),
+                leading: Icon(
+                  Icons.book,
+                  color: Colors.green[400],
+                ),
                 title: Text("B O A R D S",
                     style: Theme.of(context).textTheme.titleSmall),
                 onTap: () {
@@ -104,8 +112,10 @@ class MyDrawer extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 20),
               child: ListTile(
-                leading: Icon(Icons.inbox,
-                    color: Theme.of(context).colorScheme.inversePrimary),
+                leading: Icon(
+                  Icons.inbox,
+                  color: Colors.green[400],
+                ),
                 title: Text("I N B O X",
                     style: Theme.of(context).textTheme.titleSmall),
                 onTap: () {
@@ -123,8 +133,10 @@ class MyDrawer extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 20),
               child: ListTile(
-                leading: Icon(Icons.timeline,
-                    color: Theme.of(context).colorScheme.inversePrimary),
+                leading: Icon(
+                  Icons.timeline,
+                  color: Colors.green[400],
+                ),
                 title: Text("T I M E L I N E",
                     style: Theme.of(context).textTheme.titleSmall),
                 onTap: () {
@@ -142,8 +154,10 @@ class MyDrawer extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 20),
               child: ListTile(
-                leading: Icon(Icons.settings,
-                    color: Theme.of(context).colorScheme.inversePrimary),
+                leading: Icon(
+                  Icons.settings,
+                  color: Colors.green[400],
+                ),
                 title: Text("S E T T I N G S",
                     style: Theme.of(context).textTheme.titleSmall),
                 onTap: () {
@@ -161,8 +175,10 @@ class MyDrawer extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 20),
               child: ListTile(
-                leading: Icon(Icons.person,
-                    color: Theme.of(context).colorScheme.inversePrimary),
+                leading: Icon(
+                  Icons.person,
+                  color: Colors.green[400],
+                ),
                 title: Text("P R O F I L E",
                     style: Theme.of(context).textTheme.titleSmall),
                 onTap: () {
@@ -184,8 +200,10 @@ class MyDrawer extends StatelessWidget {
             bottom: 25,
           ),
           child: ListTile(
-            leading: Icon(Icons.logout,
-                color: Theme.of(context).colorScheme.inversePrimary),
+            leading: Icon(
+              Icons.logout,
+              color: Colors.green[400],
+            ),
             title: Text("L O G O U T",
                 style: Theme.of(context).textTheme.titleSmall),
             onTap: () {
