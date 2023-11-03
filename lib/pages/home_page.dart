@@ -135,29 +135,29 @@ class HomePage extends StatelessWidget {
                 //Team Card 1
                 TeamCard(
                   teamName: 'Team name',
-                  ImageUrl: "assets/images/team.png",
                   membersNumber: 5,
+                  icon: Icons.people_alt,
                 ),
 
                 //Team Card 2
                 TeamCard(
                   teamName: 'Team name',
-                  ImageUrl: "assets/images/team.png",
                   membersNumber: 5,
+                  icon: Icons.people_alt,
                 ),
 
                 //Team Card 3
                 TeamCard(
                   teamName: 'Team name',
-                  ImageUrl: "assets/images/team.png",
                   membersNumber: 5,
+                  icon: Icons.people_alt,
                 ),
 
                 //Team Card 4
                 TeamCard(
                   teamName: 'Team name',
-                  ImageUrl: "assets/images/team.png",
                   membersNumber: 5,
+                  icon: Icons.people_alt,
                 ),
               ],
             ),
