@@ -1,12 +1,18 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:maker/components/drawer.dart';
-import 'package:maker/components/tasks_overview.dart';
-import 'package:maker/components/team_card.dart';
+import 'package:maker/components/home/tasks_list.dart';
+import 'package:maker/components/home/tasks_overview.dart';
+import 'package:maker/components/home/team_card.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,30 +107,34 @@ class HomePage extends StatelessWidget {
 
           // Divider between sections
           const Divider(thickness: 1.0),
-
-          //middle section
-          Column(
-            children: [
-              // Container with upcoming tasks list
-              Container(
-                padding: const EdgeInsets.all(16.0),
-                child: const Column(
-                  children: [
-                    // List of upcoming tasks (You can replace this with your actual task list)
-                    // TaskWidget(task: taskData), // Create a custom TaskWidget for each task
-                    // TaskWidget(task: taskData2),
-                    // ...
-                  ],
+          // Middle section with TasksList
+          Container(
+            padding: const EdgeInsets.all(16.0),
+            child: TasksList(
+              tasks: [
+                TaskListItem(
+                  icon: Icons.work,
+                  title: 'Task 1',
+                  subtitle: 'Description of Task 1',
+                  isCompleted: false,
                 ),
-              ),
-              // Button to add a new task
-              ElevatedButton(
-                onPressed: () {
-                  // Handle adding a new task here
-                },
-                child: const Text("Add Task"),
-              ),
-            ],
+                TaskListItem(
+                  icon: Icons.shopping_cart,
+                  title: 'Task 2',
+                  subtitle: 'Description of Task 2',
+                  isCompleted: true,
+                ),
+                // Add more TaskListItem instances as needed
+              ],
+              taskName: 'Hello ',
+            ),
+          ),
+// Button to add a new task
+          ElevatedButton(
+            onPressed: () {
+              // Handle adding a new task here
+            },
+            child: const Text("Add Task"),
           ),
 
           //lower section
