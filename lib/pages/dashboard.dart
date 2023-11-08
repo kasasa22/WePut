@@ -44,9 +44,9 @@ class _DashboardState extends State<Dashboard> {
       drawer: const MyDrawer(),
 
       //Body
-      body: const Column(
+      body: Column(
         children: [
-          ColoredBox(
+          const ColoredBox(
             color: Colors.white10,
             child: Padding(
               padding: EdgeInsets.all(16.0),
@@ -63,7 +63,7 @@ class _DashboardState extends State<Dashboard> {
               ),
             ),
           ),
-          SingleChildScrollView(
+          const SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Padding(
               padding: EdgeInsets.all(8.0),
@@ -94,10 +94,10 @@ class _DashboardState extends State<Dashboard> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
-          SingleChildScrollView(
+          const SingleChildScrollView(
             child: Padding(
               padding: EdgeInsets.all(8.0),
               child: Row(
@@ -173,7 +173,7 @@ class _DashboardState extends State<Dashboard> {
             ),
           ),
 
-          Padding(
+          const Padding(
             padding: EdgeInsets.all(12.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -198,86 +198,78 @@ class _DashboardState extends State<Dashboard> {
             ),
           ),
           //the graph
-          LimitedBox(
+          const LimitedBox(
             maxHeight: 120,
             child: PieChartWidget(), // Display the pie chart
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
+
           Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Row(
+            padding: const EdgeInsets.all(12.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Column(
+                //Text widgets forming lists
+                const Text(
+                  "My Team performance",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+
+                const Text(
+                  "Teams with tasks graph analysis",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.normal,
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    //Text widgets forming lists
-                    Text(
-                      "My Team performance",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-
-                    Text(
-                      "Teams with tasks graph analysis",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.normal,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    ListTile(
-                      title: Text(
-                        "Development Team",
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.normal,
+                    Column(
+                      children: [
+                        OutlinedButton(
+                          onPressed: () {},
+                          child: const Text(
+                            "Development Team",
+                            style: TextStyle(color: Colors.black),
+                          ),
                         ),
-                      ),
-                    ),
-
-                    SizedBox(
-                      height: 5,
-                    ),
-                    ListTile(
-                      title: Text(
-                        "Digital Marketing Team",
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.normal,
+                        OutlinedButton(
+                          onPressed: () {},
+                          child: const Text(
+                            "Digital Marketing Team",
+                            style: TextStyle(color: Colors.black),
+                          ),
                         ),
-                      ),
+                      ],
                     ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    ListTile(
-                      title: Text(
-                        "Product Design Team",
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.normal,
+                    Column(
+                      children: [
+                        OutlinedButton(
+                          onPressed: () {},
+                          child: const Text(
+                            "Product Design Team",
+                            style: TextStyle(color: Colors.black),
+                          ),
                         ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    ListTile(
-                      title: Text(
-                        "Group Team",
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.normal,
-                        ),
-                      ),
+                        OutlinedButton(
+                            onPressed: () {},
+                            child: const Text(
+                              "Group Team",
+                              style: TextStyle(color: Colors.black),
+                            )),
+                      ],
                     ),
                   ],
                 ),
