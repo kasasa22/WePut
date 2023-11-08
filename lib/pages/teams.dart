@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:maker/components/drawer.dart';
+import 'package:maker/components/teams/teams_card.dart';
 
 class Teams extends StatelessWidget {
   const Teams({super.key});
@@ -74,84 +75,32 @@ class Teams extends StatelessWidget {
               crossAxisCount: 2,
               children: const [
                 teamsCard(
-                  title: "Team 1",
-                  subtitle: "10",
+                  title: "The Testers",
+                  subtitle: "230",
                 ),
                 teamsCard(
-                  title: "Team 2",
-                  subtitle: "10",
+                  title: "The Developers",
+                  subtitle: "230",
                 ),
                 teamsCard(
-                  title: "Team 3",
-                  subtitle: "10",
+                  title: "The Designers",
+                  subtitle: "230",
                 ),
                 teamsCard(
-                  title: "Team 4",
-                  subtitle: "10",
+                  title: "The Testers",
+                  subtitle: "230",
                 ),
                 teamsCard(
-                  title: "Team 5",
-                  subtitle: "10",
+                  title: "The Developers",
+                  subtitle: "230",
                 ),
                 teamsCard(
-                  title: "Team 6",
-                  subtitle: "10",
+                  title: "The Designers",
+                  subtitle: "230",
                 ),
                 teamsCard(
-                  title: "Team 7",
-                  subtitle: "10",
-                ),
-                teamsCard(
-                  title: "Team 8",
-                  subtitle: "10",
-                ),
-                teamsCard(
-                  title: "Team 9",
-                  subtitle: "10",
-                ),
-                teamsCard(
-                  title: "Team 10",
-                  subtitle: "10",
-                ),
-                teamsCard(
-                  title: "Team 11",
-                  subtitle: "10",
-                ),
-                teamsCard(
-                  title: "Team 12",
-                  subtitle: "10",
-                ),
-                teamsCard(
-                  title: "Team 13",
-                  subtitle: "10",
-                ),
-                teamsCard(
-                  title: "Team 14",
-                  subtitle: "10",
-                ),
-                teamsCard(
-                  title: "Team 15",
-                  subtitle: "10",
-                ),
-                teamsCard(
-                  title: "Team 16",
-                  subtitle: "10",
-                ),
-                teamsCard(
-                  title: "Team 17",
-                  subtitle: "10",
-                ),
-                teamsCard(
-                  title: "Team 18",
-                  subtitle: "10",
-                ),
-                teamsCard(
-                  title: "Team 19",
-                  subtitle: "10",
-                ),
-                teamsCard(
-                  title: "Team 20",
-                  subtitle: "10",
+                  title: "title",
+                  subtitle: "400",
                 ),
               ],
             ),
