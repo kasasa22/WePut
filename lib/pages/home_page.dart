@@ -1,178 +1,562 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:maker/components/drawer.dart';
-import 'package:maker/components/home/tasks_list.dart';
-import 'package:maker/components/home/tasks_overview.dart';
-import 'package:maker/components/home/team_card.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.green[700],
-        title: const Text("Tasks Home"),
+        backgroundColor: Colors.green,
+        title: const Text(
+          "Tasks Home",
+          style: TextStyle(fontSize: 15, color: Colors.black),
+        ),
         actions: [
           IconButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.grey),
+            ),
             onPressed: () {
               //sign out the user
               FirebaseAuth.instance.signOut();
             },
-            icon: const Icon(Icons.logout),
+            icon: const Icon(
+              Icons.logout,
+              size: 20,
+              color: Colors.black,
+            ),
           ),
         ],
       ),
 
       //Drawer
       drawer: const MyDrawer(),
+      drawerScrimColor: Color.fromARGB(255, 164, 180, 168),
 
-      //Body
-      body: Container(
-        padding: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.2),
-              spreadRadius: 1, //spread radius
-              blurRadius: 3, // blur radius
-              offset: const Offset(0, 1), // changes position of shadow
-            ),
-          ],
-          borderRadius: BorderRadius.circular(5),
-        ),
-        child: Column(children: [
-          //upper section
-          //container to display the user's name
-          Container(
-            padding: const EdgeInsets.all(10),
-            child: const Column(
-              children: [
-                Text(
-                  "Welcome, Aurits",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+      //Body of all a white background
+      body: Column(
+        children: [
+          const ColoredBox(
+            color: Colors.white10,
+            child: Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Column(
+                children: [
+                  Text(
+                    "Hi, Ambrose, You are almost done",
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                Text(
-                  "Simplify Tasks",
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.normal,
+                  SizedBox(
+                    height: 5,
                   ),
-                ),
-              ],
+                  Text("Please complete a few more steps to get started"),
+                ],
+              ),
             ),
           ),
-
-          //horizontal scrollable with icons
-          const SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                //Container with icons  for completed tasks
-                TasksOverview(
-                  icon: Icons.task_outlined,
-                  text: 'Completed Tasks',
-                ),
-
-                //Container with icons  for pending tasks
-                TasksOverview(
-                  icon: Icons.task_alt_sharp,
-                  text: 'Pending Tasks',
-                ),
-
-                //Container with icons  for overdue tasks
-                TasksOverview(
-                  icon: Icons.task_sharp,
-                  text: 'Overdue Tasks',
-                ),
-
-                //Container with icons  for upcoming tasks
-                TasksOverview(
-                  icon: Icons.add_task_sharp,
-                  text: 'Upcoming Task',
-                ),
-              ],
-            ),
+          const SizedBox(
+            height: 10,
           ),
-
-          // Divider between sections
-          const Divider(thickness: 1.0),
-          // Middle section with TasksList
-          Container(
-            padding: const EdgeInsets.all(16.0),
-            child: TasksList(
-              tasks: [
-                TaskListItem(
-                  icon: Icons.work,
-                  title: 'Task 1',
-                  subtitle: 'Description of Task 1',
-                  isCompleted: false,
-                ),
-                TaskListItem(
-                  icon: Icons.shopping_cart,
-                  title: 'Task 2',
-                  subtitle: 'Description of Task 2',
-                  isCompleted: true,
-                ),
-                // Add more TaskListItem instances as needed
-              ],
-              taskName: 'Hello ',
-            ),
-          ),
-// Button to add a new task
-          ElevatedButton(
-            onPressed: () {
-              // Handle adding a new task here
-            },
-            child: const Text("Add Task"),
-          ),
-
-          //lower section
           const SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
               children: [
-                //Team Card 1
-                TeamCard(
-                  teamName: 'Team name',
-                  membersNumber: 5,
-                  icon: Icons.people_alt,
+                //cards with an icon at the top and a word at the bottom and also rectangular in shape and should have a light green background and clear white text
+                Card(
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        Column(
+                          children: [
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Icon(
+                              Icons.tab_rounded,
+                              size: 30,
+                              color: Colors.lightGreen,
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Column(
+                          children: [
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              "Create a new board",
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              "Create a new board",
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.normal,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-
-                //Team Card 2
-                TeamCard(
-                  teamName: 'Team name',
-                  membersNumber: 5,
-                  icon: Icons.people_alt,
+                Card(
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        Column(
+                          children: [
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Icon(
+                              Icons.tab_rounded,
+                              size: 30,
+                              color: Colors.lightGreen,
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Column(
+                          children: [
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              "Create a new board",
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              "Create a new board",
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.normal,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-
-                //Team Card 3
-                TeamCard(
-                  teamName: 'Team name',
-                  membersNumber: 5,
-                  icon: Icons.people_alt,
+                Card(
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        Column(
+                          children: [
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Icon(
+                              Icons.tab_rounded,
+                              size: 30,
+                              color: Colors.lightGreen,
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Column(
+                          children: [
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              "Create a new board",
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              "Create a new board",
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.normal,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-
-                //Team Card 4
-                TeamCard(
-                  teamName: 'Team name',
-                  membersNumber: 5,
-                  icon: Icons.people_alt,
+                Card(
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        Column(
+                          children: [
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Icon(
+                              Icons.tab_rounded,
+                              size: 30,
+                              color: Colors.lightGreen,
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Column(
+                          children: [
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              "Create a new board",
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              "Create a new board",
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.normal,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),
           ),
-        ]),
+
+          const SizedBox(
+            height: 20,
+          ),
+          // list tiles with a title and a subtitle and a trailing icon in a container with a white background and a green border trying to list the upcoming tasks, the completed tasks and the overdue tasks with a top side having these text buttons that can be cliced to toggle between these three catergories and also an elevated button in the same top row that can be clicked to add a new task
+
+          //list tiles with a title and a subtitle and a trailing icon in a container with a white background and a green border trying to list the upcoming tasks, the completed tasks and the overdue tasks with a top side having these text buttons that can be cliced to toggle between these three catergories and also an elevated button in the same top row that can be clicked to add a new task
+          Container(
+            color: Colors.white,
+            child: Row(
+              //stretch the row to fit the screen
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                OutlinedButton(
+                  onPressed: () {},
+                  child: const Text(
+                    "Upcoming",
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  width: 5,
+                ),
+                OutlinedButton(
+                  onPressed: () {},
+                  child: const Text(
+                    "Completed",
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  width: 5,
+                ),
+                OutlinedButton(
+                  onPressed: () {},
+                  child: const Text(
+                    "Overdue",
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  width: 5,
+                ),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: const Text(
+                    "Add a new task",
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          //list tiles that will be toggled between depending on the button clicked above
+          const Column(children: [
+            ListTile(
+              leading: Icon(Icons.check_box_outline_blank),
+              title: Text(
+                "Task 1, the title",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              subtitle: Text(
+                "11/11/2021 11:00 AM task 1 description",
+                style: TextStyle(
+                  fontSize: 10,
+                ),
+              ),
+              trailing: Icon(Icons.more_horiz),
+            ),
+            ListTile(
+              leading: Icon(Icons.check_box_outline_blank),
+              title: Text(
+                "Task 1, the title",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              subtitle: Text(
+                "11/11/2021 11:00 AM task 1 description",
+                style: TextStyle(
+                  fontSize: 10,
+                ),
+              ),
+              trailing: Icon(Icons.more_horiz),
+            ),
+            ListTile(
+              leading: Icon(Icons.check_box_outline_blank),
+              title: Text(
+                "Task 1, the title",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              subtitle: Text(
+                "11/11/2021 11:00 AM task 1 description",
+                style: TextStyle(
+                  fontSize: 10,
+                ),
+              ),
+              trailing: Icon(Icons.more_horiz),
+            ),
+            ListTile(
+              leading: Icon(Icons.check_box_outline_blank),
+              title: Text(
+                "Task 1, the title",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              subtitle: Text(
+                "11/11/2021 11:00 AM task 1 description",
+                style: TextStyle(
+                  fontSize: 10,
+                ),
+              ),
+              trailing: Icon(Icons.more_horiz),
+            ),
+          ]),
+          const SizedBox(
+            height: 10,
+          ),
+          const Row(
+            children: [
+              //text to describe the teams and an outtline button at the right to add a new team
+            ],
+          ),
+          const SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                //cards with an icon at the top and a word at the bottom and also rectangular in shape and should have a light green background and clear white text
+                Card(
+                  child: Padding(
+                    padding: EdgeInsets.all(5.0),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Icon(
+                          Icons.people,
+                          size: 30,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          "300",
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          "Create a new board",
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Card(
+                  child: Padding(
+                    padding: EdgeInsets.all(5.0),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Icon(
+                          Icons.people,
+                          size: 30,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          "300",
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          "Create a new board",
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Card(
+                  child: Padding(
+                    padding: EdgeInsets.all(5.0),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Icon(
+                          Icons.people,
+                          size: 30,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          "300",
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          "Create a new board",
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Card(
+                  child: Padding(
+                    padding: EdgeInsets.all(5.0),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Icon(
+                          Icons.people,
+                          size: 30,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          "300",
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          "Create a new board",
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          Container(),
+          Container(),
+          Container(),
+          Container(),
+        ],
       ),
     );
   }
