@@ -4,7 +4,7 @@ import 'package:maker/components/drawer.dart';
 import 'package:maker/models/messages_model.dart';
 import 'package:maker/pages/chat_screen.dart';
 
-  class Inbox extends StatelessWidget {
+class Inbox extends StatelessWidget {
   const Inbox({Key? key}) : super(key: key);
 
   @override
@@ -16,7 +16,7 @@ import 'package:maker/pages/chat_screen.dart';
         actions: [
           IconButton(
             onPressed: () {
-              //sign out the user
+              // Sign out the user
               FirebaseAuth.instance.signOut();
             },
             icon: const Icon(Icons.logout),
@@ -24,12 +24,11 @@ import 'package:maker/pages/chat_screen.dart';
         ],
       ),
 
-      //Drawer
+      // Drawer
       drawer: const MyDrawer(),
 
-
-      //Body
-            body: ListView.builder(
+      // Body
+      body: ListView.builder(
         itemCount: chats.length,
         itemBuilder: (BuildContext context, int index) {
           final Message chat = chats[index];
@@ -58,7 +57,6 @@ import 'package:maker/pages/chat_screen.dart';
                               width: 2,
                               color: Theme.of(context).primaryColor,
                             ),
-                            // shape: BoxShape.circle,
                             boxShadow: [
                               BoxShadow(
                                 color: Colors.grey.withOpacity(0.5),
@@ -82,39 +80,20 @@ import 'package:maker/pages/chat_screen.dart';
                       backgroundImage: AssetImage(chat.sender.imageUrl),
                     ),
                   ),
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.65,
-                    padding: const EdgeInsets.only(
-                      left: 20,
-                    ),
+                  const SizedBox(width: 10), // Add spacing between the avatar and text
+                  Expanded(
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            Row(
-                              children: <Widget>[
-                                Text(
-                                  chat.sender.name,
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                chat.sender.isOnline
-                                    ? Container(
-                                        margin: const EdgeInsets.only(left: 5),
-                                        width: 7,
-                                        height: 7,
-                                        decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Theme.of(context).primaryColor,
-                                        ),
-                                      )
-                                    : Container(
-                                        child: null,
-                                      ),
-                              ],
+                            Text(
+                              chat.sender.name,
+                              style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                             Text(
                               chat.time,
@@ -126,14 +105,14 @@ import 'package:maker/pages/chat_screen.dart';
                             ),
                           ],
                         ),
-                       const SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Container(
                           alignment: Alignment.topLeft,
                           child: Text(
                             chat.text,
-                           style: const TextStyle(
+                            style: const TextStyle(
                               fontSize: 13,
                               color: Colors.black54,
                             ),
@@ -151,6 +130,5 @@ import 'package:maker/pages/chat_screen.dart';
         },
       ),
     );
-    
   }
 }
