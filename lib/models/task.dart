@@ -35,7 +35,7 @@ class Task {
     Map data = doc.data() as Map;
     return Task(
       taskId: doc.id,
-      title: data['tittle'] ?? '', // Fix the field name typo here
+      title: data['title'] ?? '', // Fix the field name typo here
       description: data['description'] ?? '',
       dueDate: (data['dueDate'] as Timestamp?) ?? Timestamp.now(),
       status: data['status'] ?? '',
