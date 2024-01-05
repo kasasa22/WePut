@@ -99,6 +99,7 @@ class HomePage extends StatelessWidget {
 
           //list tiles with a title and a subtitle and a trailing icon in a container with a white background and a green border trying to list the upcoming tasks, the completed tasks and the overdue tasks with a top side having these text buttons that can be cliced to toggle between these three catergories and also an elevated button in the same top row that can be clicked to add a new task
           SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
             child: Padding(
               padding: const EdgeInsets.all(2.0),
               child: Container(
