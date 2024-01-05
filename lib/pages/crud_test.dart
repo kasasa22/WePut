@@ -16,17 +16,17 @@ class _TestState extends State<Test> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('CRUD Test'),
+        title: const Text('CRUD Test'),
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: tasksCollection.snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           }
 
           if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-            return Center(
+            return const Center(
               child: Text('No tasks available.'),
             );
           }
@@ -39,7 +39,7 @@ class _TestState extends State<Test> {
                 title: Text(task['title']),
                 subtitle: Text(task['description']),
                 trailing: IconButton(
-                  icon: Icon(Icons.delete),
+                  icon: const Icon(Icons.delete),
                   onPressed: () => _deleteTask(task.id),
                 ),
               );
@@ -49,7 +49,7 @@ class _TestState extends State<Test> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _addTask(),
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }
