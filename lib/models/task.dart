@@ -35,18 +35,18 @@ class Task {
     Map data = doc.data() as Map;
     return Task(
       taskId: doc.id,
-      title: data['title'] ?? '',
+      title: data['tittle'] ?? '', // Fix the field name typo here
       description: data['description'] ?? '',
-      dueDate: data['dueDate'] ?? Timestamp.now(),
+      dueDate: (data['dueDate'] as Timestamp?) ?? Timestamp.now(),
       status: data['status'] ?? '',
       assignedUserId: data['assignedUserId'] ?? '',
       priority: data['priority'] ?? '',
       category: data['category'] ?? '',
-      progress: data['progress'] ?? 0,
+      progress: (data['progress'] as int?) ?? 0,
       comments: List<String>.from(data['comments'] ?? []),
-      startTime: data['startTime'] ?? Timestamp.now(),
-      endTime: data['endTime'] ?? Timestamp.now(),
-      evaluation: (data['evaluation'] ?? 0).toDouble(),
+      startTime: (data['startTime'] as Timestamp?) ?? Timestamp.now(),
+      endTime: (data['endTIme'] as Timestamp?) ?? Timestamp.now(),
+      evaluation: (data['evaluation'] as num?)?.toDouble() ?? 0.0,
     );
   }
 
