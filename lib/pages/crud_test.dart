@@ -19,44 +19,42 @@ class _TestState extends State<Test> {
         title: const Text('CRUD Test'),
       ),
       body: SafeArea(
-        child: Column(children: [
-          _tasksListView(),
-        ]),
+        child: Column(
+          children: [
+            _tasksListView(),
+          ],
+        ),
       ),
-
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () => _addTask(),
-      //   child: const Icon(Icons.add),
-      // ),
     );
   }
 
   Widget _tasksListView() {
     return SizedBox(
-      height: MediaQuery.sizeOf(context).height * 0.8,
-      width: MediaQuery.sizeOf(context).width * 0.8,
+      height: MediaQuery.of(context).size.height * 0.8,
+      width: MediaQuery.of(context).size.width * 0.8,
+      child: StreamBuilder(
+        stream: taskService.getTasks(),
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasError) {
+            return const Text('Something went wrong');
+          }
+
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Text("Loading");
+          }
+
+          return ListView(
+            children: snapshot.data!.docs.map((DocumentSnapshot document) {
+              Map<String, dynamic> data =
+                  document.data()! as Map<String, dynamic>;
+              return ListTile(
+                title: Text(data['title']),
+                subtitle: Text(data['description']),
+              );
+            }).toList(),
+          );
+        },
+      ),
     );
   }
-
-  // Future<void> _addTask() async {
-  //   await taskService.addTask(Task(
-  //     taskId: '',
-  //     title: 'New Task',
-  //     description: 'Description for the new task.',
-  //     dueDate: Timestamp.now(),
-  //     status: 'pending',
-  //     assignedUserId: 'someUserId',
-  //     priority: 'medium',
-  //     category: 'General',
-  //     progress: 0,
-  //     comments: [],
-  //     startTime: Timestamp.now(),
-  //     endTime: Timestamp.now(),
-  //     evaluation: 0.0,
-  //   ));
-  // }
-
-  // Future<void> _deleteTask(String taskId) async {
-  //   await taskService.deleteTask(taskId);
-  // }
 }
