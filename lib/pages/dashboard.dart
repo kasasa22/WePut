@@ -198,10 +198,10 @@ class _DashboardState extends State<Dashboard> {
             ),
           ),
           //the graph
-          // const LimitedBox(
-          //   maxHeight: 120,
-          //   child: PieChartWidget(), // Display the pie chart
-          // ),
+          const LimitedBox(
+            maxHeight: 120,
+            child: PieChartWidget(), // Display the pie chart
+          ),
           const SizedBox(
             height: 20,
           ),
