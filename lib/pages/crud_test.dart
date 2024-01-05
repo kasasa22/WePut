@@ -1,5 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import '../models/task.dart';
+import '../services/task.dart';
 
 class Test extends StatefulWidget {
   const Test({Key? key}) : super(key: key);
@@ -9,8 +11,7 @@ class Test extends StatefulWidget {
 }
 
 class _TestState extends State<Test> {
-  final CollectionReference tasksCollection =
-      FirebaseFirestore.instance.collection('tasks');
+  final TaskService taskService = TaskService();
 
   @override
   Widget build(BuildContext context) {
@@ -18,29 +19,29 @@ class _TestState extends State<Test> {
       appBar: AppBar(
         title: const Text('CRUD Test'),
       ),
-      body: StreamBuilder<QuerySnapshot>(
-        stream: tasksCollection.snapshots(),
+      body: StreamBuilder<List<Task>>(
+        stream: taskService.getTasksStream(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const CircularProgressIndicator();
           }
 
-          if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+          if (!snapshot.hasData || snapshot.data!.isEmpty) {
             return const Center(
               child: Text('No tasks available.'),
             );
           }
 
           return ListView.builder(
-            itemCount: snapshot.data!.docs.length,
+            itemCount: snapshot.data!.length,
             itemBuilder: (context, index) {
-              var task = snapshot.data!.docs[index];
+              var task = snapshot.data![index];
               return ListTile(
-                title: Text(task['title']),
-                subtitle: Text(task['description']),
+                title: Text(task.title),
+                subtitle: Text(task.description),
                 trailing: IconButton(
                   icon: const Icon(Icons.delete),
-                  onPressed: () => _deleteTask(task.id),
+                  onPressed: () => _deleteTask(task.taskId),
                 ),
               );
             },
@@ -55,13 +56,24 @@ class _TestState extends State<Test> {
   }
 
   Future<void> _addTask() async {
-    await tasksCollection.add({
-      'title': 'New Task',
-      'description': 'Description for the new task.',
-    });
+    await taskService.addTask(Task(
+      taskId: '',
+      title: 'New Task',
+      description: 'Description for the new task.',
+      dueDate: Timestamp.now(),
+      status: 'pending',
+      assignedUserId: 'someUserId',
+      priority: 'medium',
+      category: 'General',
+      progress: 0,
+      comments: [],
+      startTime: Timestamp.now(),
+      endTime: Timestamp.now(),
+      evaluation: 0.0,
+    ));
   }
 
   Future<void> _deleteTask(String taskId) async {
-    await tasksCollection.doc(taskId).delete();
+    await taskService.deleteTask(taskId);
   }
 }
