@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class PerformanceMetrics {
   String userId;
   int completedTasks;
@@ -35,7 +37,7 @@ class PerformanceMetrics {
     int? totalEvaluationPoints,
   }) {
     return PerformanceMetrics(
-      userId: userId,
+      userId: this.userId,
       completedTasks: completedTasks ?? this.completedTasks,
       averageCompletionTime:
           averageCompletionTime ?? this.averageCompletionTime,
