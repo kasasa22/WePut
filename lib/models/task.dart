@@ -31,6 +31,21 @@ class Task {
     required this.evaluation,
   });
 
+  Map<String, dynamic> toJson() => {
+        'title': title,
+        'description': description,
+        'dueDate': dueDate,
+        'status': status,
+        'assignedUserId': assignedUserId,
+        'priority': priority,
+        'category': category,
+        'progress': progress,
+        'comment': comment,
+        'startTime': startTime,
+        'endTime': endTime,
+        'evaluation': evaluation,
+      };
+
   Task.fromJson(Map<String, dynamic> json)
       : this(
           taskId: json['taskId'] as String? ?? '',
@@ -53,21 +68,6 @@ class Task {
               : (json['endTime'] as Timestamp),
           evaluation: (json['evaluation'] as num?)?.toDouble() ?? 0.0,
         );
-
-  Map<String, dynamic> toJson() => {
-        'title': title,
-        'description': description,
-        'dueDate': dueDate,
-        'status': status,
-        'assignedUserId': assignedUserId,
-        'priority': priority,
-        'category': category,
-        'progress': progress,
-        'comment': comment,
-        'startTime': startTime,
-        'endTime': endTime,
-        'evaluation': evaluation,
-      };
 
   Task copyWith({
     String? title,
