@@ -166,40 +166,44 @@ class HomePage extends StatelessWidget {
             ),
           ),
           //list tiles that will be toggled between depending on the button clicked above
-          const SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Column(children: [
-              taskTile(
-                title: 'The first task',
-                description:
-                    'The first task incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud',
-                date: '11/11/23',
-              ),
-              taskTile(
-                title: 'The second task',
-                description:
-                    'the second task incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud',
-                date: '11/11/23',
-              ),
-              taskTile(
-                title: 'The third task',
-                description:
-                    'the third task incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud',
-                date: '11/11/23',
-              ),
-              taskTile(
-                title: 'The last task',
-                description:
-                    'the last task lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ',
-                date: '11/`1/23',
-              ),
-              taskTile(
-                title: 'The last task',
-                description:
-                    'the last task lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ',
-                date: '11/`1/23',
-              ),
-            ]),
+          Container(
+            height: 200,
+            color: Colors.white,
+            child: const SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Column(children: [
+                taskTile(
+                  title: 'The first task',
+                  description:
+                      'The first task incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud',
+                  date: '11/11/23',
+                ),
+                taskTile(
+                  title: 'The second task',
+                  description:
+                      'the second task incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud',
+                  date: '11/11/23',
+                ),
+                taskTile(
+                  title: 'The third task',
+                  description:
+                      'the third task incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud',
+                  date: '11/11/23',
+                ),
+                taskTile(
+                  title: 'The last task',
+                  description:
+                      'the last task lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ',
+                  date: '11/`1/23',
+                ),
+                taskTile(
+                  title: 'The last task',
+                  description:
+                      'the last task lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ',
+                  date: '11/`1/23',
+                ),
+              ]),
+            ),
           ),
           const SizedBox(
             height: 5,
