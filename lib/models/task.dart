@@ -31,12 +31,14 @@ class Task {
     required this.evaluation,
   });
 
-  Task.fromJson(Map<String, Object?> json)
+  Task.fromJson(Map<String, dynamic> json)
       : this(
           taskId: json['taskId'] as String? ?? '',
           title: json['title'] as String? ?? '',
           description: json['description'] as String? ?? '',
-          dueDate: json['dueDate'] as Timestamp? ?? Timestamp.now(),
+          dueDate: json['dueDate'] == null
+              ? Timestamp.now()
+              : (json['dueDate'] as Timestamp),
           status: json['status'] as String? ?? '',
           assignedUserId: json['assignedUserId'] as String? ?? '',
           priority: json['priority'] as String? ?? '',
@@ -46,8 +48,12 @@ class Task {
                   ?.map<String>((e) => e.toString())
                   .toList() ??
               [],
-          startTime: json['startTime'] as Timestamp? ?? Timestamp.now(),
-          endTime: json['endTime'] as Timestamp? ?? Timestamp.now(),
+          startTime: json['startTime'] == null
+              ? Timestamp.now()
+              : (json['startTime'] as Timestamp),
+          endTime: json['endTime'] == null
+              ? Timestamp.now()
+              : (json['endTime'] as Timestamp),
           evaluation: (json['evaluation'] as num?)?.toDouble() ?? 0.0,
         );
 
