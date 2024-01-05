@@ -215,16 +215,19 @@ class HomePage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 //text to describe the teams and an outtline button at the right to add a new team
-                const Column(
-                  children: [
-                    Text(
-                      "Team\nlorem ipsum dolor sit amet, consectetur",
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
+                const SizedBox(
+                  width: 200,
+                  child: Column(
+                    children: [
+                      Text(
+                        "Team\nlorem ipsum dolor sit amet, consectetur",
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 const SizedBox(
                   width: 5,
