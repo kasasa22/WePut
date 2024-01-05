@@ -42,7 +42,7 @@ class Assignment {
     String? completionStatus,
   }) {
     return Assignment(
-      assignmentId: this.assignmentId,
+      assignmentId: assignmentId,
       userId: userId ?? this.userId,
       taskId: taskId ?? this.taskId,
       assignmentTime: assignmentTime ?? this.assignmentTime,

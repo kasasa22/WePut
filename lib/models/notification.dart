@@ -42,7 +42,7 @@ class Notification {
     bool? viewed,
   }) {
     return Notification(
-      notificationId: this.notificationId,
+      notificationId: notificationId,
       userId: userId ?? this.userId,
       message: message ?? this.message,
       timestamp: timestamp ?? this.timestamp,

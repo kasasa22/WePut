@@ -37,7 +37,7 @@ class PerformanceMetrics {
     int? totalEvaluationPoints,
   }) {
     return PerformanceMetrics(
-      userId: this.userId,
+      userId: userId,
       completedTasks: completedTasks ?? this.completedTasks,
       averageCompletionTime:
           averageCompletionTime ?? this.averageCompletionTime,

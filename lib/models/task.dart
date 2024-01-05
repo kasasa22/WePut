@@ -82,7 +82,7 @@ class Task {
     double? evaluation,
   }) {
     return Task(
-      taskId: this.taskId,
+      taskId: taskId,
       title: title ?? this.title,
       description: description ?? this.description,
       dueDate: dueDate ?? this.dueDate,

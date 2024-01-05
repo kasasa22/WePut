@@ -47,7 +47,7 @@ class User {
     double? averageCompletionTime,
   }) {
     return User(
-      userId: this.userId,
+      userId: userId,
       name: name ?? this.name,
       email: email ?? this.email,
       role: role ?? this.role,
