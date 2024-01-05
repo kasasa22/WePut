@@ -33,19 +33,19 @@ class Task {
 
   Task.fromJson(Map<String, Object?> json)
       : this(
-          taskId: json['taskId']! as String,
-          title: json['title']! as String,
-          description: json['description']! as String,
-          dueDate: json['dueDate']! as Timestamp,
-          status: json['status']! as String,
+          taskId: json['taskId'] as String,
+          title: json['title'] as String,
+          description: json['description'] as String,
+          dueDate: json['dueDate'] as Timestamp,
+          status: json['status'] as String,
           assignedUserId: json['assignedUserId']! as String,
-          priority: json['priority']! as String,
-          category: json['category']! as String,
-          progress: json['progress']! as int,
-          comments: json['comments']! as List<String>,
-          startTime: json['startTime']! as Timestamp,
-          endTime: json['endTime']! as Timestamp,
-          evaluation: json['evaluation']! as double,
+          priority: json['priority'] as String,
+          category: json['category'] as String,
+          progress: json['progress'] as int,
+          comments: json['comments'] as List<String>,
+          startTime: json['startTime'] as Timestamp,
+          endTime: json['endTime'] as Timestamp,
+          evaluation: json['evaluation'] as double,
         );
 
   Map<String, dynamic> toJson() => {
