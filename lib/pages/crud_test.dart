@@ -22,6 +22,11 @@ class _TestState extends State<Test> {
       body: StreamBuilder<List<Task>>(
         stream: taskService.getTasksStream(),
         builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            print('Error: ${snapshot.error}');
+            return const Text('Error loading tasks');
+          }
+
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const CircularProgressIndicator();
           }
