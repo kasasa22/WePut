@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import '../models/task.dart';
 import '../services/task.dart';
 
 class Test extends StatefulWidget {
@@ -19,12 +18,23 @@ class _TestState extends State<Test> {
       appBar: AppBar(
         title: const Text('CRUD Test'),
       ),
-      body: 
+      body: SafeArea(
+        child: Column(children: [
+          _tasksListView(),
+        ]),
+      ),
 
       // floatingActionButton: FloatingActionButton(
       //   onPressed: () => _addTask(),
       //   child: const Icon(Icons.add),
       // ),
+    );
+  }
+
+  Widget _tasksListView() {
+    return SizedBox(
+      height: MediaQuery.sizeOf(context).height * 0.8,
+      width: MediaQuery.sizeOf(context).width * 0.8,
     );
   }
 
