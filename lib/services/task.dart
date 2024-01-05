@@ -12,8 +12,7 @@ class TaskService {
 
   TaskService() {
     _taskRef = _firestore.collection(COLLECTION_REF).withConverter<Task>(
-        fromFirestore: (snapshots, _) =>
-            Task.fromFirestore(snapshots.data()! as DocumentSnapshot<Object?>),
+        fromFirestore: (snapshots, _) => Task.fromJson(snapshots.data()!),
         toFirestore: (task, _) => task.toJson());
   }
 
