@@ -6,6 +6,7 @@ import 'package:maker/auth/auth.dart';
 import 'package:maker/auth/login_or_register.dart';
 import 'package:maker/firebase_options.dart';
 import 'package:maker/pages/boards.dart';
+import 'package:maker/pages/crud_test.dart';
 import 'package:maker/pages/dashboard.dart';
 import 'package:maker/pages/home_page.dart';
 import 'package:maker/pages/inbox.dart';
@@ -45,7 +46,8 @@ class MyApp extends StatelessWidget {
         '/teams': (context) => const Teams(),
         '/timeline': (context) => const Timeline(),
         '/inbox': (context) => const Inbox(),
-        '/boards': (context) => const Boards(),
+        '/boards': (context) =>
+            const Test(), // used for testing purposes but change it back later if needed
         '/dashboard': (context) => const Dashboard(),
         '/profile': (context) => const Profile(),
         '/settings': (context) =>
