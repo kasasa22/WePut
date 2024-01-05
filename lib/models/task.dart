@@ -10,7 +10,7 @@ class Task {
   String priority;
   String category;
   int progress;
-  List<String>? comments;
+  List<dynamic>? comments;
   Timestamp startTime;
   Timestamp endTime;
   double evaluation;
@@ -44,7 +44,7 @@ class Task {
           priority: json['priority'] as String? ?? '',
           category: json['category'] as String? ?? '',
           progress: json['progress'] as int? ?? 0,
-          comments: json['comments'] as List<String>? ?? [],
+          comments: json['comments'] as List? ?? [],
           startTime: json['startTime'] == null
               ? Timestamp.now()
               : (json['startTime'] as Timestamp),
