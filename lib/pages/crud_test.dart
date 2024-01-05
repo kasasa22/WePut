@@ -42,7 +42,7 @@ class _TestState extends State<Test> {
               child: Text('No tasks found'),
             );
           }
-          print(tasks);
+          print(tasks.length);
 
           return ListView(
             children: snapshot.data!.docs.map((DocumentSnapshot document) {
