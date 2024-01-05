@@ -44,7 +44,7 @@ class Task {
           priority: json['priority'] as String? ?? '',
           category: json['category'] as String? ?? '',
           progress: json['progress'] as int? ?? 0,
-          comment: json['comments'] as String? ?? '',
+          comment: json['comment'] as String? ?? '',
           startTime: json['startTime'] == null
               ? Timestamp.now()
               : (json['startTime'] as Timestamp),
@@ -78,7 +78,7 @@ class Task {
     String? priority,
     String? category,
     int? progress,
-    List<String>? comments,
+    String? comment,
     Timestamp? startTime,
     Timestamp? endTime,
     double? evaluation,
