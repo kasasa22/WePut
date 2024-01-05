@@ -10,7 +10,7 @@ class Task {
   String priority;
   String category;
   int progress;
-  String comment;
+  List<String>? comments;
   Timestamp startTime;
   Timestamp endTime;
   double evaluation;
@@ -25,28 +25,13 @@ class Task {
     required this.priority,
     required this.category,
     required this.progress,
-    required this.comment,
+    required this.comments,
     required this.startTime,
     required this.endTime,
     required this.evaluation,
   });
 
-  Map<String, dynamic> toJson() => {
-        'title': title,
-        'description': description,
-        'dueDate': dueDate,
-        'status': status,
-        'assignedUserId': assignedUserId,
-        'priority': priority,
-        'category': category,
-        'progress': progress,
-        'comment': comment,
-        'startTime': startTime,
-        'endTime': endTime,
-        'evaluation': evaluation,
-      };
-
-  Task.fromJson(Map<String, dynamic> json)
+  Task.fromJson(Map<String, Object?> json)
       : this(
           taskId: json['taskId'] as String? ?? '',
           title: json['title'] as String? ?? '',
@@ -59,7 +44,7 @@ class Task {
           priority: json['priority'] as String? ?? '',
           category: json['category'] as String? ?? '',
           progress: json['progress'] as int? ?? 0,
-          comment: json['comment'] as String? ?? '',
+          comments: json['comments'] as List<String>? ?? [],
           startTime: json['startTime'] == null
               ? Timestamp.now()
               : (json['startTime'] as Timestamp),
@@ -68,6 +53,21 @@ class Task {
               : (json['endTime'] as Timestamp),
           evaluation: (json['evaluation'] as num?)?.toDouble() ?? 0.0,
         );
+
+  Map<String, Object?> toJson() => {
+        'title': title,
+        'description': description,
+        'dueDate': dueDate,
+        'status': status,
+        'assignedUserId': assignedUserId,
+        'priority': priority,
+        'category': category,
+        'progress': progress,
+        'comments': comments,
+        'startTime': startTime,
+        'endTime': endTime,
+        'evaluation': evaluation,
+      };
 
   Task copyWith({
     String? title,
@@ -78,7 +78,7 @@ class Task {
     String? priority,
     String? category,
     int? progress,
-    String? comment,
+    List<String>? comments,
     Timestamp? startTime,
     Timestamp? endTime,
     double? evaluation,
@@ -93,7 +93,7 @@ class Task {
       priority: priority ?? this.priority,
       category: category ?? this.category,
       progress: progress ?? this.progress,
-      comment: comment ?? this.comment,
+      comments: comments ?? this.comments,
       startTime: startTime ?? this.startTime,
       endTime: endTime ?? this.endTime,
       evaluation: evaluation ?? this.evaluation,
