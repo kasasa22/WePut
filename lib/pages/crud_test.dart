@@ -34,14 +34,15 @@ class _TestState extends State<Test> {
       width: MediaQuery.of(context).size.width * 0.8,
       child: StreamBuilder(
         stream: taskService.getTasks(),
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (snapshot.hasError) {
-            return const Text('Something went wrong');
-          }
+        builder: (context, snapshot) {
+          List tasks = snapshot.data?.docs ?? [];
 
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Text("Loading");
+          if (tasks.isEmpty) {
+            return const Center(
+              child: Text('No tasks found'),
+            );
           }
+          print(tasks);
 
           return ListView(
             children: snapshot.data!.docs.map((DocumentSnapshot document) {
