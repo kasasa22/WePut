@@ -10,7 +10,7 @@ class Task {
   String priority;
   String category;
   int progress;
-  List<String> comments;
+  String comment;
   Timestamp startTime;
   Timestamp endTime;
   double evaluation;
@@ -25,7 +25,7 @@ class Task {
     required this.priority,
     required this.category,
     required this.progress,
-    required this.comments,
+    required this.comment,
     required this.startTime,
     required this.endTime,
     required this.evaluation,
@@ -44,10 +44,7 @@ class Task {
           priority: json['priority'] as String? ?? '',
           category: json['category'] as String? ?? '',
           progress: json['progress'] as int? ?? 0,
-          comments: (json['comments'] as List<dynamic>?)
-                  ?.map<String>((e) => e.toString())
-                  .toList() ??
-              [],
+          comment: json['comments'] as String? ?? '',
           startTime: json['startTime'] == null
               ? Timestamp.now()
               : (json['startTime'] as Timestamp),
@@ -66,7 +63,7 @@ class Task {
         'priority': priority,
         'category': category,
         'progress': progress,
-        'comments': comments,
+        'comment': comment,
         'startTime': startTime,
         'endTime': endTime,
         'evaluation': evaluation,
@@ -96,7 +93,7 @@ class Task {
       priority: priority ?? this.priority,
       category: category ?? this.category,
       progress: progress ?? this.progress,
-      comments: comments ?? this.comments,
+      comment: comment ?? this.comment,
       startTime: startTime ?? this.startTime,
       endTime: endTime ?? this.endTime,
       evaluation: evaluation ?? this.evaluation,
