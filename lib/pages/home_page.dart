@@ -99,6 +99,7 @@ class HomePage extends StatelessWidget {
 
           //list tiles with a title and a subtitle and a trailing icon in a container with a white background and a green border trying to list the upcoming tasks, the completed tasks and the overdue tasks with a top side having these text buttons that can be cliced to toggle between these three catergories and also an elevated button in the same top row that can be clicked to add a new task
           SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
             child: Padding(
               padding: const EdgeInsets.all(2.0),
               child: Container(
@@ -166,40 +167,44 @@ class HomePage extends StatelessWidget {
             ),
           ),
           //list tiles that will be toggled between depending on the button clicked above
-          const SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Column(children: [
-              taskTile(
-                title: 'The first task',
-                description:
-                    'The first task incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud',
-                date: '11/11/23',
-              ),
-              taskTile(
-                title: 'The second task',
-                description:
-                    'the second task incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud',
-                date: '11/11/23',
-              ),
-              taskTile(
-                title: 'The third task',
-                description:
-                    'the third task incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud',
-                date: '11/11/23',
-              ),
-              taskTile(
-                title: 'The last task',
-                description:
-                    'the last task lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ',
-                date: '11/`1/23',
-              ),
-              taskTile(
-                title: 'The last task',
-                description:
-                    'the last task lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ',
-                date: '11/`1/23',
-              ),
-            ]),
+          Container(
+            height: 200,
+            color: Colors.white,
+            child: const SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Column(children: [
+                taskTile(
+                  title: 'The first task',
+                  description:
+                      'The first task incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud',
+                  date: '11/11/23',
+                ),
+                taskTile(
+                  title: 'The second task',
+                  description:
+                      'the second task incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud',
+                  date: '11/11/23',
+                ),
+                taskTile(
+                  title: 'The third task',
+                  description:
+                      'the third task incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud',
+                  date: '11/11/23',
+                ),
+                taskTile(
+                  title: 'The last task',
+                  description:
+                      'the last task lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ',
+                  date: '11/`1/23',
+                ),
+                taskTile(
+                  title: 'The last task',
+                  description:
+                      'the last task lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ',
+                  date: '11/`1/23',
+                ),
+              ]),
+            ),
           ),
           const SizedBox(
             height: 5,
@@ -210,16 +215,19 @@ class HomePage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 //text to describe the teams and an outtline button at the right to add a new team
-                const Column(
-                  children: [
-                    Text(
-                      "Team\nlorem ipsum dolor sit amet, consectetur",
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
+                const SizedBox(
+                  width: 200,
+                  child: Column(
+                    children: [
+                      Text(
+                        "Team\nlorem ipsum dolor sit amet, consectetur",
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 const SizedBox(
                   width: 5,
