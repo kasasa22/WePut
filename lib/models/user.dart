@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 class User {
   String userId;
   String name;
@@ -17,17 +15,16 @@ class User {
     required this.averageCompletionTime,
   });
 
-  factory User.fromFirestore(DocumentSnapshot doc) {
-    Map data = doc.data() as Map;
-    return User(
-      userId: doc.id,
-      name: data['name'] ?? '',
-      email: data['email'] ?? '',
-      role: data['role'] ?? '',
-      completedTasks: data['completedTasks'] ?? 0,
-      averageCompletionTime: (data['averageCompletionTime'] ?? 0).toDouble(),
-    );
-  }
+  User.fromJson(Map<String, Object?> json)
+      : this(
+          userId: json['userId'] as String? ?? '',
+          name: json['name'] as String? ?? '',
+          email: json['email'] as String? ?? '',
+          role: json['role'] as String? ?? '',
+          completedTasks: json['completedTasks'] as int? ?? 0,
+          averageCompletionTime:
+              json['averageCompletionTime'] as double? ?? 0.0,
+        );
 
   Map<String, dynamic> toJson() {
     return {

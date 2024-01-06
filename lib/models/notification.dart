@@ -15,16 +15,16 @@ class Notification {
     required this.viewed,
   });
 
-  factory Notification.fromFirestore(DocumentSnapshot doc) {
-    Map data = doc.data() as Map;
-    return Notification(
-      notificationId: doc.id,
-      userId: data['userId'] ?? '',
-      message: data['message'] ?? '',
-      timestamp: data['timestamp'] ?? Timestamp.now(),
-      viewed: data['viewed'] ?? false,
-    );
-  }
+  Notification.fromJson(Map<String, Object?> json)
+      : this(
+          notificationId: json['notificationId'] as String? ?? '',
+          userId: json['userId'] as String? ?? '',
+          message: json['message'] as String? ?? '',
+          timestamp: json['timestamp'] == null
+              ? Timestamp.now()
+              : (json['endTime'] as Timestamp),
+          viewed: json['viewed'] as bool? ?? false,
+        );
 
   Map<String, dynamic> toJson() {
     return {

@@ -45,6 +45,25 @@ class MyDrawer extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 2),
+            Padding(
+              padding: const EdgeInsets.only(left: 20),
+              child: ListTile(
+                leading: Icon(
+                  Icons.home,
+                  color: Colors.green[400],
+                ),
+                title: Text("T E S T",
+                    style: Theme.of(context).textTheme.titleSmall),
+                onTap: () {
+                  //pop drawer
+                  Navigator.pop(context);
+
+                  //navigate to the home page
+                  Navigator.pushNamed(context, '/tests');
+                },
+              ),
+            ),
+
             // dashboard tile
             Padding(
               padding: const EdgeInsets.only(left: 20),

@@ -10,7 +10,7 @@ class Task {
   String priority;
   String category;
   int progress;
-  List<String> comments;
+  List<dynamic>? comments;
   Timestamp startTime;
   Timestamp endTime;
   double evaluation;
@@ -31,7 +31,7 @@ class Task {
     required this.evaluation,
   });
 
-  Task.fromJson(Map<String, dynamic> json)
+  Task.fromJson(Map<String, Object?> json)
       : this(
           taskId: json['taskId'] as String? ?? '',
           title: json['title'] as String? ?? '',
@@ -57,7 +57,7 @@ class Task {
           evaluation: (json['evaluation'] as num?)?.toDouble() ?? 0.0,
         );
 
-  Map<String, dynamic> toJson() => {
+  Map<String, Object?> toJson() => {
         'title': title,
         'description': description,
         'dueDate': dueDate,

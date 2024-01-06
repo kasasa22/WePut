@@ -1,31 +1,37 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../models/assignment.dart';
 
+// ignore: constant_identifier_names
+const String COLLECTION_REF = "assignments";
+
 class AssignmentService {
-  final CollectionReference assignmentsCollection =
-      FirebaseFirestore.instance.collection('assignments');
+  final _firestore = FirebaseFirestore.instance;
 
-  Future<void> addAssignment(Assignment assignment) async {
-    await assignmentsCollection.add(assignment.toJson());
+  // ignore: unused_field
+  late final CollectionReference _assignmentRef;
+
+  AssignmentService() {
+    _assignmentRef = _firestore
+        .collection(COLLECTION_REF)
+        .withConverter<Assignment>(
+            fromFirestore: (snapshots, _) =>
+                Assignment.fromJson(snapshots.data()!),
+            toFirestore: (assignment, _) => assignment.toJson());
   }
 
-  Future<void> updateAssignment(Assignment assignment) async {
-    await assignmentsCollection
-        .doc(assignment.assignmentId)
-        .update(assignment.toJson());
+  Stream<QuerySnapshot> getAssignments() {
+    return _assignmentRef.snapshots();
   }
 
-  Future<void> deleteAssignment(String assignmentId) async {
-    await assignmentsCollection.doc(assignmentId).delete();
+  void addAssignment(Assignment assignment) async {
+    _assignmentRef.add(assignment);
   }
 
-  Stream<List<Assignment>> getAssignmentsStream() {
-    return assignmentsCollection.snapshots().map(
-          (snapshot) => snapshot.docs
-              .map(
-                (doc) => Assignment.fromFirestore(doc),
-              )
-              .toList(),
-        );
+  void updateAssignment(String assignmentID, Assignment assignment) {
+    _assignmentRef.doc(assignmentID).update(assignment.toJson());
+  }
+
+  void deleteAssignment(String assignmentID) {
+    _assignmentRef.doc(assignmentID).delete();
   }
 }

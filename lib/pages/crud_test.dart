@@ -1,5 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:maker/models/task.dart';
 import '../services/task.dart';
 
 class Test extends StatefulWidget {
@@ -42,17 +42,33 @@ class _TestState extends State<Test> {
               child: Text('No tasks found'),
             );
           }
-          print(tasks.length);
+          // print(tasks.length);
 
-          return ListView(
-            children: snapshot.data!.docs.map((DocumentSnapshot document) {
-              Map<String, dynamic> data =
-                  document.data()! as Map<String, dynamic>;
-              return ListTile(
-                title: Text(data['title']),
-                subtitle: Text(data['description']),
+          return ListView.builder(
+            itemCount: tasks.length,
+            itemBuilder: (contex, index) {
+              Task task = tasks[index].data();
+              // ignore: avoid_print, prefer_interpolation_to_compose_strings
+              print("the key is " + tasks[index].id);
+              String key = tasks[index].id;
+
+              return Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                child: ListTile(
+                  tileColor: Colors.amber,
+                  title: Text(task.title),
+                  subtitle: Text(key),
+                  trailing: Checkbox(
+                    value: false,
+                    onChanged: (value) {
+                      Task updateTask = task.copyWith();
+                      taskService.updateTask(key, updateTask);
+                    },
+                  ),
+                ),
               );
-            }).toList(),
+            },
           );
         },
       ),

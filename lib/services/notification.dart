@@ -1,27 +1,37 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../models/notification.dart';
 
+// ignore: constant_identifier_names
+const String COLLECTION_REF = "notifications";
+
 class NotificationService {
-  final CollectionReference notificationsCollection =
-      FirebaseFirestore.instance.collection('notifications');
+  final _firestore = FirebaseFirestore.instance;
 
-  Future<void> addNotification(Notification notification) async {
-    await notificationsCollection.add(notification.toJson());
+  // ignore: unused_field
+  late final CollectionReference _notificationRef;
+
+  NotificationService() {
+    _notificationRef = _firestore
+        .collection(COLLECTION_REF)
+        .withConverter<Notification>(
+            fromFirestore: (snapshots, _) =>
+                Notification.fromJson(snapshots.data()!),
+            toFirestore: (notification, _) => notification.toJson());
   }
 
-  Future<void> updateNotification(Notification notification) async {
-    await notificationsCollection
-        .doc(notification.notificationId)
-        .update(notification.toJson());
+  Stream<QuerySnapshot> getnotifications() {
+    return _notificationRef.snapshots();
   }
 
-  Stream<List<Notification>> getNotificationsStream() {
-    return notificationsCollection.snapshots().map(
-          (snapshot) => snapshot.docs
-              .map(
-                (doc) => Notification.fromFirestore(doc),
-              )
-              .toList(),
-        );
+  void addNotification(Notification notification) async {
+    _notificationRef.add(notification);
+  }
+
+  void updateNotification(String notificationID, Notification notification) {
+    _notificationRef.doc(notificationID).update(notification.toJson());
+  }
+
+  void deleteNotification(String notificationID) {
+    _notificationRef.doc(notificationID).delete();
   }
 }

@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 class PerformanceMetrics {
   String userId;
   int completedTasks;
@@ -13,15 +11,14 @@ class PerformanceMetrics {
     required this.totalEvaluationPoints,
   });
 
-  factory PerformanceMetrics.fromFirestore(DocumentSnapshot doc) {
-    Map data = doc.data() as Map;
-    return PerformanceMetrics(
-      userId: doc.id,
-      completedTasks: data['completedTasks'] ?? 0,
-      averageCompletionTime: (data['averageCompletionTime'] ?? 0).toDouble(),
-      totalEvaluationPoints: data['totalEvaluationPoints'] ?? 0,
-    );
-  }
+  PerformanceMetrics.fromJson(Map<String, Object?> json)
+      : this(
+          userId: json['userId'] as String? ?? '',
+          completedTasks: json['completedTasks'] as int? ?? 0,
+          averageCompletionTime:
+              json['averageCompletionTime'] as double? ?? 0.0,
+          totalEvaluationPoints: json['totalEvaluationPoints'] as int? ?? 0,
+        );
 
   Map<String, dynamic> toJson() {
     return {
