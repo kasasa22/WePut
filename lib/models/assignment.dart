@@ -20,7 +20,7 @@ class Assignment {
           assignmentId: json['assignmentId'] as String? ?? '',
           userId: json['userId'] as String? ?? '',
           taskId: json['taskId'] as String? ?? '',
-          assignmentTime: json['endTime'] == null
+          assignmentTime: json['assignmentTime'] == null
               ? Timestamp.now()
               : (json['endTime'] as Timestamp),
           completionStatus: json['completionStatus'] as String? ?? '',
