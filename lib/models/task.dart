@@ -44,7 +44,10 @@ class Task {
           priority: json['priority'] as String? ?? '',
           category: json['category'] as String? ?? '',
           progress: json['progress'] as int? ?? 0,
-          comments: json['comments'] as List? ?? [],
+          comments: (json['comments'] as List<dynamic>?)
+                  ?.map<String>((e) => e.toString())
+                  .toList() ??
+              [],
           startTime: json['startTime'] == null
               ? Timestamp.now()
               : (json['startTime'] as Timestamp),
