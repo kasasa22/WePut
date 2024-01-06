@@ -55,7 +55,7 @@ class _TestState extends State<Test> {
                   tileColor: Colors.amber,
                   title: Text(task.title),
                   subtitle: Text(task.description),
-                  leading: Text(tasks[index].toString()),
+                  leading: Text(tasks[index]),
                 ),
               );
             },
