@@ -19,26 +19,4 @@ class TaskService {
   Stream<QuerySnapshot> getTasks() {
     return _taskRef.snapshots();
   }
-
-  // Future<void> addTask(Task task) async {
-  //   await tasksCollection.add(task.toJson());
-  // }
-
-  // Future<void> updateTask(Task task) async {
-  //   await tasksCollection.doc(task.taskId).update(task.toJson());
-  // }
-
-  // Future<void> deleteTask(String taskId) async {
-  //   await tasksCollection.doc(taskId).delete();
-  // }
-
-  // Stream<List<Task>> getTasksStream() {
-  //   return tasksCollection.snapshots().map(
-  //         (snapshot) => snapshot.docs
-  //             .map(
-  //               (doc) => Task.fromFirestore(doc),
-  //             )
-  //             .toList(),
-  //       );
-  // }
 }
