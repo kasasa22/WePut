@@ -15,16 +15,16 @@ class Assignment {
     required this.completionStatus,
   });
 
-  factory Assignment.fromFirestore(DocumentSnapshot doc) {
-    Map data = doc.data() as Map;
-    return Assignment(
-      assignmentId: doc.id,
-      userId: data['userId'] ?? '',
-      taskId: data['taskId'] ?? '',
-      assignmentTime: data['assignmentTime'] ?? Timestamp.now(),
-      completionStatus: data['completionStatus'] ?? '',
-    );
-  }
+  Assignment.fromJson(Map<String, Object?> json)
+      : this(
+          assignmentId: json['assignmentId'] as String? ?? '',
+          userId: json['userId'] as String? ?? '',
+          taskId: json['taskId'] as String? ?? '',
+          assignmentTime: json['endTime'] == null
+              ? Timestamp.now()
+              : (json['endTime'] as Timestamp),
+          completionStatus: json['completionStatus'] as String? ?? '',
+        );
 
   Map<String, dynamic> toJson() {
     return {
