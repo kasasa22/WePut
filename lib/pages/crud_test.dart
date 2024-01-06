@@ -49,6 +49,8 @@ class _TestState extends State<Test> {
             itemBuilder: (contex, index) {
               Task task = tasks[index].data();
               // ignore: avoid_print
+              print("the key is " + tasks[index].id);
+              String key = tasks[index].id;
               print(tasks[index].id);
               return Padding(
                 padding:
@@ -56,7 +58,7 @@ class _TestState extends State<Test> {
                 child: ListTile(
                   tileColor: Colors.amber,
                   title: Text(task.title),
-                  subtitle: Text(task.description),
+                  subtitle: Text(key),
                   leading: Text(task.taskId),
                 ),
               );
