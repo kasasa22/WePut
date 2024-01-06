@@ -1,5 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:maker/models/task.dart';
 import '../services/task.dart';
 
 class Test extends StatefulWidget {
@@ -44,7 +44,21 @@ class _TestState extends State<Test> {
           }
           print(tasks.length);
 
-          return ListView();
+          return ListView.builder(
+            itemCount: tasks.length,
+            itemBuilder: (contex, index) {
+              Task task = tasks[index].data();
+              return Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                child: ListTile(
+                  tileColor: Colors.amber,
+                  title: Text(task.title),
+                  subtitle: Text(task.description),
+                ),
+              );
+            },
+          );
         },
       ),
     );
