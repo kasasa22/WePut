@@ -48,10 +48,10 @@ class _TestState extends State<Test> {
             itemCount: tasks.length,
             itemBuilder: (contex, index) {
               Task task = tasks[index].data();
-              // ignore: avoid_print
+              // ignore: avoid_print, prefer_interpolation_to_compose_strings
               print("the key is " + tasks[index].id);
               String key = tasks[index].id;
-              print(tasks[index].id);
+
               return Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
@@ -59,7 +59,13 @@ class _TestState extends State<Test> {
                   tileColor: Colors.amber,
                   title: Text(task.title),
                   subtitle: Text(key),
-                  leading: Text(task.taskId),
+                  trailing: Checkbox(
+                    value: false,
+                    onChanged: (value) {
+                      Task updateTask = task.copyWith();
+                      taskService.updateTask(key, updateTask);
+                    },
+                  ),
                 ),
               );
             },
