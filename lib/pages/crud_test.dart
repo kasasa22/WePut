@@ -42,12 +42,13 @@ class _TestState extends State<Test> {
               child: Text('No tasks found'),
             );
           }
-          print(tasks.length);
+          // print(tasks.length);
 
           return ListView.builder(
             itemCount: tasks.length,
             itemBuilder: (contex, index) {
               Task task = tasks[index].data();
+              String taskId = tasks[index].id();
               return Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
@@ -55,6 +56,7 @@ class _TestState extends State<Test> {
                   tileColor: Colors.amber,
                   title: Text(task.title),
                   subtitle: Text(task.description),
+                  leading: Text(task.taskId),
                 ),
               );
             },
