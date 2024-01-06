@@ -1,25 +1,34 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../models/user.dart';
 
+// ignore: constant_identifier_names
+const String COLLECTION_REF = "users";
+
 class UserService {
-  final CollectionReference usersCollection =
-      FirebaseFirestore.instance.collection('users');
+  final _firestore = FirebaseFirestore.instance;
 
-  Future<void> addUser(User user) async {
-    await usersCollection.doc(user.userId).set(user.toJson());
+  // ignore: unused_field
+  late final CollectionReference _userRef;
+
+  UserService() {
+    _userRef = _firestore.collection(COLLECTION_REF).withConverter<User>(
+        fromFirestore: (snapshots, _) => User.fromJson(snapshots.data()!),
+        toFirestore: (user, _) => user.toJson());
   }
 
-  Future<void> updateUser(User user) async {
-    await usersCollection.doc(user.userId).update(user.toJson());
+  Stream<QuerySnapshot> getTasks() {
+    return _userRef.snapshots();
   }
 
-  Stream<List<User>> getUsersStream() {
-    return usersCollection.snapshots().map(
-          (snapshot) => snapshot.docs
-              .map(
-                (doc) => User.fromFirestore(doc),
-              )
-              .toList(),
-        );
+  void addUser(User user) async {
+    _userRef.add(user);
+  }
+
+  void updateUser(String userID, User user) {
+    _userRef.doc(userID).update(user.toJson());
+  }
+
+  void deleteUser(String userID) {
+    _userRef.doc(userID).delete();
   }
 }
