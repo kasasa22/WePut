@@ -19,4 +19,16 @@ class TaskService {
   Stream<QuerySnapshot> getTasks() {
     return _taskRef.snapshots();
   }
+
+  void addTask(Task task) async {
+    _taskRef.add(task);
+  }
+
+  void updateTask(String taskID, Task task) {
+    _taskRef.doc(taskID).update(task.toJson());
+  }
+
+  void deleteTask(String taskID) {
+    _taskRef.doc(taskID).delete();
+  }
 }
