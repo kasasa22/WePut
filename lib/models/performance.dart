@@ -13,15 +13,14 @@ class PerformanceMetrics {
     required this.totalEvaluationPoints,
   });
 
-  factory PerformanceMetrics.fromFirestore(DocumentSnapshot doc) {
-    Map data = doc.data() as Map;
-    return PerformanceMetrics(
-      userId: doc.id,
-      completedTasks: data['completedTasks'] ?? 0,
-      averageCompletionTime: (data['averageCompletionTime'] ?? 0).toDouble(),
-      totalEvaluationPoints: data['totalEvaluationPoints'] ?? 0,
-    );
-  }
+  PerformanceMetrics.fromJson(Map<String, Object?> json)
+      : this(
+          userId: json['notificationId'] as String? ?? '',
+          completedTasks: json['notificationId'] as int? ?? 0,
+          averageCompletionTime:
+              (data['averageCompletionTime'] ?? 0).toDouble(),
+          totalEvaluationPoints: json['notificationId'] as int? ?? 0,
+        );
 
   Map<String, dynamic> toJson() {
     return {
