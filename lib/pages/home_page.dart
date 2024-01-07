@@ -169,7 +169,7 @@ class HomePage extends StatelessWidget {
             ),
             //list tiles that will be toggled between depending on the button clicked above
             Container(
-              height: 200,
+              height: 250,
               color: Colors.white,
               child: const SingleChildScrollView(
                 scrollDirection: Axis.vertical,
