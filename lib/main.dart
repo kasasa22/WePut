@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
         '/timeline': (context) => const Timeline(),
         '/inbox': (context) => const Inbox(),
         '/boards': (context) => const Boards(),
-        '/tests': (context) =>
+        '/testjs': (context) =>
             const Test(), // used for testing purposes but change it back later if needed
         '/dashboard': (context) => const Dashboard(),
         '/profile': (context) => const Profile(),
