@@ -259,34 +259,36 @@ class HomePage extends StatelessWidget {
               ],
             ),
           ),
-          const SingleChildScrollView(
-            scrollDirection: Axis.vertical,
+          const Expanded(
             child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  //cards with an icon at the top and a word at the bottom and also rectangular in shape and should have a light green background and clear white text
-                  teamsCard(
-                    title: 'The LyteLink',
-                    subtitle: '100',
-                  ),
-                  teamsCard(
-                    title: 'Mosquitos',
-                    subtitle: '20',
-                  ),
-                  teamsCard(
-                    title: 'Avengers',
-                    subtitle: '200',
-                  ),
-                  teamsCard(
-                    title: 'Marabostock',
-                    subtitle: '30',
-                  ),
-                  teamsCard(
-                    title: 'The times',
-                    subtitle: '20',
-                  ),
-                ],
+              scrollDirection: Axis.vertical,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    //cards with an icon at the top and a word at the bottom and also rectangular in shape and should have a light green background and clear white text
+                    teamsCard(
+                      title: 'The LyteLink',
+                      subtitle: '100',
+                    ),
+                    teamsCard(
+                      title: 'Mosquitos',
+                      subtitle: '20',
+                    ),
+                    teamsCard(
+                      title: 'Avengers',
+                      subtitle: '200',
+                    ),
+                    teamsCard(
+                      title: 'Marabostock',
+                      subtitle: '30',
+                    ),
+                    teamsCard(
+                      title: 'The times',
+                      subtitle: '20',
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
