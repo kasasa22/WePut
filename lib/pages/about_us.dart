@@ -44,10 +44,6 @@ class About extends StatelessWidget {
           title: Text('Code of conduct'),
           icon: Icon(Icons.sentiment_satisfied),
         ),
-        LicensesPageListTile(
-          title: Text('Open source Licenses'),
-          icon: Icon(Icons.favorite),
-        ),
       ],
     );
 
