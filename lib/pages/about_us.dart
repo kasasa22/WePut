@@ -2,18 +2,18 @@ import 'package:about/about.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class name extends StatefulWidget {
-  const name({super.key});
+class About extends StatefulWidget {
+  const About({super.key});
 
   @override
-  State<name> createState() => _nameState();
+  State<About> createState() => _AboutState();
 }
 
-class _nameState extends State<name> {
+class _AboutState extends State<About> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: const SingleChildScrollView(
+    return const Scaffold(
+      body: SingleChildScrollView(
         child: Column(children: <Widget>[
           MarkdownPageListTile(
             filename: 'README.md',

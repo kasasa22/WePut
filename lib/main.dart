@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
         '/test': (context) => const Test(),
         '/dashboard': (context) => const Dashboard(),
         '/profile': (context) => const Profile(),
-        'about': (context) => const About(),
+        '/about': (context) => const About(),
         '/settings': (context) =>
             const mySettings.Settings(), // Use 'mySettings' prefix
       },
