@@ -70,7 +70,30 @@ class Profile extends StatelessWidget {
                         height: 60,
                         child: Icon(Icons.phone, color: Colors.green),
                       ),
-                    )
+                      onTap: () {},
+                    ),
+                    Container(
+                      width: 10,
+                    ),
+                    CircleAvatar(
+                      radius: 52,
+                      backgroundColor: Colors.green[600],
+                      child: CircleAvatar(
+                        radius: 50,
+                        backgroundImage: AssetImage("assets/images/person.jpg"),
+                      ),
+                    ),
+                    Container(
+                      width: 10,
+                    ),
+                    InkWell(
+                      child: Container(
+                        width: 60,
+                        height: 60,
+                        child: Icon(Icons.message, color: Colors.green),
+                      ),
+                      onTap: () {},
+                    ),
                   ],
                 ),
               ],
