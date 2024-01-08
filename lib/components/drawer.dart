@@ -23,19 +23,12 @@ class MyDrawer extends StatelessWidget {
                     fit: BoxFit.cover,
                     width: double.infinity,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 40, horizontal: 14),
-                    child: CircleAvatar(
-                      radius: 33,
-                      backgroundColor: Colors.grey[100],
-                      child: const CircleAvatar(
-                          radius: 33,
-                          child: Icon(
-                            Icons.task_alt_outlined,
-                            size: 70,
-                            color: Colors.green,
-                          )),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 40, horizontal: 14),
+                    child: Icon(
+                      Icons.task_alt_outlined,
+                      size: 70,
+                      color: Colors.green,
                     ),
                   ),
                   Align(
