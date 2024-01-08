@@ -237,7 +237,7 @@ class Profile extends StatelessWidget {
                   flex: 1,
                   child: Column(children: [
                     const Text(
-                      "Phone",
+                      "Email",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.green,
@@ -245,7 +245,7 @@ class Profile extends StatelessWidget {
                     ),
                     Container(height: 5),
                     const Text(
-                      "(256) 708737653",
+                      "ateraxantonio@gmail.com",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.green,
@@ -257,7 +257,7 @@ class Profile extends StatelessWidget {
                   flex: 1,
                   child: Column(children: [
                     const Text(
-                      "Location",
+                      "Website",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.green,
@@ -265,7 +265,7 @@ class Profile extends StatelessWidget {
                     ),
                     Container(height: 5),
                     const Text(
-                      "Kampala, Uganda",
+                      "www.aterax.com",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.green,
