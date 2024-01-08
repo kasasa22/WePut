@@ -97,9 +97,7 @@ class Profile extends StatelessWidget {
                 ),
               ],
             ),
-            const Divider(
-              height: 50,
-            ),
+            Container(height: 50),
             Row(
               children: [
                 Expanded(
@@ -175,7 +173,15 @@ class Profile extends StatelessWidget {
                 selectionColor: Colors.green[900],
               ),
             ),
-            const Divider(
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Text(
+                MyStrings.short_lorem_ipsum,
+                textAlign: TextAlign.center,
+                selectionColor: Colors.green[900],
+              ),
+            ),
+            Container(
               height: 50,
             ),
             Row(
