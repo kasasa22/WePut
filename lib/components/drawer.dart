@@ -35,6 +35,12 @@ class MyDrawer extends StatelessWidget {
                       ),
                     ),
                   ),
+                const   Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Padding(padding: EdgeInsets.symmetric(horizontal: 28, vertical: 18), child: Column(children: [
+
+                    ]),),),
+                  ),
                 ],
               ),
             ),
