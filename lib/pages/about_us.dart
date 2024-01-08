@@ -15,13 +15,13 @@ class About extends StatelessWidget {
 
     const aboutPage = AboutPage(
       title: Text('About'),
-      applicationVersion: 'Version {{ 1.0 }}, build #{{ IME1223 }}',
+      applicationVersion: 'Version  1.0 , build #{{ IME1223 }}',
       applicationIcon: Icon(
         Icons.task_alt_rounded,
         size: 80,
         weight: 40.0,
       ),
-      applicationLegalese: 'Copyright © {{ times }}, {{ 2024 }}',
+      applicationLegalese: 'Copyright © times, 2024',
       children: <Widget>[
         MarkdownPageListTile(
           filename: 'README.md',
@@ -53,7 +53,7 @@ class About extends StatelessWidget {
 
     if (isIos) {
       return CupertinoApp(
-        title: 'About Demo (Cupertino)',
+        title: 'WePut of Tasks',
         home: aboutPage,
         theme: CupertinoThemeData(
           brightness: theme.brightness,
