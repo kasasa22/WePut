@@ -100,6 +100,7 @@ class Profile extends StatelessWidget {
                     Row(
                       children: [
                         Expanded(
+                          flex: 1,
                           child: Column(children: [
                             const Text(
                               "1.5K",
@@ -119,6 +120,7 @@ class Profile extends StatelessWidget {
                           ]),
                         ),
                         Expanded(
+                          flex: 1,
                           child: Column(children: [
                             const Text(
                               "1.5K",
@@ -138,6 +140,7 @@ class Profile extends StatelessWidget {
                           ]),
                         ),
                         Expanded(
+                          flex: 1,
                           child: Column(children: [
                             const Text(
                               "1.5K",
