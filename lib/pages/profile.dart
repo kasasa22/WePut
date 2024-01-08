@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:maker/components/drawer.dart';
 
+import '../data/my_strings.dart';
+
 class Profile extends StatelessWidget {
   const Profile({super.key});
 
@@ -160,6 +162,17 @@ class Profile extends StatelessWidget {
                           ]),
                         ),
                       ],
+                    ),
+                    const Divider(
+                      height: 50,
+                    ),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Text(
+                        MyStrings.middle_lorem_ipsum,
+                        textAlign: TextAlign.center,
+                        selectionColor: Colors.grey[900],
+                      ),
                     )
                   ],
                 ),
