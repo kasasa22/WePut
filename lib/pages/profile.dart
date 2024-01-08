@@ -67,10 +67,10 @@ class Profile extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     InkWell(
-                      child: Container(
+                      child: const SizedBox(
                         width: 60,
                         height: 60,
-                        child: const Icon(Icons.phone, color: Colors.green),
+                        child: Icon(Icons.phone, color: Colors.green),
                       ),
                       onTap: () {},
                     ),
