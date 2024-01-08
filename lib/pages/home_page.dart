@@ -1,5 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:maker/components/drawer.dart';
 import 'package:maker/components/home/stat_card.dart';
 import 'package:maker/components/home/task_tile.dart';
@@ -12,8 +12,15 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.green[700],
-        title: const Text("Profile"),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        toolbarHeight: 0,
+        systemOverlayStyle: const SystemUiOverlayStyle(
+          statusBarBrightness: Brightness.light,
+          statusBarColor: Color(
+            0xff1D9AE7,
+          ),
+        ),
       ),
 
       //Drawer
