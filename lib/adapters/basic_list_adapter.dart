@@ -41,6 +41,9 @@ class _ItemTileState extends State<ItemTile> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        Container(
+          height: 20,
+        ),
         ExpansionTile(
           leading: SizedBox(
             width: 50,
