@@ -17,8 +17,8 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.green[700],
-        title: const Text("Profile"),
+        backgroundColor: Colors.blue[700],
+        title: const Text("Dashboard"),
         actions: [
           PopupMenuButton(
             onSelected: (String value) {},
