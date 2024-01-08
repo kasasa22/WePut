@@ -15,9 +15,12 @@ class About extends StatelessWidget {
 
     const aboutPage = AboutPage(
       title: Text('About'),
-      applicationVersion: 'Version {{ version }}, build #{{ buildNumber }}',
-      applicationIcon: FlutterLogo(size: 100),
-      applicationLegalese: 'Copyright © {{ author }}, {{ year }}',
+      applicationVersion: 'Version {{ 1.0 }}, build #{{ IME1223 }}',
+      applicationIcon: Icon(
+        Icons.task_alt_rounded,
+        size: 50,
+      ),
+      applicationLegalese: 'Copyright © {{ times }}, {{ 2024 }}',
       children: <Widget>[
         MarkdownPageListTile(
           filename: 'README.md',
