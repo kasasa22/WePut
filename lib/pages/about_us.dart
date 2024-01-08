@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       title: const Text('About'),
       applicationVersion: 'Version {{ version }}, build #{{ buildNumber }}',
       applicationDescription: const Text(
-        textAlign: TextAlign.justify,
+        'This is an example application that shows the usage of the about_page package.',
       ),
       applicationIcon: const FlutterLogo(size: 100),
       applicationLegalese: 'Copyright © {{ author }}, {{ year }}',
