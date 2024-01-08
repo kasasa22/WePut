@@ -19,6 +19,19 @@ class Profile extends StatelessWidget {
             },
             icon: const Icon(Icons.logout),
           ),
+          PopupMenuButton(
+            onSelected: (String value) {},
+            itemBuilder: (context) => [
+              const PopupMenuItem(
+                value: "Settings",
+                child: Text("Settings"),
+              ),
+              const PopupMenuItem(
+                value: "About",
+                child: Text("About"),
+              ),
+            ],
+          )
         ],
       ),
 
