@@ -68,7 +68,7 @@ class Profile extends StatelessWidget {
                       child: Container(
                         width: 60,
                         height: 60,
-                        child: Icon(Icons.phone, color: Colors.white),
+                        child: Icon(Icons.phone, color: Colors.green),
                       ),
                     )
                   ],
