@@ -190,7 +190,7 @@ class Profile extends StatelessWidget {
                   flex: 1,
                   child: Column(children: [
                     const Text(
-                      "1.5K",
+                      "Phone",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.green,
@@ -198,7 +198,7 @@ class Profile extends StatelessWidget {
                     ),
                     Container(height: 5),
                     const Text(
-                      "Followers",
+                      "(256) 708737653",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.green,
@@ -210,7 +210,7 @@ class Profile extends StatelessWidget {
                   flex: 1,
                   child: Column(children: [
                     const Text(
-                      "1.5K",
+                      "Location",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.green,
@@ -218,7 +218,54 @@ class Profile extends StatelessWidget {
                     ),
                     Container(height: 5),
                     const Text(
-                      "Followers",
+                      "Kampala, Uganda",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.green,
+                          fontSize: 15),
+                    ),
+                  ]),
+                ),
+              ],
+            ),
+            Container(
+              height: 50,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Column(children: [
+                    const Text(
+                      "Phone",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.green,
+                          fontSize: 25),
+                    ),
+                    Container(height: 5),
+                    const Text(
+                      "(256) 708737653",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.green,
+                          fontSize: 15),
+                    ),
+                  ]),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Column(children: [
+                    const Text(
+                      "Location",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.green,
+                          fontSize: 25),
+                    ),
+                    Container(height: 5),
+                    const Text(
+                      "Kampala, Uganda",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.green,
