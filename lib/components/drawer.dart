@@ -14,7 +14,7 @@ class MyDrawer extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
+            SizedBox(
               height: 190,
               child: Stack(
                 children: [
@@ -22,6 +22,18 @@ class MyDrawer extends StatelessWidget {
                     'assets/images/material_bg_1.png',
                     fit: BoxFit.cover,
                     width: double.infinity,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 40, horizontal: 14),
+                    child: CircleAvatar(
+                      radius: 36,
+                      backgroundColor: Colors.grey[100],
+                      child: const CircleAvatar(
+                        radius: 33,
+                        // backgroundImage: AssetImage(),
+                      ),
+                    ),
                   ),
                 ],
               ),
