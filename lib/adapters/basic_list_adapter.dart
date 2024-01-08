@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:maker/data/my_colors.dart';
-import '../data/my_strings.dart';
+
 import '../models/notification.dart';
 
 class ListExpandAdapter {
@@ -47,7 +47,7 @@ class _ItemTileState extends State<ItemTile> {
             width: 50,
             height: 50,
             child: CircleAvatar(
-              backgroundColor: Colors.grey[300],
+              backgroundColor: Colors.blue,
               child: Text(
                 widget.object.userId.substring(0, 1).toUpperCase(),
                 style: TextStyle(
