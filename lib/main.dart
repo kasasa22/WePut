@@ -19,6 +19,8 @@ import 'package:maker/pages/timeline.dart';
 import 'package:maker/theme/dark_mode.dart';
 import 'package:maker/theme/light_mode.dart';
 
+import 'pages/about_us.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
@@ -50,6 +52,7 @@ class MyApp extends StatelessWidget {
         '/test': (context) => const Test(),
         '/dashboard': (context) => const Dashboard(),
         '/profile': (context) => const Profile(),
+        'about': (context) => const About(),
         '/settings': (context) =>
             const mySettings.Settings(), // Use 'mySettings' prefix
       },
