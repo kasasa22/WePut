@@ -68,38 +68,19 @@ class MyDrawer extends StatelessWidget {
               ),
             ),
 
-            Padding(
-              padding: const EdgeInsets.only(left: 20),
-              child: ListTile(
-                leading: Icon(
-                  Icons.home,
-                  color: Colors.green[400],
-                ),
-                title: Text("H O M E",
-                    style: Theme.of(context).textTheme.titleSmall),
-                onTap: () {
-                  //pop drawer
-                  Navigator.pop(context);
-
-                  //navigate to the home page
-                  Navigator.pushNamed(context, '/home');
-                },
-              ),
-            ),
-            const SizedBox(height: 2),
             ListTile(
               leading: Icon(
                 Icons.home,
-                color: Colors.green[400],
+                color: Colors.grey[800],
               ),
-              title: Text("T E S T",
+              title: Text("H O M E",
                   style: Theme.of(context).textTheme.titleSmall),
               onTap: () {
                 //pop drawer
                 Navigator.pop(context);
 
                 //navigate to the home page
-                Navigator.pushNamed(context, '/test');
+                Navigator.pushNamed(context, '/home');
               },
             ),
 
@@ -107,7 +88,7 @@ class MyDrawer extends StatelessWidget {
             ListTile(
               leading: Icon(
                 Icons.dashboard,
-                color: Colors.green[400],
+                color: Colors.grey[800],
               ),
               title: Text("D A S H B O A R D",
                   style: Theme.of(context).textTheme.titleSmall),
@@ -120,12 +101,11 @@ class MyDrawer extends StatelessWidget {
               },
             ),
 
-            const SizedBox(height: 2),
             // teams tile
             ListTile(
               leading: Icon(
                 Icons.people,
-                color: Colors.green[400],
+                color: Colors.grey[800],
               ),
               title: Text("T E A M S",
                   style: Theme.of(context).textTheme.titleSmall),
@@ -138,12 +118,11 @@ class MyDrawer extends StatelessWidget {
               },
             ),
 
-            const SizedBox(height: 2),
             // Boards tile
             ListTile(
               leading: Icon(
                 Icons.book,
-                color: Colors.green[400],
+                color: Colors.grey[800],
               ),
               title: Text("B O A R D S",
                   style: Theme.of(context).textTheme.titleSmall),
@@ -156,12 +135,11 @@ class MyDrawer extends StatelessWidget {
               },
             ),
 
-            const SizedBox(height: 2),
             // Inbox tile
             ListTile(
               leading: Icon(
                 Icons.inbox,
-                color: Colors.green[400],
+                color: Colors.grey[800],
               ),
               title: Text("I N B O X",
                   style: Theme.of(context).textTheme.titleSmall),
@@ -174,12 +152,11 @@ class MyDrawer extends StatelessWidget {
               },
             ),
 
-            const SizedBox(height: 2),
             // timeline tile
             ListTile(
               leading: Icon(
                 Icons.timeline,
-                color: Colors.green[400],
+                color: Colors.grey[800],
               ),
               title: Text("T I M E L I N E",
                   style: Theme.of(context).textTheme.titleSmall),
@@ -192,12 +169,11 @@ class MyDrawer extends StatelessWidget {
               },
             ),
 
-            const SizedBox(height: 2),
             // settings tile
             ListTile(
               leading: Icon(
                 Icons.settings,
-                color: Colors.green[400],
+                color: Colors.grey[800],
               ),
               title: Text("S E T T I N G S",
                   style: Theme.of(context).textTheme.titleSmall),
@@ -210,12 +186,11 @@ class MyDrawer extends StatelessWidget {
               },
             ),
 
-            const SizedBox(height: 2),
             // profile tile
             ListTile(
               leading: Icon(
                 Icons.person,
-                color: Colors.green[400],
+                color: Colors.grey[800],
               ),
               title: Text("P R O F I L E",
                   style: Theme.of(context).textTheme.titleSmall),
@@ -231,7 +206,7 @@ class MyDrawer extends StatelessWidget {
             ListTile(
               leading: Icon(
                 Icons.logout,
-                color: Colors.green[400],
+                color: Colors.grey[800],
               ),
               title: Text("L O G O U T",
                   style: Theme.of(context).textTheme.titleSmall),
