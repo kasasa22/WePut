@@ -59,7 +59,7 @@ class MyDrawer extends StatelessWidget {
                   Navigator.pop(context);
 
                   //navigate to the home page
-                  Navigator.pushNamed(context, '/tests');
+                  Navigator.pushNamed(context, '/test');
                 },
               ),
             ),
