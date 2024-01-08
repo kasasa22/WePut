@@ -52,14 +52,14 @@ class Profile extends StatelessWidget {
             Text("Alan Woods",
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: Colors.green[900],
+                    color: Colors.blue[900],
                     fontSize: 25)),
             Container(
               height: 5,
             ),
             Text(
               "Developer",
-              style: TextStyle(color: Colors.green[60]),
+              style: TextStyle(color: Colors.blue[60]),
             ),
             Container(height: 25),
             Row(
@@ -69,7 +69,7 @@ class Profile extends StatelessWidget {
                   child: const SizedBox(
                     width: 60,
                     height: 60,
-                    child: Icon(Icons.phone, color: Colors.green),
+                    child: Icon(Icons.phone, color: Colors.blue),
                   ),
                   onTap: () {},
                 ),
@@ -78,7 +78,7 @@ class Profile extends StatelessWidget {
                 ),
                 CircleAvatar(
                   radius: 52,
-                  backgroundColor: Colors.green[600],
+                  backgroundColor: Colors.blue[600],
                   child: const CircleAvatar(
                     radius: 50,
                     backgroundImage: AssetImage("assets/images/person.jpg"),
@@ -91,7 +91,7 @@ class Profile extends StatelessWidget {
                   child: const SizedBox(
                     width: 60,
                     height: 60,
-                    child: Icon(Icons.message, color: Colors.green),
+                    child: Icon(Icons.message, color: Colors.blue),
                   ),
                   onTap: () {},
                 ),
@@ -107,7 +107,7 @@ class Profile extends StatelessWidget {
                       "1.5K",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.green,
+                          color: Colors.blue,
                           fontSize: 25),
                     ),
                     Container(height: 5),
@@ -115,7 +115,7 @@ class Profile extends StatelessWidget {
                       "Followers",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.green,
+                          color: Colors.blue,
                           fontSize: 15),
                     ),
                   ]),
@@ -127,7 +127,7 @@ class Profile extends StatelessWidget {
                       "1.5K",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.green,
+                          color: Colors.blue,
                           fontSize: 25),
                     ),
                     Container(height: 5),
@@ -135,7 +135,7 @@ class Profile extends StatelessWidget {
                       "Followers",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.green,
+                          color: Colors.blue,
                           fontSize: 15),
                     ),
                   ]),
@@ -147,7 +147,7 @@ class Profile extends StatelessWidget {
                       "1.5K",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.green,
+                          color: Colors.blue,
                           fontSize: 25),
                     ),
                     Container(height: 5),
@@ -155,7 +155,7 @@ class Profile extends StatelessWidget {
                       "Followers",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.green,
+                          color: Colors.blue,
                           fontSize: 15),
                     ),
                   ]),
@@ -170,7 +170,7 @@ class Profile extends StatelessWidget {
               child: Text(
                 MyStrings.middle_lorem_ipsum,
                 textAlign: TextAlign.center,
-                selectionColor: Colors.green[900],
+                selectionColor: Colors.blue[900],
               ),
             ),
             Container(
@@ -178,7 +178,7 @@ class Profile extends StatelessWidget {
               child: Text(
                 MyStrings.short_lorem_ipsum,
                 textAlign: TextAlign.center,
-                selectionColor: Colors.green[900],
+                selectionColor: Colors.blue[900],
               ),
             ),
             Container(
@@ -193,7 +193,7 @@ class Profile extends StatelessWidget {
                       "Phone",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.green,
+                          color: Colors.blue,
                           fontSize: 25),
                     ),
                     Container(height: 5),
@@ -201,7 +201,7 @@ class Profile extends StatelessWidget {
                       "(256) 708737653",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.green,
+                          color: Colors.blue,
                           fontSize: 15),
                     ),
                   ]),
@@ -213,7 +213,7 @@ class Profile extends StatelessWidget {
                       "Location",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.green,
+                          color: Colors.blue,
                           fontSize: 25),
                     ),
                     Container(height: 5),
@@ -221,7 +221,7 @@ class Profile extends StatelessWidget {
                       "Kampala, Uganda",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.green,
+                          color: Colors.blue,
                           fontSize: 15),
                     ),
                   ]),
@@ -240,7 +240,7 @@ class Profile extends StatelessWidget {
                       "Email",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.green,
+                          color: Colors.blue,
                           fontSize: 25),
                     ),
                     Container(height: 5),
@@ -248,7 +248,7 @@ class Profile extends StatelessWidget {
                       "ateraxantonio@gmail.com",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.green,
+                          color: Colors.blue,
                           fontSize: 15),
                     ),
                   ]),
@@ -260,7 +260,7 @@ class Profile extends StatelessWidget {
                       "Website",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.green,
+                          color: Colors.blue,
                           fontSize: 25),
                     ),
                     Container(height: 5),
@@ -268,7 +268,7 @@ class Profile extends StatelessWidget {
                       "www.aterax.com",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.green,
+                          color: Colors.blue,
                           fontSize: 15),
                     ),
                   ]),
