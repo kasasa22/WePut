@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
 import '../adapters/basic_list_adapter.dart';
 import '../models/notification.dart';
 
@@ -53,7 +54,7 @@ class _ExpandListsState extends State<ExpandLists> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue[700],
-        title: const Text("Profile"),
+        title: const Text("Inbox"),
         actions: [
           PopupMenuButton(
             onSelected: (String value) {},
