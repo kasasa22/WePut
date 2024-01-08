@@ -12,13 +12,6 @@ class Profile extends StatelessWidget {
         backgroundColor: Colors.green[700],
         title: const Text("Profile"),
         actions: [
-          IconButton(
-            onPressed: () {
-              //sign out the user
-              FirebaseAuth.instance.signOut();
-            },
-            icon: const Icon(Icons.logout),
-          ),
           PopupMenuButton(
             onSelected: (String value) {},
             itemBuilder: (context) => [
@@ -26,9 +19,15 @@ class Profile extends StatelessWidget {
                 value: "Settings",
                 child: Text("Settings"),
               ),
-              const PopupMenuItem(
+              PopupMenuItem(
                 value: "About",
-                child: Text("About"),
+                child: IconButton(
+                  onPressed: () {
+                    //sign out the user
+                    FirebaseAuth.instance.signOut();
+                  },
+                  icon: const Icon(Icons.logout),
+                ),
               ),
             ],
           )
