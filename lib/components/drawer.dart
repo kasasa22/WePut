@@ -43,7 +43,15 @@ class MyDrawer extends StatelessWidget {
                       child: Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: []),
+                          children: [
+                            Text(
+                              "Hello User",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ]),
                     ),
                   ),
                 ],
