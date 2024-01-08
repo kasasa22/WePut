@@ -105,18 +105,14 @@ class Profile extends StatelessWidget {
                   child: Column(children: [
                     const Text(
                       "1.5K",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue,
-                          fontSize: 25),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
                     ),
                     Container(height: 5),
                     const Text(
                       "Followers",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue,
-                          fontSize: 15),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                     ),
                   ]),
                 ),
@@ -125,18 +121,14 @@ class Profile extends StatelessWidget {
                   child: Column(children: [
                     const Text(
                       "1.5K",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue,
-                          fontSize: 25),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
                     ),
                     Container(height: 5),
                     const Text(
                       "Followers",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue,
-                          fontSize: 15),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                     ),
                   ]),
                 ),
@@ -145,18 +137,14 @@ class Profile extends StatelessWidget {
                   child: Column(children: [
                     const Text(
                       "1.5K",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue,
-                          fontSize: 25),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
                     ),
                     Container(height: 5),
                     const Text(
                       "Followers",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue,
-                          fontSize: 15),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                     ),
                   ]),
                 ),
