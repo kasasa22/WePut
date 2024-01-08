@@ -19,7 +19,7 @@ class MyDrawer extends StatelessWidget {
               child: Stack(
                 children: [
                   Image.asset(
-                    'assets/images/material_bg_1.png',
+                    'assets/images/drawer.png',
                     fit: BoxFit.cover,
                     width: double.infinity,
                   ),
