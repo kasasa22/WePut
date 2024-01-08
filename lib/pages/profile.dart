@@ -189,40 +189,36 @@ class Profile extends StatelessWidget {
                 Expanded(
                   flex: 1,
                   child: Column(children: [
-                    const Text(
+                    Text(
                       "Phone",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.blue,
+                          color: Colors.blue[300],
                           fontSize: 25),
                     ),
                     Container(height: 5),
                     const Text(
                       "(256) 708737653",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue,
-                          fontSize: 15),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                     ),
                   ]),
                 ),
                 Expanded(
                   flex: 1,
                   child: Column(children: [
-                    const Text(
+                    Text(
                       "Location",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.blue,
+                          color: Colors.blue[300],
                           fontSize: 25),
                     ),
                     Container(height: 5),
                     const Text(
                       "Kampala, Uganda",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue,
-                          fontSize: 15),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                     ),
                   ]),
                 ),
@@ -236,11 +232,11 @@ class Profile extends StatelessWidget {
                 Expanded(
                   flex: 1,
                   child: Column(children: [
-                    const Text(
+                    Text(
                       "Email",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.blue,
+                          color: Colors.blue[300],
                           fontSize: 25),
                     ),
                     Container(height: 5),
@@ -258,7 +254,7 @@ class Profile extends StatelessWidget {
                       "Website",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.blue[500],
+                          color: Colors.blue[300],
                           fontSize: 25),
                     ),
                     Container(height: 5),
