@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:maker/data/my_colors.dart';
 
 import '../models/notification.dart';
 
@@ -67,12 +66,10 @@ class _ItemTileState extends State<ItemTile> {
           ),
           children: [
             Container(
-              width: double.infinity,
               padding: const EdgeInsets.all(15),
-              color: MyColors.grey_5,
               child: Text(widget.object.message,
+                  textAlign: TextAlign.justify,
                   style: TextStyle(
-                    backgroundColor: Colors.transparent,
                     color: Colors.grey[880],
                   )),
             ),
