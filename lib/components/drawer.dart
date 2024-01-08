@@ -28,7 +28,8 @@ class MyDrawer extends StatelessWidget {
                     child: Icon(
                       Icons.task_alt_outlined,
                       size: 70,
-                      color: Colors.green,
+                      color: Colors.black,
+                      weight: 50,
                     ),
                   ),
                   Align(
