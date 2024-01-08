@@ -68,7 +68,7 @@ class Profile extends StatelessWidget {
                       child: Container(
                         width: 60,
                         height: 60,
-                        child: Icon(Icons.phone, color: Colors.green),
+                        child: const Icon(Icons.phone, color: Colors.green),
                       ),
                       onTap: () {},
                     ),
@@ -78,7 +78,7 @@ class Profile extends StatelessWidget {
                     CircleAvatar(
                       radius: 52,
                       backgroundColor: Colors.green[600],
-                      child: CircleAvatar(
+                      child: const CircleAvatar(
                         radius: 50,
                         backgroundImage: AssetImage("assets/images/person.jpg"),
                       ),
@@ -90,10 +90,74 @@ class Profile extends StatelessWidget {
                       child: Container(
                         width: 60,
                         height: 60,
-                        child: Icon(Icons.message, color: Colors.green),
+                        child: const Icon(Icons.message, color: Colors.green),
                       ),
                       onTap: () {},
                     ),
+                    const Divider(
+                      height: 50,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Column(children: [
+                            const Text(
+                              "1.5K",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.grey,
+                                  fontSize: 25),
+                            ),
+                            Container(height: 5),
+                            const Text(
+                              "Followers",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.grey,
+                                  fontSize: 15),
+                            ),
+                          ]),
+                        ),
+                        Expanded(
+                          child: Column(children: [
+                            const Text(
+                              "1.5K",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.grey,
+                                  fontSize: 25),
+                            ),
+                            Container(height: 5),
+                            const Text(
+                              "Followers",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.grey,
+                                  fontSize: 15),
+                            ),
+                          ]),
+                        ),
+                        Expanded(
+                          child: Column(children: [
+                            const Text(
+                              "1.5K",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.grey,
+                                  fontSize: 25),
+                            ),
+                            Container(height: 5),
+                            const Text(
+                              "Followers",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.grey,
+                                  fontSize: 15),
+                            ),
+                          ]),
+                        ),
+                      ],
+                    )
                   ],
                 ),
               ],
