@@ -27,13 +27,15 @@ class MyDrawer extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(
                         vertical: 40, horizontal: 14),
                     child: CircleAvatar(
-                      radius: 36,
+                      radius: 33,
                       backgroundColor: Colors.grey[100],
-                      child: CircleAvatar(
-                        radius: 33,
-                        child: Image.asset("assets/images/person.jpg",
-                            width: 33, height: 33),
-                      ),
+                      child: const CircleAvatar(
+                          radius: 33,
+                          child: Icon(
+                            Icons.task_alt_outlined,
+                            size: 70,
+                            color: Colors.green,
+                          )),
                     ),
                   ),
                   Align(
