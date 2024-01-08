@@ -18,7 +18,8 @@ class About extends StatelessWidget {
       applicationVersion: 'Version {{ 1.0 }}, build #{{ IME1223 }}',
       applicationIcon: Icon(
         Icons.task_alt_rounded,
-        size: 50,
+        size: 80,
+        weight: 40.0,
       ),
       applicationLegalese: 'Copyright © {{ times }}, {{ 2024 }}',
       children: <Widget>[
@@ -61,7 +62,7 @@ class About extends StatelessWidget {
     }
 
     return MaterialApp(
-      title: 'About Demo (Material)',
+      title: 'WePut of Tasks',
       home: aboutPage,
       theme: ThemeData(),
       darkTheme: ThemeData(brightness: Brightness.dark),
