@@ -246,30 +246,26 @@ class Profile extends StatelessWidget {
                     Container(height: 5),
                     const Text(
                       "ateraxantonio@gmail.com",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue,
-                          fontSize: 15),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                     ),
                   ]),
                 ),
                 Expanded(
                   flex: 1,
                   child: Column(children: [
-                    const Text(
+                    Text(
                       "Website",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.blue,
+                          color: Colors.blue[500],
                           fontSize: 25),
                     ),
                     Container(height: 5),
                     const Text(
                       "www.aterax.com",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue,
-                          fontSize: 15),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                     ),
                   ]),
                 ),

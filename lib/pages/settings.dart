@@ -51,7 +51,7 @@ class Settings extends StatelessWidget {
             title: const Text('Common',
                 style: TextStyle(
                     fontSize: 14,
-                    color: Colors.green,
+                    color: Colors.blue,
                     fontWeight: FontWeight.bold)),
             tiles: <SettingsTile>[
               SettingsTile.switchTile(
@@ -84,7 +84,7 @@ class Settings extends StatelessWidget {
             title: const Text('Account',
                 style: TextStyle(
                     fontSize: 14,
-                    color: Colors.green,
+                    color: Colors.blue,
                     fontWeight: FontWeight.bold)),
             tiles: <SettingsTile>[
               SettingsTile(
@@ -126,7 +126,7 @@ class Settings extends StatelessWidget {
             title: const Text('Security',
                 style: TextStyle(
                     fontSize: 14,
-                    color: Colors.green,
+                    color: Colors.blue,
                     fontWeight: FontWeight.bold)),
             tiles: <SettingsTile>[
               SettingsTile(
