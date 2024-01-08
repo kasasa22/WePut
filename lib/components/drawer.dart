@@ -31,7 +31,7 @@ class MyDrawer extends StatelessWidget {
                       backgroundColor: Colors.grey[100],
                       child: const CircleAvatar(
                         radius: 33,
-                        // backgroundImage: AssetImage(),
+                        backgroundImage: AssetImage("assets/images/drawer.png"),
                       ),
                     ),
                   ),
