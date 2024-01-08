@@ -26,7 +26,10 @@ class Profile extends StatelessWidget {
                     //sign out the user
                     FirebaseAuth.instance.signOut();
                   },
-                  icon: const Icon(Icons.logout),
+                  icon: const Icon(
+                    Icons.logout,
+                    size: 20,
+                  ),
                 ),
               ),
             ],
