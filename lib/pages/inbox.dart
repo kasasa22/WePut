@@ -12,18 +12,32 @@ class Inbox extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green[700],
-        title: const Text("Inbox"),
+        title: const Text("Profile"),
         actions: [
-          IconButton(
-            onPressed: () {
-              // Sign out the user
-              FirebaseAuth.instance.signOut();
-            },
-            icon: const Icon(Icons.logout),
-          ),
+          PopupMenuButton(
+            onSelected: (String value) {},
+            itemBuilder: (context) => [
+              const PopupMenuItem(
+                value: "Settings",
+                child: Text("Settings"),
+              ),
+              PopupMenuItem(
+                value: "About",
+                child: IconButton(
+                  onPressed: () {
+                    //sign out the user
+                    FirebaseAuth.instance.signOut();
+                  },
+                  icon: const Icon(
+                    Icons.logout,
+                    size: 20,
+                  ),
+                ),
+              ),
+            ],
+          )
         ],
       ),
-
       // Drawer
       drawer: const MyDrawer(),
 
@@ -52,7 +66,8 @@ class Inbox extends StatelessWidget {
                     padding: const EdgeInsets.all(2),
                     decoration: chat.unread
                         ? BoxDecoration(
-                            borderRadius: const BorderRadius.all(Radius.circular(40)),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(40)),
                             border: Border.all(
                               width: 2,
                               color: Theme.of(context).primaryColor,
@@ -80,7 +95,8 @@ class Inbox extends StatelessWidget {
                       backgroundImage: AssetImage(chat.sender.imageUrl),
                     ),
                   ),
-                  const SizedBox(width: 10), // Add spacing between the avatar and text
+                  const SizedBox(
+                      width: 10), // Add spacing between the avatar and text
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

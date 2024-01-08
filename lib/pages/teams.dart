@@ -10,26 +10,31 @@ class Teams extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.green,
-        title: const Text(
-          "Teams",
-          style: TextStyle(fontSize: 15, color: Colors.black),
-        ),
+        backgroundColor: Colors.green[700],
+        title: const Text("Profile"),
         actions: [
-          IconButton(
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(Colors.grey),
-            ),
-            onPressed: () {
-              //sign out the user
-              FirebaseAuth.instance.signOut();
-            },
-            icon: const Icon(
-              Icons.logout,
-              size: 20,
-              color: Colors.black,
-            ),
-          ),
+          PopupMenuButton(
+            onSelected: (String value) {},
+            itemBuilder: (context) => [
+              const PopupMenuItem(
+                value: "Settings",
+                child: Text("Settings"),
+              ),
+              PopupMenuItem(
+                value: "About",
+                child: IconButton(
+                  onPressed: () {
+                    //sign out the user
+                    FirebaseAuth.instance.signOut();
+                  },
+                  icon: const Icon(
+                    Icons.logout,
+                    size: 20,
+                  ),
+                ),
+              ),
+            ],
+          )
         ],
       ),
 
