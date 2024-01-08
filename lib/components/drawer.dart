@@ -183,23 +183,6 @@ class MyDrawer extends StatelessWidget {
               },
             ),
 
-            // profile tile
-            ListTile(
-              leading: Icon(
-                Icons.person,
-                color: Colors.grey[800],
-              ),
-              title: Text("A B O U T",
-                  style: Theme.of(context).textTheme.titleSmall),
-              onTap: () {
-                //pop drawer
-                Navigator.pop(context);
-
-                //navigate to the profile page
-                Navigator.pushNamed(context, '/about');
-              },
-            ),
-
             // settings tile
             ListTile(
               leading: Icon(
@@ -214,6 +197,23 @@ class MyDrawer extends StatelessWidget {
 
                 //navigate to the settings page
                 Navigator.pushNamed(context, '/settings');
+              },
+            ),
+
+            // profile tile
+            ListTile(
+              leading: Icon(
+                Icons.person,
+                color: Colors.grey[800],
+              ),
+              title: Text("A B O U T",
+                  style: Theme.of(context).textTheme.titleSmall),
+              onTap: () {
+                //pop drawer
+                Navigator.pop(context);
+
+                //navigate to the profile page
+                Navigator.pushNamed(context, '/about');
               },
             ),
 
