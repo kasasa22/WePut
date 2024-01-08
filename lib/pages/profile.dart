@@ -52,14 +52,14 @@ class Profile extends StatelessWidget {
             Text("Alan Woods",
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: Colors.grey[900],
+                    color: Colors.green[900],
                     fontSize: 25)),
             Container(
               height: 5,
             ),
             Text(
               "Developer",
-              style: TextStyle(color: Colors.grey[60]),
+              style: TextStyle(color: Colors.green[60]),
             ),
             Container(height: 25),
             Row(
@@ -109,7 +109,7 @@ class Profile extends StatelessWidget {
                       "1.5K",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.grey,
+                          color: Colors.green,
                           fontSize: 25),
                     ),
                     Container(height: 5),
@@ -117,7 +117,7 @@ class Profile extends StatelessWidget {
                       "Followers",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.grey,
+                          color: Colors.green,
                           fontSize: 15),
                     ),
                   ]),
@@ -129,7 +129,7 @@ class Profile extends StatelessWidget {
                       "1.5K",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.grey,
+                          color: Colors.green,
                           fontSize: 25),
                     ),
                     Container(height: 5),
@@ -137,7 +137,7 @@ class Profile extends StatelessWidget {
                       "Followers",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.grey,
+                          color: Colors.green,
                           fontSize: 15),
                     ),
                   ]),
@@ -149,7 +149,7 @@ class Profile extends StatelessWidget {
                       "1.5K",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.grey,
+                          color: Colors.green,
                           fontSize: 25),
                     ),
                     Container(height: 5),
@@ -157,7 +157,7 @@ class Profile extends StatelessWidget {
                       "Followers",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.grey,
+                          color: Colors.green,
                           fontSize: 15),
                     ),
                   ]),
@@ -172,7 +172,7 @@ class Profile extends StatelessWidget {
               child: Text(
                 MyStrings.middle_lorem_ipsum,
                 textAlign: TextAlign.center,
-                selectionColor: Colors.grey[900],
+                selectionColor: Colors.green[900],
               ),
             ),
             const Divider(
@@ -187,7 +187,7 @@ class Profile extends StatelessWidget {
                       "1.5K",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.grey,
+                          color: Colors.green,
                           fontSize: 25),
                     ),
                     Container(height: 5),
@@ -195,7 +195,7 @@ class Profile extends StatelessWidget {
                       "Followers",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.grey,
+                          color: Colors.green,
                           fontSize: 15),
                     ),
                   ]),
@@ -207,7 +207,7 @@ class Profile extends StatelessWidget {
                       "1.5K",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.grey,
+                          color: Colors.green,
                           fontSize: 25),
                     ),
                     Container(height: 5),
@@ -215,7 +215,7 @@ class Profile extends StatelessWidget {
                       "Followers",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.grey,
+                          color: Colors.green,
                           fontSize: 15),
                     ),
                   ]),
