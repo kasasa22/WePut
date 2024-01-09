@@ -30,6 +30,8 @@ class _RegisterPageState extends State<RegisterPage> {
 
   TextEditingController confirmPasswordController = TextEditingController();
 
+  final UserService _userService = UserService();
+
   void registerUser() async {
     // Show the loading indicator
     showDialog(
@@ -75,7 +77,7 @@ class _RegisterPageState extends State<RegisterPage> {
         );
 
         // Add the user details to Firestore using UserService
-        UserService()._addUser(newUser);
+        _userService.addUser(newUser);
 
         // Wait for a short time (e.g., 1 second) to allow the stream to update
         await Future.delayed(const Duration(seconds: 1));
