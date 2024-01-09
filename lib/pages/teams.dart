@@ -238,7 +238,7 @@ class Teams extends StatelessWidget {
                     child: Icon(
                       Icons.task,
                       size: 40,
-                      color: Colors.grey[600],
+                      color: Colors.blue[600],
                     ),
                   ),
                   Text(
