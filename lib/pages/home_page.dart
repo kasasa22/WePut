@@ -56,7 +56,7 @@ class HomePage extends StatelessWidget {
                     child: const Text(
                       "Assign tasks, Manage them and Complete all work in one place!",
                       style:
-                          TextStyle(fontSize: 32, fontWeight: FontWeight.w600),
+                          TextStyle(fontSize: 30, fontWeight: FontWeight.w600),
                     ),
                   ),
                   const SizedBox(
@@ -66,7 +66,7 @@ class HomePage extends StatelessWidget {
                     delay: const Duration(milliseconds: 1200),
                     duration: const Duration(milliseconds: 1000),
                     child: Text(
-                      "Discover milions of jobs and get in \ntouch with hiring managers.",
+                      "Discover milions of potential works and get in \ntouch with them on the fly.",
                       style: TextStyle(
                           fontSize: 16,
                           height: 1.8,
@@ -101,15 +101,16 @@ class HomePage extends StatelessWidget {
                             style: TextStyle(fontSize: 16, color: Colors.white),
                           ),
                         )),
-                    // TextButton(
-                    //   onPressed: () {},
-                    //   child: Text("SKIP", style: GoogleFonts.robotoSlab(
-                    //     fontSize: 14,
-                    //     fontWeight: FontWeight.w600,
-                    //     height: 1.8,
-                    //     color: Colors.black
-                    //   ),)
-                    // ),
+                    TextButton(
+                        onPressed: () {},
+                        child: const Text(
+                          "SKIP",
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              height: 1.8,
+                              color: Colors.black),
+                        )),
                   ],
                 ),
               ),
