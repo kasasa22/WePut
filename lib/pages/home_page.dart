@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:maker/components/drawer.dart';
-import 'package:maker/components/home/stat_card.dart';
-import 'package:maker/components/home/task_tile.dart';
-import 'package:maker/components/home/teams_card.dart';
 
 import '../components/home/animation.dart';
 
@@ -55,10 +52,10 @@ class HomePage extends StatelessWidget {
                   FadeInUp(
                     delay: const Duration(milliseconds: 1000),
                     duration: const Duration(milliseconds: 1000),
-                    child: Text(
+                    child: const Text(
                       "Your dream job is waiting for you!",
-                      style: GoogleFonts.robotoSlab(
-                          fontSize: 32, fontWeight: FontWeight.w600),
+                      style:
+                          TextStyle(fontSize: 32, fontWeight: FontWeight.w600),
                     ),
                   ),
                   const SizedBox(
