@@ -24,9 +24,6 @@ class HomePage extends StatelessWidget {
 
       //Drawer
       drawer: const MyDrawer(),
-      drawerScrimColor: const Color.fromARGB(255, 164, 180, 168),
-
-      //Body of all a white background
 
       // ignore: sized_box_for_whitespace
       body: Container(
