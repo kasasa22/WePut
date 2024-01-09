@@ -226,7 +226,7 @@ class _DashboardState extends State<Dashboard> {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  Text("over the past 7 days"),
+                                  Text("View by Day, Month, and Year"),
                                 ],
                               ),
                               Icon(
