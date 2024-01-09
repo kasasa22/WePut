@@ -2,7 +2,6 @@ import 'package:animate_do/animate_do.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../components/dashboard/pie_chart.dart';
 import '../components/drawer.dart';
 
 class Timeline extends StatefulWidget {
@@ -196,43 +195,43 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                             ),
                           ),
                           const SizedBox(height: 50),
-                          const Center(
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(12.0),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Column(
-                                        children: [
-                                          Text(
-                                            "Total tasks done",
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                          Text("over the past 7 days"),
-                                        ],
-                                      ),
-                                      Icon(
-                                        Icons.auto_graph,
-                                        size: 15,
-                                        color: Colors.black,
-                                      )
-                                    ],
-                                  ),
-                                ),
+                          //   const Center(
+                          //     child: Column(
+                          //       children: [
+                          //         Padding(
+                          //           padding: EdgeInsets.all(12.0),
+                          //           child: Row(
+                          //             mainAxisAlignment:
+                          //                 MainAxisAlignment.spaceBetween,
+                          //             children: [
+                          //               Column(
+                          //                 children: [
+                          //                   Text(
+                          //                     "Total tasks done",
+                          //                     style: TextStyle(
+                          //                       fontWeight: FontWeight.bold,
+                          //                     ),
+                          //                   ),
+                          //                   Text("over the past 7 days"),
+                          //                 ],
+                          //               ),
+                          //               Icon(
+                          //                 Icons.auto_graph,
+                          //                 size: 15,
+                          //                 color: Colors.black,
+                          //               )
+                          //             ],
+                          //           ),
+                          //         ),
 
-                                // The graph
-                                LimitedBox(
-                                  maxHeight: 120,
-                                  child: PieChartWidget(),
-                                ),
-                              ],
-                            ),
-                          ),
+                          //         // The graph
+                          //         LimitedBox(
+                          //           maxHeight: 120,
+                          //           child: PieChartWidget(),
+                          //         ),
+                          //       ],
+                          //     ),
+                          //   ),
                         ])),
               )
             ],
