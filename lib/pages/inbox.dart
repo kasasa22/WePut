@@ -90,11 +90,9 @@ class _ExpandListsState extends State<ExpandLists> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.blue[700],
-        leading: Icon(
+        leading: const Icon(
           Icons.menu,
           size: 30,
-
-          //on tap should call the drawer
         ),
         title: const Text("Inbox"),
         actions: [
@@ -122,6 +120,7 @@ class _ExpandListsState extends State<ExpandLists> {
           )
         ],
       ),
+      drawer: const Drawer(),
       body: ListExpandAdapter(items).getView(),
     );
   }
