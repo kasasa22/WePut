@@ -80,7 +80,7 @@ class Teams extends StatelessWidget {
             ],
           ),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 12),
+            padding: const EdgeInsets.symmetric(horizontal: 12),
             transform: Matrix4.translationValues(0.0, -30, 0.0),
             child: Column(
               children: gridAssignments,
@@ -121,12 +121,12 @@ class Teams extends StatelessWidget {
           child: Container(
             alignment: Alignment.center,
             height: 120,
-            padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+            padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
-                    padding: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(10),
                     child: Icon(
                       Icons.task,
                       size: 40,
@@ -136,7 +136,7 @@ class Teams extends StatelessWidget {
                   Text(
                     s.completionStatus,
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.red),
+                    style: const TextStyle(color: Colors.red),
                   )
                 ]),
           ),
