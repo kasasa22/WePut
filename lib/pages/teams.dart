@@ -111,6 +111,18 @@ class Teams extends StatelessWidget {
   }
 
   Widget getItemViewGrid(Assignment s) {
-    return Expanded(flex: 1, child: Card());
+    return Expanded(
+        flex: 1,
+        child: Card(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+          color: Colors.white,
+          elevation: 2,
+          clipBehavior: Clip.antiAliasWithSaveLayer,
+          child: Container(
+            alignment: Alignment.center,
+            height: 120,
+            padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+          ),
+        ));
   }
 }
