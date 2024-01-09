@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:maker/components/drawer.dart';
@@ -32,7 +33,40 @@ class _BoardsState extends State<Boards> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    List<Task> items = [];
+    List<Task> items = [
+      Task(
+        taskId: '1',
+        title: 'Complete Flutter App',
+        description: 'Finish building the Flutter app for the project.',
+        dueDate: Timestamp.now(),
+        status: 'In-Progress',
+        assignedUserId: 'user1',
+        priority: 'High',
+        category: 'Development',
+        progress: 50,
+        comments: ['Comment 1', 'Comment 2'],
+        startTime: Timestamp.now(),
+        endTime: Timestamp.now(),
+        evaluation: 4.5,
+      ),
+      Task(
+        taskId: '2',
+        title: 'Write Documentation',
+        description: 'Document the features and usage of the app.',
+        dueDate: Timestamp.now(),
+        status: 'Assigned',
+        assignedUserId: 'user2',
+        priority: 'Medium',
+        category: 'Documentation',
+        progress: 20,
+        comments: ['Comment 3', 'Comment 4'],
+        startTime: Timestamp.now(),
+        endTime: Timestamp.now(),
+        evaluation: 3.8,
+      ),
+      // Add more tasks as needed
+    ];
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue[700],
