@@ -4,8 +4,11 @@ import 'package:flutter/material.dart';
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
 
-  void logout() {
-    FirebaseAuth.instance.signOut();
+  void logout(BuildContext context) async {
+    await FirebaseAuth.instance.signOut();
+
+    // ignore: use_build_context_synchronously
+    Navigator.pushReplacementNamed(context, '/login');
   }
 
   @override
@@ -227,8 +230,7 @@ class MyDrawer extends StatelessWidget {
               title: Text("L O G O U T",
                   style: Theme.of(context).textTheme.titleSmall),
               onTap: () {
-                logout();
-                Navigator.pop(context);
+                logout(context);
               },
             ),
           ],
