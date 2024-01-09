@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart ';
 import 'package:maker/components/my_button.dart';
 import 'package:maker/components/my_textfeild.dart';
+import 'package:maker/models/user.dart' as dbUser;
 
 import '../services/user.dart';
 
@@ -65,18 +66,17 @@ class _RegisterPageState extends State<RegisterPage> {
         print("this is " + userCredential.user!.uid);
         print(userCredential.toString());
 
-        // dbUser.User newUser = dbUser.User(
-        //   userId: userCredential.user!.uid,
-        //   name: usernameController.text,
-        //   email: emailController.text,
-        //   role: 'user', // Provide a default value or modify as needed
-        //   completedTasks: 0, // Provide a default value or modify as needed
-        //   averageCompletionTime:
-        //       0, // Provide a default value or modify as needed
-        // );
+        dbUser.User newUser = dbUser.User(
+          userId: userCredential.user!.uid,
+          name: usernameController.text,
+          email: emailController.text,
+          role: 'user',
+          completedTasks: 0,
+          averageCompletionTime: 0,
+        );
 
-        // // Add the user details to Firestore using UserService
-        // _userService.addUser(newUser);
+        // Add the user details to Firestore using UserService
+        _userService.addUser(newUser);
 
         // Hide the loading indicator
         Navigator.pop(context);
