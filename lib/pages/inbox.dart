@@ -93,6 +93,8 @@ class _ExpandListsState extends State<ExpandLists> {
         leading: Icon(
           Icons.menu,
           size: 30,
+
+          //on tap should call the drawer
         ),
         title: const Text("Inbox"),
         actions: [
