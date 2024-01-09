@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:maker/components/dashboard/stat_card.dart';
 import 'package:maker/components/drawer.dart';
 
-import '../components/dashboard/pie_chart.dart';
-
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
 
@@ -67,6 +65,29 @@ class _DashboardState extends State<Dashboard> {
 
   int _currentIndex = 0;
 
+  int selectedTool = 0;
+
+  List<dynamic> tools = [
+    {
+      'image': 'https://cdn-icons-png.flaticon.com/128/732/732244.png',
+      'selected_image': 'https://cdn-icons-png.flaticon.com/128/732/732244.png',
+      'name': 'Sketch',
+      'description': 'The digital design platform.',
+    },
+    {
+      'image': 'https://img.icons8.com/color/2x/adobe-xd.png',
+      'selected_image': 'https://img.icons8.com/color/2x/adobe-xd--v2.gif',
+      'name': 'Adobe XD',
+      'description': 'Fast & powerful UI/UX design solution.',
+    },
+    {
+      'image': 'https://img.icons8.com/color/2x/figma.png',
+      'selected_image': 'https://img.icons8.com/color/2x/figma--v2.gif',
+      'name': 'Figma',
+      'description': 'The collaborative interface design tool.',
+    }
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,329 +125,414 @@ class _DashboardState extends State<Dashboard> {
 
       // Body
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Stack(
-              children: [
-                Container(
-                  height: 10,
-                ),
-                const ColoredBox(
-                  color: Colors.white10,
-                  child: Padding(
-                    padding: EdgeInsets.all(16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Center(
-                          child: Text(
-                            "Hi, Ambrose! \n Welcome to your Dashboard",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 17,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        // Add more dashboard content here
-                      ],
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: 0,
-                  right: 0,
-                  child: Container(
-                    padding: const EdgeInsets.all(8.0),
-                    decoration: const BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(16.0),
-                      ),
-                    ),
-                    child: const Icon(
-                      Icons.notifications,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-                Positioned(
-                  bottom: 0,
-                  left: 0,
-                  child: Container(
-                    padding: const EdgeInsets.all(8.0),
-                    decoration: const BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(16.0),
-                      ),
-                    ),
-                    child: const Icon(
-                      Icons.settings,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-                // Add more Positioned widgets for additional elements
-              ],
-            ),
-            Container(
-              height: 10,
-            ),
-            const SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    // Cards with an icon at the top and a word at the bottom.
-                    statCard(
-                      title: 'Assigned tasks',
-                      icon: Icons.task_alt_sharp,
-                      subtitle: '240',
-                    ),
-                    statCard(
-                      title: 'Completed tasks',
-                      icon: Icons.task_alt_outlined,
-                      subtitle: '450',
-                    ),
-                    statCard(
-                      title: 'Scheduled tasks',
-                      icon: Icons.add_task_sharp,
-                      subtitle: '160',
-                    ),
-                    statCard(
-                      title: 'Assignment Teams',
-                      icon: Icons.people,
-                      subtitle: '490',
-                    ),
-                  ],
-                ),
+        child: Column(children: [
+          Stack(
+            children: [
+              Container(
+                height: 10,
               ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        children: [
-                          const Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                children: [
-                                  Text(
-                                    "Total tasks done",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text("View by Day, Month, and Year"),
-                                ],
-                              ),
-                              Icon(
-                                Icons.auto_graph,
-                                size: 15,
-                                color: Colors.black,
-                              )
-                            ],
-                          ),
-                          // The graph
-
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: <Widget>[
-                              FadeInUp(
-                                duration: const Duration(milliseconds: 1000),
-                                from: 30,
-                                child: Text(
-                                  'TASKS DONE',
-                                  style: TextStyle(
-                                    color: Colors.blueGrey.shade100,
-                                    fontSize: 36,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              FadeInUp(
-                                duration: const Duration(milliseconds: 1000),
-                                from: 30,
-                                child: const Text(
-                                  '+1.5%',
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    color: Colors.green,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(height: 100),
-                              FadeInUp(
-                                duration: const Duration(milliseconds: 1000),
-                                from: 60,
-                                child: SizedBox(
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.3,
-                                  child: LineChart(
-                                    mainData(),
-                                    swapAnimationCurve: Curves.easeInOutCubic,
-                                    swapAnimationDuration:
-                                        const Duration(milliseconds: 1000),
-                                  ),
-                                ),
-                              ),
-                              AnimatedContainer(
-                                duration: const Duration(milliseconds: 500),
-                                height:
-                                    MediaQuery.of(context).size.height * 0.3,
-                                padding: const EdgeInsets.all(20),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          _currentIndex = 0;
-                                        });
-                                      },
-                                      child: Container(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 20.0, vertical: 15.0),
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          color: _currentIndex == 0
-                                              ? const Color(0xff161b22)
-                                              : const Color(0xff161b22)
-                                                  .withOpacity(0.0),
-                                        ),
-                                        child: Text(
-                                          "D",
-                                          style: TextStyle(
-                                              color: _currentIndex == 0
-                                                  ? Colors.blueGrey.shade200
-                                                  : Colors.blueGrey,
-                                              fontSize: 20),
-                                        ),
-                                      ),
-                                    ),
-                                    GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          _currentIndex = 1;
-                                        });
-                                      },
-                                      child: AnimatedContainer(
-                                        duration:
-                                            const Duration(milliseconds: 500),
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 20.0, vertical: 15.0),
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          color: _currentIndex == 1
-                                              ? const Color(0xff161b22)
-                                              : const Color(0xff161b22)
-                                                  .withOpacity(0.0),
-                                        ),
-                                        child: Text(
-                                          "M",
-                                          style: TextStyle(
-                                              color: _currentIndex == 1
-                                                  ? Colors.blueGrey.shade200
-                                                  : Colors.blueGrey,
-                                              fontSize: 20),
-                                        ),
-                                      ),
-                                    ),
-                                    GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          _currentIndex = 2;
-                                        });
-                                      },
-                                      child: AnimatedContainer(
-                                        duration:
-                                            const Duration(milliseconds: 500),
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 20.0, vertical: 15.0),
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          color: _currentIndex == 2
-                                              ? const Color(0xff161b22)
-                                              : const Color(0xff161b22)
-                                                  .withOpacity(0.0),
-                                        ),
-                                        child: Text(
-                                          "Y",
-                                          style: TextStyle(
-                                              color: _currentIndex == 2
-                                                  ? Colors.blueGrey.shade200
-                                                  : Colors.blueGrey,
-                                              fontSize: 20),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-
-            const Padding(
-              padding: EdgeInsets.all(12.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
+              const ColoredBox(
+                color: Colors.white10,
+                child: Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "Total tasks done",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
+                      Center(
+                        child: Text(
+                          "Hi, Ambrose! \n Welcome to your Dashboard",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
-                      Text("over the past 7 days"),
+                      // Add more dashboard content here
                     ],
                   ),
-                  Icon(
-                    Icons.auto_graph,
-                    size: 15,
-                    color: Colors.black,
-                  )
+                ),
+              ),
+              Positioned(
+                top: 0,
+                right: 0,
+                child: Container(
+                  padding: const EdgeInsets.all(8.0),
+                  decoration: const BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(16.0),
+                    ),
+                  ),
+                  child: const Icon(
+                    Icons.notifications,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              Positioned(
+                bottom: 0,
+                left: 0,
+                child: Container(
+                  padding: const EdgeInsets.all(8.0),
+                  decoration: const BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(16.0),
+                    ),
+                  ),
+                  child: const Icon(
+                    Icons.settings,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              // Add more Positioned widgets for additional elements
+            ],
+          ),
+          Container(
+            height: 10,
+          ),
+          const SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  // Cards with an icon at the top and a word at the bottom.
+                  statCard(
+                    title: 'Assigned tasks',
+                    icon: Icons.task_alt_sharp,
+                    subtitle: '240',
+                  ),
+                  statCard(
+                    title: 'Completed tasks',
+                    icon: Icons.task_alt_outlined,
+                    subtitle: '450',
+                  ),
+                  statCard(
+                    title: 'Scheduled tasks',
+                    icon: Icons.add_task_sharp,
+                    subtitle: '160',
+                  ),
+                  statCard(
+                    title: 'Assignment Teams',
+                    icon: Icons.people,
+                    subtitle: '490',
+                  ),
                 ],
               ),
             ),
-            // The graph
-            const LimitedBox(
-              maxHeight: 120,
-              child: PieChartWidget(),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      children: [
+                        const Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              children: [
+                                Text(
+                                  "Total tasks done",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text("View by Day, Month, and Year"),
+                              ],
+                            ),
+                            Icon(
+                              Icons.auto_graph,
+                              size: 15,
+                              color: Colors.black,
+                            )
+                          ],
+                        ),
+                        // The graph
+
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            FadeInUp(
+                              duration: const Duration(milliseconds: 1000),
+                              from: 30,
+                              child: Text(
+                                'TASKS DONE',
+                                style: TextStyle(
+                                  color: Colors.blueGrey.shade100,
+                                  fontSize: 36,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            FadeInUp(
+                              duration: const Duration(milliseconds: 1000),
+                              from: 30,
+                              child: const Text(
+                                '+1.5%',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.green,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 100),
+                            FadeInUp(
+                              duration: const Duration(milliseconds: 1000),
+                              from: 60,
+                              child: SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.3,
+                                child: LineChart(
+                                  mainData(),
+                                  swapAnimationCurve: Curves.easeInOutCubic,
+                                  swapAnimationDuration:
+                                      const Duration(milliseconds: 1000),
+                                ),
+                              ),
+                            ),
+                            AnimatedContainer(
+                              duration: const Duration(milliseconds: 500),
+                              height: MediaQuery.of(context).size.height * 0.3,
+                              padding: const EdgeInsets.all(20),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        _currentIndex = 0;
+                                      });
+                                    },
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 20.0, vertical: 15.0),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: _currentIndex == 0
+                                            ? const Color(0xff161b22)
+                                            : const Color(0xff161b22)
+                                                .withOpacity(0.0),
+                                      ),
+                                      child: Text(
+                                        "D",
+                                        style: TextStyle(
+                                            color: _currentIndex == 0
+                                                ? Colors.blueGrey.shade200
+                                                : Colors.blueGrey,
+                                            fontSize: 20),
+                                      ),
+                                    ),
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        _currentIndex = 1;
+                                      });
+                                    },
+                                    child: AnimatedContainer(
+                                      duration:
+                                          const Duration(milliseconds: 500),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 20.0, vertical: 15.0),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: _currentIndex == 1
+                                            ? const Color(0xff161b22)
+                                            : const Color(0xff161b22)
+                                                .withOpacity(0.0),
+                                      ),
+                                      child: Text(
+                                        "M",
+                                        style: TextStyle(
+                                            color: _currentIndex == 1
+                                                ? Colors.blueGrey.shade200
+                                                : Colors.blueGrey,
+                                            fontSize: 20),
+                                      ),
+                                    ),
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        _currentIndex = 2;
+                                      });
+                                    },
+                                    child: AnimatedContainer(
+                                      duration:
+                                          const Duration(milliseconds: 500),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 20.0, vertical: 15.0),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: _currentIndex == 2
+                                            ? const Color(0xff161b22)
+                                            : const Color(0xff161b22)
+                                                .withOpacity(0.0),
+                                      ),
+                                      child: Text(
+                                        "Y",
+                                        style: TextStyle(
+                                            color: _currentIndex == 2
+                                                ? Colors.blueGrey.shade200
+                                                : Colors.blueGrey,
+                                            fontSize: 20),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                ],
+              ),
             ),
-            const SizedBox(
-              height: 20,
-            ),
-          ],
-        ),
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 50,
+              ),
+              FadeInDown(
+                from: 30,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Select a Design Tool",
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.grey.shade800,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    IconButton(onPressed: () {}, icon: Icon(Icons.close))
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              FadeInDown(
+                from: 50,
+                child: Text(
+                  "What do you want to learn?",
+                  style:
+                      TextStyle(color: Colors.blueGrey.shade400, fontSize: 20),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                height: MediaQuery.of(context).size.height * 0.5,
+                child: ListView.builder(
+                  itemCount: tools.length,
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selectedTool = index;
+                        });
+                      },
+                      child: FadeInUp(
+                        delay: Duration(milliseconds: index * 100),
+                        child: AnimatedContainer(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 10),
+                          margin: EdgeInsets.only(bottom: 20),
+                          duration: Duration(milliseconds: 500),
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(
+                                  color: selectedTool == index
+                                      ? Colors.blue
+                                      : Colors.white.withOpacity(0),
+                                  width: 2),
+                              boxShadow: [
+                                selectedTool == index
+                                    ? BoxShadow(
+                                        color: Colors.blue.shade100,
+                                        offset: Offset(0, 3),
+                                        blurRadius: 10)
+                                    : BoxShadow(
+                                        color: Colors.grey.shade200,
+                                        offset: Offset(0, 3),
+                                        blurRadius: 10)
+                              ]),
+                          child: Row(
+                            children: [
+                              selectedTool == index
+                                  ? Image.network(
+                                      tools[index]['selected_image'],
+                                      width: 50,
+                                    )
+                                  : Image.network(
+                                      tools[index]['image'],
+                                      width: 50,
+                                    ),
+                              SizedBox(
+                                width: 20,
+                              ),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      tools[index]['name'],
+                                      style: TextStyle(
+                                          color: Colors.grey.shade800,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      tools[index]['description'],
+                                      style: TextStyle(
+                                        color: Colors.grey.shade600,
+                                        fontSize: 14,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Icon(
+                                Icons.check_circle,
+                                color: selectedTool == index
+                                    ? Colors.blue
+                                    : Colors.white,
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              )
+            ],
+          ),
+        ]),
       ),
     );
   }
