@@ -24,27 +24,27 @@ class About extends StatelessWidget {
       applicationLegalese: 'Copyright © times, 2024',
       children: <Widget>[
         MarkdownPageListTile(
-          filename: 'README.md',
+          filename: 'files/README.md',
           title: Text('View Readme'),
           icon: Icon(Icons.all_inclusive),
         ),
         MarkdownPageListTile(
-          filename: 'CHANGELOG.md',
+          filename: 'files/CHANGELOG.md',
           title: Text('View Changelog'),
           icon: Icon(Icons.view_list),
         ),
         MarkdownPageListTile(
-          filename: 'LICENSE.md',
+          filename: 'files/LICENSE.md',
           title: Text('View License'),
           icon: Icon(Icons.description),
         ),
         MarkdownPageListTile(
-          filename: 'CONTRIBUTING.md',
+          filename: 'files/CONTRIBUTING.md',
           title: Text('Contributing'),
           icon: Icon(Icons.share),
         ),
         MarkdownPageListTile(
-          filename: 'CODE_OF_CONDUCT.md',
+          filename: 'files/CODE_OF_CONDUCT.md',
           title: Text('Code of conduct'),
           icon: Icon(Icons.sentiment_satisfied),
         ),
