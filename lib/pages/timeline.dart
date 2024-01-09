@@ -105,7 +105,7 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
               furnitures: _furnitures,
             ),
           ),
-          const SizedBox(height: 30),
+          const SizedBox(height: 10),
           const Center(
             child: Column(
               children: [
