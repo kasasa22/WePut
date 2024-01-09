@@ -168,8 +168,9 @@ class Teams extends StatelessWidget {
           if (lc.length > 1 && lc.length < 8) getItemViewGrid(lc[(i * 2) + 1]),
           if (lc.length > 8)
             Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                getItemViewGrid(lc[i]),
+                getItemViewGrid(lc[i * 2]),
               ],
             )
         ],
@@ -181,7 +182,7 @@ class Teams extends StatelessWidget {
   }
 
   Widget getItemViewGrid(Assignment s) {
-    return Expanded(
+    return Flexible(
         flex: 1,
         child: Card(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
