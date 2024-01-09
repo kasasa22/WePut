@@ -86,7 +86,7 @@ class _BoardsState extends State<Boards> with SingleTickerProviderStateMixin {
             child: TabBarView(
               controller: _tabController,
               children: const [
-                Align(
+                SingleChildScrollView(
                     child: Column(
                   children: [
                     ListTile(
