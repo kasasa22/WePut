@@ -48,10 +48,10 @@ class _DashboardState extends State<Dashboard> {
       drawer: const MyDrawer(),
 
       //Body
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         child: Column(
           children: [
-            const ColoredBox(
+            ColoredBox(
               color: Colors.white10,
               child: Padding(
                 padding: EdgeInsets.all(16.0),
@@ -68,7 +68,7 @@ class _DashboardState extends State<Dashboard> {
                 ),
               ),
             ),
-            const SingleChildScrollView(
+            SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Padding(
                 padding: EdgeInsets.all(8.0),
@@ -99,10 +99,10 @@ class _DashboardState extends State<Dashboard> {
                 ),
               ),
             ),
-            const SizedBox(
+            SizedBox(
               height: 10,
             ),
-            const SingleChildScrollView(
+            SingleChildScrollView(
               child: Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Row(
@@ -178,7 +178,7 @@ class _DashboardState extends State<Dashboard> {
               ),
             ),
 
-            const Padding(
+            Padding(
               padding: EdgeInsets.all(12.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -203,83 +203,12 @@ class _DashboardState extends State<Dashboard> {
               ),
             ),
             //the graph
-            const LimitedBox(
+            LimitedBox(
               maxHeight: 120,
               child: PieChartWidget(), // Display the pie chart
             ),
-            const SizedBox(
+            SizedBox(
               height: 20,
-            ),
-
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  //Text widgets forming lists
-                  const Text(
-                    "My Team performance",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-
-                  const Text(
-                    "Teams with tasks graph analysis",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.normal,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        children: [
-                          OutlinedButton(
-                            onPressed: () {},
-                            child: const Text(
-                              "Development Team",
-                              style: TextStyle(color: Colors.black),
-                            ),
-                          ),
-                          OutlinedButton(
-                            onPressed: () {},
-                            child: const Text(
-                              "Digital Marketing Team",
-                              style: TextStyle(color: Colors.black),
-                            ),
-                          ),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          OutlinedButton(
-                            onPressed: () {},
-                            child: const Text(
-                              "Product Design Team",
-                              style: TextStyle(color: Colors.black),
-                            ),
-                          ),
-                          OutlinedButton(
-                              onPressed: () {},
-                              child: const Text(
-                                "Group Team",
-                                style: TextStyle(color: Colors.black),
-                              )),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
             ),
           ],
         ),
