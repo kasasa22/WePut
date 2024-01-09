@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:maker/components/drawer.dart';
-import 'package:maker/components/tasks/tasks_list.dart';
 
 class Boards extends StatefulWidget {
   const Boards({super.key});
@@ -88,8 +87,160 @@ class _BoardsState extends State<Boards> with SingleTickerProviderStateMixin {
               controller: _tabController,
               children: const [
                 Align(
-                  child: TasksList(tasks: [], taskName: "hello world"),
-                ),
+                    child: Column(
+                  children: [
+                    ListTile(
+                      title: Text("Hello world"),
+                      subtitle: Text("Hello world is awesome  and you can"),
+                      trailing: Checkbox(value: false, onChanged: null),
+                    ),
+                    ListTile(
+                      title: Text("Hello world"),
+                      subtitle: Text("Hello world is awesome  and you can"),
+                      trailing: Checkbox(value: false, onChanged: null),
+                    ),
+                    ListTile(
+                      title: Text("Hello world"),
+                      subtitle: Text("Hello world is awesome  and you can"),
+                      trailing: Checkbox(value: false, onChanged: null),
+                    ),
+                    ListTile(
+                      title: Text("Hello world"),
+                      subtitle: Text("Hello world is awesome  and you can"),
+                      trailing: Checkbox(value: false, onChanged: null),
+                    ),
+                    ListTile(
+                      title: Text("Hello world"),
+                      subtitle: Text("Hello world is awesome  and you can"),
+                      trailing: Checkbox(value: false, onChanged: null),
+                    ),
+                    ListTile(
+                      title: Text("Hello world"),
+                      subtitle: Text("Hello world is awesome  and you can"),
+                      trailing: Checkbox(value: false, onChanged: null),
+                    ),
+                    ListTile(
+                      title: Text("Hello world"),
+                      subtitle: Text("Hello world is awesome  and you can"),
+                      trailing: Checkbox(value: false, onChanged: null),
+                    ),
+                    ListTile(
+                      title: Text("Hello world"),
+                      subtitle: Text("Hello world is awesome  and you can"),
+                      trailing: Checkbox(value: false, onChanged: null),
+                    ),
+                    ListTile(
+                      title: Text("Hello world"),
+                      subtitle: Text("Hello world is awesome  and you can"),
+                      trailing: Checkbox(value: false, onChanged: null),
+                    ),
+                    ListTile(
+                      title: Text("Hello world"),
+                      subtitle: Text("Hello world is awesome  and you can"),
+                      trailing: Checkbox(value: false, onChanged: null),
+                    ),
+                    ListTile(
+                      title: Text("Hello world"),
+                      subtitle: Text("Hello world is awesome  and you can"),
+                      trailing: Checkbox(value: false, onChanged: null),
+                    ),
+                    ListTile(
+                      title: Text("Hello world"),
+                      subtitle: Text("Hello world is awesome  and you can"),
+                      trailing: Checkbox(value: false, onChanged: null),
+                    ),
+                    ListTile(
+                      title: Text("Hello world"),
+                      subtitle: Text("Hello world is awesome  and you can"),
+                      trailing: Checkbox(value: false, onChanged: null),
+                    ),
+                    ListTile(
+                      title: Text("Hello world"),
+                      subtitle: Text("Hello world is awesome  and you can"),
+                      trailing: Checkbox(value: false, onChanged: null),
+                    ),
+                    ListTile(
+                      title: Text("Hello world"),
+                      subtitle: Text("Hello world is awesome  and you can"),
+                      trailing: Checkbox(value: false, onChanged: null),
+                    ),
+                    ListTile(
+                      title: Text("Hello world"),
+                      subtitle: Text("Hello world is awesome  and you can"),
+                      trailing: Checkbox(value: false, onChanged: null),
+                    ),
+                    ListTile(
+                      title: Text("Hello world"),
+                      subtitle: Text("Hello world is awesome  and you can"),
+                      trailing: Checkbox(value: false, onChanged: null),
+                    ),
+                    ListTile(
+                      title: Text("Hello world"),
+                      subtitle: Text("Hello world is awesome  and you can"),
+                      trailing: Checkbox(value: false, onChanged: null),
+                    ),
+                    ListTile(
+                      title: Text("Hello world"),
+                      subtitle: Text("Hello world is awesome  and you can"),
+                      trailing: Checkbox(value: false, onChanged: null),
+                    ),
+                    ListTile(
+                      title: Text("Hello world"),
+                      subtitle: Text("Hello world is awesome  and you can"),
+                      trailing: Checkbox(value: false, onChanged: null),
+                    ),
+                    ListTile(
+                      title: Text("Hello world"),
+                      subtitle: Text("Hello world is awesome  and you can"),
+                      trailing: Checkbox(value: false, onChanged: null),
+                    ),
+                    ListTile(
+                      title: Text("Hello world"),
+                      subtitle: Text("Hello world is awesome  and you can"),
+                      trailing: Checkbox(value: false, onChanged: null),
+                    ),
+                    ListTile(
+                      title: Text("Hello world"),
+                      subtitle: Text("Hello world is awesome  and you can"),
+                      trailing: Checkbox(value: false, onChanged: null),
+                    ),
+                    ListTile(
+                      title: Text("Hello world"),
+                      subtitle: Text("Hello world is awesome  and you can"),
+                      trailing: Checkbox(value: false, onChanged: null),
+                    ),
+                    ListTile(
+                      title: Text("Hello world"),
+                      subtitle: Text("Hello world is awesome  and you can"),
+                      trailing: Checkbox(value: false, onChanged: null),
+                    ),
+                    ListTile(
+                      title: Text("Hello world"),
+                      subtitle: Text("Hello world is awesome  and you can"),
+                      trailing: Checkbox(value: false, onChanged: null),
+                    ),
+                    ListTile(
+                      title: Text("Hello world"),
+                      subtitle: Text("Hello world is awesome  and you can"),
+                      trailing: Checkbox(value: false, onChanged: null),
+                    ),
+                    ListTile(
+                      title: Text("Hello world"),
+                      subtitle: Text("Hello world is awesome  and you can"),
+                      trailing: Checkbox(value: false, onChanged: null),
+                    ),
+                    ListTile(
+                      title: Text("Hello world"),
+                      subtitle: Text("Hello world is awesome  and you can"),
+                      trailing: Checkbox(value: false, onChanged: null),
+                    ),
+                    ListTile(
+                      title: Text("Hello world"),
+                      subtitle: Text("Hello world is awesome  and you can"),
+                      trailing: Checkbox(value: false, onChanged: null),
+                    ),
+                  ],
+                )),
                 Align(
                   child: Text("hello2"),
                 ),
