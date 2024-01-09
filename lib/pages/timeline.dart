@@ -106,7 +106,7 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
             ),
           ),
           const SizedBox(height: 1),
-          const Center(
+          Center(
             child: Column(
               children: [
                 Padding(
@@ -171,48 +171,69 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Flexible(
+                          Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: Colors.black), // Add border color
+                            ),
+                            child: Flexible(
                               child: Column(
-                            children: [
-                              Text("Today"),
-                              Text("12:00 PM"),
-                              Text("12:00 PM"),
-                              Text("Today"),
-                              Text("12:00 PM"),
-                              Text("12:00 PM"),
-                              Text("Today"),
-                              Text("12:00 PM"),
-                              Text("12:00 PM"),
-                            ],
-                          )),
-                          Flexible(
+                                children: [
+                                  Text("Today"),
+                                  Text("12:00 PM"),
+                                  Text("12:00 PM"),
+                                  Text("Today"),
+                                  Text("12:00 PM"),
+                                  Text("12:00 PM"),
+                                  Text("Today"),
+                                  Text("12:00 PM"),
+                                  Text("12:00 PM"),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: Colors.black), // Add border color
+                            ),
+                            child: Flexible(
                               child: Column(
-                            children: [
-                              Text("Today"),
-                              Text("12:00 PM"),
-                              Text("12:00 PM"),
-                              Text("12:00 PM"),
-                              Text("12:00 PM"),
-                              Text("12:00 PM"),
-                              Text("12:00 PM"),
-                              Text("12:00 PM"),
-                              Text("12:00 PM"),
-                            ],
-                          )),
-                          Flexible(
+                                children: [
+                                  Text("Today"),
+                                  Text("12:00 PM"),
+                                  Text("12:00 PM"),
+                                  Text("12:00 PM"),
+                                  Text("12:00 PM"),
+                                  Text("12:00 PM"),
+                                  Text("12:00 PM"),
+                                  Text("12:00 PM"),
+                                  Text("12:00 PM"),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: Colors.black), // Add border color
+                            ),
+                            child: Flexible(
                               child: Column(
-                            children: [
-                              Text("Today"),
-                              Text("12:00 PM"),
-                              Text("12:00 PM"),
-                              Text("12:00 PM"),
-                              Text("12:00 PM"),
-                              Text("12:00 PM"),
-                              Text("12:00 PM"),
-                              Text("12:00 PM"),
-                              Text("12:00 PM"),
-                            ],
-                          )),
+                                children: [
+                                  Text("Today"),
+                                  Text("12:00 PM"),
+                                  Text("12:00 PM"),
+                                  Text("12:00 PM"),
+                                  Text("12:00 PM"),
+                                  Text("12:00 PM"),
+                                  Text("12:00 PM"),
+                                  Text("12:00 PM"),
+                                  Text("12:00 PM"),
+                                ],
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),
