@@ -171,9 +171,9 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                       child: Container(
                         child: Row(
                           children: [
-                            Expanded(child: Column()),
-                            Expanded(child: Column()),
-                            Expanded(child: Column()),
+                            Expanded(flex: 1, child: Column()),
+                            Expanded(flex: 1, child: Column()),
+                            Expanded(flex: 1, child: Column()),
                           ],
                         ),
                       ),
