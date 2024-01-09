@@ -401,9 +401,6 @@ class _DashboardState extends State<Dashboard> {
                       ],
                     ),
                   ),
-                  const SizedBox(
-                    width: 10,
-                  ),
                 ],
               ),
             ),
@@ -436,7 +433,7 @@ class _DashboardState extends State<Dashboard> {
               FadeInDown(
                 from: 50,
                 child: Text(
-                  "What do you want to learn?",
+                  "Want to complete tasks Faster?",
                   style:
                       TextStyle(color: Colors.blueGrey.shade400, fontSize: 20),
                 ),
