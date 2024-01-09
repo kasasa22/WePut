@@ -42,7 +42,15 @@ class Teams extends StatelessWidget {
 
       body: SingleChildScrollView(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Stack(),
+          Stack(
+            children: [
+              Container(
+                height: 200,
+                width: double.infinity,
+                child: Image.asset("/assets/images/drawer.png"),
+              ),
+            ],
+          ),
           Container(),
         ]),
       ),
