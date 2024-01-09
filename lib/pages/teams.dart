@@ -11,7 +11,7 @@ class Teams extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue[700],
-        title: const Text("blue"),
+        title: const Text("Teams"),
         actions: [
           PopupMenuButton(
             onSelected: (String value) {},
