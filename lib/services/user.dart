@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../models/user.dart';
 
 // ignore: constant_identifier_names
@@ -16,7 +17,7 @@ class UserService {
         toFirestore: (user, _) => user.toJson());
   }
 
-  Stream<QuerySnapshot> getTasks() {
+  Stream<QuerySnapshot> getUsers() {
     return _userRef.snapshots();
   }
 
