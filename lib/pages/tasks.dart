@@ -2,6 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:maker/components/drawer.dart';
 
+import '../adapters/task_list_adapter.dart';
+import '../models/task.dart';
+
 class Boards extends StatefulWidget {
   const Boards({super.key});
 
@@ -29,6 +32,7 @@ class _BoardsState extends State<Boards> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    List<Task> items = [];
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue[700],
@@ -85,21 +89,33 @@ class _BoardsState extends State<Boards> with SingleTickerProviderStateMixin {
           Expanded(
             child: TabBarView(
               controller: _tabController,
-              children: const [
+              children: [
                 SingleChildScrollView(
                     child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [],
+                  children: [
+                    Column(
+                      children: TaskListExpandAdapter(items).getView(),
+                    ),
+                  ],
                 )),
                 SingleChildScrollView(
                     child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [],
+                  children: [
+                    Column(
+                      children: TaskListExpandAdapter(items).getView(),
+                    ),
+                  ],
                 )),
                 SingleChildScrollView(
                     child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [],
+                  children: [
+                    Column(
+                      children: TaskListExpandAdapter(items).getView(),
+                    ),
+                  ],
                 )),
               ],
             ),

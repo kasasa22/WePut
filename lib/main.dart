@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:maker/auth/auth.dart';
 import 'package:maker/auth/login_or_register.dart';
 import 'package:maker/firebase_options.dart';
-import 'package:maker/pages/boards.dart';
 import 'package:maker/pages/crud_test.dart';
 import 'package:maker/pages/dashboard.dart';
 import 'package:maker/pages/home_page.dart';
@@ -14,6 +13,7 @@ import 'package:maker/pages/profile.dart';
 import 'package:maker/pages/settings.dart'
     // ignore: library_prefixes
     as mySettings; // Use 'mySettings' as a prefix
+import 'package:maker/pages/tasks.dart';
 import 'package:maker/pages/teams.dart';
 import 'package:maker/pages/timeline.dart';
 import 'package:maker/theme/dark_mode.dart';
