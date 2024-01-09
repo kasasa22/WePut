@@ -52,36 +52,36 @@ class Teams extends StatelessWidget {
           taskId: "hgfkkj",
           assignmentTime: Timestamp(2, 4),
           completionStatus: "nx,dvhjxj"),
-      Assignment(
-          assignmentId: "njsfd",
-          userId: "hsjvjdt",
-          taskId: "hgfkkj",
-          assignmentTime: Timestamp(2, 4),
-          completionStatus: "nx,dvhjxj"),
-      Assignment(
-          assignmentId: "njsfd",
-          userId: "hsjvjdt",
-          taskId: "hgfkkj",
-          assignmentTime: Timestamp(2, 4),
-          completionStatus: "nx,dvhjxj"),
-      Assignment(
-          assignmentId: "njsfd",
-          userId: "hsjvjdt",
-          taskId: "hgfkkj",
-          assignmentTime: Timestamp(2, 4),
-          completionStatus: "nx,dvhjxj"),
-      Assignment(
-          assignmentId: "njsfd",
-          userId: "hsjvjdt",
-          taskId: "hgfkkj",
-          assignmentTime: Timestamp(2, 4),
-          completionStatus: "nx,dvhjxj"),
-      Assignment(
-          assignmentId: "njsfd",
-          userId: "hsjvjdt",
-          taskId: "hgfkkj",
-          assignmentTime: Timestamp(2, 4),
-          completionStatus: "nx,dvhjxj"),
+      // Assignment(
+      //     assignmentId: "njsfd",
+      //     userId: "hsjvjdt",
+      //     taskId: "hgfkkj",
+      //     assignmentTime: Timestamp(2, 4),
+      //     completionStatus: "nx,dvhjxj"),
+      // Assignment(
+      //     assignmentId: "njsfd",
+      //     userId: "hsjvjdt",
+      //     taskId: "hgfkkj",
+      //     assignmentTime: Timestamp(2, 4),
+      //     completionStatus: "nx,dvhjxj"),
+      // Assignment(
+      //     assignmentId: "njsfd",
+      //     userId: "hsjvjdt",
+      //     taskId: "hgfkkj",
+      //     assignmentTime: Timestamp(2, 4),
+      //     completionStatus: "nx,dvhjxj"),
+      // Assignment(
+      //     assignmentId: "njsfd",
+      //     userId: "hsjvjdt",
+      //     taskId: "hgfkkj",
+      //     assignmentTime: Timestamp(2, 4),
+      //     completionStatus: "nx,dvhjxj"),
+      // Assignment(
+      //     assignmentId: "njsfd",
+      //     userId: "hsjvjdt",
+      //     taskId: "hgfkkj",
+      //     assignmentTime: Timestamp(2, 4),
+      //     completionStatus: "nx,dvhjxj"),
     ];
     List<Widget> gridAssignments = getGridViewAssignments(listAssignments);
     return Scaffold(
@@ -182,7 +182,7 @@ class Teams extends StatelessWidget {
   }
 
   Widget getItemViewGrid(Assignment s) {
-    return Flexible(
+    return Expanded(
         flex: 1,
         child: Card(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
