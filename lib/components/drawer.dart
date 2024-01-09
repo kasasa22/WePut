@@ -13,6 +13,8 @@ class MyDrawer extends StatelessWidget {
     return Drawer(
       child: SingleChildScrollView(
         child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SizedBox(
               height: 190,
