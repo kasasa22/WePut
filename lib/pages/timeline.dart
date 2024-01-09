@@ -143,9 +143,7 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                   child: PieChartWidget(),
                 ),
                 const SizedBox(height: 15),
-                const Divider(
-                  height: 1,
-                ),
+
                 const SizedBox(height: 10),
                 Container(
                   padding: const EdgeInsets.all(12.0),
