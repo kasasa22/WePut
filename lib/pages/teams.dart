@@ -122,6 +122,23 @@ class Teams extends StatelessWidget {
             alignment: Alignment.center,
             height: 120,
             padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    child: Icon(
+                      Icons.task,
+                      size: 40,
+                      color: Colors.grey[600],
+                    ),
+                  ),
+                  Text(
+                    s.completionStatus,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Colors.red),
+                  )
+                ]),
           ),
         ));
   }
