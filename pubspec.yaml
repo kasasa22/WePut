@@ -86,11 +86,11 @@ flutter:
   
   assets:
     - assets/images/
-    - assets/files/LICENSE.md
-    - assets/files/README.md
-    - assets/files/CHANGELOG.md
-    - assets/files/CONTRIBUTING.md
-    - assets/files/CODE_OF_CONDUCT.md
+    - LICENSE.md
+    - README.md
+    - CHANGELOG.md
+    - CONTRIBUTING.md
+    - CODE_OF_CONDUCT.md
 
 
   # To add assets to your application, add an assets section, like this:
