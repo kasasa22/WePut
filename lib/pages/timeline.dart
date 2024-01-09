@@ -4,6 +4,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../components/dashboard/TaskCard.dart';
 import '../components/dashboard/pie_chart.dart';
 import '../components/drawer.dart';
 
@@ -109,7 +110,7 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
           Center(
             child: Column(
               children: [
-                Padding(
+                const Padding(
                   padding: EdgeInsets.all(12.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -134,19 +135,19 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                   ),
                 ),
 
-                SizedBox(height: 7),
+                const SizedBox(height: 7),
 
                 // The graph
-                LimitedBox(
+                const LimitedBox(
                   maxHeight: 120,
                   child: PieChartWidget(),
                 ),
-                SizedBox(height: 15),
-                Divider(
+                const SizedBox(height: 15),
+                const Divider(
                   height: 1,
                 ),
-                SizedBox(height: 10),
-                Padding(
+                const SizedBox(height: 10),
+                const Padding(
                   padding: EdgeInsets.all(12.0),
                   child: Center(
                     child: Column(
@@ -176,18 +177,17 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                               border: Border.all(
                                   color: Colors.black), // Add border color
                             ),
-                            child: Flexible(
+                            child: const Flexible(
                               child: Column(
                                 children: [
                                   Text("Today"),
-                                  Text("12:00 PM"),
-                                  Text("12:00 PM"),
-                                  Text("Today"),
-                                  Text("12:00 PM"),
-                                  Text("12:00 PM"),
-                                  Text("Today"),
-                                  Text("12:00 PM"),
-                                  Text("12:00 PM"),
+                                  CustomCard(
+                                    icon: Icons.star,
+                                    cardColor: Colors.blue,
+                                    title: 'Star Card',
+                                    cardHeight: 150.0,
+                                    cardWidth: 120.0,
+                                  )
                                 ],
                               ),
                             ),
@@ -197,18 +197,10 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                               border: Border.all(
                                   color: Colors.black), // Add border color
                             ),
-                            child: Flexible(
+                            child: const Flexible(
                               child: Column(
                                 children: [
                                   Text("Today"),
-                                  Text("12:00 PM"),
-                                  Text("12:00 PM"),
-                                  Text("12:00 PM"),
-                                  Text("12:00 PM"),
-                                  Text("12:00 PM"),
-                                  Text("12:00 PM"),
-                                  Text("12:00 PM"),
-                                  Text("12:00 PM"),
                                 ],
                               ),
                             ),
@@ -218,18 +210,10 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                               border: Border.all(
                                   color: Colors.black), // Add border color
                             ),
-                            child: Flexible(
+                            child: const Flexible(
                               child: Column(
                                 children: [
                                   Text("Today"),
-                                  Text("12:00 PM"),
-                                  Text("12:00 PM"),
-                                  Text("12:00 PM"),
-                                  Text("12:00 PM"),
-                                  Text("12:00 PM"),
-                                  Text("12:00 PM"),
-                                  Text("12:00 PM"),
-                                  Text("12:00 PM"),
                                 ],
                               ),
                             ),
