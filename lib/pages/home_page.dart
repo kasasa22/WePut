@@ -39,11 +39,12 @@ class HomePage extends StatelessWidget {
               height: 50,
             ),
             FadeInUp(
-                duration: const Duration(milliseconds: 1500),
-                child: Image.asset(
-                  "/assets/images/drawer.png",
-                  fit: BoxFit.cover,
-                )),
+              duration: const Duration(milliseconds: 1500),
+              child: Image.asset(
+                'assets/images/drawer.png',
+                fit: BoxFit.cover,
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30.0),
               child: Column(
