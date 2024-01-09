@@ -54,7 +54,7 @@ class HomePage extends StatelessWidget {
                     delay: const Duration(milliseconds: 1000),
                     duration: const Duration(milliseconds: 1000),
                     child: const Text(
-                      "Your dream job is waiting for you!",
+                      "Assign tasks, Manage them and Complete all work in one place!",
                       style:
                           TextStyle(fontSize: 32, fontWeight: FontWeight.w600),
                     ),
