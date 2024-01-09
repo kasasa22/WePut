@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../adapters/basic_list_adapter.dart';
+import '../components/drawer.dart';
 import '../models/notification.dart';
 
 class ExpandLists extends StatefulWidget {
@@ -120,7 +121,7 @@ class _ExpandListsState extends State<ExpandLists> {
           )
         ],
       ),
-      drawer: const Drawer(),
+      drawer: const MyDrawer(),
       body: ListExpandAdapter(items).getView(),
     );
   }
