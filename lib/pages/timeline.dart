@@ -96,20 +96,19 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
       //Drawer
       drawer: const MyDrawer(),
 
-      body: Column(
-        children: [
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.3,
-            child: TimelineHeader(
-              controller: _controller,
-              animation: _animation,
-              furnitures: _furnitures,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.3,
+              child: TimelineHeader(
+                controller: _controller,
+                animation: _animation,
+                furnitures: _furnitures,
+              ),
             ),
-          ),
-          const SizedBox(height: 1),
-          SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Center(
+            const SizedBox(height: 1),
+            Center(
               child: Column(
                 children: [
                   const Padding(
@@ -278,8 +277,8 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                 ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
