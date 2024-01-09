@@ -60,7 +60,7 @@ class _RegisterPageState extends State<RegisterPage> {
             .createUserWithEmailAndPassword(
                 email: emailController.text, password: passwordController.text);
 
-        print("this is " + userCredential.toString());
+        print("this is " + userCredential.user!.uid);
 
         dbUser.User newUser = dbUser.User(
           userId: userCredential.user!.uid,
