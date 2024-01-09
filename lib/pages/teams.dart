@@ -115,6 +115,7 @@ class Teams extends StatelessWidget {
     ];
     List<Widget> gridAssignments = getGridViewAssignments(listAssignments);
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.blue[700],
         title: const Text("Teams"),
