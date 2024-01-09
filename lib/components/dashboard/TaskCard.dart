@@ -34,7 +34,7 @@ class CustomCard extends StatelessWidget {
         height: cardHeight,
         width: cardWidth,
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(6.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -53,7 +53,7 @@ class CustomCard extends StatelessWidget {
                       Text(
                         title,
                         style: const TextStyle(
-                          fontSize: 18,
+                          fontSize: 14,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
@@ -61,7 +61,7 @@ class CustomCard extends StatelessWidget {
                       Text(
                         'Task Date: $taskDate',
                         style: const TextStyle(
-                          fontSize: 10,
+                          fontSize: 8,
                           color: Colors.white,
                         ),
                       ),

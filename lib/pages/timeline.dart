@@ -187,8 +187,8 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                                     title: 'Star Card',
                                     taskDate: '2024-01-08',
                                     isCompleted: true,
-                                    cardHeight: 50.0,
-                                    cardWidth: 200.0,
+                                    cardHeight: 50,
+                                    cardWidth: 300.0,
                                   )
                                 ],
                               ),
