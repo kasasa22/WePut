@@ -171,18 +171,31 @@ class Teams extends StatelessWidget {
 
   List<Widget> getGridViewAssignments(List<Assignment> lc) {
     List<Widget> wc = [];
-    for (int i = 0; i < lc.length / 2; i++) {
+
+    for (int i = 0; i < (lc.length / 2).ceil(); i++) {
       Widget w;
-      w = Row(
-        children: [
-          getItemViewGrid(lc[i * 2]),
-          Container(width: 2),
-          getItemViewGrid(lc[(i * 2) + 1]),
-        ],
-      );
+
+      if ((i * 2) + 1 < lc.length) {
+        // If there are two assignments available
+        w = Row(
+          children: [
+            getItemViewGrid(lc[i * 2]),
+            Container(width: 2),
+            getItemViewGrid(lc[(i * 2) + 1]),
+          ],
+        );
+      } else {
+        // If there is only one assignment available
+        w = Row(
+          children: [
+            getItemViewGrid(lc[i * 2]),
+          ],
+        );
+      }
 
       wc.add(w);
     }
+
     return wc;
   }
 
