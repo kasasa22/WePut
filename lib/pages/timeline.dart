@@ -177,11 +177,9 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                               Text("Today"),
                               Text("12:00 PM"),
                               Text("12:00 PM"),
-                            ],
-                          )),
-                          Flexible(
-                              child: Column(
-                            children: [
+                              Text("Today"),
+                              Text("12:00 PM"),
+                              Text("12:00 PM"),
                               Text("Today"),
                               Text("12:00 PM"),
                               Text("12:00 PM"),
@@ -191,6 +189,26 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                               child: Column(
                             children: [
                               Text("Today"),
+                              Text("12:00 PM"),
+                              Text("12:00 PM"),
+                              Text("12:00 PM"),
+                              Text("12:00 PM"),
+                              Text("12:00 PM"),
+                              Text("12:00 PM"),
+                              Text("12:00 PM"),
+                              Text("12:00 PM"),
+                            ],
+                          )),
+                          Flexible(
+                              child: Column(
+                            children: [
+                              Text("Today"),
+                              Text("12:00 PM"),
+                              Text("12:00 PM"),
+                              Text("12:00 PM"),
+                              Text("12:00 PM"),
+                              Text("12:00 PM"),
+                              Text("12:00 PM"),
                               Text("12:00 PM"),
                               Text("12:00 PM"),
                             ],
