@@ -52,6 +52,9 @@ class Teams extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
               ),
+              Container(
+                color: Colors.black.withOpacity(0.4),
+              )
             ],
           ),
           Container(),
