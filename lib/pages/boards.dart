@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:maker/components/drawer.dart';
+import 'package:maker/components/tasks/tasks_list.dart';
 
 class Boards extends StatefulWidget {
   const Boards({super.key});
@@ -70,18 +71,15 @@ class _BoardsState extends State<Boards> with SingleTickerProviderStateMixin {
             labelColor: Colors.blue,
             indicatorWeight: 4,
             controller: _tabController,
-            tabs: [
+            tabs: const [
               Tab(
-                icon: ElevatedButton(
-                    onPressed: () {}, child: const Text("Assigned")),
+                icon: Text("Assigned"),
               ),
               Tab(
-                icon: ElevatedButton(
-                    onPressed: () {}, child: const Text("In-Progress")),
+                icon: Text("In-Progress"),
               ),
               Tab(
-                icon: ElevatedButton(
-                    onPressed: () {}, child: const Text("Completed")),
+                icon: Text("Completed"),
               ),
             ],
           ),
@@ -90,7 +88,7 @@ class _BoardsState extends State<Boards> with SingleTickerProviderStateMixin {
               controller: _tabController,
               children: const [
                 Align(
-                  child: Text("hello1"),
+                  child: TasksList(tasks: [], taskName: "hello world"),
                 ),
                 Align(
                   child: Text("hello2"),
