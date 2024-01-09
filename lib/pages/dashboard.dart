@@ -2,9 +2,10 @@ import 'package:animate_do/animate_do.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:maker/components/dashboard/line_chart.dart';
 import 'package:maker/components/dashboard/stat_card.dart';
 import 'package:maker/components/drawer.dart';
+
+import '../components/dashboard/pie_chart.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -206,15 +207,15 @@ class _DashboardState extends State<Dashboard> {
             const SizedBox(
               height: 10,
             ),
-            const SingleChildScrollView(
+            SingleChildScrollView(
               child: Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8.0),
                 child: Row(
                   children: [
                     Expanded(
                       child: Column(
                         children: [
-                          Row(
+                          const Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Column(
@@ -236,47 +237,156 @@ class _DashboardState extends State<Dashboard> {
                             ],
                           ),
                           // The graph
-                          LimitedBox(
-                            maxHeight: 120,
-                            child: LineChartWidget(),
+
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: <Widget>[
+                              FadeInUp(
+                                duration: const Duration(milliseconds: 1000),
+                                from: 30,
+                                child: Text(
+                                  '\$ 4,777.12',
+                                  style: TextStyle(
+                                    color: Colors.blueGrey.shade100,
+                                    fontSize: 36,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              FadeInUp(
+                                duration: const Duration(milliseconds: 1000),
+                                from: 30,
+                                child: const Text(
+                                  '+1.5%',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.green,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 100),
+                              FadeInUp(
+                                duration: const Duration(milliseconds: 1000),
+                                from: 60,
+                                child: SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.3,
+                                  child: LineChart(
+                                    mainData(),
+                                    swapAnimationCurve: Curves.easeInOutCubic,
+                                    swapAnimationDuration:
+                                        const Duration(milliseconds: 1000),
+                                  ),
+                                ),
+                              ),
+                              AnimatedContainer(
+                                duration: const Duration(milliseconds: 500),
+                                height:
+                                    MediaQuery.of(context).size.height * 0.3,
+                                padding: const EdgeInsets.all(20),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          _currentIndex = 0;
+                                        });
+                                      },
+                                      child: Container(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 20.0, vertical: 15.0),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          color: _currentIndex == 0
+                                              ? const Color(0xff161b22)
+                                              : const Color(0xff161b22)
+                                                  .withOpacity(0.0),
+                                        ),
+                                        child: Text(
+                                          "D",
+                                          style: TextStyle(
+                                              color: _currentIndex == 0
+                                                  ? Colors.blueGrey.shade200
+                                                  : Colors.blueGrey,
+                                              fontSize: 20),
+                                        ),
+                                      ),
+                                    ),
+                                    GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          _currentIndex = 1;
+                                        });
+                                      },
+                                      child: AnimatedContainer(
+                                        duration:
+                                            const Duration(milliseconds: 500),
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 20.0, vertical: 15.0),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          color: _currentIndex == 1
+                                              ? const Color(0xff161b22)
+                                              : const Color(0xff161b22)
+                                                  .withOpacity(0.0),
+                                        ),
+                                        child: Text(
+                                          "M",
+                                          style: TextStyle(
+                                              color: _currentIndex == 1
+                                                  ? Colors.blueGrey.shade200
+                                                  : Colors.blueGrey,
+                                              fontSize: 20),
+                                        ),
+                                      ),
+                                    ),
+                                    GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          _currentIndex = 2;
+                                        });
+                                      },
+                                      child: AnimatedContainer(
+                                        duration:
+                                            const Duration(milliseconds: 500),
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 20.0, vertical: 15.0),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          color: _currentIndex == 2
+                                              ? const Color(0xff161b22)
+                                              : const Color(0xff161b22)
+                                                  .withOpacity(0.0),
+                                        ),
+                                        child: Text(
+                                          "Y",
+                                          style: TextStyle(
+                                              color: _currentIndex == 2
+                                                  ? Colors.blueGrey.shade200
+                                                  : Colors.blueGrey,
+                                              fontSize: 20),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
-                    ),
-                    Expanded(
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                children: [
-                                  Text(
-                                    "Total tasks done",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text("over the past 7 days"),
-                                ],
-                              ),
-                              Icon(
-                                Icons.auto_graph,
-                                size: 15,
-                                color: Colors.black,
-                              )
-                            ],
-                          ),
-                          // The graph
-                          LimitedBox(
-                            maxHeight: 120,
-                            child: LineChartWidget(),
-                          ),
-                        ],
-                      ),
                     ),
                   ],
                 ),
@@ -308,145 +418,12 @@ class _DashboardState extends State<Dashboard> {
               ),
             ),
             // The graph
-            // const LimitedBox(
-            //   maxHeight: 120,
-            //   child: PieChartWidget(),
-            // ),
-            // const SizedBox(
-            //   height: 20,
-            // ),
-
-            Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                FadeInUp(
-                  duration: const Duration(milliseconds: 1000),
-                  from: 30,
-                  child: Text(
-                    '\$ 4,777.12',
-                    style: TextStyle(
-                      color: Colors.blueGrey.shade100,
-                      fontSize: 36,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                FadeInUp(
-                  duration: const Duration(milliseconds: 1000),
-                  from: 30,
-                  child: const Text(
-                    '+1.5%',
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.green,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 100),
-                FadeInUp(
-                  duration: const Duration(milliseconds: 1000),
-                  from: 60,
-                  child: SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.3,
-                    child: LineChart(
-                      mainData(),
-                      swapAnimationCurve: Curves.easeInOutCubic,
-                      swapAnimationDuration: const Duration(milliseconds: 1000),
-                    ),
-                  ),
-                ),
-                AnimatedContainer(
-                  duration: const Duration(milliseconds: 500),
-                  height: MediaQuery.of(context).size.height * 0.3,
-                  padding: const EdgeInsets.all(20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            _currentIndex = 0;
-                          });
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20.0, vertical: 15.0),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: _currentIndex == 0
-                                ? const Color(0xff161b22)
-                                : const Color(0xff161b22).withOpacity(0.0),
-                          ),
-                          child: Text(
-                            "D",
-                            style: TextStyle(
-                                color: _currentIndex == 0
-                                    ? Colors.blueGrey.shade200
-                                    : Colors.blueGrey,
-                                fontSize: 20),
-                          ),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            _currentIndex = 1;
-                          });
-                        },
-                        child: AnimatedContainer(
-                          duration: const Duration(milliseconds: 500),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20.0, vertical: 15.0),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: _currentIndex == 1
-                                ? const Color(0xff161b22)
-                                : const Color(0xff161b22).withOpacity(0.0),
-                          ),
-                          child: Text(
-                            "M",
-                            style: TextStyle(
-                                color: _currentIndex == 1
-                                    ? Colors.blueGrey.shade200
-                                    : Colors.blueGrey,
-                                fontSize: 20),
-                          ),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            _currentIndex = 2;
-                          });
-                        },
-                        child: AnimatedContainer(
-                          duration: const Duration(milliseconds: 500),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20.0, vertical: 15.0),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: _currentIndex == 2
-                                ? const Color(0xff161b22)
-                                : const Color(0xff161b22).withOpacity(0.0),
-                          ),
-                          child: Text(
-                            "Y",
-                            style: TextStyle(
-                                color: _currentIndex == 2
-                                    ? Colors.blueGrey.shade200
-                                    : Colors.blueGrey,
-                                fontSize: 20),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+            const LimitedBox(
+              maxHeight: 120,
+              child: PieChartWidget(),
+            ),
+            const SizedBox(
+              height: 20,
             ),
           ],
         ),
