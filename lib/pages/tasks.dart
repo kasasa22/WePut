@@ -6,14 +6,14 @@ import 'package:maker/components/drawer.dart';
 import '../adapters/task_list_adapter.dart';
 import '../models/task.dart';
 
-class Boards extends StatefulWidget {
-  const Boards({super.key});
+class Tasks extends StatefulWidget {
+  const Tasks({super.key});
 
   @override
-  State<Boards> createState() => _BoardsState();
+  State<Tasks> createState() => _TasksState();
 }
 
-class _BoardsState extends State<Boards> with SingleTickerProviderStateMixin {
+class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
   TabController? _tabController;
   ScrollController? _scrollController;
 
