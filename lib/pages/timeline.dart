@@ -186,7 +186,14 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                             child: const Flexible(
                               child: Column(
                                 children: [
-                                  Text("Today"),
+                                  Text(
+                                    "Scheduled",
+                                    style: TextStyle(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                  ),
                                   CustomCard(
                                       icon: Icons.star,
                                       cardColor: Colors.blue,
@@ -194,7 +201,31 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                                       taskDate: '2024-01-08',
                                       isCompleted: true,
                                       cardHeight: 50,
-                                      cardWidth: 300.0)
+                                      cardWidth: 300.0),
+                                  CustomCard(
+                                      icon: Icons.star,
+                                      cardColor: Colors.blue,
+                                      title: 'Star Card',
+                                      taskDate: '2024-01-08',
+                                      isCompleted: true,
+                                      cardHeight: 50,
+                                      cardWidth: 300.0),
+                                  CustomCard(
+                                      icon: Icons.star,
+                                      cardColor: Colors.blue,
+                                      title: 'Star Card',
+                                      taskDate: '2024-01-08',
+                                      isCompleted: true,
+                                      cardHeight: 50,
+                                      cardWidth: 300.0),
+                                  CustomCard(
+                                      icon: Icons.star,
+                                      cardColor: Colors.blue,
+                                      title: 'Star Card',
+                                      taskDate: '2024-01-08',
+                                      isCompleted: true,
+                                      cardHeight: 50,
+                                      cardWidth: 300.0),
                                 ],
                               ),
                             ),
@@ -207,7 +238,14 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                             child: const Flexible(
                               child: Column(
                                 children: [
-                                  Text("Today"),
+                                  Text(
+                                    "In Progress",
+                                    style: TextStyle(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
@@ -220,7 +258,14 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                             child: const Flexible(
                               child: Column(
                                 children: [
-                                  Text("Today"),
+                                  Text(
+                                    "Completed",
+                                    style: TextStyle(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
