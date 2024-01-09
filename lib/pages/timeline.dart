@@ -147,20 +147,26 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                   height: 1,
                 ),
                 const SizedBox(height: 10),
-                const Padding(
-                  padding: EdgeInsets.all(12.0),
-                  child: Center(
-                    child: Column(
-                      children: [
-                        Text(
-                          "TIMELINES",
-                          style: TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
-                          ),
+                Container(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        "TIMELINES",
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blue, // Adjust the color as needed
                         ),
-                      ],
-                    ),
+                      ),
+                      const SizedBox(height: 8),
+                      Container(
+                        width: 60,
+                        height: 2,
+                        color: Colors.blue, // Adjust the color as needed
+                      ),
+                    ],
                   ),
                 ),
 
@@ -182,14 +188,13 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                                 children: [
                                   Text("Today"),
                                   CustomCard(
-                                    icon: Icons.star,
-                                    cardColor: Colors.blue,
-                                    title: 'Star Card',
-                                    taskDate: '2024-01-08',
-                                    isCompleted: true,
-                                    cardHeight: 50,
-                                    cardWidth: 300.0,
-                                  )
+                                      icon: Icons.star,
+                                      cardColor: Colors.blue,
+                                      title: 'Star Card',
+                                      taskDate: '2024-01-08',
+                                      isCompleted: true,
+                                      cardHeight: 50,
+                                      cardWidth: 300.0)
                                 ],
                               ),
                             ),
