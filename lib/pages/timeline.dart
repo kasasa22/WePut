@@ -171,9 +171,30 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Flexible(child: Column()),
-                          Flexible(child: Column()),
-                          Flexible(child: Column()),
+                          Flexible(
+                              child: Column(
+                            children: [
+                              Text("Today"),
+                              Text("12:00 PM"),
+                              Text("12:00 PM"),
+                            ],
+                          )),
+                          Flexible(
+                              child: Column(
+                            children: [
+                              Text("Today"),
+                              Text("12:00 PM"),
+                              Text("12:00 PM"),
+                            ],
+                          )),
+                          Flexible(
+                              child: Column(
+                            children: [
+                              Text("Today"),
+                              Text("12:00 PM"),
+                              Text("12:00 PM"),
+                            ],
+                          )),
                         ],
                       ),
                     ),
