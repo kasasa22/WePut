@@ -273,9 +273,6 @@ class _DashboardState extends State<Dashboard> {
                                 ),
                               ),
                             ),
-                            const SizedBox(
-                              height: 10,
-                            ),
                             FadeInUp(
                               duration: const Duration(milliseconds: 1000),
                               from: 30,
@@ -405,129 +402,134 @@ class _DashboardState extends State<Dashboard> {
               ),
             ),
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(
-                height: 50,
-              ),
-              FadeInDown(
-                from: 30,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Select a Design Tool",
-                      style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.grey.shade800,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    IconButton(onPressed: () {}, icon: const Icon(Icons.close))
-                  ],
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: 50,
                 ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              FadeInDown(
-                from: 50,
-                child: Text(
-                  "Want to complete tasks Faster?",
-                  style:
-                      TextStyle(color: Colors.blueGrey.shade400, fontSize: 20),
+                FadeInDown(
+                  from: 30,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Select a Design Tool",
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.grey.shade800,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      IconButton(
+                          onPressed: () {}, icon: const Icon(Icons.close))
+                    ],
+                  ),
                 ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.5,
-                child: ListView.builder(
-                  itemCount: tools.length,
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          selectedTool = index;
-                        });
-                      },
-                      child: FadeInUp(
-                        delay: Duration(milliseconds: index * 100),
-                        child: AnimatedContainer(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 10),
-                          margin: const EdgeInsets.only(bottom: 20),
-                          duration: const Duration(milliseconds: 500),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(8),
-                              border: Border.all(
+                const SizedBox(
+                  height: 30,
+                ),
+                FadeInDown(
+                  from: 50,
+                  child: Text(
+                    "Want to complete tasks Faster?",
+                    style: TextStyle(
+                        color: Colors.blueGrey.shade400, fontSize: 20),
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.5,
+                  child: ListView.builder(
+                    itemCount: tools.length,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            selectedTool = index;
+                          });
+                        },
+                        child: FadeInUp(
+                          delay: Duration(milliseconds: index * 100),
+                          child: AnimatedContainer(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 10),
+                            margin: const EdgeInsets.only(bottom: 20),
+                            duration: const Duration(milliseconds: 500),
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(8),
+                                border: Border.all(
+                                    color: selectedTool == index
+                                        ? Colors.blue
+                                        : Colors.white.withOpacity(0),
+                                    width: 2),
+                                boxShadow: [
+                                  selectedTool == index
+                                      ? BoxShadow(
+                                          color: Colors.blue.shade100,
+                                          offset: const Offset(0, 3),
+                                          blurRadius: 10)
+                                      : BoxShadow(
+                                          color: Colors.grey.shade200,
+                                          offset: const Offset(0, 3),
+                                          blurRadius: 10)
+                                ]),
+                            child: Row(
+                              children: [
+                                selectedTool == index
+                                    ? Image.network(
+                                        tools[index]['selected_image'],
+                                        width: 50,
+                                      )
+                                    : Image.network(
+                                        tools[index]['image'],
+                                        width: 50,
+                                      ),
+                                const SizedBox(
+                                  width: 20,
+                                ),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        tools[index]['name'],
+                                        style: TextStyle(
+                                            color: Colors.grey.shade800,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(
+                                        tools[index]['description'],
+                                        style: TextStyle(
+                                          color: Colors.grey.shade600,
+                                          fontSize: 14,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.check_circle,
                                   color: selectedTool == index
                                       ? Colors.blue
-                                      : Colors.white.withOpacity(0),
-                                  width: 2),
-                              boxShadow: [
-                                selectedTool == index
-                                    ? BoxShadow(
-                                        color: Colors.blue.shade100,
-                                        offset: const Offset(0, 3),
-                                        blurRadius: 10)
-                                    : BoxShadow(
-                                        color: Colors.grey.shade200,
-                                        offset: const Offset(0, 3),
-                                        blurRadius: 10)
-                              ]),
-                          child: Row(
-                            children: [
-                              selectedTool == index
-                                  ? Image.network(
-                                      tools[index]['selected_image'],
-                                      width: 50,
-                                    )
-                                  : Image.network(
-                                      tools[index]['image'],
-                                      width: 50,
-                                    ),
-                              const SizedBox(
-                                width: 20,
-                              ),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      tools[index]['name'],
-                                      style: TextStyle(
-                                          color: Colors.grey.shade800,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    Text(
-                                      tools[index]['description'],
-                                      style: TextStyle(
-                                        color: Colors.grey.shade600,
-                                        fontSize: 14,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Icon(
-                                Icons.check_circle,
-                                color: selectedTool == index
-                                    ? Colors.blue
-                                    : Colors.white,
-                              )
-                            ],
+                                      : Colors.white,
+                                )
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    );
-                  },
-                ),
-              )
-            ],
+                      );
+                    },
+                  ),
+                )
+              ],
+            ),
           ),
         ]),
       ),
