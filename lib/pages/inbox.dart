@@ -24,7 +24,7 @@ class _ExpandListsState extends State<ExpandLists> {
   @override
   Widget build(BuildContext context) {
     this.context = context;
-    List<Message> items = <Message>[
+    List<Message> items = [
       Message(
         notificationId: '1',
         userId: 'user1',
@@ -45,92 +45,43 @@ class _ExpandListsState extends State<ExpandLists> {
         message: 'Flutter is awesome!',
         timestamp: Timestamp.now(),
         viewed: false,
+      ),
+      Message(
+        notificationId: '4',
+        userId: 'user4',
+        message: 'Working on a new project!',
+        timestamp: Timestamp.now(),
+        viewed: false,
+      ),
+      Message(
+        notificationId: '5',
+        userId: 'user5',
+        message: 'Any plans for the weekend?',
+        timestamp: Timestamp.now(),
+        viewed: true,
+      ),
+      Message(
+        notificationId: '6',
+        userId: 'user6',
+        message: 'Learning new Flutter features!',
+        timestamp: Timestamp.now(),
+        viewed: false,
+      ),
+      Message(
+        notificationId: '7',
+        userId: 'user7',
+        message: 'Excited about the upcoming event!',
+        timestamp: Timestamp.now(),
+        viewed: false,
+      ),
+      Message(
+        notificationId: '8',
+        userId: 'user8',
+        message: 'Discussing project ideas with the team.',
+        timestamp: Timestamp.now(),
+        viewed: true,
       ),
       // Add more messages as needed
-      Message(
-        notificationId: '1',
-        userId: 'user1',
-        message: 'Hello from user1!',
-        timestamp: Timestamp.now(),
-        viewed: false,
-      ),
-      Message(
-        notificationId: '2',
-        userId: 'user2',
-        message: 'How are you doing?',
-        timestamp: Timestamp.now(),
-        viewed: true,
-      ),
-      Message(
-        notificationId: '3',
-        userId: 'user3',
-        message: 'Flutter is awesome!',
-        timestamp: Timestamp.now(),
-        viewed: false,
-      ),
-      Message(
-        notificationId: '1',
-        userId: 'user1',
-        message: 'Hello from user1!',
-        timestamp: Timestamp.now(),
-        viewed: false,
-      ),
-      Message(
-        notificationId: '2',
-        userId: 'user2',
-        message: 'How are you doing?',
-        timestamp: Timestamp.now(),
-        viewed: true,
-      ),
-      Message(
-        notificationId: '3',
-        userId: 'user3',
-        message: 'Flutter is awesome!',
-        timestamp: Timestamp.now(),
-        viewed: false,
-      ),
-      Message(
-        notificationId: '1',
-        userId: 'user1',
-        message: 'Hello from user1!',
-        timestamp: Timestamp.now(),
-        viewed: false,
-      ),
-      Message(
-        notificationId: '2',
-        userId: 'user2',
-        message: 'How are you doing?',
-        timestamp: Timestamp.now(),
-        viewed: true,
-      ),
-      Message(
-        notificationId: '3',
-        userId: 'user3',
-        message: 'Flutter is awesome!',
-        timestamp: Timestamp.now(),
-        viewed: false,
-      ),
-      Message(
-        notificationId: '1',
-        userId: 'user1',
-        message: 'Hello from user1!',
-        timestamp: Timestamp.now(),
-        viewed: false,
-      ),
-      Message(
-        notificationId: '2',
-        userId: 'user2',
-        message: 'How are you doing?',
-        timestamp: Timestamp.now(),
-        viewed: true,
-      ),
-      Message(
-        notificationId: '3',
-        userId: 'user3',
-        message: 'Flutter is awesome!',
-        timestamp: Timestamp.now(),
-        viewed: false,
-      ),
     ];
 
     items.shuffle();
