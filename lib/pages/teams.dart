@@ -98,9 +98,7 @@ class Teams extends StatelessWidget {
       w = Row(
         children: [
           getItemViewGrid(lc[i * 2]),
-          Container(
-            width: 2,
-          ),
+          Container(width: 2),
           getItemViewGrid(lc[(i * 2) + 1]),
         ],
       );
