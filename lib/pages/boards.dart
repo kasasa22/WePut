@@ -62,32 +62,31 @@ class _BoardsState extends State<Boards> with SingleTickerProviderStateMixin {
       drawer: const MyDrawer(),
 
       //Body
-      body: Container(
-        padding: const EdgeInsets.all(3),
-        child: Column(
-          children: [
-            TabBar(
-              indicatorColor: Colors.black,
-              indicatorSize: TabBarIndicatorSize.tab,
-              labelColor: Colors.blue,
-              indicatorWeight: 4,
-              controller: _tabController,
-              tabs: [
-                Tab(
-                  icon: ElevatedButton(
-                      onPressed: () {}, child: const Text("Assigned")),
-                ),
-                Tab(
-                  icon: ElevatedButton(
-                      onPressed: () {}, child: const Text("In-Progress")),
-                ),
-                Tab(
-                  icon: ElevatedButton(
-                      onPressed: () {}, child: const Text("Completed")),
-                ),
-              ],
-            ),
-            TabBarView(
+      body: Column(
+        children: [
+          TabBar(
+            indicatorColor: Colors.black,
+            indicatorSize: TabBarIndicatorSize.tab,
+            labelColor: Colors.blue,
+            indicatorWeight: 4,
+            controller: _tabController,
+            tabs: [
+              Tab(
+                icon: ElevatedButton(
+                    onPressed: () {}, child: const Text("Assigned")),
+              ),
+              Tab(
+                icon: ElevatedButton(
+                    onPressed: () {}, child: const Text("In-Progress")),
+              ),
+              Tab(
+                icon: ElevatedButton(
+                    onPressed: () {}, child: const Text("Completed")),
+              ),
+            ],
+          ),
+          Expanded(
+            child: TabBarView(
               controller: _tabController,
               children: const [
                 Align(
@@ -100,9 +99,9 @@ class _BoardsState extends State<Boards> with SingleTickerProviderStateMixin {
                   child: Text("hello1"),
                 ),
               ],
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }
