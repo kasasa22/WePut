@@ -53,7 +53,7 @@ class About extends StatelessWidget {
 
     if (isIos) {
       return CupertinoApp(
-        title: 'WePut of Tasks',
+        title: 'WePut for Tasks',
         home: aboutPage,
         theme: CupertinoThemeData(
           brightness: theme.brightness,
@@ -62,7 +62,7 @@ class About extends StatelessWidget {
     }
 
     return MaterialApp(
-      title: 'WePut of Tasks',
+      title: 'WePut for Tasks',
       home: aboutPage,
       theme: ThemeData(),
       darkTheme: ThemeData(brightness: Brightness.dark),

@@ -87,6 +87,7 @@ class _ExpandListsState extends State<ExpandLists> {
     items.shuffle();
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.blue[700],
         title: const Text("Inbox"),
