@@ -87,159 +87,190 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
 
       //Drawer
       drawer: const MyDrawer(),
-      body: PageView.builder(
-        onPageChanged: (int index) {
-          _controller.value = 0.0;
-          _controller.forward();
-        },
-        itemBuilder: (context, index) {
-          return Stack(
-            children: [
-              Container(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
-                clipBehavior: Clip.hardEdge,
-                decoration: const BoxDecoration(),
-                child: ScaleTransition(
-                  scale: _animation,
-                  child: Image.network(
-                    _furnitures[index]['image'],
-                    fit: BoxFit.cover,
-                  ),
+
+      body: Column(
+        children: [
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.3,
+            child: TimelineHeader(
+              controller: _controller,
+              animation: _animation,
+              furnitures: _furnitures,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class TimelineHeader extends StatelessWidget {
+  const TimelineHeader({
+    super.key,
+    required AnimationController controller,
+    required Animation<double> animation,
+    required List furnitures,
+  })  : _controller = controller,
+        _animation = animation,
+        _furnitures = furnitures;
+
+  final AnimationController _controller;
+  final Animation<double> _animation;
+  final List _furnitures;
+
+  @override
+  Widget build(BuildContext context) {
+    return PageView.builder(
+      onPageChanged: (int index) {
+        _controller.value = 0.0;
+        _controller.forward();
+      },
+      itemBuilder: (context, index) {
+        return Stack(
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              clipBehavior: Clip.hardEdge,
+              decoration: const BoxDecoration(),
+              child: ScaleTransition(
+                scale: _animation,
+                child: Image.network(
+                  _furnitures[index]['image'],
+                  fit: BoxFit.cover,
                 ),
               ),
-              Positioned(
-                bottom: 0,
-                child: Container(
-                    padding: const EdgeInsets.all(20),
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height,
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                            begin: Alignment.bottomRight,
-                            colors: [
-                          Colors.black.withOpacity(0.9),
-                          Colors.black.withOpacity(0.8),
-                          Colors.black.withOpacity(0.2),
-                          Colors.black.withOpacity(0.1)
-                        ])),
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          FadeInDown(
-                            duration: const Duration(milliseconds: 500),
-                            child: Text(
-                              _furnitures[index]['title'],
-                              style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 42,
-                                  fontWeight: FontWeight.bold),
-                            ),
+            ),
+            Positioned(
+              bottom: 0,
+              child: Container(
+                  padding: const EdgeInsets.all(20),
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height,
+                  decoration: BoxDecoration(
+                      gradient:
+                          LinearGradient(begin: Alignment.bottomRight, colors: [
+                    Colors.black.withOpacity(0.9),
+                    Colors.black.withOpacity(0.8),
+                    Colors.black.withOpacity(0.2),
+                    Colors.black.withOpacity(0.1)
+                  ])),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        FadeInDown(
+                          duration: const Duration(milliseconds: 500),
+                          child: Text(
+                            _furnitures[index]['title'],
+                            style: const TextStyle(
+                                color: Color.fromRGBO(255, 255, 255, 1),
+                                fontSize: 36,
+                                fontWeight: FontWeight.bold),
                           ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          FadeInDown(
-                              delay: const Duration(milliseconds: 100),
-                              duration: const Duration(milliseconds: 800),
-                              child: Text(
-                                _furnitures[index]['sub_title'],
-                                style: TextStyle(
-                                  color: Colors.grey.shade400,
-                                  fontSize: 18,
-                                ),
-                              )),
-                          const SizedBox(
-                            height: 50,
-                          ),
-                          FadeInLeft(
+                        ),
+                        const SizedBox(
+                          height: 7,
+                        ),
+                        FadeInDown(
                             delay: const Duration(milliseconds: 100),
-                            duration: const Duration(milliseconds: 1000),
-                            child: Align(
-                              alignment: Alignment.bottomRight,
-                              child: MaterialButton(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(40)),
-                                  onPressed: () {},
-                                  color: Colors.orange,
-                                  padding: const EdgeInsets.only(
-                                      right: 5, left: 30, top: 5, bottom: 5),
-                                  child: SizedBox(
-                                    height: 40,
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.4,
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          'Get Started',
-                                          style: TextStyle(
-                                            color: Colors.orange.shade50,
-                                            fontSize: 16,
-                                          ),
+                            duration: const Duration(milliseconds: 800),
+                            child: Text(
+                              _furnitures[index]['sub_title'],
+                              style: TextStyle(
+                                color: Colors.grey.shade400,
+                                fontSize: 16,
+                              ),
+                            )),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        FadeInLeft(
+                          delay: const Duration(milliseconds: 100),
+                          duration: const Duration(milliseconds: 1000),
+                          child: Align(
+                            alignment: Alignment.bottomRight,
+                            child: MaterialButton(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(40)),
+                                onPressed: () {},
+                                color: Colors.orange,
+                                padding: const EdgeInsets.only(
+                                    right: 5, left: 30, top: 5, bottom: 5),
+                                child: SizedBox(
+                                  height: 10,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.3,
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        'Get Started',
+                                        style: TextStyle(
+                                          color: Colors.orange.shade50,
+                                          fontSize: 16,
                                         ),
-                                        const Spacer(),
-                                        Container(
-                                            padding: const EdgeInsets.all(8),
-                                            decoration: BoxDecoration(
-                                                color: Colors.orange.shade300,
-                                                borderRadius:
-                                                    BorderRadius.circular(40)),
-                                            child: Icon(
-                                              Icons.arrow_forward,
-                                              color: Colors.orange.shade100,
-                                            )),
-                                      ],
-                                    ),
-                                  )),
-                            ),
+                                      ),
+                                      const Spacer(),
+                                      Container(
+                                          padding: const EdgeInsets.all(8),
+                                          decoration: BoxDecoration(
+                                              color: Colors.orange.shade300,
+                                              borderRadius:
+                                                  BorderRadius.circular(40)),
+                                          child: Icon(
+                                            Icons.arrow_forward,
+                                            color: Colors.orange.shade100,
+                                          )),
+                                    ],
+                                  ),
+                                )),
                           ),
-                          const SizedBox(height: 50),
-                          //   const Center(
-                          //     child: Column(
-                          //       children: [
-                          //         Padding(
-                          //           padding: EdgeInsets.all(12.0),
-                          //           child: Row(
-                          //             mainAxisAlignment:
-                          //                 MainAxisAlignment.spaceBetween,
-                          //             children: [
-                          //               Column(
-                          //                 children: [
-                          //                   Text(
-                          //                     "Total tasks done",
-                          //                     style: TextStyle(
-                          //                       fontWeight: FontWeight.bold,
-                          //                     ),
-                          //                   ),
-                          //                   Text("over the past 7 days"),
-                          //                 ],
-                          //               ),
-                          //               Icon(
-                          //                 Icons.auto_graph,
-                          //                 size: 15,
-                          //                 color: Colors.black,
-                          //               )
-                          //             ],
-                          //           ),
-                          //         ),
+                        ),
+                        const SizedBox(height: 2),
+                        //   const Center(
+                        //     child: Column(
+                        //       children: [
+                        //         Padding(
+                        //           padding: EdgeInsets.all(12.0),
+                        //           child: Row(
+                        //             mainAxisAlignment:
+                        //                 MainAxisAlignment.spaceBetween,
+                        //             children: [
+                        //               Column(
+                        //                 children: [
+                        //                   Text(
+                        //                     "Total tasks done",
+                        //                     style: TextStyle(
+                        //                       fontWeight: FontWeight.bold,
+                        //                     ),
+                        //                   ),
+                        //                   Text("over the past 7 days"),
+                        //                 ],
+                        //               ),
+                        //               Icon(
+                        //                 Icons.auto_graph,
+                        //                 size: 15,
+                        //                 color: Colors.black,
+                        //               )
+                        //             ],
+                        //           ),
+                        //         ),
 
-                          //         // The graph
-                          //         LimitedBox(
-                          //           maxHeight: 120,
-                          //           child: PieChartWidget(),
-                          //         ),
-                          //       ],
-                          //     ),
-                          //   ),
-                        ])),
-              )
-            ],
-          );
-        },
-        itemCount: _furnitures.length,
-        controller: PageController(viewportFraction: 1.0),
-      ),
+                        //         // The graph
+                        //         LimitedBox(
+                        //           maxHeight: 120,
+                        //           child: PieChartWidget(),
+                        //         ),
+                        //       ],
+                        //     ),
+                        //   ),
+                      ])),
+            )
+          ],
+        );
+      },
+      itemCount: _furnitures.length,
+      controller: PageController(viewportFraction: 1.0),
     );
   }
 }
