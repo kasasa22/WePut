@@ -44,10 +44,10 @@ class Teams extends StatelessWidget {
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Stack(
             children: [
-              Container(
+              SizedBox(
                 height: 200,
                 width: double.infinity,
-                child: Image.asset("/assets/images/drawer.png"),
+                child: Image.asset("assets/images/drawer.png"),
               ),
             ],
           ),
