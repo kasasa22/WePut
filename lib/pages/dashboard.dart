@@ -381,6 +381,30 @@ class _DashboardState extends State<Dashboard> {
               ),
             ),
           ),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  children: [
+                    Text(
+                      "Total tasks done",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text("View by Day, Month, and Year"),
+                  ],
+                ),
+                Icon(
+                  Icons.auto_graph,
+                  size: 15,
+                  color: Colors.black,
+                )
+              ],
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
