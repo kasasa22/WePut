@@ -134,14 +134,14 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                   ),
                 ),
 
-                const SizedBox(height: 10),
+                const SizedBox(height: 7),
 
                 // The graph
                 const LimitedBox(
                   maxHeight: 120,
                   child: PieChartWidget(),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 15),
                 const Divider(
                   height: 2,
                 ),
