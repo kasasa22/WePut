@@ -168,7 +168,15 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                   children: [
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
-                      child: Container(),
+                      child: Container(
+                        child: Row(
+                          children: [
+                            Expanded(child: Column()),
+                            Expanded(child: Column()),
+                            Expanded(child: Column()),
+                          ],
+                        ),
+                      ),
                     ),
                   ],
                 )
