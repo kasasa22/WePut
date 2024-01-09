@@ -88,14 +88,17 @@ class _BoardsState extends State<Boards> with SingleTickerProviderStateMixin {
               children: const [
                 SingleChildScrollView(
                     child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [],
                 )),
                 SingleChildScrollView(
                     child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [],
                 )),
                 SingleChildScrollView(
                     child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [],
                 )),
               ],
