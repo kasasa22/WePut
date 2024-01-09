@@ -61,7 +61,7 @@ class CustomCard extends StatelessWidget {
                       Text(
                         'Task Date: $taskDate',
                         style: const TextStyle(
-                          fontSize: 8,
+                          fontSize: 10,
                           color: Colors.white,
                         ),
                       ),
