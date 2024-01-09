@@ -106,10 +106,10 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
             ),
           ),
           const SizedBox(height: 1),
-          Center(
+          const Center(
             child: Column(
               children: [
-                const Padding(
+                Padding(
                   padding: EdgeInsets.all(12.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -134,19 +134,19 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                   ),
                 ),
 
-                const SizedBox(height: 7),
+                SizedBox(height: 7),
 
                 // The graph
-                const LimitedBox(
+                LimitedBox(
                   maxHeight: 120,
                   child: PieChartWidget(),
                 ),
-                const SizedBox(height: 15),
-                const Divider(
+                SizedBox(height: 15),
+                Divider(
                   height: 1,
                 ),
-                const SizedBox(height: 10),
-                const Padding(
+                SizedBox(height: 10),
+                Padding(
                   padding: EdgeInsets.all(12.0),
                   child: Center(
                     child: Column(
@@ -168,14 +168,13 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                   children: [
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
-                      child: Container(
-                        child: Row(
-                          children: [
-                            Expanded(flex: 1, child: Column()),
-                            Expanded(flex: 1, child: Column()),
-                            Expanded(flex: 1, child: Column()),
-                          ],
-                        ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Flexible(child: Column()),
+                          Flexible(child: Column()),
+                          Flexible(child: Column()),
+                        ],
                       ),
                     ),
                   ],
