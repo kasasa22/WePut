@@ -16,6 +16,7 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.blue[700],
         title: const Text("Dashboard"),
@@ -53,6 +54,9 @@ class _DashboardState extends State<Dashboard> {
           children: [
             Stack(
               children: [
+                Container(
+                  height: 10,
+                ),
                 const ColoredBox(
                   color: Colors.white10,
                   child: Padding(
@@ -109,6 +113,9 @@ class _DashboardState extends State<Dashboard> {
                 // Add more Positioned widgets for additional elements
               ],
             ),
+            Container(
+              height: 10,
+            ),
             const SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Padding(
@@ -132,8 +139,8 @@ class _DashboardState extends State<Dashboard> {
                       subtitle: '160',
                     ),
                     statCard(
-                      title: 'boards',
-                      icon: Icons.book_online_outlined,
+                      title: 'Assignment Teams',
+                      icon: Icons.people,
                       subtitle: '490',
                     ),
                   ],
