@@ -48,27 +48,68 @@ class _DashboardState extends State<Dashboard> {
       drawer: const MyDrawer(),
 
       //Body
-      body: const SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Column(
           children: [
-            ColoredBox(
-              color: Colors.white10,
-              child: Padding(
-                padding: EdgeInsets.all(16.0),
-                child: Column(
-                  children: [
-                    Text(
-                      "Hi, Ambrose, You are welcome",
-                      style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
+            Stack(
+              children: [
+                const ColoredBox(
+                  color: Colors.white10,
+                  child: Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Hi, Ambrose! Welcome to your Dashboard",
+                          style: TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        // Add more dashboard content here
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top: 0,
+                  right: 0,
+                  child: Container(
+                    padding: const EdgeInsets.all(8.0),
+                    decoration: const BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(16.0),
                       ),
                     ),
-                  ],
+                    child: const Icon(
+                      Icons.notifications,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
-              ),
+                Positioned(
+                  bottom: 0,
+                  left: 0,
+                  child: Container(
+                    padding: const EdgeInsets.all(8.0),
+                    decoration: const BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(16.0),
+                      ),
+                    ),
+                    child: const Icon(
+                      Icons.settings,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                // Add more Positioned widgets for additional elements
+              ],
             ),
-            SingleChildScrollView(
+            const SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Padding(
                 padding: EdgeInsets.all(8.0),
@@ -99,10 +140,10 @@ class _DashboardState extends State<Dashboard> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
-            SingleChildScrollView(
+            const SingleChildScrollView(
               child: Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Row(
@@ -178,7 +219,7 @@ class _DashboardState extends State<Dashboard> {
               ),
             ),
 
-            Padding(
+            const Padding(
               padding: EdgeInsets.all(12.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -203,11 +244,11 @@ class _DashboardState extends State<Dashboard> {
               ),
             ),
             //the graph
-            LimitedBox(
+            const LimitedBox(
               maxHeight: 120,
               child: PieChartWidget(), // Display the pie chart
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
           ],
