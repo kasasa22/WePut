@@ -91,7 +91,9 @@ class _BoardsState extends State<Boards> with SingleTickerProviderStateMixin {
                   child: TabBarView(
                 controller: _tabController,
                 children: const [
-                  TasksList(tasks: [], taskName: "Hello to the worls")
+                  TasksList(tasks: [], taskName: "Hello to the worls"),
+                  TasksList(tasks: [], taskName: "Hello to the worls"),
+                  TasksList(tasks: [], taskName: "Hello to the worls"),
                 ],
               ))
             ],
