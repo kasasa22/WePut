@@ -124,29 +124,23 @@ class _BoardsState extends State<Boards> with SingleTickerProviderStateMixin {
             child: TabBarView(
               controller: _tabController,
               children: [
-                SingleChildScrollView(
-                  child: ListView.builder(
-                    itemCount: items.length,
-                    itemBuilder: (context, index) {
-                      return TaskTile(index: index, task: items[index]);
-                    },
-                  ),
+                ListView.builder(
+                  itemCount: items.length,
+                  itemBuilder: (context, index) {
+                    return TaskTile(index: index, task: items[index]);
+                  },
                 ),
-                SingleChildScrollView(
-                  child: ListView.builder(
-                    itemCount: items.length,
-                    itemBuilder: (context, index) {
-                      return TaskTile(index: index, task: items[index]);
-                    },
-                  ),
+                ListView.builder(
+                  itemCount: items.length,
+                  itemBuilder: (context, index) {
+                    return TaskTile(index: index, task: items[index]);
+                  },
                 ),
-                SingleChildScrollView(
-                  child: ListView.builder(
-                    itemCount: items.length,
-                    itemBuilder: (context, index) {
-                      return TaskTile(index: index, task: items[index]);
-                    },
-                  ),
+                ListView.builder(
+                  itemCount: items.length,
+                  itemBuilder: (context, index) {
+                    return TaskTile(index: index, task: items[index]);
+                  },
                 )
               ],
             ),
