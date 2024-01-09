@@ -60,11 +60,13 @@ class _RegisterPageState extends State<RegisterPage> {
             .createUserWithEmailAndPassword(
                 email: emailController.text, password: passwordController.text);
 
+        print("this is " + userCredential.toString());
+
         dbUser.User newUser = dbUser.User(
           userId: userCredential.user!.uid,
           name: usernameController.text,
           email: emailController.text,
-          role: '', // Provide a default value or modify as needed
+          role: 'user', // Provide a default value or modify as needed
           completedTasks: 0, // Provide a default value or modify as needed
           averageCompletionTime:
               0.0, // Provide a default value or modify as needed
