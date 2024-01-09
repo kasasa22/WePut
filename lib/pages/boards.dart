@@ -62,49 +62,46 @@ class _BoardsState extends State<Boards> with SingleTickerProviderStateMixin {
       drawer: const MyDrawer(),
 
       //Body
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Container(
-          padding: const EdgeInsets.all(3),
-          child: Column(
-            children: [
-              TabBar(
-                indicatorColor: Colors.black,
-                indicatorSize: TabBarIndicatorSize.tab,
-                labelColor: Colors.blue,
-                indicatorWeight: 4,
-                controller: _tabController,
-                tabs: [
-                  Tab(
-                    icon: ElevatedButton(
-                        onPressed: () {}, child: const Text("Assigned")),
-                  ),
-                  Tab(
-                    icon: ElevatedButton(
-                        onPressed: () {}, child: const Text("In-Progress")),
-                  ),
-                  Tab(
-                    icon: ElevatedButton(
-                        onPressed: () {}, child: const Text("Completed")),
-                  ),
-                ],
-              ),
-              TabBarView(
-                controller: _tabController,
-                children: const [
-                  Align(
-                    child: Text("hello1"),
-                  ),
-                  Align(
-                    child: Text("hello2"),
-                  ),
-                  Align(
-                    child: Text("hello1"),
-                  ),
-                ],
-              )
-            ],
-          ),
+      body: Container(
+        padding: const EdgeInsets.all(3),
+        child: Column(
+          children: [
+            TabBar(
+              indicatorColor: Colors.black,
+              indicatorSize: TabBarIndicatorSize.tab,
+              labelColor: Colors.blue,
+              indicatorWeight: 4,
+              controller: _tabController,
+              tabs: [
+                Tab(
+                  icon: ElevatedButton(
+                      onPressed: () {}, child: const Text("Assigned")),
+                ),
+                Tab(
+                  icon: ElevatedButton(
+                      onPressed: () {}, child: const Text("In-Progress")),
+                ),
+                Tab(
+                  icon: ElevatedButton(
+                      onPressed: () {}, child: const Text("Completed")),
+                ),
+              ],
+            ),
+            TabBarView(
+              controller: _tabController,
+              children: const [
+                Align(
+                  child: Text("hello1"),
+                ),
+                Align(
+                  child: Text("hello2"),
+                ),
+                Align(
+                  child: Text("hello1"),
+                ),
+              ],
+            )
+          ],
         ),
       ),
     );
