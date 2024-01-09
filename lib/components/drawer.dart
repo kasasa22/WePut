@@ -117,7 +117,7 @@ class MyDrawer extends StatelessWidget {
               },
             ),
 
-            // Boards tile
+            // Tasks tile
             ListTile(
               leading: Icon(
                 Icons.book,
@@ -129,8 +129,7 @@ class MyDrawer extends StatelessWidget {
                 //pop drawer
                 Navigator.pop(context);
 
-                //navigate to the boards page
-                Navigator.pushNamed(context, '/boards');
+                Navigator.pushNamed(context, '/tasks');
               },
             ),
 
