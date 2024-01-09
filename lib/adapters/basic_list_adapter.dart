@@ -37,8 +37,17 @@ class ItemTile extends StatefulWidget {
 }
 
 class _ItemTileState extends State<ItemTile> {
+  Color determineAvatarColor(String userId) {
+    // Example: Use the ASCII value of the first character as a basis for color
+    int asciiValue = userId.codeUnitAt(0);
+    int colorValue = (asciiValue * 123456789) % 0xFFFFFF;
+    return Color(colorValue | 0xFF000000); // Ensure full opacity
+  }
+
   @override
   Widget build(BuildContext context) {
+    Color avatarColor = determineAvatarColor(widget.object.userId);
+
     return Column(
       children: [
         ExpansionTile(
@@ -46,7 +55,7 @@ class _ItemTileState extends State<ItemTile> {
             width: 50,
             height: 50,
             child: CircleAvatar(
-              backgroundColor: Colors.blue,
+              backgroundColor: avatarColor,
               child: Text(
                 widget.object.userId.substring(0, 1).toUpperCase(),
                 style: TextStyle(
