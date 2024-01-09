@@ -46,12 +46,6 @@ class Teams extends StatelessWidget {
           taskId: "hgfkkj",
           assignmentTime: Timestamp(2, 4),
           completionStatus: "nx,dvhjxj"),
-      Assignment(
-          assignmentId: "njsfd",
-          userId: "hsjvjdt",
-          taskId: "hgfkkj",
-          assignmentTime: Timestamp(2, 4),
-          completionStatus: "nx,dvhjxj"),
     ];
     List<Widget> gridAssignments = getGridViewAssignments(listAssignments);
     return Scaffold(
