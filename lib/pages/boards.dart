@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:maker/components/drawer.dart';
+import 'package:maker/components/tasks/tasks_list.dart';
 
 class Boards extends StatefulWidget {
   const Boards({super.key});
@@ -64,27 +65,37 @@ class _BoardsState extends State<Boards> with SingleTickerProviderStateMixin {
       //Body
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
-        child: Column(
-          children: [
-            TabBar(
-              indicatorColor: Colors.black,
-              indicatorSize: TabBarIndicatorSize.tab,
-              labelColor: Colors.blue,
-              indicatorWeight: 4,
-              controller: _tabController,
-              tabs: const [
-                Tab(
-                  icon: Text("Assigned"),
-                ),
-                Tab(
-                  icon: Text("In-Progress"),
-                ),
-                Tab(
-                  icon: Text("Completed"),
-                ),
-              ],
-            )
-          ],
+        child: Container(
+          padding: const EdgeInsets.all(3),
+          child: Column(
+            children: [
+              TabBar(
+                indicatorColor: Colors.black,
+                indicatorSize: TabBarIndicatorSize.tab,
+                labelColor: Colors.blue,
+                indicatorWeight: 4,
+                controller: _tabController,
+                tabs: const [
+                  Tab(
+                    icon: Text("Assigned"),
+                  ),
+                  Tab(
+                    icon: Text("In-Progress"),
+                  ),
+                  Tab(
+                    icon: Text("Completed"),
+                  ),
+                ],
+              ),
+              Center(
+                  child: TabBarView(
+                controller: _tabController,
+                children: const [
+                  TasksList(tasks: [], taskName: "Hello to the worls")
+                ],
+              ))
+            ],
+          ),
         ),
       ),
     );

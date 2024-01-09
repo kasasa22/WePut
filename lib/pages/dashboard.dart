@@ -2,8 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:maker/components/dashboard/line_chart.dart';
 import 'package:maker/components/dashboard/pie_chart.dart';
+import 'package:maker/components/dashboard/stat_card.dart';
 import 'package:maker/components/drawer.dart';
-import 'package:maker/components/home/stat_card.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
