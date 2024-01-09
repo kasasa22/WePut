@@ -47,7 +47,10 @@ class Teams extends StatelessWidget {
               SizedBox(
                 height: 200,
                 width: double.infinity,
-                child: Image.asset("assets/images/drawer.png"),
+                child: Image.asset(
+                  "assets/images/drawer.png",
+                  fit: BoxFit.cover,
+                ),
               ),
             ],
           ),
