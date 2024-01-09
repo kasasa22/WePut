@@ -106,10 +106,10 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
             ),
           ),
           const SizedBox(height: 10),
-          const Center(
+          Center(
             child: Column(
               children: [
-                Padding(
+                const Padding(
                   padding: EdgeInsets.all(12.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -134,13 +134,18 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                   ),
                 ),
 
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
 
                 // The graph
-                LimitedBox(
+                const LimitedBox(
                   maxHeight: 120,
                   child: PieChartWidget(),
                 ),
+
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Container(),
+                )
               ],
             ),
           ),
