@@ -245,7 +245,7 @@ class _DashboardState extends State<Dashboard> {
                                 duration: const Duration(milliseconds: 1000),
                                 from: 30,
                                 child: Text(
-                                  '\$ 4,777.12',
+                                  'TASKS DONE',
                                   style: TextStyle(
                                     color: Colors.blueGrey.shade100,
                                     fontSize: 36,
