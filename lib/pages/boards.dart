@@ -69,6 +69,7 @@ class _BoardsState extends State<Boards> with SingleTickerProviderStateMixin {
             TabBar(
               indicatorColor: Colors.black,
               indicatorSize: TabBarIndicatorSize.tab,
+              labelColor: Colors.blue,
               indicatorWeight: 4,
               controller: _tabController,
               tabs: const [
