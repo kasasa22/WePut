@@ -200,7 +200,7 @@ class TimelineHeader extends StatelessWidget {
                                 child: SizedBox(
                                   height: 15,
                                   width:
-                                      MediaQuery.of(context).size.width * 0.4,
+                                      MediaQuery.of(context).size.width * 0.3,
                                   child: Row(
                                     children: [
                                       Text(
@@ -210,17 +210,6 @@ class TimelineHeader extends StatelessWidget {
                                           fontSize: 14,
                                         ),
                                       ),
-                                      const Spacer(),
-                                      Container(
-                                          padding: const EdgeInsets.all(8),
-                                          decoration: BoxDecoration(
-                                              color: Colors.orange.shade300,
-                                              borderRadius:
-                                                  BorderRadius.circular(40)),
-                                          child: Icon(
-                                            Icons.arrow_forward,
-                                            color: Colors.orange.shade100,
-                                          )),
                                     ],
                                   ),
                                 )),
