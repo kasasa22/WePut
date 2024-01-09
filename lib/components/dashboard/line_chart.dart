@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter/material.dart';
 
 class LineChartWidget extends StatelessWidget {
   const LineChartWidget({super.key});
@@ -11,8 +11,8 @@ class LineChartWidget extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       child: LineChart(
         LineChartData(
-          gridData: const FlGridData(show: false), // Hide grid lines (optional)
-          titlesData: const FlTitlesData(show: false), // Hide titles (optional)
+          gridData: FlGridData(show: false), // Hide grid lines (optional)
+          titlesData: FlTitlesData(show: false), // Hide titles (optional)
           borderData: FlBorderData(
               show: true), // Show borders around the chart (optional)
           lineBarsData: [
@@ -24,7 +24,7 @@ class LineChartWidget extends StatelessWidget {
                 const FlSpot(3, 2), // Example data point
               ],
               isCurved: true, // Make the line curve (optional)
-              color: Colors.green, // Set the color of the line (optional)
+
               barWidth: 4, // Width of the line (optional)
               belowBarData:
                   BarAreaData(show: false), // Hide below line area (optional)
