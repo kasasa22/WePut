@@ -105,6 +105,7 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
               furnitures: _furnitures,
             ),
           ),
+          const SizedBox(height: 30),
           const Center(
             child: Column(
               children: [
@@ -132,6 +133,8 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                     ],
                   ),
                 ),
+
+                SizedBox(height: 10),
 
                 // The graph
                 LimitedBox(
