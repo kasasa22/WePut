@@ -32,7 +32,7 @@ class _BoardsState extends State<Boards> with SingleTickerProviderStateMixin {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue[700],
-        title: const Text("Boards"),
+        title: const Text("Tasks"),
         actions: [
           PopupMenuButton(
             onSelected: (String value) {},
