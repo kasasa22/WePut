@@ -180,7 +180,8 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                             Container(
                               decoration: BoxDecoration(
                                 border: Border.all(
-                                    color: Colors.black), // Add border color
+                                    color: Colors.grey,
+                                    width: 0.2), // Add border color
                               ),
                               child: const Flexible(
                                 child: Column(
@@ -217,14 +218,6 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                                         isCompleted: true,
                                         cardHeight: 50,
                                         cardWidth: 300.0),
-                                    CustomCard(
-                                        icon: Icons.star,
-                                        cardColor: Colors.blue,
-                                        title: 'Star Card',
-                                        taskDate: '2024-01-08',
-                                        isCompleted: true,
-                                        cardHeight: 50,
-                                        cardWidth: 300.0),
                                   ],
                                 ),
                               ),
@@ -232,7 +225,8 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                             Container(
                               decoration: BoxDecoration(
                                 border: Border.all(
-                                    color: Colors.black), // Add border color
+                                    color: Colors.grey,
+                                    width: 0.2), // Add border color
                               ),
                               child: const Flexible(
                                 child: Column(
@@ -284,7 +278,8 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                             Container(
                               decoration: BoxDecoration(
                                 border: Border.all(
-                                    color: Colors.black), // Add border color
+                                    color: Colors.grey,
+                                    width: 0.2), // Add border color
                               ),
                               child: const Flexible(
                                 child: Column(
