@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter/material.dart';
 
 class PieChartWidget extends StatelessWidget {
   const PieChartWidget({super.key});
@@ -13,7 +13,7 @@ class PieChartWidget extends StatelessWidget {
           sections: [
             PieChartSectionData(
               value: 30, // Example value for the section
-              color: Colors.grey, // Color of the section
+              color: Colors.blue[600], // Color of the section
               title: '30%', // Title of the section (optional)
               radius: 30, // Radius of the section (optional)
               titleStyle: const TextStyle(

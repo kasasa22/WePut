@@ -105,7 +105,7 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
               furnitures: _furnitures,
             ),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 1),
           Center(
             child: Column(
               children: [
@@ -141,10 +141,36 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                   maxHeight: 120,
                   child: PieChartWidget(),
                 ),
+                const SizedBox(height: 10),
+                const Divider(
+                  height: 2,
+                ),
+                const SizedBox(height: 10),
+                const Padding(
+                  padding: EdgeInsets.all(12.0),
+                  child: Center(
+                    child: Column(
+                      children: [
+                        Text(
+                          "TIMELINES",
+                          style: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
 
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Container(),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Container(),
+                    ),
+                  ],
                 )
               ],
             ),
