@@ -155,8 +155,8 @@ class Teams extends StatelessWidget {
               SizedBox(
                 height: 200,
                 width: double.infinity,
-                child: Image.asset(
-                  "assets/images/drawer.png",
+                child: Image.network(
+                  "https://images.unsplash.com/photo-1532499012374-fdfae50e73e9?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8ZnVybml0dXJlc3xlbnwwfDF8MHxibGFja3w%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
                   fit: BoxFit.cover,
                 ),
               ),
