@@ -121,7 +121,7 @@ class MyDrawer extends StatelessWidget {
                 Icons.book,
                 color: Colors.grey[800],
               ),
-              title: Text("B O A R D S",
+              title: Text("T A S K S",
                   style: Theme.of(context).textTheme.titleSmall),
               onTap: () {
                 //pop drawer
