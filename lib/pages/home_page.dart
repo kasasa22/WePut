@@ -40,7 +40,6 @@ class HomePage extends StatelessWidget {
               child: Image.asset(
                 'assets/images/man.png',
                 fit: BoxFit.cover,
-                color: Colors.transparent,
               ),
             ),
             Padding(
