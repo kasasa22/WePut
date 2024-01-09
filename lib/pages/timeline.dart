@@ -107,173 +107,176 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
             ),
           ),
           const SizedBox(height: 1),
-          Center(
-            child: Column(
-              children: [
-                const Padding(
-                  padding: EdgeInsets.all(12.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        children: [
-                          Text(
-                            "Total tasks done",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
+          SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Center(
+              child: Column(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.all(12.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          children: [
+                            Text(
+                              "Total tasks done",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                          Text("over the past 7 days"),
-                        ],
-                      ),
-                      Icon(
-                        Icons.auto_graph,
-                        size: 15,
-                        color: Colors.black,
-                      )
-                    ],
+                            Text("over the past 7 days"),
+                          ],
+                        ),
+                        Icon(
+                          Icons.auto_graph,
+                          size: 15,
+                          color: Colors.black,
+                        )
+                      ],
+                    ),
                   ),
-                ),
 
-                const SizedBox(height: 7),
+                  const SizedBox(height: 7),
 
-                // The graph
-                const LimitedBox(
-                  maxHeight: 120,
-                  child: PieChartWidget(),
-                ),
-                const SizedBox(height: 15),
+                  // The graph
+                  const LimitedBox(
+                    maxHeight: 120,
+                    child: PieChartWidget(),
+                  ),
+                  const SizedBox(height: 15),
 
-                const SizedBox(height: 10),
-                Container(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        "TIMELINES",
-                        style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
+                  const SizedBox(height: 10),
+                  Container(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          "TIMELINES",
+                          style: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blue, // Adjust the color as needed
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        Container(
+                          width: 60,
+                          height: 2,
                           color: Colors.blue, // Adjust the color as needed
                         ),
-                      ),
-                      const SizedBox(height: 8),
-                      Container(
-                        width: 60,
-                        height: 2,
-                        color: Colors.blue, // Adjust the color as needed
+                      ],
+                    ),
+                  ),
+
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    color: Colors.black), // Add border color
+                              ),
+                              child: const Flexible(
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      "Scheduled",
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    CustomCard(
+                                        icon: Icons.star,
+                                        cardColor: Colors.blue,
+                                        title: 'Star Card',
+                                        taskDate: '2024-01-08',
+                                        isCompleted: true,
+                                        cardHeight: 50,
+                                        cardWidth: 300.0),
+                                    CustomCard(
+                                        icon: Icons.star,
+                                        cardColor: Colors.blue,
+                                        title: 'Star Card',
+                                        taskDate: '2024-01-08',
+                                        isCompleted: true,
+                                        cardHeight: 50,
+                                        cardWidth: 300.0),
+                                    CustomCard(
+                                        icon: Icons.star,
+                                        cardColor: Colors.blue,
+                                        title: 'Star Card',
+                                        taskDate: '2024-01-08',
+                                        isCompleted: true,
+                                        cardHeight: 50,
+                                        cardWidth: 300.0),
+                                    CustomCard(
+                                        icon: Icons.star,
+                                        cardColor: Colors.blue,
+                                        title: 'Star Card',
+                                        taskDate: '2024-01-08',
+                                        isCompleted: true,
+                                        cardHeight: 50,
+                                        cardWidth: 300.0),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    color: Colors.black), // Add border color
+                              ),
+                              child: const Flexible(
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      "In Progress",
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    color: Colors.black), // Add border color
+                              ),
+                              child: const Flexible(
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      "Completed",
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
-                  ),
-                ),
-
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: Colors.black), // Add border color
-                            ),
-                            child: const Flexible(
-                              child: Column(
-                                children: [
-                                  Text(
-                                    "Scheduled",
-                                    style: TextStyle(
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  CustomCard(
-                                      icon: Icons.star,
-                                      cardColor: Colors.blue,
-                                      title: 'Star Card',
-                                      taskDate: '2024-01-08',
-                                      isCompleted: true,
-                                      cardHeight: 50,
-                                      cardWidth: 300.0),
-                                  CustomCard(
-                                      icon: Icons.star,
-                                      cardColor: Colors.blue,
-                                      title: 'Star Card',
-                                      taskDate: '2024-01-08',
-                                      isCompleted: true,
-                                      cardHeight: 50,
-                                      cardWidth: 300.0),
-                                  CustomCard(
-                                      icon: Icons.star,
-                                      cardColor: Colors.blue,
-                                      title: 'Star Card',
-                                      taskDate: '2024-01-08',
-                                      isCompleted: true,
-                                      cardHeight: 50,
-                                      cardWidth: 300.0),
-                                  CustomCard(
-                                      icon: Icons.star,
-                                      cardColor: Colors.blue,
-                                      title: 'Star Card',
-                                      taskDate: '2024-01-08',
-                                      isCompleted: true,
-                                      cardHeight: 50,
-                                      cardWidth: 300.0),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: Colors.black), // Add border color
-                            ),
-                            child: const Flexible(
-                              child: Column(
-                                children: [
-                                  Text(
-                                    "In Progress",
-                                    style: TextStyle(
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: Colors.black), // Add border color
-                            ),
-                            child: const Flexible(
-                              child: Column(
-                                children: [
-                                  Text(
-                                    "Completed",
-                                    style: TextStyle(
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                )
-              ],
+                  )
+                ],
+              ),
             ),
           ),
         ],
