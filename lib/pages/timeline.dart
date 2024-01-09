@@ -198,16 +198,16 @@ class TimelineHeader extends StatelessWidget {
                                 padding: const EdgeInsets.only(
                                     right: 5, left: 30, top: 5, bottom: 5),
                                 child: SizedBox(
-                                  height: 10,
+                                  height: 15,
                                   width:
-                                      MediaQuery.of(context).size.width * 0.3,
+                                      MediaQuery.of(context).size.width * 0.4,
                                   child: Row(
                                     children: [
                                       Text(
                                         'Get Started',
                                         style: TextStyle(
                                           color: Colors.orange.shade50,
-                                          fontSize: 16,
+                                          fontSize: 14,
                                         ),
                                       ),
                                       const Spacer(),
