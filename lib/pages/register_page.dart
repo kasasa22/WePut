@@ -61,6 +61,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 email: emailController.text, password: passwordController.text);
 
         print("this is " + userCredential.user!.uid);
+        print(userCredential.toString());
 
         dbUser.User newUser = dbUser.User(
           userId: userCredential.user!.uid,
