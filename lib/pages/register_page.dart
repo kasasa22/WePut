@@ -1,11 +1,14 @@
 // ignore_for_file: use_build_context_synchronously, library_prefixes
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart ';
 import 'package:maker/components/my_button.dart';
 import 'package:maker/components/my_textfeild.dart';
 import 'package:maker/models/user.dart' as dbUser;
+import 'package:maker/services/task.dart';
 
+import '../models/task.dart';
 import '../services/user.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -63,6 +66,26 @@ class _RegisterPageState extends State<RegisterPage> {
         print("this is " + userCredential.user!.uid);
         print(userCredential.toString());
 
+        Task newTask = Task(
+          taskId: 'new_task_id', // You may want to generate a unique ID here
+          title: usernameController.text,
+          description: "descriptionController.text",
+          dueDate: Timestamp.now(),
+          status: 'Not Started',
+          assignedUserId: 'assigned_user_id',
+          priority: 'Low',
+          category: 'General',
+          progress: 0,
+          comments: ['Comment 1', 'Comment 2'],
+          startTime: Timestamp.now(),
+          endTime: Timestamp.now(),
+          evaluation: 0.0,
+        );
+
+        final TaskService taskService = TaskService();
+
+        taskService.addTask(newTask);
+
         dbUser.User newUser = dbUser.User(
           userId: userCredential.user!.uid,
           name: usernameController.text,
@@ -70,7 +93,7 @@ class _RegisterPageState extends State<RegisterPage> {
           role: 'user', // Provide a default value or modify as needed
           completedTasks: 0, // Provide a default value or modify as needed
           averageCompletionTime:
-              0.0, // Provide a default value or modify as needed
+              0, // Provide a default value or modify as needed
         );
 
         // Add the user details to Firestore using UserService
