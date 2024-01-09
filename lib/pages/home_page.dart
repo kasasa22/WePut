@@ -40,8 +40,8 @@ class HomePage extends StatelessWidget {
             ),
             FadeInUp(
                 duration: const Duration(milliseconds: 1500),
-                child: Image.network(
-                  'https://cdn.dribbble.com/users/730703/screenshots/4145366/media/eef764c28f9547b693ab61fb655ec371.gif',
+                child: Image.asset(
+                  "/assets/images/drawer.png",
                   fit: BoxFit.cover,
                 )),
             Padding(
