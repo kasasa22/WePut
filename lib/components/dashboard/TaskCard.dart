@@ -6,12 +6,16 @@ class CustomCard extends StatelessWidget {
   final IconData icon;
   final Color cardColor;
   final String title;
+  final double cardHeight;
+  final double cardWidth;
 
   const CustomCard({
     Key? key,
     required this.icon,
     required this.cardColor,
     required this.title,
+    this.cardHeight = 150.0, // Set the desired height
+    this.cardWidth = 120.0, // Set the desired width
   }) : super(key: key);
 
   @override
@@ -22,26 +26,30 @@ class CustomCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(12.0),
       ),
       color: cardColor,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              icon,
-              size: 40, // Adjust the icon size as needed
-              color: Colors.white, // You can customize the icon color
-            ),
-            const SizedBox(height: 12),
-            Text(
-              title,
-              style: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Colors.white, // You can customize the text color
+      child: Container(
+        height: cardHeight,
+        width: cardWidth,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                icon,
+                size: 40, // Adjust the icon size as needed
+                color: Colors.white, // You can customize the icon color
               ),
-            ),
-          ],
+              const SizedBox(height: 12),
+              Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white, // You can customize the text color
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -53,4 +61,6 @@ class CustomCard extends StatelessWidget {
 //   icon: Icons.star,
 //   cardColor: Colors.blue,
 //   title: 'Star Card',
+//   cardHeight: 150.0,
+//   cardWidth: 120.0,
 // )
