@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 import '../components/dashboard/pie_chart.dart';
 import '../components/drawer.dart';
 
-class Furnitures extends StatefulWidget {
-  const Furnitures({Key? key}) : super(key: key);
+class Timeline extends StatefulWidget {
+  const Timeline({Key? key}) : super(key: key);
 
   @override
-  _FurnituresState createState() => _FurnituresState();
+  _TimelineState createState() => _TimelineState();
 }
 
-class _FurnituresState extends State<Furnitures> with TickerProviderStateMixin {
+class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
   final List<dynamic> _furnitures = [
     {
       'title': 'Modern \nFurnitures',
@@ -94,115 +94,148 @@ class _FurnituresState extends State<Furnitures> with TickerProviderStateMixin {
           _controller.forward();
         },
         itemBuilder: (context, index) {
-          return Container(
-            child: Stack(
-              children: [
-                Container(
-                  height: MediaQuery.of(context).size.height,
-                  width: MediaQuery.of(context).size.width,
-                  clipBehavior: Clip.hardEdge,
-                  decoration: BoxDecoration(),
-                  child: ScaleTransition(
-                    scale: _animation,
-                    child: Image.network(
-                      _furnitures[index]['image'],
-                      fit: BoxFit.cover,
-                    ),
+          return Stack(
+            children: [
+              Container(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                clipBehavior: Clip.hardEdge,
+                decoration: const BoxDecoration(),
+                child: ScaleTransition(
+                  scale: _animation,
+                  child: Image.network(
+                    _furnitures[index]['image'],
+                    fit: BoxFit.cover,
                   ),
                 ),
-                Positioned(
-                  bottom: 0,
-                  child: Container(
-                      padding: EdgeInsets.all(20),
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height,
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                              begin: Alignment.bottomRight,
-                              colors: [
-                            Colors.black.withOpacity(0.9),
-                            Colors.black.withOpacity(0.8),
-                            Colors.black.withOpacity(0.2),
-                            Colors.black.withOpacity(0.1)
-                          ])),
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            FadeInDown(
-                              duration: Duration(milliseconds: 500),
+              ),
+              Positioned(
+                bottom: 0,
+                child: Container(
+                    padding: const EdgeInsets.all(20),
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                            begin: Alignment.bottomRight,
+                            colors: [
+                          Colors.black.withOpacity(0.9),
+                          Colors.black.withOpacity(0.8),
+                          Colors.black.withOpacity(0.2),
+                          Colors.black.withOpacity(0.1)
+                        ])),
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          FadeInDown(
+                            duration: const Duration(milliseconds: 500),
+                            child: Text(
+                              _furnitures[index]['title'],
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 42,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          FadeInDown(
+                              delay: const Duration(milliseconds: 100),
+                              duration: const Duration(milliseconds: 800),
                               child: Text(
-                                _furnitures[index]['title'],
+                                _furnitures[index]['sub_title'],
                                 style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 42,
-                                    fontWeight: FontWeight.bold),
-                              ),
+                                  color: Colors.grey.shade400,
+                                  fontSize: 18,
+                                ),
+                              )),
+                          const SizedBox(
+                            height: 50,
+                          ),
+                          FadeInLeft(
+                            delay: const Duration(milliseconds: 100),
+                            duration: const Duration(milliseconds: 1000),
+                            child: Align(
+                              alignment: Alignment.bottomRight,
+                              child: MaterialButton(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(40)),
+                                  onPressed: () {},
+                                  color: Colors.orange,
+                                  padding: const EdgeInsets.only(
+                                      right: 5, left: 30, top: 5, bottom: 5),
+                                  child: SizedBox(
+                                    height: 40,
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.4,
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          'Get Started',
+                                          style: TextStyle(
+                                            color: Colors.orange.shade50,
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                        const Spacer(),
+                                        Container(
+                                            padding: const EdgeInsets.all(8),
+                                            decoration: BoxDecoration(
+                                                color: Colors.orange.shade300,
+                                                borderRadius:
+                                                    BorderRadius.circular(40)),
+                                            child: Icon(
+                                              Icons.arrow_forward,
+                                              color: Colors.orange.shade100,
+                                            )),
+                                      ],
+                                    ),
+                                  )),
                             ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            FadeInDown(
-                                delay: Duration(milliseconds: 100),
-                                duration: Duration(milliseconds: 800),
-                                child: Text(
-                                  _furnitures[index]['sub_title'],
-                                  style: TextStyle(
-                                    color: Colors.grey.shade400,
-                                    fontSize: 18,
-                                  ),
-                                )),
-                            SizedBox(
-                              height: 50,
-                            ),
-                            FadeInLeft(
-                              delay: Duration(milliseconds: 100),
-                              duration: Duration(milliseconds: 1000),
-                              child: Align(
-                                alignment: Alignment.bottomRight,
-                                child: MaterialButton(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(40)),
-                                    onPressed: () {},
-                                    color: Colors.orange,
-                                    padding: EdgeInsets.only(
-                                        right: 5, left: 30, top: 5, bottom: 5),
-                                    child: Container(
-                                      height: 40,
-                                      width: MediaQuery.of(context).size.width *
-                                          0.4,
-                                      child: Row(
+                          ),
+                          const SizedBox(height: 50),
+                          const Center(
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.all(12.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Column(
                                         children: [
                                           Text(
-                                            'Get Started',
+                                            "Total tasks done",
                                             style: TextStyle(
-                                              color: Colors.orange.shade50,
-                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
                                             ),
                                           ),
-                                          Spacer(),
-                                          Container(
-                                              padding: EdgeInsets.all(8),
-                                              decoration: BoxDecoration(
-                                                  color: Colors.orange.shade300,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          40)),
-                                              child: Icon(
-                                                Icons.arrow_forward,
-                                                color: Colors.orange.shade100,
-                                              )),
+                                          Text("over the past 7 days"),
                                         ],
                                       ),
-                                    )),
-                              ),
+                                      Icon(
+                                        Icons.auto_graph,
+                                        size: 15,
+                                        color: Colors.black,
+                                      )
+                                    ],
+                                  ),
+                                ),
+
+                                // The graph
+                                LimitedBox(
+                                  maxHeight: 120,
+                                  child: PieChartWidget(),
+                                ),
+                              ],
                             ),
-                            SizedBox(height: 50),
-                          ])),
-                )
-              ],
-            ),
+                          ),
+                        ])),
+              )
+            ],
           );
         },
         itemCount: _furnitures.length,
@@ -210,47 +243,4 @@ class _FurnituresState extends State<Furnitures> with TickerProviderStateMixin {
       ),
     );
   }
-}
-
-@override
-Widget build(BuildContext context) {
-  return Scaffold(
-    //Body
-    body: const Center(
-      child: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.all(12.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  children: [
-                    Text(
-                      "Total tasks done",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text("over the past 7 days"),
-                  ],
-                ),
-                Icon(
-                  Icons.auto_graph,
-                  size: 15,
-                  color: Colors.black,
-                )
-              ],
-            ),
-          ),
-
-          // The graph
-          LimitedBox(
-            maxHeight: 120,
-            child: PieChartWidget(),
-          ),
-        ],
-      ),
-    ),
-  );
 }
