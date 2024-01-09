@@ -207,11 +207,17 @@ class TimelineHeader extends StatelessWidget {
                                       MediaQuery.of(context).size.width * 0.3,
                                   child: Row(
                                     children: [
-                                      Text(
-                                        'Get Started',
-                                        style: TextStyle(
-                                          color: Colors.orange.shade50,
-                                          fontSize: 14,
+                                      InkWell(
+                                        onTap: () {
+                                          Navigator.pushNamed(
+                                              context, '/tasks');
+                                        },
+                                        child: Text(
+                                          'Get Started',
+                                          style: TextStyle(
+                                            color: Colors.orange.shade50,
+                                            fontSize: 14,
+                                          ),
                                         ),
                                       ),
                                     ],
