@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:maker/components/dashboard/line_chart.dart';
-import 'package:maker/components/dashboard/pie_chart.dart';
 import 'package:maker/components/dashboard/stat_card.dart';
 import 'package:maker/components/drawer.dart';
 
@@ -309,13 +308,13 @@ class _DashboardState extends State<Dashboard> {
               ),
             ),
             // The graph
-            const LimitedBox(
-              maxHeight: 120,
-              child: PieChartWidget(),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
+            // const LimitedBox(
+            //   maxHeight: 120,
+            //   child: PieChartWidget(),
+            // ),
+            // const SizedBox(
+            //   height: 20,
+            // ),
 
             Column(
               mainAxisAlignment: MainAxisAlignment.end,
