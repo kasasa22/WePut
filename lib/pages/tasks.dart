@@ -125,32 +125,29 @@ class _BoardsState extends State<Boards> with SingleTickerProviderStateMixin {
               controller: _tabController,
               children: [
                 SingleChildScrollView(
-                    child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Column(
-                      children: TaskListExpandAdapter(items).getView(),
-                    ),
-                  ],
-                )),
+                  child: ListView.builder(
+                    itemCount: items.length,
+                    itemBuilder: (context, index) {
+                      return TaskTile(index: index, task: items[index]);
+                    },
+                  ),
+                ),
                 SingleChildScrollView(
-                    child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Column(
-                      children: TaskListExpandAdapter(items).getView(),
-                    ),
-                  ],
-                )),
+                  child: ListView.builder(
+                    itemCount: items.length,
+                    itemBuilder: (context, index) {
+                      return TaskTile(index: index, task: items[index]);
+                    },
+                  ),
+                ),
                 SingleChildScrollView(
-                    child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Column(
-                      children: TaskListExpandAdapter(items).getView(),
-                    ),
-                  ],
-                )),
+                  child: ListView.builder(
+                    itemCount: items.length,
+                    itemBuilder: (context, index) {
+                      return TaskTile(index: index, task: items[index]);
+                    },
+                  ),
+                )
               ],
             ),
           )
