@@ -235,27 +235,6 @@ class _DashboardState extends State<Dashboard> {
                   Expanded(
                     child: Column(
                       children: [
-                        const Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              children: [
-                                Text(
-                                  "Total tasks done",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Text("View by Day, Month, and Year"),
-                              ],
-                            ),
-                            Icon(
-                              Icons.auto_graph,
-                              size: 15,
-                              color: Colors.black,
-                            )
-                          ],
-                        ),
                         // The graph
 
                         Column(
