@@ -79,9 +79,6 @@ class _RegisterPageState extends State<RegisterPage> {
         // Add the user details to Firestore using UserService
         _userService.addUser(newUser);
 
-        // Wait for a short time (e.g., 1 second) to allow the stream to update
-        await Future.delayed(const Duration(seconds: 1));
-
         // Hide the loading indicator
         Navigator.pop(context);
       } on FirebaseAuthException catch (e) {
