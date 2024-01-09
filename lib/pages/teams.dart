@@ -15,7 +15,55 @@ class Teams extends StatelessWidget {
           userId: "hsjvjdt",
           taskId: "hgfkkj",
           assignmentTime: Timestamp(2, 4),
-          completionStatus: "nx,dvhjxj")
+          completionStatus: "nx,dvhjxj"),
+      Assignment(
+          assignmentId: "njsfd",
+          userId: "hsjvjdt",
+          taskId: "hgfkkj",
+          assignmentTime: Timestamp(2, 4),
+          completionStatus: "nx,dvhjxj"),
+      Assignment(
+          assignmentId: "njsfd",
+          userId: "hsjvjdt",
+          taskId: "hgfkkj",
+          assignmentTime: Timestamp(2, 4),
+          completionStatus: "nx,dvhjxj"),
+      Assignment(
+          assignmentId: "njsfd",
+          userId: "hsjvjdt",
+          taskId: "hgfkkj",
+          assignmentTime: Timestamp(2, 4),
+          completionStatus: "nx,dvhjxj"),
+      Assignment(
+          assignmentId: "njsfd",
+          userId: "hsjvjdt",
+          taskId: "hgfkkj",
+          assignmentTime: Timestamp(2, 4),
+          completionStatus: "nx,dvhjxj"),
+      Assignment(
+          assignmentId: "njsfd",
+          userId: "hsjvjdt",
+          taskId: "hgfkkj",
+          assignmentTime: Timestamp(2, 4),
+          completionStatus: "nx,dvhjxj"),
+      Assignment(
+          assignmentId: "njsfd",
+          userId: "hsjvjdt",
+          taskId: "hgfkkj",
+          assignmentTime: Timestamp(2, 4),
+          completionStatus: "nx,dvhjxj"),
+      Assignment(
+          assignmentId: "njsfd",
+          userId: "hsjvjdt",
+          taskId: "hgfkkj",
+          assignmentTime: Timestamp(2, 4),
+          completionStatus: "nx,dvhjxj"),
+      Assignment(
+          assignmentId: "njsfd",
+          userId: "hsjvjdt",
+          taskId: "hgfkkj",
+          assignmentTime: Timestamp(2, 4),
+          completionStatus: "nx,dvhjxj"),
     ];
     List<Widget> gridAssignments = getGridViewAssignments(listAssignments);
     return Scaffold(
@@ -99,7 +147,7 @@ class Teams extends StatelessWidget {
         children: [
           getItemViewGrid(lc[i * 2]),
           Container(width: 2),
-          // getItemViewGrid(lc[(i * 2) + 1]),
+          if (lc.length > 1) getItemViewGrid(lc[(i * 2) + 1])
         ],
       );
 
@@ -134,7 +182,7 @@ class Teams extends StatelessWidget {
                   Text(
                     s.completionStatus,
                     textAlign: TextAlign.center,
-                    style: const TextStyle(color: Colors.red),
+                    style: const TextStyle(color: Colors.black),
                   )
                 ]),
           ),
