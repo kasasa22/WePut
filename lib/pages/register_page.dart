@@ -1,14 +1,11 @@
-// ignore_for_file: use_build_context_synchronously, library_prefixes
+// ignore_for_file: use_build_context_synchronously, library_prefixes, avoid_print
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart ';
 import 'package:maker/components/my_button.dart';
 import 'package:maker/components/my_textfeild.dart';
 import 'package:maker/models/user.dart' as dbUser;
-import 'package:maker/services/task.dart';
 
-import '../models/task.dart';
 import '../services/user.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -63,28 +60,9 @@ class _RegisterPageState extends State<RegisterPage> {
             .createUserWithEmailAndPassword(
                 email: emailController.text, password: passwordController.text);
 
+        // ignore: prefer_interpolation_to_compose_strings
         print("this is " + userCredential.user!.uid);
         print(userCredential.toString());
-
-        Task newTask = Task(
-          taskId: 'new_task_id', // You may want to generate a unique ID here
-          title: usernameController.text,
-          description: "descriptionController.text",
-          dueDate: Timestamp.now(),
-          status: 'Not Started',
-          assignedUserId: 'assigned_user_id',
-          priority: 'Low',
-          category: 'General',
-          progress: 0,
-          comments: ['Comment 1', 'Comment 2'],
-          startTime: Timestamp.now(),
-          endTime: Timestamp.now(),
-          evaluation: 0.0,
-        );
-
-        final TaskService taskService = TaskService();
-
-        taskService.addTask(newTask);
 
         dbUser.User newUser = dbUser.User(
           userId: userCredential.user!.uid,
