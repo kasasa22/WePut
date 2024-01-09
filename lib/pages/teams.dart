@@ -99,7 +99,7 @@ class Teams extends StatelessWidget {
         children: [
           getItemViewGrid(lc[i * 2]),
           Container(width: 2),
-          getItemViewGrid(lc[(i * 2) + 1]),
+          // getItemViewGrid(lc[(i * 2) + 1]),
         ],
       );
 
