@@ -87,7 +87,8 @@ class HomePage extends StatelessWidget {
                   children: [
                     MaterialButton(
                         onPressed: () {
-                          Navigator.of(context).pushReplacementNamed('/');
+                          Navigator.of(context)
+                              .pushReplacementNamed('/dashboard');
                         },
                         color: Colors.black,
                         height: 45,
@@ -102,7 +103,9 @@ class HomePage extends StatelessWidget {
                           ),
                         )),
                     TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).pushReplacementNamed('/');
+                        },
                         child: const Text(
                           "SKIP",
                           style: TextStyle(
