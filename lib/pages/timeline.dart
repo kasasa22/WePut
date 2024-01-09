@@ -143,7 +143,7 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                 ),
                 const SizedBox(height: 15),
                 const Divider(
-                  height: 2,
+                  height: 1,
                 ),
                 const SizedBox(height: 10),
                 const Padding(
