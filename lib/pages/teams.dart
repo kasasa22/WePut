@@ -152,16 +152,6 @@ class Teams extends StatelessWidget {
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Stack(
             children: [
-              const Center(
-                child: Text(
-                  "Teams",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 40),
-                ),
-              ),
               SizedBox(
                 height: 200,
                 width: double.infinity,
@@ -176,11 +166,33 @@ class Teams extends StatelessWidget {
                 width: double.infinity,
                 child: const Align(
                   alignment: Alignment.center,
-                  child: Text(
-                    "Here are the Teams that you are part of\n you can browse through",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Center(
+                        child: SizedBox(
+                            width: double.infinity,
+                            child: Text(
+                              "Teams",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 40),
+                            )),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        "Here are the Teams that you are part of\n you can browse through",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
+                      ),
+                    ],
                   ),
                 ),
               )
