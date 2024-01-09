@@ -1,7 +1,12 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart ';
 import 'package:maker/components/my_button.dart';
 import 'package:maker/components/my_textfeild.dart';
+import 'package:maker/models/user.dart' as dbUser;
+
+import '../services/user.dart';
 
 class RegisterPage extends StatefulWidget {
   final void Function()? onTap;
@@ -26,19 +31,20 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController confirmPasswordController = TextEditingController();
 
   void registerUser() async {
-    //show the loading indicator
+    // Show the loading indicator
     showDialog(
-        context: context,
-        builder: (context) => const Center(
-              child: CircularProgressIndicator(),
-            ));
+      context: context,
+      builder: (context) => const Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
 
-    //check if the passwords match
+    // Check if the passwords match
     if (passwordController.text != confirmPasswordController.text) {
-      //hide the loading indicator
+      // Hide the loading indicator
       Navigator.pop(context);
 
-      //show the error message
+      // Show the error message
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: const Text("Passwords do not match"),
@@ -48,28 +54,35 @@ class _RegisterPageState extends State<RegisterPage> {
 
       return;
     } else {
-      //try to register the user
       try {
-        //create the user
-        // ignore: unused_local_variable
+        // Create the user
         UserCredential userCredential = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(
                 email: emailController.text, password: passwordController.text);
 
-        //pop loading indicator
-        // ignore: use_build_context_synchronously
+        dbUser.User newUser = dbUser.User(
+          userId: userCredential.user!.uid,
+          name: usernameController.text,
+          email: emailController.text,
+          role: '', // Provide a default value or modify as needed
+          completedTasks: 0, // Provide a default value or modify as needed
+          averageCompletionTime:
+              0.0, // Provide a default value or modify as needed
+        );
+
+        // Add the user details to Firestore using UserService
+        UserService().addUser(newUser);
+
+        // Hide the loading indicator
         Navigator.pop(context);
       } on FirebaseAuthException catch (e) {
-        //pop loading indicator
-        // ignore: use_build_context_synchronously
+        // Hide the loading indicator
         Navigator.pop(context);
 
-        //show the error message
-        // ignore: use_build_context_synchronously
+        // Show the error message
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(e.message!),
-            // ignore: use_build_context_synchronously
             backgroundColor: Theme.of(context).colorScheme.error,
           ),
         );
