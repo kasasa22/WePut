@@ -38,8 +38,9 @@ class HomePage extends StatelessWidget {
             FadeInUp(
               duration: const Duration(milliseconds: 1500),
               child: Image.asset(
-                'assets/images/drawer.png',
+                'assets/images/man.png',
                 fit: BoxFit.cover,
+                color: Colors.transparent,
               ),
             ),
             Padding(
