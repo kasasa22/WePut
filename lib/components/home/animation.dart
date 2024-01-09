@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 
 /// Class [FadeIn]:
@@ -219,13 +221,13 @@ class FadeInDownBig extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => FadeInDown(
-      child: child,
       duration: duration,
       delay: delay,
       controller: controller,
       manualTrigger: manualTrigger,
       animate: animate,
-      from: from);
+      from: from,
+      child: child);
 }
 
 /// Class [FadeInUp]:
@@ -358,13 +360,13 @@ class FadeInUpBig extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => FadeInUp(
-        child: child,
         duration: duration,
         delay: delay,
         controller: controller,
         manualTrigger: manualTrigger,
         animate: animate,
         from: from,
+        child: child,
       );
 }
 
@@ -498,13 +500,13 @@ class FadeInLeftBig extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => FadeInLeft(
-        child: child,
         duration: duration,
         delay: delay,
         controller: controller,
         manualTrigger: manualTrigger,
         animate: animate,
         from: from,
+        child: child,
       );
 }
 
@@ -638,12 +640,12 @@ class FadeInRightBig extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => FadeInRight(
-        child: child,
         duration: duration,
         delay: delay,
         controller: controller,
         manualTrigger: manualTrigger,
         animate: animate,
         from: from,
+        child: child,
       );
 }

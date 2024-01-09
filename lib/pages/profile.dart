@@ -2,8 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:maker/components/drawer.dart';
 
-import '../data/my_strings.dart';
-
 class Profile extends StatelessWidget {
   const Profile({super.key});
 
@@ -157,7 +155,7 @@ class Profile extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Text(
-                MyStrings.middle_lorem_ipsum,
+                "lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim ad minim veni",
                 textAlign: TextAlign.center,
                 selectionColor: Colors.blue[900],
               ),
@@ -165,7 +163,7 @@ class Profile extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Text(
-                MyStrings.short_lorem_ipsum,
+                "Lorem ipsum dolor sit amet, consectetur adip",
                 textAlign: TextAlign.center,
                 selectionColor: Colors.blue[900],
               ),
