@@ -23,6 +23,14 @@ We pride ourselves on our user-centric design approach, where simplicity meets s
 
 ### Activity Diagram
 Our activity diagram shows the flow of actions within the WePut App, starting from Login, moving through Task Creation, Assignment, Completion, and finally Viewing Statistics.
+```mermaid
+graph TD
+    A[Login] --> B[Task Creation]
+    B --> C[Task Assignment]
+    C --> D[Task Completion]
+    D --> E[Viewing Statistics]
+
+```
 
 ### Main Functionalities Diagram
 Our main functionalities include:
