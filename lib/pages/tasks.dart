@@ -183,6 +183,9 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
                       index: index,
                       task: assignedTasks[index],
                       leadingColor: Colors.red,
+                      onAddPeople: () {
+                        _showAddPeopleBottomSheet();
+                      },
                       onComplete: () {
                         updateTaskStatusNew(
                             assignedTasks[index].taskId, 'In-Progress');
@@ -198,6 +201,9 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
                       index: index,
                       task: inProgressTasks[index],
                       leadingColor: Colors.yellow,
+                      onAddPeople: () {
+                        _showAddPeopleBottomSheet();
+                      },
                       onComplete: () {
                         updateTaskStatusOld(
                             inProgressTasks[index].taskId, 'Completed');
@@ -253,6 +259,21 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
       print("Task with ID $taskID not found.");
       // Handle the case where the task is not found.
     }
+  }
+
+  void _showAddPeopleBottomSheet() {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext bc) {
+        return const Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text('Add People to Task'),
+            // Add your form or any UI elements for adding people
+          ],
+        );
+      },
+    );
   }
 
   void showSheet(context, List<Task> items) {
