@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +20,7 @@ class _TeamsState extends State<Teams> {
 
   @override
   void initState() {
+    // Fetch teams from Firestore
     fetchTeams();
     super.initState();
   }
@@ -29,12 +32,19 @@ class _TeamsState extends State<Teams> {
       listAssignments.clear();
 
       for (var document in snapshot.docs) {
-        Assignment assignment =
-            Assignment.fromJson(document.data() as Map<String, dynamic>);
-
-        // Add the fetched assignment to the list
+        Assignment assignment = Assignment(
+          teamName: document['teamName'],
+          completionStatus: document["completionStatus"],
+          assignmentId: document['assignmentId'],
+          userId: document['userId'],
+          taskId: document['taskId'],
+          assignmentTime: document["assignmentTime"],
+        );
         listAssignments.add(assignment);
       }
+
+      // Print the length of the list
+      print('Number of assignments: ${listAssignments.length}');
 
       // Use setState to trigger a rebuild with the updated lists
       setState(() {});
