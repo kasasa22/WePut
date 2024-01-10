@@ -348,7 +348,7 @@ class _TaskSheetState extends State<TaskSheet> {
       description: descriptionController.text,
       dueDate:
           Timestamp.now(), // Set to the current date as the default due date
-      status: 'Not Started',
+      status: 'New',
       assignedUserId: userId,
       priority:
           getSelectedPriority(), // Replace with your method to get the selected priority from the UI
