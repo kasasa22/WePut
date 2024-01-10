@@ -328,7 +328,6 @@ class _AddPeopleSheetState extends State<_AddPeopleSheet> {
               ),
             ),
             const SizedBox(height: 10),
-            // Use StreamBuilder to update the UI with the fetched users
             StreamBuilder(
               stream: _userService.getUsers(),
               builder: (context, snapshot) {
@@ -354,12 +353,13 @@ class _AddPeopleSheetState extends State<_AddPeopleSheet> {
                             onChanged: (bool? value) {
                               setState(() {
                                 selectedPeople[i] = value!;
+                                // Capture the ID of the document
                                 if (value) {
-                                  selectedUserIds.add(
-                                      snapshot.data!.docs[i]['uid'].toString());
+                                  selectedUserIds
+                                      .add(snapshot.data!.docs[i].id);
                                 } else {
-                                  selectedUserIds.remove(
-                                      snapshot.data!.docs[i]['uid'].toString());
+                                  selectedUserIds
+                                      .remove(snapshot.data!.docs[i].id);
                                 }
                               });
                             },
@@ -371,7 +371,7 @@ class _AddPeopleSheetState extends State<_AddPeopleSheet> {
                             backgroundColor: Colors.blue[100]),
                         onPressed: () {
                           // Use the selectedUserIds list as needed
-                          print('Selected User IDs: $selectedUserIds');
+                          print('Selected Document IDs: $selectedUserIds');
                           Navigator.pop(context); // Close the bottom sheet
                         },
                         child: const Text(
