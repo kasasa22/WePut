@@ -64,7 +64,11 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
   void listenToTasks() {
     TaskService taskService = TaskService();
     taskService.getTasks().listen((QuerySnapshot snapshot) {
-      items.clear();
+      // Clear existing lists
+      assignedTasks.clear();
+      inProgressTasks.clear();
+      completedTasks.clear();
+
       for (var document in snapshot.docs) {
         Task task = Task(
           taskId: document.id,
@@ -81,8 +85,18 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
           endTime: document['endTime'],
           evaluation: document['evaluation'],
         );
-        items.add(task);
+
+        // Categorize tasks based on their status
+        if (task.status == 'Assigned') {
+          assignedTasks.add(task);
+        } else if (task.status == 'In-Progress') {
+          inProgressTasks.add(task);
+        } else if (task.status == 'Completed') {
+          completedTasks.add(task);
+        }
       }
+
+      // Use setState to trigger a rebuild with the updated lists
       setState(() {});
     });
   }
@@ -387,7 +401,7 @@ class _TaskSheetState extends State<TaskSheet> {
       description: descriptionController.text,
       dueDate:
           Timestamp.now(), // Set to the current date as the default due date
-      status: 'New',
+      status: 'Assigned',
       assignedUserId: userId,
       priority: selectedPriority,
       category: 'General',
