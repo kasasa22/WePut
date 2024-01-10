@@ -193,6 +193,7 @@ class TaskSheet extends StatefulWidget {
 class _TaskSheetState extends State<TaskSheet> {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
+  late String selectedPriority = 'High';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
