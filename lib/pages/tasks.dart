@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print, library_private_types_in_public_api, prefer_final_fields
+// ignore_for_file: avoid_print, library_private_types_in_public_api, prefer_final_fields, non_constant_identifier_names
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
@@ -183,7 +183,9 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
                       index: index,
                       task: assignedTasks[index],
                       leadingColor: Colors.red,
-                      onAddPeople: () {},
+                      onAddPeople: () {
+                        AddPeopleSheet(context, items.cast<User>());
+                      },
                       onComplete: () {
                         updateTaskStatusNew(
                             assignedTasks[index].taskId, 'In-Progress');
@@ -199,7 +201,9 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
                       index: index,
                       task: inProgressTasks[index],
                       leadingColor: Colors.yellow,
-                      onAddPeople: () {},
+                      onAddPeople: () {
+                        AddPeopleSheet(context, items.cast<User>());
+                      },
                       onComplete: () {
                         updateTaskStatusOld(
                             inProgressTasks[index].taskId, 'Completed');
@@ -273,14 +277,23 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
       },
     );
   }
+
+  void AddPeopleSheet(context, List<User> items) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext bc) {
+        return _AddPeopleSheet();
+      },
+    );
+  }
 }
 
-class AddPeopleSheet extends StatefulWidget {
+class _AddPeopleSheet extends StatefulWidget {
   @override
   _AddPeopleSheetState createState() => _AddPeopleSheetState();
 }
 
-class _AddPeopleSheetState extends State<AddPeopleSheet> {
+class _AddPeopleSheetState extends State<_AddPeopleSheet> {
   List<String> people = ['Person 1', 'Person 2', 'Person 3', 'Person 4'];
   List<bool> selectedPeople = List.filled(4, false);
 
