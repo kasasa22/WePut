@@ -31,7 +31,7 @@ class _MyDrawerState extends State<MyDrawer> {
 
   String email = "";
 
-  String userName = "";
+  late String? userName;
 
   @override
   void initState() {
@@ -46,7 +46,7 @@ class _MyDrawerState extends State<MyDrawer> {
 
     // Example usage to get a user's name by email
     String userEmail = email;
-    userName = (await _userService.getUserNameByEmail(userEmail))!;
+    userName = (await _userService.getUserNameByEmail(userEmail));
 
     // User name found
     print("User Name: $userName");
@@ -97,7 +97,7 @@ class _MyDrawerState extends State<MyDrawer> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            userName,
+                            userName!,
                             style: const TextStyle(
                               color: Colors.grey,
                               fontWeight: FontWeight.bold,
