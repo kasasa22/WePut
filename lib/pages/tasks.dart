@@ -222,6 +222,14 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
         ],
       ),
     );
+
+    // Add a method to update task status in TaskService
+    void updateTaskStatus(String taskID, String status) {
+      TaskService taskService = TaskService();
+      Task updatedTask = items.firstWhere((task) => task.taskId == taskID);
+      updatedTask.status = status;
+      taskService.updateTask(taskID, updatedTask);
+    }
   }
 
   void showSheet(context, List<Task> items) {
