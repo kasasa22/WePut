@@ -328,8 +328,9 @@ class _AddPeopleSheetState extends State<_AddPeopleSheet> {
               ),
             const SizedBox(height: 20),
             ElevatedButton(
+              style:
+                  ElevatedButton.styleFrom(backgroundColor: Colors.blue[100]),
               onPressed: () {
-                // Add logic to handle selected people
                 List<String> selectedPeopleList = [];
                 for (int i = 0; i < selectedPeople.length; i++) {
                   if (selectedPeople[i]) {
