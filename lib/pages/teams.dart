@@ -144,9 +144,9 @@ class _TeamsState extends State<Teams> {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12),
             transform: Matrix4.translationValues(0.0, -30, 0.0),
-            child: Column(children: List.empty()
-                //gridAssignments,
-                ),
+            child: Column(
+              children: gridAssignments,
+            ),
           ),
         ]),
       ),
