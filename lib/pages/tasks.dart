@@ -343,7 +343,7 @@ class _TaskSheetState extends State<TaskSheet> {
 
     // Create a new task using the input data
     Task newTask = Task(
-      taskId: userId + '_' + DateTime.now().millisecondsSinceEpoch.toString(),
+      taskId: userId,
       title: titleController.text,
       description: descriptionController.text,
       dueDate:
