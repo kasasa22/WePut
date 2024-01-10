@@ -118,11 +118,15 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                       children: [
                         Column(
                           children: [
-                            Text(
-                              "Total tasks done",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                              ),
+                            Column(
+                              children: [
+                                Text(
+                                  "Total tasks done",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
                             ),
                             Text("over the past 7 days"),
                           ],
@@ -131,20 +135,16 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                           Icons.auto_graph,
                           size: 15,
                           color: Colors.black,
-                        )
+                        ),
+
+                        // The graph
+                        LimitedBox(
+                          maxHeight: 60,
+                          child: PieChartWidget(),
+                        ),
                       ],
                     ),
                   ),
-
-                  const SizedBox(height: 7),
-
-                  // The graph
-                  const LimitedBox(
-                    maxHeight: 120,
-                    child: PieChartWidget(),
-                  ),
-                  const SizedBox(height: 15),
-
                   const SizedBox(height: 10),
                   Container(
                     padding: const EdgeInsets.all(12.0),
@@ -168,7 +168,6 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                       ],
                     ),
                   ),
-
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
