@@ -184,7 +184,7 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
                       task: assignedTasks[index],
                       leadingColor: Colors.red,
                       onComplete: () {
-                        updateTaskStatus(
+                        updateTaskStatusNew(
                             assignedTasks[index].taskId, 'In-Progress');
                       },
                     );
@@ -199,7 +199,7 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
                       task: inProgressTasks[index],
                       leadingColor: Colors.yellow,
                       onComplete: () {
-                        updateTaskStatus(
+                        updateTaskStatusOld(
                             inProgressTasks[index].taskId, 'Completed');
                       },
                     );
@@ -227,9 +227,24 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
     );
   }
 
-  void updateTaskStatus(String taskID, String status) {
+  void updateTaskStatusNew(String taskID, String status) {
     TaskService taskService = TaskService();
-    Task? updatedTask = items.firstWhereOrNull((task) => task.taskId == taskID);
+    Task? updatedTask =
+        assignedTasks.firstWhereOrNull((task) => task.taskId == taskID);
+
+    if (updatedTask != null) {
+      updatedTask.status = status;
+      taskService.updateTask(taskID, updatedTask);
+    } else {
+      print("Task with ID $taskID not found.");
+      // Handle the case where the task is not found.
+    }
+  }
+
+  void updateTaskStatusOld(String taskID, String status) {
+    TaskService taskService = TaskService();
+    Task? updatedTask =
+        inProgressTasks.firstWhereOrNull((task) => task.taskId == taskID);
 
     if (updatedTask != null) {
       updatedTask.status = status;
