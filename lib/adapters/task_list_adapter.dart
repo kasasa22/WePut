@@ -7,6 +7,7 @@ class TaskTile extends StatefulWidget {
   final Task task;
   final Color? leadingColor; // Color for the leading avatar
   final VoidCallback? onComplete; // Callback when task is marked as complete
+  final VoidCallback? onAddPeople; // Callback for adding people
 
   const TaskTile({
     Key? key,
@@ -14,6 +15,7 @@ class TaskTile extends StatefulWidget {
     required this.task,
     this.leadingColor, // Optional leading avatar color
     this.onComplete, // Optional completion callback
+    this.onAddPeople, // Optional add people callback
   }) : super(key: key);
 
   @override
@@ -64,7 +66,6 @@ class _TaskTileState extends State<TaskTile> {
               color: Colors.grey[880],
             ),
           ),
-
           Text(
             'Priority: ${widget.task.priority}',
             style: TextStyle(
@@ -72,7 +73,6 @@ class _TaskTileState extends State<TaskTile> {
               fontSize: 10,
             ),
           ),
-
           Text(
             'Due Date: ${getFormattedDate(widget.task.dueDate.toDate())}',
             style: TextStyle(
@@ -80,25 +80,39 @@ class _TaskTileState extends State<TaskTile> {
               fontSize: 10,
             ),
           ),
-
           // Add more details as needed
         ],
       ),
-      trailing: widget.task.status != 'Completed'
-          ? IconButton(
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (widget.task.status != 'Completed')
+            IconButton(
               icon: const Icon(
                 Icons.check,
                 color: Colors.green,
                 size: 30,
-                weight: 40,
               ),
               onPressed: () {
                 if (widget.onComplete != null) {
                   widget.onComplete!();
                 }
               },
-            )
-          : null,
+            ),
+          IconButton(
+            icon: const Icon(
+              Icons.person_add,
+              color: Colors.blue,
+              size: 30,
+            ),
+            onPressed: () {
+              if (widget.onAddPeople != null) {
+                widget.onAddPeople!();
+              }
+            },
+          ),
+        ],
+      ),
       onTap: () {
         // Handle tile tap if needed
       },
