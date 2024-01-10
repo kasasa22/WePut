@@ -21,6 +21,25 @@ class TaskTile extends StatefulWidget {
 }
 
 class _TaskTileState extends State<TaskTile> {
+  String getFormattedDate(DateTime date) {
+    // Helper method to format DateTime to a readable string
+    return '${date.day}/${date.month}/${date.year}';
+  }
+
+  String getStatusDetails() {
+    // Helper method to get relevant status details
+    switch (widget.task.status) {
+      case 'Assigned':
+        return 'Assigned to ${widget.task.assignedUserId}';
+      case 'In-Progress':
+        return 'In progress';
+      case 'Completed':
+        return 'Completed on ${getFormattedDate(widget.task.endTime.toDate())}';
+      default:
+        return '';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -60,8 +79,15 @@ class _TaskTileState extends State<TaskTile> {
               color: Colors.grey[880],
             ),
           ),
+
           Text(
-            'Assigned User: ${widget.task.assignedUserId}',
+            'Due Date: ${getFormattedDate(widget.task.dueDate.toDate())}',
+            style: TextStyle(
+              color: Colors.grey[880],
+            ),
+          ),
+          Text(
+            'Status: ${getStatusDetails()}',
             style: TextStyle(
               color: Colors.grey[880],
             ),
