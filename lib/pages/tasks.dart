@@ -274,24 +274,68 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
         );
       },
     );
-  }
+  }}
 
-  void showSheet(context, List<Task> items) {
-    showModalBottomSheet(
-      context: context,
-      builder: (BuildContext bc) {
-        return TaskSheet(
-          selectedDate: _selectedDate,
-          items: items, // Pass items to TaskSheet
-          onTaskAdded: (Task newTask) {
-            setState(() {
-              items.add(newTask);
-            });
-          },
-        );
-      },
+class AddPeopleSheet extends StatefulWidget {
+  @override
+  _AddPeopleSheetState createState() => _AddPeopleSheetState();
+}
+
+class _AddPeopleSheetState extends State<AddPeopleSheet> {
+  List<String> people = ['Person 1', 'Person 2', 'Person 3', 'Person 4'];
+  List<bool> selectedPeople = List.filled(4, false);
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Container(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Add People to Task',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 10),
+            for (int i = 0; i < people.length; i++)
+              ListTile(
+                title: Text(people[i]),
+                leading: Checkbox(
+                  value: selectedPeople[i],
+                  onChanged: (bool? value) {
+                    setState(() {
+                      selectedPeople[i] = value!;
+                    });
+                  },
+                ),
+              ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                // Add logic to handle selected people
+                List<String> selectedPeopleList = [];
+                for (int i = 0; i < selectedPeople.length; i++) {
+                  if (selectedPeople[i]) {
+                    selectedPeopleList.add(people[i]);
+                  }
+                }
+                // Use the selectedPeopleList as needed
+                Navigator.pop(context); // Close the bottom sheet
+              },
+              child: Text('Add Selected People'),
+            ),
+          ],
+        ),
+      ),
     );
   }
+}
+
 }
 
 // ignore: must_be_immutable
