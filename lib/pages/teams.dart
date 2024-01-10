@@ -31,7 +31,7 @@ class _TeamsState extends State<Teams> {
       print(
           "-----------------------------------------------------------------------------------------------------------");
       // Clear existing lists
-      listAssignments.clear();
+      // listAssignments.clear();
 
       for (var document in snapshot.docs) {
         Assignment assignment = Assignment(
