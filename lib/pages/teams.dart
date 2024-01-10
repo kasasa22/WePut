@@ -1,23 +1,16 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:maker/components/drawer.dart';
 import 'package:maker/models/assignment.dart';
 
+// ignore: must_be_immutable
 class Teams extends StatelessWidget {
-  const Teams({super.key});
+  Teams({super.key});
+
+  List<Assignment> listAssignments = [];
 
   @override
   Widget build(BuildContext context) {
-    List<Assignment> listAssignments = [
-      Assignment(
-          teamName: "Team 1",
-          assignmentId: "njsfd",
-          userId: "hsjvjdt",
-          taskId: "hgfkkj",
-          assignmentTime: Timestamp(2, 4),
-          completionStatus: "nx,dvhjxj"),
-    ];
     List<Widget> gridAssignments = getGridViewAssignments(listAssignments);
     return Scaffold(
       backgroundColor: Colors.white,
