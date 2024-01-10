@@ -69,6 +69,7 @@ class _TaskTileState extends State<TaskTile> {
             'Status: ${widget.task.status}',
             style: TextStyle(
               color: Colors.grey[880],
+              fontSize: 10,
             ),
           ),
 
@@ -76,6 +77,7 @@ class _TaskTileState extends State<TaskTile> {
             'Due Date: ${getFormattedDate(widget.task.dueDate.toDate())}',
             style: TextStyle(
               color: Colors.grey[880],
+              fontSize: 10,
             ),
           ),
 
