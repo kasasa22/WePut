@@ -7,6 +7,7 @@ import 'package:maker/components/my_textfeild.dart';
 import 'package:maker/models/user.dart' as dbUser;
 
 import '../services/user.dart';
+import 'home_page.dart';
 
 class RegisterPage extends StatefulWidget {
   final void Function()? onTap;
@@ -80,6 +81,11 @@ class _RegisterPageState extends State<RegisterPage> {
 
         // Hide the loading indicator
         Navigator.pop(context);
+        // Navigate to the home page
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const HomePage()),
+        );
       } on FirebaseAuthException catch (e) {
         // Hide the loading indicator
         Navigator.pop(context);
