@@ -421,7 +421,8 @@ class _AddPeopleSheetState extends State<_AddPeopleSheet> {
                           // Use the selectedUserIds list and messageController.text as needed
                           print('Selected Document IDs: $selectedUserIds');
                           print('Message to People: ${messageController.text}');
-                          print('Message to People: ${teamController.text}');
+                          print(
+                              'team------------------------------------------------------------- to People: ${teamController.text}');
                           print('Task ID: ${widget.taskId}');
 
                           // Create a new Notification object
