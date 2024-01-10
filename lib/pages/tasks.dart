@@ -312,6 +312,8 @@ class _AddPeopleSheetState extends State<_AddPeopleSheet> {
   late TextEditingController
       messageController; // New controller for the message
 
+  late TextEditingController teamController; // New controller for the message
+
   UserService _userService = UserService();
 
   @override
@@ -324,6 +326,7 @@ class _AddPeopleSheetState extends State<_AddPeopleSheet> {
     selectedPeople = List.filled(people.length, false);
     // Initialize the message controller
     messageController = TextEditingController();
+    teamController = TextEditingController();
   }
 
   @override
@@ -348,6 +351,18 @@ class _AddPeopleSheetState extends State<_AddPeopleSheet> {
               controller: messageController,
               decoration: InputDecoration(
                 labelText: 'Message to People',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+
+            // Add a text box for the message
+            TextField(
+              controller: teamController,
+              decoration: InputDecoration(
+                labelText: 'Team Name',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),
                 ),
