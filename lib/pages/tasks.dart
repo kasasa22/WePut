@@ -431,15 +431,18 @@ class _TaskSheetState extends State<TaskSheet> {
       taskId: userId,
       title: titleController.text,
       description: descriptionController.text,
-      dueDate:
-          Timestamp.now(), // Set to the current date as the default due date
+      dueDate: widget.selectedDate != null
+          ? Timestamp.fromDate(widget.selectedDate!)
+          : Timestamp.now(),
       status: 'Assigned',
       assignedUserId: userId,
       priority: selectedPriority,
       category: 'General',
       progress: 0,
       comments: [], // Start with an empty list of comments
-      startTime: Timestamp.now(),
+      startTime: widget.selectedDate != null
+          ? Timestamp.fromDate(widget.selectedDate!)
+          : Timestamp.now(),
       endTime:
           Timestamp.now(), // Set to the current date as the default end time
       evaluation: 0.0,
