@@ -230,6 +230,22 @@ class _TaskSheetState extends State<TaskSheet> {
                           initialDate: DateTime.now(),
                           firstDate: DateTime.now(),
                           lastDate: DateTime(2101),
+                          cancelText: 'Cancel',
+                          confirmText: 'Select',
+                          builder: (context, child) {
+                            return Theme(
+                              data: ThemeData.light().copyWith(
+                                primaryColor: Colors.blue[700],
+                                colorScheme: const ColorScheme.light(
+                                  primary: Colors.blue,
+                                ),
+                                buttonTheme: const ButtonThemeData(
+                                  textTheme: ButtonTextTheme.primary,
+                                ),
+                              ),
+                              child: child!,
+                            );
+                          },
                         );
 
                         if (pickedDate != null &&
