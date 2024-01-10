@@ -57,15 +57,15 @@ class _RegisterPageState extends State<RegisterPage> {
       return;
     } else {
       try {
-        // Create the user
+        // Create the user in Firebase Authentication
         UserCredential userCredential = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(
                 email: emailController.text, password: passwordController.text);
 
-        // ignore: prefer_interpolation_to_compose_strings
-        print("this is " + userCredential.user!.uid);
-        print(userCredential.toString());
+        // Print user UID for testing
+        print("User ID: " + userCredential.user!.uid);
 
+        // Create a user object
         dbUser.User newUser = dbUser.User(
           userId: userCredential.user!.uid,
           name: usernameController.text,
