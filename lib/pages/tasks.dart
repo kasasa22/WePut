@@ -185,6 +185,7 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
                       leadingColor: Colors.red,
                       onComplete: () {
                         updateTaskStatus(items[index].taskId, 'In-Progress');
+                        print("Task completed " + items[index].taskId);
                       },
                     );
                   },
