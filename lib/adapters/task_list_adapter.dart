@@ -71,9 +71,11 @@ class _TaskTileState extends State<TaskTile> {
       ),
       trailing: widget.task.status != 'Completed'
           ? IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.check,
-                color: Colors.green, // Customize the completion icon color
+                color: Colors.green,
+                size: 30,
+                weight: 40,
               ),
               onPressed: () {
                 if (widget.onComplete != null) {

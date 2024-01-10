@@ -178,21 +178,42 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
                 ListView.builder(
                   itemCount: assignedTasks.length,
                   itemBuilder: (context, index) {
-                    return TaskTile(index: index, task: assignedTasks[index]);
+                    return TaskTile(
+                      index: index,
+                      task: assignedTasks[index],
+                      leadingColor: Colors.red,
+                      onComplete: () {
+                        // Handle completion action
+                      },
+                    );
                   },
                 ),
                 // Display the in-progress tasks
                 ListView.builder(
                   itemCount: inProgressTasks.length,
                   itemBuilder: (context, index) {
-                    return TaskTile(index: index, task: inProgressTasks[index]);
+                    return TaskTile(
+                      index: index,
+                      task: inProgressTasks[index],
+                      leadingColor: Colors.yellow,
+                      onComplete: () {
+                        // Handle completion action
+                      },
+                    );
                   },
                 ),
                 // Display the completed tasks
                 ListView.builder(
                   itemCount: completedTasks.length,
                   itemBuilder: (context, index) {
-                    return TaskTile(index: index, task: completedTasks[index]);
+                    return TaskTile(
+                      index: index,
+                      task: completedTasks[index],
+                      leadingColor: Colors.green,
+                      onComplete: () {
+                        // Handle completion action
+                      },
+                    );
                   },
                 ),
               ],
