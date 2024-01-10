@@ -183,7 +183,7 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
                       task: assignedTasks[index],
                       leadingColor: Colors.red,
                       onComplete: () {
-                        // Handle completion action
+                        updateTaskStatus(items[index].taskId, 'In-Progress');
                       },
                     );
                   },
@@ -197,7 +197,7 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
                       task: inProgressTasks[index],
                       leadingColor: Colors.yellow,
                       onComplete: () {
-                        // Handle completion action
+                        updateTaskStatus(items[index].taskId, 'Completed');
                       },
                     );
                   },
@@ -222,14 +222,14 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
         ],
       ),
     );
+  }
 
-    // Add a method to update task status in TaskService
-    void updateTaskStatus(String taskID, String status) {
-      TaskService taskService = TaskService();
-      Task updatedTask = items.firstWhere((task) => task.taskId == taskID);
-      updatedTask.status = status;
-      taskService.updateTask(taskID, updatedTask);
-    }
+  // Add a method to update task status in TaskService
+  void updateTaskStatus(String taskID, String status) {
+    TaskService taskService = TaskService();
+    Task updatedTask = items.firstWhere((task) => task.taskId == taskID);
+    updatedTask.status = status;
+    taskService.updateTask(taskID, updatedTask);
   }
 
   void showSheet(context, List<Task> items) {
