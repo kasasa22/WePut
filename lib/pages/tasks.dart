@@ -408,33 +408,45 @@ class _AddPeopleSheetState extends State<_AddPeopleSheet> {
                           print('Message to People: ${messageController.text}');
                           print('Task ID: ${widget.taskId}');
 
-                          // Create a new Assignment object
-                          Assignment newAssignment = Assignment(
-                            assignmentId: 'assignmentID',
-                            userId: 'userID',
-                            taskId: widget.taskId,
-                            assignmentTime: Timestamp.now(),
-                            completionStatus: 'Pending',
-                          );
-
                           // Create a new Notification object
                           Message newNotification = Message(
-                            notificationId: 'notificationID',
-                            userId: 'userID',
+                            notificationId:
+                                '', // Assign a unique ID, or leave it empty if Firestore generates one
+                            userId:
+                                'userID', // Replace 'userID' with the actual user ID
                             message: messageController.text,
                             timestamp: Timestamp.now(),
-                            viewed: false,
+                            viewed: false, // Set the initial viewed status
                           );
 
-                          // Use the AssignmentService to add the assignment to Firebase
-                          AssignmentService assignmentService =
-                              AssignmentService();
-                          assignmentService.addAssignment(newAssignment);
+                          // Create a new Assignment object
+                          Assignment newAssignment = Assignment(
+                            assignmentId:
+                                '', // Assign a unique ID, or leave it empty if Firestore generates one
+                            userId:
+                                'userID', // Replace 'userID' with the actual user ID
+                            taskId: widget.taskId,
+                            assignmentTime: Timestamp.now(),
+                            completionStatus:
+                                'Pending', // You can set this to an initial status
+                          );
 
-                          // Use the NotificationService to add the notification to Firebase
-                          NotificationService notificationService =
-                              NotificationService();
-                          notificationService.addNotification(newNotification);
+                          // Loop through selectedUserIds and add notifications and assignments for each user
+                          for (String userId in selectedUserIds) {
+                            newNotification.userId = userId;
+                            newAssignment.userId = userId;
+
+                            // Use the NotificationService to add the notification to Firebase
+                            NotificationService notificationService =
+                                NotificationService();
+                            notificationService
+                                .addNotification(newNotification);
+
+                            // Use the AssignmentService to add the assignment to Firebase
+                            AssignmentService assignmentService =
+                                AssignmentService();
+                            assignmentService.addAssignment(newAssignment);
+                          }
 
                           // Close the bottom sheet
                           Navigator.pop(context);
