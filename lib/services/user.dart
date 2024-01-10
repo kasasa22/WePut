@@ -21,9 +21,9 @@ class UserService {
     return _userRef.snapshots();
   }
 
-  Future<Object?> getUserById(String userID) async {
-    DocumentSnapshot<Object?> snapshot = await _userRef.doc(userID).get();
-    return snapshot.data();
+  Future<String?> getUserNameByEmail(String email) async {
+    DocumentSnapshot<Object?> snapshot = await _userRef.doc(email).get();
+    return (snapshot.data() as User?)?.name;
   }
 
   void addUser(User user) async {
