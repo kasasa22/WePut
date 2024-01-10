@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../firebase_user.dart';
+
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
 
@@ -11,8 +13,18 @@ class MyDrawer extends StatelessWidget {
     Navigator.pushReplacementNamed(context, '/login_register');
   }
 
+  // Replace with your method to get the currently logged-in user's ID
+  String getCurrentUserId() {
+    Map<String, dynamic> userData = getCurrentUserData();
+
+    return userData['email']; // Use square brackets to access the value
+  }
+
+  String email;
+
   @override
   Widget build(BuildContext context) {
+    email = getCurrentUserId();
     return Drawer(
       child: SingleChildScrollView(
         child: Column(
@@ -56,9 +68,9 @@ class MyDrawer extends StatelessWidget {
                           Container(
                             height: 5,
                           ),
-                          const Text(
-                            "ateraxantonio@gmail.com",
-                            style: TextStyle(
+                          Text(
+                            email,
+                            style: const TextStyle(
                               color: Colors.black,
                             ),
                           )
