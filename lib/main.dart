@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:maker/auth/auth.dart';
 import 'package:maker/auth/login_or_register.dart';
 import 'package:maker/firebase_options.dart';
+import 'package:maker/pages/about_us.dart';
 import 'package:maker/pages/crud_test.dart';
 import 'package:maker/pages/dashboard.dart';
 import 'package:maker/pages/home_page.dart';
@@ -50,7 +51,7 @@ class MyApp extends StatelessWidget {
         '/test': (context) => const Test(),
         '/dashboard': (context) => const Dashboard(),
         '/profile': (context) => const Profile(),
-        '/about': (context) => const Test(),
+        '/about': (context) => const About(),
         '/settings': (context) =>
             const mySettings.Settings(), // Use 'mySettings' prefix
       },
