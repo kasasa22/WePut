@@ -15,14 +15,14 @@ class Assignment {
     required this.completionStatus,
   });
 
-  Assignment.fromJson(Map<String, Object?> json)
+  Assignment.fromJson(Map<String, dynamic> json)
       : this(
           teamName: json['teamName'] as String? ?? '',
           userId: json['userId'] as String? ?? '',
           taskId: json['taskId'] as String? ?? '',
           assignmentTime: json['assignmentTime'] == null
               ? Timestamp.now()
-              : (json['endTime'] as Timestamp),
+              : (json['assignmentTime'] as Timestamp),
           completionStatus: json['completionStatus'] as String? ?? '',
         );
 
