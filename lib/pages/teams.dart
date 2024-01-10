@@ -18,7 +18,6 @@ class _TeamsState extends State<Teams> {
 
   @override
   void initState() {
-    // Fetch teams from Firestore
     fetchTeams();
     super.initState();
   }
