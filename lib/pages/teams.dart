@@ -1,13 +1,47 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:maker/components/drawer.dart';
 import 'package:maker/models/assignment.dart';
+import 'package:maker/services/assignment.dart';
 
 // ignore: must_be_immutable
-class Teams extends StatelessWidget {
-  Teams({super.key});
+class Teams extends StatefulWidget {
+  const Teams({super.key});
 
+  @override
+  State<Teams> createState() => _TeamsState();
+}
+
+class _TeamsState extends State<Teams> {
   List<Assignment> listAssignments = [];
+
+  @override
+  void initState() {
+    // Fetch teams from Firestore
+    fetchTeams();
+    super.initState();
+  }
+
+  Future<void> fetchTeams() async {
+    AssignmentService taskService = AssignmentService();
+    taskService.getAssignments().listen((QuerySnapshot snapshot) {
+      // Clear existing lists
+      listAssignments.clear();
+
+      for (var document in snapshot.docs) {
+        // Use fromJson to convert Firestore data to an Assignment instance
+        Assignment assignment =
+            Assignment.fromJson(document.data() as Map<String, dynamic>);
+
+        // Add the fetched assignment to the list
+        listAssignments.add(assignment);
+      }
+
+      // Use setState to trigger a rebuild with the updated lists
+      setState(() {});
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
