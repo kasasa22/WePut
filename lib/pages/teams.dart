@@ -17,7 +17,7 @@ class Teams extends StatefulWidget {
 
 class _TeamsState extends State<Teams> {
   AssignmentService taskService = AssignmentService();
-  List<Assignment> listAssignments = [];
+  late List<Assignment> listAssignments = [];
 
   @override
   void initState() {
