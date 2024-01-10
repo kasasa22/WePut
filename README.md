@@ -21,14 +21,22 @@ WePut meets these challenges with an innovative approach. We focus on the fundam
 ### User-Centric Design
 We pride ourselves on our user-centric design approach, where simplicity meets sophistication. Our design is meticulously tailored for intuitive navigation, promoting active user engagement and fostering a sense of ease and satisfaction in task management activities.
 
-### Activity Diagram
-Our activity diagram shows the flow of actions within the WePut App, starting from Login, moving through Task Creation, Assignment, Completion, and finally Viewing Statistics.
+### Sequence Diagram
+Our sequence diagram shows the flow of actions within the WePut App, starting from Login, moving through Task Creation, Assignment, Completion, and finally Viewing Statistics.
 ```mermaid
-graph TD
-    A[Login] --> B[Task Creation]
-    B --> C[Task Assignment]
-    C --> D[Task Completion]
-    D --> E[Viewing Statistics]
+sequenceDiagram
+    participant User
+    participant WePut
+    User->>WePut: Login
+    WePut->>User: Access Granted
+    User->>WePut: Create Task
+    WePut->>User: Task Created
+    User->>WePut: Assign Task
+    WePut->>User: Task Assigned
+    User->>WePut: Complete Task
+    WePut->>User: Task Completed
+    User->>WePut: View Statistics
+    WePut->>User: Display Statistics
 
 ```
 
