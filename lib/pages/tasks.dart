@@ -1,10 +1,11 @@
-// ignore_for_file: avoid_print, library_private_types_in_public_api, prefer_final_fields, non_constant_identifier_names
+// ignore_for_file: avoid_print, library_private_types_in_public_api, prefer_final_fields, non_constant_identifier_names, prefer_const_constructors
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:maker/components/drawer.dart';
+import 'package:maker/services/user.dart';
 
 import '../adapters/task_list_adapter.dart';
 import '../firebase_user.dart';
@@ -294,8 +295,21 @@ class _AddPeopleSheet extends StatefulWidget {
 }
 
 class _AddPeopleSheetState extends State<_AddPeopleSheet> {
-  List<String> people = ['Person 1', 'Person 2', 'Person 3', 'Person 4'];
-  List<bool> selectedPeople = List.filled(4, false);
+  late List<String> people; // This will be updated with the StreamBuilder
+  late List<bool> selectedPeople;
+  late List<String> selectedUserIds; // New list to store checked user IDs
+
+  UserService _userService = UserService();
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize selectedUserIds list
+    selectedUserIds = [];
+    // Fetch users from the stream
+    people = []; // Initially empty until the stream updates
+    selectedPeople = List.filled(people.length, false);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -314,36 +328,59 @@ class _AddPeopleSheetState extends State<_AddPeopleSheet> {
               ),
             ),
             const SizedBox(height: 10),
-            for (int i = 0; i < people.length; i++)
-              ListTile(
-                title: Text(people[i]),
-                leading: Checkbox(
-                  value: selectedPeople[i],
-                  onChanged: (bool? value) {
-                    setState(() {
-                      selectedPeople[i] = value!;
-                    });
-                  },
-                ),
-              ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              style:
-                  ElevatedButton.styleFrom(backgroundColor: Colors.blue[100]),
-              onPressed: () {
-                List<String> selectedPeopleList = [];
-                for (int i = 0; i < selectedPeople.length; i++) {
-                  if (selectedPeople[i]) {
-                    selectedPeopleList.add(people[i]);
-                  }
+            // Use StreamBuilder to update the UI with the fetched users
+            StreamBuilder(
+              stream: _userService.getUsers(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return CircularProgressIndicator();
                 }
-                // Use the selectedPeopleList as needed
-                Navigator.pop(context); // Close the bottom sheet
+
+                // Update the people list and selectedPeople list
+                people = snapshot.data!.docs
+                    .map<String>((DocumentSnapshot document) =>
+                        document['name'].toString())
+                    .toList();
+                selectedPeople = List.filled(people.length, false);
+
+                return Column(
+                  children: [
+                    for (int i = 0; i < people.length; i++)
+                      ListTile(
+                        title: Text(people[i]),
+                        leading: Checkbox(
+                          value: selectedPeople[i],
+                          onChanged: (bool? value) {
+                            setState(() {
+                              selectedPeople[i] = value!;
+                              if (value) {
+                                selectedUserIds.add(
+                                    snapshot.data!.docs[i]['uid'].toString());
+                              } else {
+                                selectedUserIds.remove(
+                                    snapshot.data!.docs[i]['uid'].toString());
+                              }
+                            });
+                          },
+                        ),
+                      ),
+                    const SizedBox(height: 20),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blue[100]),
+                      onPressed: () {
+                        // Use the selectedUserIds list as needed
+                        print('Selected User IDs: $selectedUserIds');
+                        Navigator.pop(context); // Close the bottom sheet
+                      },
+                      child: const Text(
+                        'Add Selected People',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    ),
+                  ],
+                );
               },
-              child: const Text(
-                'Add Selected People',
-                style: TextStyle(color: Colors.black),
-              ),
             ),
           ],
         ),
