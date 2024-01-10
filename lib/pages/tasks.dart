@@ -25,6 +25,8 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
   void initState() {
     _tabController = TabController(length: 3, vsync: this);
     _scrollController = ScrollController();
+    // Call listenToTasks method to fetch tasks from Firebase
+    listenToTasks();
     super.initState();
   }
 
@@ -35,42 +37,72 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
     super.dispose();
   }
 
+  List<Task> assignedTasks = [];
+  List<Task> inProgressTasks = [];
+  List<Task> completedTasks = [];
+
+  List<Task> items = [
+    // Task(
+    //   taskId: '1',
+    //   title: 'Complete Flutter App',
+    //   description: 'Finish building the Flutter app for the project.',
+    //   dueDate: Timestamp.now(),
+    //   status: 'In-Progress',
+    //   assignedUserId: 'user1',
+    //   priority: 'High',
+    //   category: 'Development',
+    //   progress: 50,
+    //   comments: ['Comment 1', 'Comment 2'],
+    //   startTime: Timestamp.now(),
+    //   endTime: Timestamp.now(),
+    //   evaluation: 4.5,
+    // ),
+
+    // Add more tasks as needed
+  ];
+
+  void listenToTasks() {
+    TaskService taskService = TaskService();
+    taskService.getTasks().listen((QuerySnapshot snapshot) {
+      // Clear existing lists
+      assignedTasks.clear();
+      inProgressTasks.clear();
+      completedTasks.clear();
+
+      for (var document in snapshot.docs) {
+        Task task = Task(
+          taskId: document.id,
+          title: document['title'],
+          description: document['description'],
+          dueDate: document['dueDate'],
+          status: document['status'],
+          assignedUserId: document['assignedUserId'],
+          priority: document['priority'],
+          category: document['category'],
+          progress: document['progress'],
+          comments: document['comments'],
+          startTime: document['startTime'],
+          endTime: document['endTime'],
+          evaluation: document['evaluation'],
+        );
+
+        // Categorize tasks based on their status
+        if (task.status == 'Assigned') {
+          assignedTasks.add(task);
+        } else if (task.status == 'In-Progress') {
+          inProgressTasks.add(task);
+        } else if (task.status == 'Completed') {
+          completedTasks.add(task);
+        }
+      }
+
+      // Use setState to trigger a rebuild with the updated lists
+      setState(() {});
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    List<Task> items = [
-      Task(
-        taskId: '1',
-        title: 'Complete Flutter App',
-        description: 'Finish building the Flutter app for the project.',
-        dueDate: Timestamp.now(),
-        status: 'In-Progress',
-        assignedUserId: 'user1',
-        priority: 'High',
-        category: 'Development',
-        progress: 50,
-        comments: ['Comment 1', 'Comment 2'],
-        startTime: Timestamp.now(),
-        endTime: Timestamp.now(),
-        evaluation: 4.5,
-      ),
-      Task(
-        taskId: '2',
-        title: 'Write Documentation',
-        description: 'Document the features and usage of the app.',
-        dueDate: Timestamp.now(),
-        status: 'Assigned',
-        assignedUserId: 'user2',
-        priority: 'Medium',
-        category: 'Documentation',
-        progress: 20,
-        comments: ['Comment 3', 'Comment 4'],
-        startTime: Timestamp.now(),
-        endTime: Timestamp.now(),
-        evaluation: 3.8,
-      ),
-      // Add more tasks as needed
-    ];
-
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -113,7 +145,7 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
           color: Colors.white,
         ),
         onPressed: () {
-          showSheet(context);
+          showSheet(context, items);
         },
       ),
 
@@ -142,24 +174,48 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
             child: TabBarView(
               controller: _tabController,
               children: [
+                // Display the assigned tasks
                 ListView.builder(
-                  itemCount: items.length,
+                  itemCount: assignedTasks.length,
                   itemBuilder: (context, index) {
-                    return TaskTile(index: index, task: items[index]);
+                    return TaskTile(
+                      index: index,
+                      task: assignedTasks[index],
+                      leadingColor: Colors.red,
+                      onComplete: () {
+                        // Handle completion action
+                      },
+                    );
                   },
                 ),
+                // Display the in-progress tasks
                 ListView.builder(
-                  itemCount: items.length,
+                  itemCount: inProgressTasks.length,
                   itemBuilder: (context, index) {
-                    return TaskTile(index: index, task: items[index]);
+                    return TaskTile(
+                      index: index,
+                      task: inProgressTasks[index],
+                      leadingColor: Colors.yellow,
+                      onComplete: () {
+                        // Handle completion action
+                      },
+                    );
                   },
                 ),
+                // Display the completed tasks
                 ListView.builder(
-                  itemCount: items.length,
+                  itemCount: completedTasks.length,
                   itemBuilder: (context, index) {
-                    return TaskTile(index: index, task: items[index]);
+                    return TaskTile(
+                      index: index,
+                      task: completedTasks[index],
+                      leadingColor: Colors.green,
+                      onComplete: () {
+                        // Handle completion action
+                      },
+                    );
                   },
-                )
+                ),
               ],
             ),
           ),
@@ -168,12 +224,18 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
     );
   }
 
-  void showSheet(context) {
+  void showSheet(context, List<Task> items) {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext bc) {
         return TaskSheet(
-          selectedDate: _selectedDate, // Pass _selectedDate to TaskSheet
+          selectedDate: _selectedDate,
+          items: items, // Pass items to TaskSheet
+          onTaskAdded: (Task newTask) {
+            setState(() {
+              items.add(newTask);
+            });
+          },
         );
       },
     );
@@ -183,8 +245,15 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
 // ignore: must_be_immutable
 class TaskSheet extends StatefulWidget {
   DateTime? selectedDate; // Declare selectedDate as a parameter
+  List<Task> items; // Declare items as a parameter
+  Function(Task) onTaskAdded; // Declare onTaskAdded as a parameter
 
-  TaskSheet({Key? key, required this.selectedDate}) : super(key: key);
+  TaskSheet({
+    Key? key,
+    required this.selectedDate,
+    required this.items,
+    required this.onTaskAdded,
+  }) : super(key: key);
 
   @override
   _TaskSheetState createState() => _TaskSheetState();
@@ -222,17 +291,21 @@ class _TaskSheetState extends State<TaskSheet> {
               TextField(
                 controller: titleController,
                 decoration: InputDecoration(
-                    labelText: 'Title',
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0))),
+                  labelText: 'Title',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
               ),
               const SizedBox(height: 10),
               TextField(
                 controller: descriptionController,
                 decoration: InputDecoration(
-                    labelText: 'Description',
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0))),
+                  labelText: 'Description',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
               ),
               const SizedBox(height: 10),
               Row(
@@ -352,7 +425,7 @@ class _TaskSheetState extends State<TaskSheet> {
       description: descriptionController.text,
       dueDate:
           Timestamp.now(), // Set to the current date as the default due date
-      status: 'New',
+      status: 'Assigned',
       assignedUserId: userId,
       priority: selectedPriority,
       category: 'General',
@@ -366,6 +439,10 @@ class _TaskSheetState extends State<TaskSheet> {
 
     // Use the TaskService to add the task to Firebase
     taskService.addTask(newTask);
+
+    // Add the new task to the items list
+    widget.onTaskAdded(newTask);
+
     // Clear the input fields after adding the task
     titleController.clear();
     descriptionController.clear();
