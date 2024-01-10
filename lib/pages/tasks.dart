@@ -421,6 +421,7 @@ class _AddPeopleSheetState extends State<_AddPeopleSheet> {
                           // Use the selectedUserIds list and messageController.text as needed
                           print('Selected Document IDs: $selectedUserIds');
                           print('Message to People: ${messageController.text}');
+                          print('Message to People: ${teamController.text}');
                           print('Task ID: ${widget.taskId}');
 
                           // Create a new Notification object
@@ -436,6 +437,7 @@ class _AddPeopleSheetState extends State<_AddPeopleSheet> {
 
                           // Create a new Assignment object
                           Assignment newAssignment = Assignment(
+                            teamName: teamController.text,
                             assignmentId:
                                 'assignmentID', // Assign a unique ID, or leave it empty if Firestore generates one
                             userId:
