@@ -26,20 +26,6 @@ class _TaskTileState extends State<TaskTile> {
     return '${date.day}/${date.month}/${date.year}';
   }
 
-  String getStatusDetails() {
-    // Helper method to get relevant status details
-    switch (widget.task.status) {
-      case 'Assigned':
-        return 'Assigned to ${widget.task.assignedUserId}';
-      case 'In-Progress':
-        return 'In progress';
-      case 'Completed':
-        return 'Completed on ${getFormattedDate(widget.task.endTime.toDate())}';
-      default:
-        return '';
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -67,11 +53,9 @@ class _TaskTileState extends State<TaskTile> {
       subtitle: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Due Date: ${widget.task.dueDate.toDate()}',
-            style: TextStyle(
-              color: Colors.grey[880],
-            ),
+          Divider(
+            color: Colors.grey[880],
+            thickness: 1,
           ),
           Text(
             'Status: ${widget.task.status}',
@@ -86,12 +70,7 @@ class _TaskTileState extends State<TaskTile> {
               color: Colors.grey[880],
             ),
           ),
-          Text(
-            'Status: ${getStatusDetails()}',
-            style: TextStyle(
-              color: Colors.grey[880],
-            ),
-          ),
+
           // Add more details as needed
         ],
       ),
