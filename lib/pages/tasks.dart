@@ -185,7 +185,8 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
                       task: assignedTasks[index],
                       leadingColor: Colors.red,
                       onAddPeople: () {
-                        AddPeopleSheet(context, items.cast<User>());
+                        AddPeopleSheet(context, items.cast<User>(),
+                            assignedTasks[index].taskId);
                       },
                       onComplete: () {
                         updateTaskStatusNew(
@@ -203,7 +204,8 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
                       task: inProgressTasks[index],
                       leadingColor: Colors.yellow,
                       onAddPeople: () {
-                        AddPeopleSheet(context, items.cast<User>());
+                        AddPeopleSheet(context, items.cast<User>(),
+                            assignedTasks[index].taskId);
                       },
                       onComplete: () {
                         updateTaskStatusOld(
@@ -279,17 +281,22 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
     );
   }
 
-  void AddPeopleSheet(context, List<User> items) {
+  void AddPeopleSheet(context, List<User> items, String taskId) {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext bc) {
-        return _AddPeopleSheet();
+        // Pass the task ID to the _AddPeopleSheet widget
+        return _AddPeopleSheet(taskId: taskId);
       },
     );
   }
 }
 
 class _AddPeopleSheet extends StatefulWidget {
+  final String taskId; // Add task ID as a parameter
+
+  const _AddPeopleSheet({required this.taskId});
+
   @override
   _AddPeopleSheetState createState() => _AddPeopleSheetState();
 }
