@@ -9,7 +9,11 @@ import 'package:maker/services/user.dart';
 
 import '../adapters/task_list_adapter.dart';
 import '../firebase_user.dart';
+import '../models/assignment.dart';
+import '../models/notification.dart';
 import '../models/task.dart';
+import '../services/assignment.dart';
+import '../services/notification.dart';
 import '../services/task.dart';
 
 class Tasks extends StatefulWidget {
@@ -396,14 +400,49 @@ class _AddPeopleSheetState extends State<_AddPeopleSheet> {
                       const SizedBox(height: 20),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.blue[100]),
+                          backgroundColor: Colors.blue[100],
+                        ),
                         onPressed: () {
                           // Use the selectedUserIds list and messageController.text as needed
                           print('Selected Document IDs: $selectedUserIds');
                           print('Message to People: ${messageController.text}');
-                          print(
-                              "------------------------------" + widget.taskId);
-                          Navigator.pop(context); // Close the bottom sheet
+                          print('Task ID: ${widget.taskId}');
+
+                          // Create a new Assignment object
+                          Assignment newAssignment = Assignment(
+                            assignmentId:
+                                '', // Assign a unique ID, or leave it empty if Firestore generates one
+                            userId:
+                                'userID', // Replace 'userID' with the actual user ID
+                            taskId: widget.taskId,
+                            assignmentTime: Timestamp.now(),
+                            completionStatus:
+                                'Pending', // You can set this to an initial status
+                          );
+
+                          // Create a new Notification object
+                          Message newNotification = Message(
+                            notificationId:
+                                '', // Assign a unique ID, or leave it empty if Firestore generates one
+                            userId:
+                                'userID', // Replace 'userID' with the actual user ID
+                            message: messageController.text,
+                            timestamp: Timestamp.now(),
+                            viewed: false, // Set the initial viewed status
+                          );
+
+                          // Use the AssignmentService to add the assignment to Firebase
+                          AssignmentService assignmentService =
+                              AssignmentService();
+                          assignmentService.addAssignment(newAssignment);
+
+                          // Use the NotificationService to add the notification to Firebase
+                          NotificationService notificationService =
+                              NotificationService();
+                          notificationService.addNotification(newNotification);
+
+                          // Close the bottom sheet
+                          Navigator.pop(context);
                         },
                         child: const Text(
                           'Add Selected People',
