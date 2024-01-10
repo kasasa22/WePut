@@ -1,119 +1,62 @@
+// ignore_for_file: avoid_print
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:maker/components/drawer.dart';
 import 'package:maker/models/assignment.dart';
+import 'package:maker/services/assignment.dart';
 
-class Teams extends StatelessWidget {
+// ignore: must_be_immutable
+class Teams extends StatefulWidget {
   const Teams({super.key});
 
   @override
+  State<Teams> createState() => _TeamsState();
+}
+
+class _TeamsState extends State<Teams> {
+  AssignmentService taskService = AssignmentService();
+  late List<Assignment> listAssignments = [];
+
+  @override
+  void initState() {
+    // Fetch teams from Firestore
+    fetchTeams();
+    super.initState();
+  }
+
+  Future<void> fetchTeams() async {
+    taskService.getAssignments().listen((QuerySnapshot snapshot) {
+      // Clear existing lists
+      listAssignments.clear();
+
+      for (var document in snapshot.docs) {
+        Assignment assignment =
+            Assignment.fromJson(document.data() as Map<String, dynamic>);
+        listAssignments.add(assignment);
+      }
+
+      // Print the assignments for debugging
+      for (var assignment in listAssignments) {
+        print('Assignment: $assignment');
+      }
+
+      // Print the length of the list
+      print('Number of assignments: ${listAssignments.length}');
+
+      // Use setState to trigger a rebuild with the updated lists
+      setState(() {});
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    List<Assignment> listAssignments = [
-      Assignment(
-          assignmentId: "njsfd",
-          userId: "hsjvjdt",
-          taskId: "hgfkkj",
-          assignmentTime: Timestamp(2, 4),
-          completionStatus: "nx,dvhjxj"),
-      Assignment(
-          assignmentId: "njsfd",
-          userId: "hsjvjdt",
-          taskId: "hgfkkj",
-          assignmentTime: Timestamp(2, 4),
-          completionStatus: "nx,dvhjxj"),
-      Assignment(
-          assignmentId: "njsfd",
-          userId: "hsjvjdt",
-          taskId: "hgfkkj",
-          assignmentTime: Timestamp(2, 4),
-          completionStatus: "nx,dvhjxj"),
-      Assignment(
-          assignmentId: "njsfd",
-          userId: "hsjvjdt",
-          taskId: "hgfkkj",
-          assignmentTime: Timestamp(2, 4),
-          completionStatus: "nx,dvhjxj"),
-      Assignment(
-          assignmentId: "njsfd",
-          userId: "hsjvjdt",
-          taskId: "hgfkkj",
-          assignmentTime: Timestamp(2, 4),
-          completionStatus: "nx,dvhjxj"),
-      Assignment(
-          assignmentId: "njsfd",
-          userId: "hsjvjdt",
-          taskId: "hgfkkj",
-          assignmentTime: Timestamp(2, 4),
-          completionStatus: "nx,dvhjxj"),
-      Assignment(
-          assignmentId: "njsfd",
-          userId: "hsjvjdt",
-          taskId: "hgfkkj",
-          assignmentTime: Timestamp(2, 4),
-          completionStatus: "nx,dvhjxj"),
-      Assignment(
-          assignmentId: "njsfd",
-          userId: "hsjvjdt",
-          taskId: "hgfkkj",
-          assignmentTime: Timestamp(2, 4),
-          completionStatus: "nx,dvhjxj"),
-      Assignment(
-          assignmentId: "njsfd",
-          userId: "hsjvjdt",
-          taskId: "hgfkkj",
-          assignmentTime: Timestamp(2, 4),
-          completionStatus: "nx,dvhjxj"),
-      Assignment(
-          assignmentId: "njsfd",
-          userId: "hsjvjdt",
-          taskId: "hgfkkj",
-          assignmentTime: Timestamp(2, 4),
-          completionStatus: "nx,dvhjxj"),
-      Assignment(
-          assignmentId: "njsfd",
-          userId: "hsjvjdt",
-          taskId: "hgfkkj",
-          assignmentTime: Timestamp(2, 4),
-          completionStatus: "nx,dvhjxj"),
-      Assignment(
-          assignmentId: "njsfd",
-          userId: "hsjvjdt",
-          taskId: "hgfkkj",
-          assignmentTime: Timestamp(2, 4),
-          completionStatus: "nx,dvhjxj"),
-      Assignment(
-          assignmentId: "njsfd",
-          userId: "hsjvjdt",
-          taskId: "hgfkkj",
-          assignmentTime: Timestamp(2, 4),
-          completionStatus: "nx,dvhjxj"),
-      Assignment(
-          assignmentId: "njsfd",
-          userId: "hsjvjdt",
-          taskId: "hgfkkj",
-          assignmentTime: Timestamp(2, 4),
-          completionStatus: "nx,dvhjxj"),
-      Assignment(
-          assignmentId: "njsfd",
-          userId: "hsjvjdt",
-          taskId: "hgfkkj",
-          assignmentTime: Timestamp(2, 4),
-          completionStatus: "nx,dvhjxj"),
-      Assignment(
-          assignmentId: "njsfd",
-          userId: "hsjvjdt",
-          taskId: "hgfkkj",
-          assignmentTime: Timestamp(2, 4),
-          completionStatus: "nx,dvhjxj"),
-      Assignment(
-          assignmentId: "njsfd",
-          userId: "hsjvjdt",
-          taskId: "hgfkkj",
-          assignmentTime: Timestamp(2, 4),
-          completionStatus: "nx,dvhjxj"),
-    ];
+    if (listAssignments.isEmpty) {
+      return const Center(child: CircularProgressIndicator());
+    }
     List<Widget> gridAssignments = getGridViewAssignments(listAssignments);
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(

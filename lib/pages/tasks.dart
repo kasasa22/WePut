@@ -1,13 +1,19 @@
-// ignore_for_file: avoid_print, library_private_types_in_public_api, prefer_final_fields
+// ignore_for_file: avoid_print, library_private_types_in_public_api, prefer_final_fields, non_constant_identifier_names, prefer_const_constructors
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:maker/components/drawer.dart';
+import 'package:maker/services/user.dart';
 
 import '../adapters/task_list_adapter.dart';
 import '../firebase_user.dart';
+import '../models/assignment.dart';
+import '../models/notification.dart';
 import '../models/task.dart';
+import '../services/assignment.dart';
+import '../services/notification.dart';
 import '../services/task.dart';
 
 class Tasks extends StatefulWidget {
@@ -182,8 +188,13 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
                       index: index,
                       task: assignedTasks[index],
                       leadingColor: Colors.red,
+                      onAddPeople: () {
+                        AddPeopleSheet(context, items.cast<User>(),
+                            assignedTasks[index].taskId);
+                      },
                       onComplete: () {
-                        // Handle completion action
+                        updateTaskStatusNew(
+                            assignedTasks[index].taskId, 'In-Progress');
                       },
                     );
                   },
@@ -196,8 +207,13 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
                       index: index,
                       task: inProgressTasks[index],
                       leadingColor: Colors.yellow,
+                      onAddPeople: () {
+                        AddPeopleSheet(context, items.cast<User>(),
+                            inProgressTasks[index].taskId);
+                      },
                       onComplete: () {
-                        // Handle completion action
+                        updateTaskStatusOld(
+                            inProgressTasks[index].taskId, 'Completed');
                       },
                     );
                   },
@@ -224,6 +240,34 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
     );
   }
 
+  void updateTaskStatusNew(String taskID, String status) {
+    TaskService taskService = TaskService();
+    Task? updatedTask =
+        assignedTasks.firstWhereOrNull((task) => task.taskId == taskID);
+
+    if (updatedTask != null) {
+      updatedTask.status = status;
+      taskService.updateTask(taskID, updatedTask);
+    } else {
+      print("Task with ID $taskID not found.");
+      // Handle the case where the task is not found.
+    }
+  }
+
+  void updateTaskStatusOld(String taskID, String status) {
+    TaskService taskService = TaskService();
+    Task? updatedTask =
+        inProgressTasks.firstWhereOrNull((task) => task.taskId == taskID);
+
+    if (updatedTask != null) {
+      updatedTask.status = status;
+      taskService.updateTask(taskID, updatedTask);
+    } else {
+      print("Task with ID $taskID not found.");
+      // Handle the case where the task is not found.
+    }
+  }
+
   void showSheet(context, List<Task> items) {
     showModalBottomSheet(
       context: context,
@@ -238,6 +282,205 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
           },
         );
       },
+    );
+  }
+
+  void AddPeopleSheet(context, List<User> items, String taskId) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext bc) {
+        // Pass the task ID to the _AddPeopleSheet widget
+        return _AddPeopleSheet(taskId: taskId);
+      },
+    );
+  }
+}
+
+class _AddPeopleSheet extends StatefulWidget {
+  final String taskId; // Add task ID as a parameter
+
+  const _AddPeopleSheet({required this.taskId});
+
+  @override
+  _AddPeopleSheetState createState() => _AddPeopleSheetState();
+}
+
+class _AddPeopleSheetState extends State<_AddPeopleSheet> {
+  late List<String> people; // This will be updated with the StreamBuilder
+  late List<bool> selectedPeople;
+  late List<String> selectedUserIds; // New list to store checked user IDs
+  late TextEditingController
+      messageController; // New controller for the message
+
+  late TextEditingController teamController; // New controller for the message
+
+  UserService _userService = UserService();
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize selectedUserIds list
+    selectedUserIds = [];
+    // Fetch users from the stream
+    people = []; // Initially empty until the stream updates
+    selectedPeople = List.filled(people.length, false);
+    // Initialize the message controller
+    messageController = TextEditingController();
+    teamController = TextEditingController();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Container(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Add People to Task',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 10),
+            // Add a text box for the message
+            TextField(
+              controller: messageController,
+              decoration: InputDecoration(
+                labelText: 'Message to People',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+
+            // Add a text box for the message
+            TextField(
+              controller: teamController,
+              decoration: InputDecoration(
+                labelText: 'Team Name',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            StreamBuilder(
+              stream: _userService.getUsers(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return CircularProgressIndicator();
+                }
+
+                // Update the people list and selectedPeople list
+                people = snapshot.data!.docs
+                    .map<String>((DocumentSnapshot document) =>
+                        document['name'].toString())
+                    .toList();
+                selectedPeople = List.filled(people.length, false);
+
+                // Filter out selected names from the list
+                List<String> filteredPeople = people
+                    .where((name) => !selectedUserIds
+                        .contains(snapshot.data!.docs[people.indexOf(name)].id))
+                    .toList();
+
+                return SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      for (int i = 0; i < filteredPeople.length; i++)
+                        ListTile(
+                          title: Text(filteredPeople[i]),
+                          leading: Checkbox(
+                            value: selectedPeople[i],
+                            onChanged: (bool? value) {
+                              setState(() {
+                                selectedPeople[i] = value!;
+                                // Capture the ID of the document
+                                if (value) {
+                                  selectedUserIds
+                                      .add(snapshot.data!.docs[i].id);
+                                } else {
+                                  selectedUserIds
+                                      .remove(snapshot.data!.docs[i].id);
+                                }
+                              });
+                            },
+                          ),
+                        ),
+                      const SizedBox(height: 20),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blue[100],
+                        ),
+                        onPressed: () {
+                          // Use the selectedUserIds list and messageController.text as needed
+                          print('Selected Document IDs: $selectedUserIds');
+                          print('Message to People: ${messageController.text}');
+                          print(
+                              'team------------------------------------------------------------- to People: ${teamController.text}');
+                          print('Task ID: ${widget.taskId}');
+
+                          // Create a new Notification object
+                          Message newNotification = Message(
+                            notificationId:
+                                'notificationID', // Assign a unique ID, or leave it empty if Firestore generates one
+                            userId:
+                                '', // Leave it empty for now, it will be updated in the loop
+                            message: messageController.text,
+                            timestamp: Timestamp.now(),
+                            viewed: false, // Set the initial viewed status
+                          );
+
+                          // Create a new Assignment object
+                          Assignment newAssignment = Assignment(
+                            teamName: teamController.text,
+
+                            userId:
+                                '', // Leave it empty for now, it will be updated in the loop
+                            taskId: widget.taskId,
+                            assignmentTime: Timestamp.now(),
+                            completionStatus:
+                                'Pending', // You can set this to an initial status
+                          );
+
+                          // Loop through selectedUserIds and add notifications and assignments for each user
+                          for (String userId in selectedUserIds) {
+                            newNotification.userId = userId;
+                            newAssignment.userId = userId;
+
+                            // Use the AssignmentService to add the assignment to Firebase
+                            AssignmentService assignmentService =
+                                AssignmentService();
+                            assignmentService.addAssignment(newAssignment);
+
+                            // Use the NotificationService to add the notification to Firebase
+                            NotificationService notificationService =
+                                NotificationService();
+                            notificationService
+                                .addNotification(newNotification);
+                          }
+
+                          // Close the bottom sheet
+                          Navigator.pop(context);
+                        },
+                        child: const Text(
+                          'Add Selected People',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -423,15 +666,18 @@ class _TaskSheetState extends State<TaskSheet> {
       taskId: userId,
       title: titleController.text,
       description: descriptionController.text,
-      dueDate:
-          Timestamp.now(), // Set to the current date as the default due date
+      dueDate: widget.selectedDate != null
+          ? Timestamp.fromDate(widget.selectedDate!)
+          : Timestamp.now(),
       status: 'Assigned',
       assignedUserId: userId,
       priority: selectedPriority,
       category: 'General',
       progress: 0,
       comments: [], // Start with an empty list of comments
-      startTime: Timestamp.now(),
+      startTime: widget.selectedDate != null
+          ? Timestamp.fromDate(widget.selectedDate!)
+          : Timestamp.now(),
       endTime:
           Timestamp.now(), // Set to the current date as the default end time
       evaluation: 0.0,

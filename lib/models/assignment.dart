@@ -1,33 +1,34 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Assignment {
-  String assignmentId;
+  String teamName;
   String userId;
   String taskId;
   Timestamp assignmentTime;
   String completionStatus;
 
   Assignment({
-    required this.assignmentId,
+    required this.teamName,
     required this.userId,
     required this.taskId,
     required this.assignmentTime,
     required this.completionStatus,
   });
 
-  Assignment.fromJson(Map<String, Object?> json)
+  Assignment.fromJson(Map<String, dynamic> json)
       : this(
-          assignmentId: json['assignmentId'] as String? ?? '',
+          teamName: json['teamName'] as String? ?? '',
           userId: json['userId'] as String? ?? '',
           taskId: json['taskId'] as String? ?? '',
           assignmentTime: json['assignmentTime'] == null
               ? Timestamp.now()
-              : (json['endTime'] as Timestamp),
+              : (json['assignmentTime'] as Timestamp),
           completionStatus: json['completionStatus'] as String? ?? '',
         );
 
   Map<String, dynamic> toJson() {
     return {
+      'teamName': teamName,
       'userId': userId,
       'taskId': taskId,
       'assignmentTime': assignmentTime,
@@ -36,13 +37,14 @@ class Assignment {
   }
 
   Assignment copyWith({
+    String? teamName,
     String? userId,
     String? taskId,
     Timestamp? assignmentTime,
     String? completionStatus,
   }) {
     return Assignment(
-      assignmentId: assignmentId,
+      teamName: teamName ?? this.teamName,
       userId: userId ?? this.userId,
       taskId: taskId ?? this.taskId,
       assignmentTime: assignmentTime ?? this.assignmentTime,
