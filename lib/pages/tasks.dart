@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:maker/components/drawer.dart';
 
 import '../adapters/task_list_adapter.dart';
+import '../firebase_user.dart';
 import '../models/task.dart';
 import '../services/task.dart';
 
@@ -375,8 +376,10 @@ class _TaskSheetState extends State<TaskSheet> {
 
   // Replace with your method to get the currently logged-in user's ID
   String getCurrentUserId() {
-    // Your implementation to get the user ID
-    return 'user123'; // Replace with your actual implementation
+    Map<String, dynamic> userData = getCurrentUserData();
+    print(
+        "Current user data----------------------------------------------------------------------------------------------------------: $userData");
+    return userData['uid']; // Use square brackets to access the value
   }
 
 // Replace with your method to get the selected priority from the UI
