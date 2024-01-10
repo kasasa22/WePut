@@ -28,20 +28,18 @@ class _TeamsState extends State<Teams> {
 
   Future<void> fetchTeams() async {
     taskService.getAssignments().listen((QuerySnapshot snapshot) {
-      print(
-          "-----------------------------------------------------------------------------------------------------------");
       // Clear existing lists
-      // listAssignments.clear();
+      listAssignments.clear();
 
       for (var document in snapshot.docs) {
-        Assignment assignment = Assignment(
-          teamName: document['teamName'],
-          completionStatus: document["completionStatus"],
-          userId: document['userId'],
-          taskId: document['taskId'],
-          assignmentTime: document["assignmentTime"],
-        );
+        Assignment assignment =
+            Assignment.fromJson(document.data() as Map<String, dynamic>);
         listAssignments.add(assignment);
+      }
+
+      // Print the assignments for debugging
+      for (var assignment in listAssignments) {
+        print('Assignment: $assignment');
       }
 
       // Print the length of the list
