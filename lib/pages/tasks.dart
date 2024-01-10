@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, library_private_types_in_public_api, prefer_final_fields
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -180,6 +180,7 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
   }
 }
 
+// ignore: must_be_immutable
 class TaskSheet extends StatefulWidget {
   DateTime? selectedDate; // Declare selectedDate as a parameter
 

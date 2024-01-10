@@ -23,7 +23,7 @@ class HomePage extends StatelessWidget {
       ),
 
       //Drawer
-      drawer: const MyDrawer(),
+      drawer: MyDrawer(),
 
       // ignore: sized_box_for_whitespace
       body: Container(

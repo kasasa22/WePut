@@ -121,7 +121,7 @@ class _ExpandListsState extends State<ExpandLists> {
           )
         ],
       ),
-      drawer: const MyDrawer(),
+      drawer: MyDrawer(),
       body: ListExpandAdapter(items).getView(),
     );
   }

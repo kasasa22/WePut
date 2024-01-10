@@ -146,7 +146,7 @@ class Teams extends StatelessWidget {
       ),
 
       //Drawer
-      drawer: const MyDrawer(),
+      drawer: MyDrawer(),
 
       body: SingleChildScrollView(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

@@ -43,7 +43,7 @@ class Settings extends StatelessWidget {
         ],
       ),
       //Drawer
-      drawer: const MyDrawer(),
+      drawer: MyDrawer(),
 
       //Body
       body: SettingsList(

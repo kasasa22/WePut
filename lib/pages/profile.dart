@@ -39,7 +39,7 @@ class Profile extends StatelessWidget {
       ),
 
       //Drawer
-      drawer: const MyDrawer(),
+      drawer: MyDrawer(),
 
       //Body
       body: SingleChildScrollView(
