@@ -52,6 +52,9 @@ class _TeamsState extends State<Teams> {
 
   @override
   Widget build(BuildContext context) {
+    if (listAssignments.isEmpty) {
+      return const Center(child: CircularProgressIndicator());
+    }
     List<Widget> gridAssignments = getGridViewAssignments(listAssignments);
     return Scaffold(
       backgroundColor: Colors.white,
