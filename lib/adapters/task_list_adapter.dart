@@ -83,36 +83,37 @@ class _TaskTileState extends State<TaskTile> {
           // Add more details as needed
         ],
       ),
-      trailing: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (widget.task.status != 'Completed')
-            IconButton(
-              icon: const Icon(
-                Icons.check,
-                color: Colors.green,
-                size: 30,
-              ),
-              onPressed: () {
-                if (widget.onComplete != null) {
-                  widget.onComplete!();
-                }
-              },
-            ),
-          IconButton(
-            icon: const Icon(
-              Icons.person_add,
-              color: Colors.blue,
-              size: 30,
-            ),
-            onPressed: () {
-              if (widget.onAddPeople != null) {
-                widget.onAddPeople!();
-              }
-            },
-          ),
-        ],
-      ),
+      trailing: widget.task.status != 'Completed'
+          ? Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconButton(
+                  icon: const Icon(
+                    Icons.check,
+                    color: Colors.green,
+                    size: 30,
+                  ),
+                  onPressed: () {
+                    if (widget.onComplete != null) {
+                      widget.onComplete!();
+                    }
+                  },
+                ),
+                IconButton(
+                  icon: const Icon(
+                    Icons.person_add,
+                    color: Colors.blue,
+                    size: 30,
+                  ),
+                  onPressed: () {
+                    if (widget.onAddPeople != null) {
+                      widget.onAddPeople!();
+                    }
+                  },
+                ),
+              ],
+            )
+          : null,
       onTap: () {
         // Handle tile tap if needed
       },
