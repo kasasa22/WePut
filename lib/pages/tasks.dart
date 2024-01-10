@@ -31,6 +31,10 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
     super.dispose();
   }
 
+  late BuildContext _scaffoldCtx;
+
+  late PersistentBottomSheetController sheetController;
+
   @override
   Widget build(BuildContext context) {
     List<Task> items = [
