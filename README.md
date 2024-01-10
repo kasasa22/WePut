@@ -44,8 +44,7 @@ sequenceDiagram
 Our main functionalities include:
 - Task Management: Users can create, assign, and complete tasks.
 - User Interface: Intuitive interface for seamless user interaction.
-- Voice AI Interaction: Voice commands enable hands-free task management.
 - Data Analytics: Machine learning models provide data-driven insights and recommendations.
 
 ## Target Audience
-WePut caters to businesses of diverse scales and sizes. From budding startups to well-established enterprises, WePut offers adaptable solutions that accommodate the unique needs of each business category. Whether it's a small startup looking for efficient task management or an established enterprise seeking to optimize its workforce, WePut provides the necessary tools and adaptability to enhance productivity across the board.
+WePut caters to businesses of diverse scales and sizes. From budding startups to well-established enterprises, WePut offers adaptable solutions that accommodate the unique needs of each business category. 
