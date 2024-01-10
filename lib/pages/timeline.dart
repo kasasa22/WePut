@@ -118,23 +118,14 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                       children: [
                         Column(
                           children: [
-                            Column(
-                              children: [
-                                Text(
-                                  "Total tasks done",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
+                            Text(
+                              "Total tasks done",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                             Text("over the past 7 days"),
                           ],
-                        ),
-                        Icon(
-                          Icons.auto_graph,
-                          size: 15,
-                          color: Colors.black,
                         ),
 
                         // The graph
