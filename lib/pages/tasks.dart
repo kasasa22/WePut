@@ -339,7 +339,10 @@ class _AddPeopleSheetState extends State<_AddPeopleSheet> {
                 // Use the selectedPeopleList as needed
                 Navigator.pop(context); // Close the bottom sheet
               },
-              child: const Text('Add Selected People'),
+              child: const Text(
+                'Add Selected People',
+                style: TextStyle(color: Colors.black),
+              ),
             ),
           ],
         ),
