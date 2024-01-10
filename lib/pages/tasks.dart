@@ -35,69 +35,68 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
     super.dispose();
   }
 
+  List<Task> items = [
+    Task(
+      taskId: '1',
+      title: 'Complete Flutter App',
+      description: 'Finish building the Flutter app for the project.',
+      dueDate: Timestamp.now(),
+      status: 'In-Progress',
+      assignedUserId: 'user1',
+      priority: 'High',
+      category: 'Development',
+      progress: 50,
+      comments: ['Comment 1', 'Comment 2'],
+      startTime: Timestamp.now(),
+      endTime: Timestamp.now(),
+      evaluation: 4.5,
+    ),
+    Task(
+      taskId: '2',
+      title: 'Write Documentation',
+      description: 'Document the features and usage of the app.',
+      dueDate: Timestamp.now(),
+      status: 'Assigned',
+      assignedUserId: 'user2',
+      priority: 'Medium',
+      category: 'Documentation',
+      progress: 20,
+      comments: ['Comment 3', 'Comment 4'],
+      startTime: Timestamp.now(),
+      endTime: Timestamp.now(),
+      evaluation: 3.8,
+    ),
+    // Add more tasks as needed
+  ];
+
   void listenToTasks() {
     TaskService taskService = TaskService();
-    taskService.getTasksStream().listen((QuerySnapshot snapshot) {
-      // Clear the existing items list
+    taskService.getTasks().listen((QuerySnapshot snapshot) {
       items.clear();
-
-      // Iterate through the documents in the snapshot and convert them to Task objects
-      snapshot.docs.forEach((DocumentSnapshot document) {
-        // Map the document data to a Task object
+      for (var document in snapshot.docs) {
         Task task = Task(
           taskId: document.id,
           title: document['title'],
           description: document['description'],
-          // Add other fields accordingly
+          dueDate: document['dueDate'],
+          status: document['status'],
+          assignedUserId: document['assignedUserId'],
+          priority: document['priority'],
+          category: document['category'],
+          progress: document['progress'],
+          comments: document['comments'],
+          startTime: document['startTime'],
+          endTime: document['endTime'],
+          evaluation: document['evaluation'],
         );
-
-        // Add the Task object to the items list
         items.add(task);
-      });
-
-      // Update the UI or perform any other actions with the updated items list
-      setState(() {
-        // Update your UI here if needed
-      });
+      }
+      setState(() {});
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    List<Task> items = [
-      Task(
-        taskId: '1',
-        title: 'Complete Flutter App',
-        description: 'Finish building the Flutter app for the project.',
-        dueDate: Timestamp.now(),
-        status: 'In-Progress',
-        assignedUserId: 'user1',
-        priority: 'High',
-        category: 'Development',
-        progress: 50,
-        comments: ['Comment 1', 'Comment 2'],
-        startTime: Timestamp.now(),
-        endTime: Timestamp.now(),
-        evaluation: 4.5,
-      ),
-      Task(
-        taskId: '2',
-        title: 'Write Documentation',
-        description: 'Document the features and usage of the app.',
-        dueDate: Timestamp.now(),
-        status: 'Assigned',
-        assignedUserId: 'user2',
-        priority: 'Medium',
-        category: 'Documentation',
-        progress: 20,
-        comments: ['Comment 3', 'Comment 4'],
-        startTime: Timestamp.now(),
-        endTime: Timestamp.now(),
-        evaluation: 3.8,
-      ),
-      // Add more tasks as needed
-    ];
-
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
