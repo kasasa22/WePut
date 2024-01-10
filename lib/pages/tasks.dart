@@ -183,9 +183,7 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
                       index: index,
                       task: assignedTasks[index],
                       leadingColor: Colors.red,
-                      onAddPeople: () {
-                        _showAddPeopleBottomSheet();
-                      },
+                      onAddPeople: () {},
                       onComplete: () {
                         updateTaskStatusNew(
                             assignedTasks[index].taskId, 'In-Progress');
@@ -201,9 +199,7 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
                       index: index,
                       task: inProgressTasks[index],
                       leadingColor: Colors.yellow,
-                      onAddPeople: () {
-                        _showAddPeopleBottomSheet();
-                      },
+                      onAddPeople: () {},
                       onComplete: () {
                         updateTaskStatusOld(
                             inProgressTasks[index].taskId, 'Completed');
@@ -261,20 +257,23 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
     }
   }
 
-  void _showAddPeopleBottomSheet() {
+  void showSheet(context, List<Task> items) {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext bc) {
-        return const Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text('Add People to Task'),
-            // Add your form or any UI elements for adding people
-          ],
+        return TaskSheet(
+          selectedDate: _selectedDate,
+          items: items, // Pass items to TaskSheet
+          onTaskAdded: (Task newTask) {
+            setState(() {
+              items.add(newTask);
+            });
+          },
         );
       },
     );
-  }}
+  }
+}
 
 class AddPeopleSheet extends StatefulWidget {
   @override
@@ -294,7 +293,7 @@ class _AddPeopleSheetState extends State<AddPeopleSheet> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Add People to Task',
               style: TextStyle(
                 fontSize: 20,
@@ -327,15 +326,13 @@ class _AddPeopleSheetState extends State<AddPeopleSheet> {
                 // Use the selectedPeopleList as needed
                 Navigator.pop(context); // Close the bottom sheet
               },
-              child: Text('Add Selected People'),
+              child: const Text('Add Selected People'),
             ),
           ],
         ),
       ),
     );
   }
-}
-
 }
 
 // ignore: must_be_immutable
