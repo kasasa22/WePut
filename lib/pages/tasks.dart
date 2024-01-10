@@ -439,8 +439,7 @@ class _AddPeopleSheetState extends State<_AddPeopleSheet> {
                           // Create a new Assignment object
                           Assignment newAssignment = Assignment(
                             teamName: teamController.text,
-                            assignmentId:
-                                'assignmentID', // Assign a unique ID, or leave it empty if Firestore generates one
+
                             userId:
                                 '', // Leave it empty for now, it will be updated in the loop
                             taskId: widget.taskId,

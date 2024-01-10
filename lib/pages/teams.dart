@@ -35,7 +35,6 @@ class _TeamsState extends State<Teams> {
         Assignment assignment = Assignment(
           teamName: document['teamName'],
           completionStatus: document["completionStatus"],
-          assignmentId: document['assignmentId'],
           userId: document['userId'],
           taskId: document['taskId'],
           assignmentTime: document["assignmentTime"],
