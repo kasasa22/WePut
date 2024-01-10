@@ -28,6 +28,8 @@ class _TeamsState extends State<Teams> {
   Future<void> fetchTeams() async {
     AssignmentService taskService = AssignmentService();
     taskService.getAssignments().listen((QuerySnapshot snapshot) {
+      print(
+          "-----------------------------------------------------------------------------------------------------------");
       // Clear existing lists
       listAssignments.clear();
 
