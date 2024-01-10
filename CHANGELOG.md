@@ -1,31 +1,37 @@
-# Change Log
+# Changelog
 
-All notable changes to this project will be documented in this file.
+All notable changes to "WePut" will be documented in this file.
+
+The format is based on Keep a Changelog,
+and this project adheres to Semantic Versioning.
 
 ## [Unreleased]
 
-- Add upcoming features or changes
-
-## [1.0.0] - 2024-01-01
-
+## [1.0.0] - 2024-01-10
 ### Added
-
-- Initial release
-- Feature 1
-- Feature 2
+- Initial release of WePut.
+- User-centric design approach for intuitive navigation.
+- Activity diagram showing the flow of actions withi WePut App.
+- Main functionalities including Task Management, User Interface, and Data Analytics.
 
 ### Changed
+- N/A
 
-- Update or modification details
+### Deprecated
+- N/A
+
+### Removed
+- N/A
 
 ### Fixed
+- N/A
 
-- Bug fixes
+### Security
+- N/A
 
-## [0.1.0] - 2023-12-15
+## [0.1.0] - 2023-12-01
+### Added
+- Project setup and initial development.
 
-...
-
-[Unreleased]: https://github.com/yourusername/yourproject/compare/v1.0.0...HEAD
-[1.0.0]: https://github.com/yourusername/yourproject/releases/tag/v1.0.0
-[0.1.0]: https://github.com/yourusername/yourproject/releases/tag/v0.1.0
+[Unreleased]: https://github.com/App-Sculptors/WePut.git
+[1.0.0]: https://github.com/App-Sculptors/WePut.git
