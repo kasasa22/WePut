@@ -97,7 +97,7 @@ class _MyDrawerState extends State<MyDrawer> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            userName ?? 'Default Name',
+                            userName ?? 'Welcome User',
                             style: const TextStyle(
                               color: Colors.grey,
                               fontWeight: FontWeight.bold,
