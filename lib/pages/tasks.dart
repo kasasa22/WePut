@@ -411,22 +411,19 @@ class _AddPeopleSheetState extends State<_AddPeopleSheet> {
                           // Create a new Assignment object
                           Assignment newAssignment = Assignment(
                             assignmentId: 'assignmentID',
-                            userId:
-                                'userID', // Replace 'userID' with the actual user ID
+                            userId: 'userID',
                             taskId: widget.taskId,
                             assignmentTime: Timestamp.now(),
-                            completionStatus:
-                                'Pending', // You can set this to an initial status
+                            completionStatus: 'Pending',
                           );
 
                           // Create a new Notification object
                           Message newNotification = Message(
                             notificationId: 'notificationID',
-                            userId:
-                                'userID', // Replace 'userID' with the actual user ID
+                            userId: 'userID',
                             message: messageController.text,
                             timestamp: Timestamp.now(),
-                            viewed: false, // Set the initial viewed status
+                            viewed: false,
                           );
 
                           // Use the AssignmentService to add the assignment to Firebase
