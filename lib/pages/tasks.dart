@@ -206,14 +206,45 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
                   Row(
                     children: <Widget>[
                       Expanded(
-                        child: TextField(
-                          decoration: InputDecoration(labelText: 'Due Date'),
+                        child: InkWell(
+                          onTap: () {
+                            // Show date picker and update the selected date
+                            // Implement your logic here
+                          },
+                          child: InputDecorator(
+                            decoration: InputDecoration(
+                              labelText: 'Due Date',
+                              border: OutlineInputBorder(),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Text('Selected Date'),
+                                Icon(Icons.calendar_today),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                       const SizedBox(width: 10),
                       Expanded(
-                        child: TextField(
-                          decoration: InputDecoration(labelText: 'Priority'),
+                        child: DropdownButtonFormField<String>(
+                          decoration: InputDecoration(
+                            labelText: 'Priority',
+                            border: OutlineInputBorder(),
+                          ),
+                          value:
+                              'High', // Initial value, you can change it as needed
+                          items: ['High', 'Medium', 'Low']
+                              .map((priority) => DropdownMenuItem(
+                                    value: priority,
+                                    child: Text(priority),
+                                  ))
+                              .toList(),
+                          onChanged: (value) {
+                            // Handle the selected priority
+                            // Implement your logic here
+                          },
                         ),
                       ),
                     ],
@@ -245,16 +276,16 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
         );
       },
     );
+  }
 
-    BoxDecoration myBoxDecoration() {
-      return BoxDecoration(
-        border: Border.all(
-          color: Colors.grey[300]!,
-          width: 1.0,
-        ),
-        borderRadius: const BorderRadius.all(Radius.circular(5.0) //
-            ),
-      );
-    }
+  BoxDecoration myBoxDecoration() {
+    return BoxDecoration(
+      border: Border.all(
+        color: Colors.grey[300]!,
+        width: 1.0,
+      ),
+      borderRadius: const BorderRadius.all(Radius.circular(5.0) //
+          ),
+    );
   }
 }
