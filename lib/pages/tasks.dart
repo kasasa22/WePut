@@ -174,24 +174,27 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
             child: TabBarView(
               controller: _tabController,
               children: [
+                // Display the assigned tasks
                 ListView.builder(
-                  itemCount: items.length,
+                  itemCount: assignedTasks.length,
                   itemBuilder: (context, index) {
-                    return TaskTile(index: index, task: items[index]);
+                    return TaskTile(index: index, task: assignedTasks[index]);
                   },
                 ),
+                // Display the in-progress tasks
                 ListView.builder(
-                  itemCount: items.length,
+                  itemCount: inProgressTasks.length,
                   itemBuilder: (context, index) {
-                    return TaskTile(index: index, task: items[index]);
+                    return TaskTile(index: index, task: inProgressTasks[index]);
                   },
                 ),
+                // Display the completed tasks
                 ListView.builder(
-                  itemCount: items.length,
+                  itemCount: completedTasks.length,
                   itemBuilder: (context, index) {
-                    return TaskTile(index: index, task: items[index]);
+                    return TaskTile(index: index, task: completedTasks[index]);
                   },
-                )
+                ),
               ],
             ),
           ),
