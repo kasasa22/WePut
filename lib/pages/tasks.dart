@@ -325,9 +325,7 @@ class _TaskSheetState extends State<TaskSheet> {
                     ),
                   ),
                   onPressed: () {
-                    // Handle the task creation logic here
-                    // You can retrieve data from the text fields and save it
-                    // to your database or perform any other necessary actions.
+                    _addTask();
                   },
                 ),
               ),
