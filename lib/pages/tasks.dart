@@ -113,7 +113,7 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
           color: Colors.white,
         ),
         onPressed: () {
-          showSheet(context);
+          showSheet(context, items);
         },
       ),
 
@@ -168,12 +168,19 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
     );
   }
 
-  void showSheet(context) {
+  void showSheet(context, List<Task> items) {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext bc) {
         return TaskSheet(
-          selectedDate: _selectedDate, // Pass _selectedDate to TaskSheet
+          selectedDate: _selectedDate,
+          items: items, // Pass items to TaskSheet
+          onTaskAdded: (Task newTask) {
+            // Callback to update the items list when a task is added
+            setState(() {
+              items.add(newTask);
+            });
+          },
         );
       },
     );
@@ -183,8 +190,15 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
 // ignore: must_be_immutable
 class TaskSheet extends StatefulWidget {
   DateTime? selectedDate; // Declare selectedDate as a parameter
+  List<Task> items; // Declare items as a parameter
+  Function(Task) onTaskAdded; // Declare onTaskAdded as a parameter
 
-  TaskSheet({Key? key, required this.selectedDate}) : super(key: key);
+  TaskSheet({
+    Key? key,
+    required this.selectedDate,
+    required this.items,
+    required this.onTaskAdded,
+  }) : super(key: key);
 
   @override
   _TaskSheetState createState() => _TaskSheetState();
@@ -222,17 +236,21 @@ class _TaskSheetState extends State<TaskSheet> {
               TextField(
                 controller: titleController,
                 decoration: InputDecoration(
-                    labelText: 'Title',
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0))),
+                  labelText: 'Title',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
               ),
               const SizedBox(height: 10),
               TextField(
                 controller: descriptionController,
                 decoration: InputDecoration(
-                    labelText: 'Description',
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0))),
+                  labelText: 'Description',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
               ),
               const SizedBox(height: 10),
               Row(
@@ -366,6 +384,10 @@ class _TaskSheetState extends State<TaskSheet> {
 
     // Use the TaskService to add the task to Firebase
     taskService.addTask(newTask);
+
+    // Add the new task to the items list
+    widget.onTaskAdded(newTask);
+
     // Clear the input fields after adding the task
     titleController.clear();
     descriptionController.clear();
