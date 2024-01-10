@@ -16,8 +16,7 @@ class Tasks extends StatefulWidget {
 class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
   TabController? _tabController;
   ScrollController? _scrollController;
-  late DateTime? _selectedDate; // Declare _selectedDate here
-
+  late DateTime? _selectedDate = DateTime.now(); // Initialize _selectedDate
   @override
   void initState() {
     _tabController = TabController(length: 3, vsync: this);
