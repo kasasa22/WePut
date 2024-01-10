@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +7,7 @@ import 'package:maker/components/drawer.dart';
 
 import '../adapters/task_list_adapter.dart';
 import '../models/task.dart';
+import '../services/task.dart';
 
 class Tasks extends StatefulWidget {
   const Tasks({Key? key}) : super(key: key);
@@ -186,6 +189,8 @@ class TaskSheet extends StatefulWidget {
 }
 
 class _TaskSheetState extends State<TaskSheet> {
+  final TextEditingController titleController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -211,12 +216,20 @@ class _TaskSheetState extends State<TaskSheet> {
                   ),
                 ),
               ),
-              const TextField(
-                decoration: InputDecoration(labelText: 'Title'),
+              TextField(
+                controller: titleController,
+                decoration: InputDecoration(
+                    labelText: 'Title',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0))),
               ),
               const SizedBox(height: 10),
-              const TextField(
-                decoration: InputDecoration(labelText: 'Description'),
+              TextField(
+                controller: descriptionController,
+                decoration: InputDecoration(
+                    labelText: 'Description',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0))),
               ),
               const SizedBox(height: 10),
               Row(
@@ -322,5 +335,53 @@ class _TaskSheetState extends State<TaskSheet> {
         ),
       ),
     );
+  }
+
+  void _addTask() {
+    final TaskService taskService = TaskService();
+    // Get the currently logged-in user's information
+    String userId = getCurrentUserId();
+
+    // Create a new task using the input data
+    Task newTask = Task(
+      taskId: userId + '_' + DateTime.now().millisecondsSinceEpoch.toString(),
+      title: titleController.text,
+      description: descriptionController.text,
+      dueDate:
+          Timestamp.now(), // Set to the current date as the default due date
+      status: 'Not Started',
+      assignedUserId: userId,
+      priority:
+          getSelectedPriority(), // Replace with your method to get the selected priority from the UI
+      category: 'General',
+      progress: 0,
+      comments: [], // Start with an empty list of comments
+      startTime: Timestamp.now(),
+      endTime:
+          Timestamp.now(), // Set to the current date as the default end time
+      evaluation: 0.0,
+    );
+
+    // Use the TaskService to add the task to Firebase
+    taskService.addTask(newTask);
+    // Clear the input fields after adding the task
+    titleController.clear();
+    descriptionController.clear();
+
+    // You can add any additional logic after the task is successfully added
+    print(
+        'Task added successfully!-------------------------------------------------------------------------------------------------');
+  }
+
+  // Replace with your method to get the currently logged-in user's ID
+  String getCurrentUserId() {
+    // Your implementation to get the user ID
+    return 'user123'; // Replace with your actual implementation
+  }
+
+// Replace with your method to get the selected priority from the UI
+  String getSelectedPriority() {
+    // Your implementation to get the selected priority
+    return 'Low'; // Replace with your actual implementation
   }
 }
