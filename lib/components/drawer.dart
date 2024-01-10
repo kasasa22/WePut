@@ -142,7 +142,7 @@ class MyDrawer extends StatelessWidget {
                 Icons.inbox,
                 color: Colors.grey[800],
               ),
-              title: Text("I N B O X",
+              title: Text("N O T I F I C A T I O N S",
                   style: Theme.of(context).textTheme.titleSmall),
               onTap: () {
                 //pop drawer
