@@ -176,7 +176,6 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
           selectedDate: _selectedDate,
           items: items, // Pass items to TaskSheet
           onTaskAdded: (Task newTask) {
-            // Callback to update the items list when a task is added
             setState(() {
               items.add(newTask);
             });
