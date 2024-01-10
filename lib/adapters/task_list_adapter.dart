@@ -66,7 +66,7 @@ class _TaskTileState extends State<TaskTile> {
           ),
 
           Text(
-            'Status: ${widget.task.status}',
+            'Priority: ${widget.task.priority}',
             style: TextStyle(
               color: Colors.grey[880],
               fontSize: 10,
