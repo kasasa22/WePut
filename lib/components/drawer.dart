@@ -1,12 +1,20 @@
+// ignore_for_file: no_leading_underscores_for_local_identifiers, avoid_print
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:maker/services/user.dart';
 
 import '../firebase_user.dart';
 
 // ignore: must_be_immutable
-class MyDrawer extends StatelessWidget {
-  MyDrawer({super.key});
+class MyDrawer extends StatefulWidget {
+  const MyDrawer({super.key});
 
+  @override
+  State<MyDrawer> createState() => _MyDrawerState();
+}
+
+class _MyDrawerState extends State<MyDrawer> {
   void logout(BuildContext context) async {
     await FirebaseAuth.instance.signOut();
 
@@ -23,9 +31,38 @@ class MyDrawer extends StatelessWidget {
 
   String email = "";
 
+  String userName = "";
+
+  @override
+  void initState() {
+    super.initState();
+    // Call the asynchronous method to fetch user data
+    fetchUserData();
+  }
+
+  Future<void> fetchUserData() async {
+    email = getCurrentUserId();
+    UserService _userService = UserService();
+
+    // Example usage to get a user's name by email
+    String userEmail = email;
+    userName = (await _userService.getUserNameByEmail(userEmail))!;
+
+    // User name found
+    print("User Name: $userName");
+
+    // Ensure the widget is rebuilt after fetching data
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     email = getCurrentUserId();
+
+    // User name found
+    print("User Name: $userName");
     return Drawer(
       child: SingleChildScrollView(
         child: Column(
@@ -59,9 +96,9 @@ class MyDrawer extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            "Hello Alan",
-                            style: TextStyle(
+                          Text(
+                            userName,
+                            style: const TextStyle(
                               color: Colors.grey,
                               fontWeight: FontWeight.bold,
                             ),
