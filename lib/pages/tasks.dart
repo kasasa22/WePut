@@ -410,8 +410,7 @@ class _AddPeopleSheetState extends State<_AddPeopleSheet> {
 
                           // Create a new Assignment object
                           Assignment newAssignment = Assignment(
-                            assignmentId:
-                                '', // Assign a unique ID, or leave it empty if Firestore generates one
+                            assignmentId: 'assignmentID',
                             userId:
                                 'userID', // Replace 'userID' with the actual user ID
                             taskId: widget.taskId,
@@ -422,8 +421,7 @@ class _AddPeopleSheetState extends State<_AddPeopleSheet> {
 
                           // Create a new Notification object
                           Message newNotification = Message(
-                            notificationId:
-                                '', // Assign a unique ID, or leave it empty if Firestore generates one
+                            notificationId: 'notificationID',
                             userId:
                                 'userID', // Replace 'userID' with the actual user ID
                             message: messageController.text,
