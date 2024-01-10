@@ -169,7 +169,6 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
   }
 
   void showSheet(context) {
-    const TextStyle(color: Colors.white, height: 1.4, fontSize: 16);
     showModalBottomSheet(
       context: context,
       builder: (BuildContext bc) {
@@ -178,333 +177,65 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
           body: SingleChildScrollView(
             child: Container(
               color: Colors.white,
-              padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 5),
+              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  Container(
-                    height: 10,
-                  ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 10.0),
+                    padding: const EdgeInsets.only(bottom: 10.0),
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        "Property Type",
+                        "Create New Task",
                         style: TextStyle(
-                          color: Colors.grey[700],
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Container(
-                      width: double.infinity,
-                      height: 40,
-                      decoration: myBoxDecoration(),
-                      child: Stack(
-                        children: [
-                          const Padding(
-                            padding: EdgeInsets.only(left: 10.0),
-                            child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                "Appartment & Unit",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 10.0),
-                            child: Align(
-                              alignment: Alignment.centerRight,
-                              child: Icon(
-                                Icons.arrow_drop_down,
-                                color: Colors.grey[700],
-                              ),
-                            ),
-                          ),
-                        ],
+                  TextField(
+                    decoration: InputDecoration(labelText: 'Title'),
+                  ),
+                  const SizedBox(height: 10),
+                  TextField(
+                    decoration: InputDecoration(labelText: 'Description'),
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(labelText: 'Due Date'),
+                        ),
                       ),
-                    ),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(labelText: 'Priority'),
+                        ),
+                      ),
+                    ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Row(
-                      children: <Widget>[
-                        Flexible(
-                          flex: 1,
-                          child: Column(
-                            children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 10.0),
-                                child: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    "Min Price",
-                                    style: TextStyle(
-                                      color: Colors.grey[700],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                width: double.infinity,
-                                height: 40,
-                                decoration: myBoxDecoration(),
-                                child: Stack(
-                                  children: [
-                                    const Padding(
-                                      padding: EdgeInsets.only(left: 10.0),
-                                      child: Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Text("1000"),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 10.0),
-                                      child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: Icon(
-                                          Icons.arrow_drop_down,
-                                          color: Colors.grey[700],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          width: 40,
-                        ),
-                        Flexible(
-                          flex: 1,
-                          child: Column(
-                            children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 10.0),
-                                child: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    "Max Price",
-                                    style: TextStyle(
-                                      color: Colors.grey[700],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                width: double.infinity,
-                                height: 40,
-                                decoration: myBoxDecoration(),
-                                child: Stack(
-                                  children: [
-                                    const Padding(
-                                      padding: EdgeInsets.only(left: 10.0),
-                                      child: Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Text("5000"),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 10.0),
-                                      child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: Icon(
-                                          Icons.arrow_drop_down,
-                                          color: Colors.grey[700],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Row(
-                      children: <Widget>[
-                        Flexible(
-                          flex: 1,
-                          child: Column(
-                            children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 10.0),
-                                child: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    "Min Bedrooms",
-                                    style: TextStyle(
-                                      color: Colors.grey[700],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                width: double.infinity,
-                                height: 40,
-                                decoration: myBoxDecoration(),
-                                child: Stack(
-                                  children: [
-                                    const Padding(
-                                      padding: EdgeInsets.only(left: 10.0),
-                                      child: Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Text("1000"),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 10.0),
-                                      child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: Icon(
-                                          Icons.arrow_drop_down,
-                                          color: Colors.grey[700],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          width: 40,
-                        ),
-                        Flexible(
-                          flex: 1,
-                          child: Column(
-                            children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 10.0),
-                                child: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    "Max Bedrooms",
-                                    style: TextStyle(
-                                      color: Colors.grey[700],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                width: double.infinity,
-                                height: 40,
-                                decoration: myBoxDecoration(),
-                                child: Stack(
-                                  children: [
-                                    const Padding(
-                                      padding: EdgeInsets.only(left: 10.0),
-                                      child: Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Text("5000"),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 10.0),
-                                      child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: Icon(
-                                          Icons.arrow_drop_down,
-                                          color: Colors.grey[700],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10.0),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        "Min Land size msq (optional)",
+                  const SizedBox(height: 20),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blue[700],
+                      ),
+                      child: const Text(
+                        "Create Task",
                         style: TextStyle(
-                          color: Colors.grey[700],
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
+                          color: Colors.white,
                         ),
                       ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Container(
-                      width: double.infinity,
-                      height: 40,
-                      decoration: myBoxDecoration(),
-                      child: Stack(
-                        children: [
-                          const Padding(
-                            padding: EdgeInsets.only(left: 10.0),
-                            child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                "400",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 10.0),
-                            child: Align(
-                              alignment: Alignment.centerRight,
-                              child: Icon(
-                                Icons.arrow_drop_down,
-                                color: Colors.grey[700],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10.0),
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.black,
-                        ),
-                        child: const Text(
-                          "SEARCH",
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
-                        onPressed: () {},
-                      ),
+                      onPressed: () {
+                        // Handle the task creation logic here
+                        // You can retrieve data from the text fields and save it
+                        // to your database or perform any other necessary actions.
+                      },
                     ),
                   ),
                 ],
@@ -514,16 +245,16 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
         );
       },
     );
-  }
-}
 
-BoxDecoration myBoxDecoration() {
-  return BoxDecoration(
-    border: Border.all(
-      color: Colors.grey[300]!,
-      width: 1.0,
-    ),
-    borderRadius: const BorderRadius.all(Radius.circular(5.0) //
+    BoxDecoration myBoxDecoration() {
+      return BoxDecoration(
+        border: Border.all(
+          color: Colors.grey[300]!,
+          width: 1.0,
         ),
-  );
+        borderRadius: const BorderRadius.all(Radius.circular(5.0) //
+            ),
+      );
+    }
+  }
 }
