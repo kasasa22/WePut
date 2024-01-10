@@ -8,17 +8,33 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.green[700],
+        backgroundColor: Colors.blue[700],
         title: const Text("Profile"),
         actions: [
-          IconButton(
-            onPressed: () {
-              //sign out the user
-              FirebaseAuth.instance.signOut();
-            },
-            icon: const Icon(Icons.logout),
-          ),
+          PopupMenuButton(
+            onSelected: (String value) {},
+            itemBuilder: (context) => [
+              const PopupMenuItem(
+                value: "Settings",
+                child: Text("Settings"),
+              ),
+              PopupMenuItem(
+                value: "About",
+                child: IconButton(
+                  onPressed: () {
+                    //sign out the user
+                    FirebaseAuth.instance.signOut();
+                  },
+                  icon: const Icon(
+                    Icons.logout,
+                    size: 20,
+                  ),
+                ),
+              ),
+            ],
+          )
         ],
       ),
 
@@ -26,8 +42,220 @@ class Profile extends StatelessWidget {
       drawer: const MyDrawer(),
 
       //Body
-      body: const Center(
-        child: Text("Profile Page"),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              height: 35,
+            ),
+            Text("Alan Woods",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.blue[900],
+                    fontSize: 25)),
+            Container(
+              height: 5,
+            ),
+            Text(
+              "Developer",
+              style: TextStyle(color: Colors.blue[60]),
+            ),
+            Container(height: 25),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                InkWell(
+                  child: const SizedBox(
+                    width: 60,
+                    height: 60,
+                    child: Icon(Icons.phone, color: Colors.blue),
+                  ),
+                  onTap: () {},
+                ),
+                Container(
+                  width: 10,
+                ),
+                CircleAvatar(
+                  radius: 52,
+                  backgroundColor: Colors.blue[600],
+                  child: const CircleAvatar(
+                    radius: 50,
+                    backgroundImage: AssetImage("assets/images/person.jpg"),
+                  ),
+                ),
+                Container(
+                  width: 10,
+                ),
+                InkWell(
+                  child: const SizedBox(
+                    width: 60,
+                    height: 60,
+                    child: Icon(Icons.message, color: Colors.blue),
+                  ),
+                  onTap: () {},
+                ),
+              ],
+            ),
+            Container(height: 50),
+            Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Column(children: [
+                    const Text(
+                      "1.5K",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                    ),
+                    Container(height: 5),
+                    const Text(
+                      "Followers",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                    ),
+                  ]),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Column(children: [
+                    const Text(
+                      "1.5K",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                    ),
+                    Container(height: 5),
+                    const Text(
+                      "Followers",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                    ),
+                  ]),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Column(children: [
+                    const Text(
+                      "1.5K",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                    ),
+                    Container(height: 5),
+                    const Text(
+                      "Followers",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                    ),
+                  ]),
+                ),
+              ],
+            ),
+            const Divider(
+              height: 50,
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Text(
+                "lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim ad minim veni",
+                textAlign: TextAlign.center,
+                selectionColor: Colors.blue[900],
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Text(
+                "Lorem ipsum dolor sit amet, consectetur adip",
+                textAlign: TextAlign.center,
+                selectionColor: Colors.blue[900],
+              ),
+            ),
+            Container(
+              height: 50,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Column(children: [
+                    Text(
+                      "Phone",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blue[300],
+                          fontSize: 25),
+                    ),
+                    Container(height: 5),
+                    const Text(
+                      "(256) 708737653",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                    ),
+                  ]),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Column(children: [
+                    Text(
+                      "Location",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blue[300],
+                          fontSize: 25),
+                    ),
+                    Container(height: 5),
+                    const Text(
+                      "Kampala, Uganda",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                    ),
+                  ]),
+                ),
+              ],
+            ),
+            Container(
+              height: 50,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Column(children: [
+                    Text(
+                      "Email",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blue[300],
+                          fontSize: 25),
+                    ),
+                    Container(height: 5),
+                    const Text(
+                      "ateraxantonio@gmail.com",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                    ),
+                  ]),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Column(children: [
+                    Text(
+                      "Website",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blue[300],
+                          fontSize: 25),
+                    ),
+                    Container(height: 5),
+                    const Text(
+                      "www.aterax.com",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                    ),
+                  ]),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

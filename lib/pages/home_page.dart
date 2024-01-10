@@ -1,9 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:maker/components/drawer.dart';
-import 'package:maker/components/home/stat_card.dart';
-import 'package:maker/components/home/task_tile.dart';
-import 'package:maker/components/home/teams_card.dart';
+
+import '../components/home/animation.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -12,285 +11,112 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.green,
-        title: const Text(
-          "Tasks Home",
-          style: TextStyle(fontSize: 15, color: Colors.black),
-        ),
-        actions: [
-          IconButton(
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(Colors.grey),
-            ),
-            onPressed: () {
-              //sign out the user
-              FirebaseAuth.instance.signOut();
-            },
-            icon: const Icon(
-              Icons.logout,
-              size: 20,
-              color: Colors.black,
-            ),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        toolbarHeight: 0,
+        systemOverlayStyle: const SystemUiOverlayStyle(
+          statusBarBrightness: Brightness.light,
+          statusBarColor: Color(
+            0xff1D9AE7,
           ),
-        ],
+        ),
       ),
 
       //Drawer
       drawer: const MyDrawer(),
-      drawerScrimColor: const Color.fromARGB(255, 164, 180, 168),
 
-      //Body of all a white background
-      body: Column(
-        children: [
-          const ColoredBox(
-            color: Colors.white10,
-            child: Padding(
-              padding: EdgeInsets.all(16.0),
+      // ignore: sized_box_for_whitespace
+      body: Container(
+        width: double.infinity,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            const SizedBox(
+              height: 50,
+            ),
+            FadeInUp(
+              duration: const Duration(milliseconds: 1500),
+              child: Image.asset(
+                'assets/images/man.png',
+                fit: BoxFit.cover,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30.0),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "Hi, Ambrose, You are almost done",
-                    style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.bold,
+                  FadeInUp(
+                    delay: const Duration(milliseconds: 1000),
+                    duration: const Duration(milliseconds: 1000),
+                    child: const Text(
+                      "Assign tasks, Manage them and Complete all work in one place!",
+                      style:
+                          TextStyle(fontSize: 30, fontWeight: FontWeight.w600),
                     ),
                   ),
-                  SizedBox(
-                    height: 5,
+                  const SizedBox(
+                    height: 10,
                   ),
-                  Text("Please complete a few more steps to get started"),
+                  FadeInUp(
+                    delay: const Duration(milliseconds: 1200),
+                    duration: const Duration(milliseconds: 1000),
+                    child: Text(
+                      "Discover milions of potential works and get in \ntouch with them on the fly.",
+                      style: TextStyle(
+                          fontSize: 16,
+                          height: 1.8,
+                          color: Colors.grey.shade700),
+                    ),
+                  ),
                 ],
               ),
             ),
-          ),
-
-          const SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                //cards with an icon at the top and a word at the bottom and also rectangular in shape and should have a light green background and clear white text
-                statCard(
-                  title: 'Assigned tasks',
-                  icon: Icons.task_alt_sharp,
-                  subtitle: '240',
-                ),
-                statCard(
-                  title: 'Completed tasks',
-                  icon: Icons.task_alt_outlined,
-                  subtitle: '450',
-                ),
-                statCard(
-                  title: 'Scheduled tasks',
-                  icon: Icons.add_task_sharp,
-                  subtitle: '160',
-                ),
-                statCard(
-                  title: 'boards',
-                  icon: Icons.book_online_outlined,
-                  subtitle: '490',
-                ),
-              ],
-            ),
-          ),
-
-          const SizedBox(
-            height: 5,
-          ),
-
-          //list tiles with a title and a subtitle and a trailing icon in a container with a white background and a green border trying to list the upcoming tasks, the completed tasks and the overdue tasks with a top side having these text buttons that can be cliced to toggle between these three catergories and also an elevated button in the same top row that can be clicked to add a new task
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Padding(
-              padding: const EdgeInsets.all(2.0),
-              child: Container(
-                color: Colors.white,
+            FadeInUp(
+              delay: const Duration(milliseconds: 1300),
+              duration: const Duration(milliseconds: 1000),
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
                 child: Row(
-                  //stretch the row to fit the screen
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    OutlinedButton(
-                      onPressed: () {},
-                      child: const Text(
-                        "Upcoming",
-                        style: TextStyle(
-                          fontSize: 15,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 2,
-                    ),
-                    OutlinedButton(
-                      onPressed: () {},
-                      child: const Text(
-                        "Completed",
-                        style: TextStyle(
-                          fontSize: 15,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 2,
-                    ),
-                    OutlinedButton(
-                      onPressed: () {},
-                      child: const Text(
-                        "Overdue",
-                        style: TextStyle(
-                          fontSize: 15,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 2,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: const Text(
-                        "Add task",
-                        style: TextStyle(
-                          fontSize: 15,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          //list tiles that will be toggled between depending on the button clicked above
-          Container(
-            height: 200,
-            color: Colors.white,
-            child: const SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Column(children: [
-                taskTile(
-                  title: 'The first task',
-                  description:
-                      'The first task incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud',
-                  date: '11/11/23',
-                ),
-                taskTile(
-                  title: 'The second task',
-                  description:
-                      'the second task incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud',
-                  date: '11/11/23',
-                ),
-                taskTile(
-                  title: 'The third task',
-                  description:
-                      'the third task incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud',
-                  date: '11/11/23',
-                ),
-                taskTile(
-                  title: 'The last task',
-                  description:
-                      'the last task lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ',
-                  date: '11/`1/23',
-                ),
-                taskTile(
-                  title: 'The last task',
-                  description:
-                      'the last task lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ',
-                  date: '11/`1/23',
-                ),
-              ]),
-            ),
-          ),
-          const SizedBox(
-            height: 5,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                //text to describe the teams and an outtline button at the right to add a new team
-                const SizedBox(
-                  width: 200,
-                  child: Column(
-                    children: [
-                      Text(
-                        "Team\nlorem ipsum dolor sit amet, consectetur",
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(
-                  width: 5,
-                ),
-
-                Column(
-                  children: [
-                    OutlinedButton(
-                      onPressed: () {
-                        // Add your button press logic here
-                      },
-                      child: const Row(
-                        children: [
-                          Icon(
-                            Icons.add_box_rounded, // Icon you want to display
-                            color: Colors.green, // Color of the icon
+                    MaterialButton(
+                        onPressed: () {
+                          Navigator.of(context)
+                              .pushReplacementNamed('/dashboard');
+                        },
+                        color: Colors.black,
+                        height: 45,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8)),
+                        padding: const EdgeInsets.only(
+                            left: 25, right: 25, bottom: 4),
+                        child: const Center(
+                          child: Text(
+                            "Get Started",
+                            style: TextStyle(fontSize: 16, color: Colors.white),
                           ),
-                          SizedBox(width: 8),
-                          Text('add team',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                              )),
-                        ],
-                      ),
-                    )
+                        )),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pushReplacementNamed('/');
+                        },
+                        child: const Text(
+                          "SKIP",
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              height: 1.8,
+                              color: Colors.black),
+                        )),
                   ],
                 ),
-              ],
-            ),
-          ),
-          const SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  //cards with an icon at the top and a word at the bottom and also rectangular in shape and should have a light green background and clear white text
-                  teamsCard(
-                    title: 'The LyteLink',
-                    subtitle: '100',
-                  ),
-                  teamsCard(
-                    title: 'Mosquitos',
-                    subtitle: '20',
-                  ),
-                  teamsCard(
-                    title: 'Avengers',
-                    subtitle: '200',
-                  ),
-                  teamsCard(
-                    title: 'Marabostock',
-                    subtitle: '30',
-                  ),
-                  teamsCard(
-                    title: 'The times',
-                    subtitle: '20',
-                  ),
-                ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

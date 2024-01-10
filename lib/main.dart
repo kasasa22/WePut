@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:maker/auth/auth.dart';
 import 'package:maker/auth/login_or_register.dart';
 import 'package:maker/firebase_options.dart';
-import 'package:maker/pages/boards.dart';
+import 'package:maker/pages/about_us.dart';
 import 'package:maker/pages/crud_test.dart';
 import 'package:maker/pages/dashboard.dart';
 import 'package:maker/pages/home_page.dart';
@@ -14,6 +14,7 @@ import 'package:maker/pages/profile.dart';
 import 'package:maker/pages/settings.dart'
     // ignore: library_prefixes
     as mySettings; // Use 'mySettings' as a prefix
+import 'package:maker/pages/tasks.dart';
 import 'package:maker/pages/teams.dart';
 import 'package:maker/pages/timeline.dart';
 import 'package:maker/theme/dark_mode.dart';
@@ -45,12 +46,12 @@ class MyApp extends StatelessWidget {
         '/home': (context) => const HomePage(),
         '/teams': (context) => const Teams(),
         '/timeline': (context) => const Timeline(),
-        '/inbox': (context) => const Inbox(),
-        '/boards': (context) => const Boards(),
-        '/tests': (context) =>
-            const Test(), // used for testing purposes but change it back later if needed
+        '/inbox': (context) => const ExpandLists(),
+        '/tasks': (context) => const Tasks(),
+        '/test': (context) => const Test(),
         '/dashboard': (context) => const Dashboard(),
         '/profile': (context) => const Profile(),
+        '/about': (context) => const About(),
         '/settings': (context) =>
             const mySettings.Settings(), // Use 'mySettings' prefix
       },

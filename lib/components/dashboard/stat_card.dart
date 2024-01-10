@@ -26,7 +26,7 @@ class statCard extends StatelessWidget {
                 Icon(
                   icon,
                   size: 30,
-                  color: Colors.lightGreen,
+                  color: Colors.lightBlue,
                 ),
               ],
             ),

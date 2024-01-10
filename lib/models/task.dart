@@ -58,6 +58,7 @@ class Task {
         );
 
   Map<String, Object?> toJson() => {
+        'taskId': taskId,
         'title': title,
         'description': description,
         'dueDate': dueDate,
@@ -73,6 +74,7 @@ class Task {
       };
 
   Task copyWith({
+    String? taskId,
     String? title,
     String? description,
     Timestamp? dueDate,
@@ -87,7 +89,7 @@ class Task {
     double? evaluation,
   }) {
     return Task(
-      taskId: taskId,
+      taskId: taskId!,
       title: title ?? this.title,
       description: description ?? this.description,
       dueDate: dueDate ?? this.dueDate,

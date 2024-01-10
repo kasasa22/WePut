@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../models/user.dart';
 
 // ignore: constant_identifier_names
@@ -16,8 +17,13 @@ class UserService {
         toFirestore: (user, _) => user.toJson());
   }
 
-  Stream<QuerySnapshot> getTasks() {
+  Stream<QuerySnapshot> getUsers() {
     return _userRef.snapshots();
+  }
+
+  Future<String?> getUserNameByEmail(String email) async {
+    DocumentSnapshot<Object?> snapshot = await _userRef.doc(email).get();
+    return (snapshot.data() as User?)?.name;
   }
 
   void addUser(User user) async {

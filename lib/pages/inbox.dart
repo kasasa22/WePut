@@ -1,134 +1,128 @@
+// ignore_for_file: avoid_print
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:maker/components/drawer.dart';
-import 'package:maker/models/messages_model.dart';
-import 'package:maker/pages/chat_screen.dart';
 
-class Inbox extends StatelessWidget {
-  const Inbox({Key? key}) : super(key: key);
+import '../adapters/basic_list_adapter.dart';
+import '../components/drawer.dart';
+import '../models/notification.dart';
+
+class ExpandLists extends StatefulWidget {
+  const ExpandLists({super.key});
+
+  @override
+  State<ExpandLists> createState() => _ExpandListsState();
+}
+
+class _ExpandListsState extends State<ExpandLists> {
+  @override
+  late BuildContext context;
+  void onItemClick(int indext, Notification obj) {
+    print("onItemClick $indext");
+  }
 
   @override
   Widget build(BuildContext context) {
+    this.context = context;
+    List<Message> items = [
+      Message(
+        notificationId: '1',
+        userId: 'user1',
+        message: 'Hello from user1!',
+        timestamp: Timestamp.now(),
+        viewed: false,
+      ),
+      Message(
+        notificationId: '2',
+        userId: 'user2',
+        message: 'How are you doing?',
+        timestamp: Timestamp.now(),
+        viewed: true,
+      ),
+      Message(
+        notificationId: '3',
+        userId: 'zuser3',
+        message: 'Flutter is awesome!',
+        timestamp: Timestamp.now(),
+        viewed: false,
+      ),
+      Message(
+        notificationId: '4',
+        userId: 'ruser4',
+        message: 'Working on a new project!',
+        timestamp: Timestamp.now(),
+        viewed: false,
+      ),
+      Message(
+        notificationId: '5',
+        userId: 'fuser5',
+        message: 'Any plans for the weekend?',
+        timestamp: Timestamp.now(),
+        viewed: true,
+      ),
+      Message(
+        notificationId: '6',
+        userId: 'huser6',
+        message: 'Learning new Flutter features!',
+        timestamp: Timestamp.now(),
+        viewed: false,
+      ),
+      Message(
+        notificationId: '7',
+        userId: 'duser7',
+        message: 'Excited about the upcoming event!',
+        timestamp: Timestamp.now(),
+        viewed: false,
+      ),
+      Message(
+        notificationId: '8',
+        userId: 'huser8',
+        message: 'Discussing project ideas with the team.',
+        timestamp: Timestamp.now(),
+        viewed: true,
+      ),
+      // Add more messages as needed
+    ];
+
+    items.shuffle();
+
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.green[700],
+        backgroundColor: Colors.blue[700],
+        leading: const Icon(
+          Icons.menu,
+          size: 30,
+        ),
         title: const Text("Inbox"),
         actions: [
-          IconButton(
-            onPressed: () {
-              // Sign out the user
-              FirebaseAuth.instance.signOut();
-            },
-            icon: const Icon(Icons.logout),
-          ),
-        ],
-      ),
-
-      // Drawer
-      drawer: const MyDrawer(),
-
-      // Body
-      body: ListView.builder(
-        itemCount: chats.length,
-        itemBuilder: (BuildContext context, int index) {
-          final Message chat = chats[index];
-          return GestureDetector(
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (_) => ChatScreen(
-                  user: chat.sender,
+          PopupMenuButton(
+            onSelected: (String value) {},
+            itemBuilder: (context) => [
+              const PopupMenuItem(
+                value: "Settings",
+                child: Text("Settings"),
+              ),
+              PopupMenuItem(
+                value: "About",
+                child: IconButton(
+                  onPressed: () {
+                    //sign out the user
+                    FirebaseAuth.instance.signOut();
+                  },
+                  icon: const Icon(
+                    Icons.logout,
+                    size: 20,
+                  ),
                 ),
               ),
-            ),
-            child: Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 15,
-              ),
-              child: Row(
-                children: <Widget>[
-                  Container(
-                    padding: const EdgeInsets.all(2),
-                    decoration: chat.unread
-                        ? BoxDecoration(
-                            borderRadius: const BorderRadius.all(Radius.circular(40)),
-                            border: Border.all(
-                              width: 2,
-                              color: Theme.of(context).primaryColor,
-                            ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
-                                spreadRadius: 2,
-                                blurRadius: 5,
-                              ),
-                            ],
-                          )
-                        : BoxDecoration(
-                            shape: BoxShape.circle,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
-                                spreadRadius: 2,
-                                blurRadius: 5,
-                              ),
-                            ],
-                          ),
-                    child: CircleAvatar(
-                      radius: 35,
-                      backgroundImage: AssetImage(chat.sender.imageUrl),
-                    ),
-                  ),
-                  const SizedBox(width: 10), // Add spacing between the avatar and text
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text(
-                              chat.sender.name,
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(
-                              chat.time,
-                              style: const TextStyle(
-                                fontSize: 11,
-                                fontWeight: FontWeight.w300,
-                                color: Colors.black54,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Container(
-                          alignment: Alignment.topLeft,
-                          child: Text(
-                            chat.text,
-                            style: const TextStyle(
-                              fontSize: 13,
-                              color: Colors.black54,
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          );
-        },
+            ],
+          )
+        ],
       ),
+      drawer: const MyDrawer(),
+      body: ListExpandAdapter(items).getView(),
     );
   }
 }

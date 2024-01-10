@@ -4,7 +4,7 @@ class User {
   String email;
   String role;
   int completedTasks;
-  double averageCompletionTime;
+  int averageCompletionTime;
 
   User({
     required this.userId,
@@ -22,8 +22,7 @@ class User {
           email: json['email'] as String? ?? '',
           role: json['role'] as String? ?? '',
           completedTasks: json['completedTasks'] as int? ?? 0,
-          averageCompletionTime:
-              json['averageCompletionTime'] as double? ?? 0.0,
+          averageCompletionTime: json['averageCompletionTime'] as int? ?? 0,
         );
 
   Map<String, dynamic> toJson() {
@@ -41,7 +40,7 @@ class User {
     String? email,
     String? role,
     int? completedTasks,
-    double? averageCompletionTime,
+    int? averageCompletionTime,
   }) {
     return User(
       userId: userId,

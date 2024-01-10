@@ -13,9 +13,9 @@ class NotificationService {
   NotificationService() {
     _notificationRef = _firestore
         .collection(COLLECTION_REF)
-        .withConverter<Notification>(
+        .withConverter<Message>(
             fromFirestore: (snapshots, _) =>
-                Notification.fromJson(snapshots.data()!),
+                Message.fromJson(snapshots.data()!),
             toFirestore: (notification, _) => notification.toJson());
   }
 
@@ -23,11 +23,11 @@ class NotificationService {
     return _notificationRef.snapshots();
   }
 
-  void addNotification(Notification notification) async {
+  void addNotification(Message notification) async {
     _notificationRef.add(notification);
   }
 
-  void updateNotification(String notificationID, Notification notification) {
+  void updateNotification(String notificationID, Message notification) {
     _notificationRef.doc(notificationID).update(notification.toJson());
   }
 

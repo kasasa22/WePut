@@ -1,5 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../models/performance.dart';
 
 // ignore: constant_identifier_names
@@ -21,7 +22,7 @@ class PerformanceMetricsService {
                 performanceMetrics.toJson());
   }
 
-  Stream<QuerySnapshot> getTasks() {
+  Stream<QuerySnapshot> getPerformace() {
     return _performance_metricsRef.snapshots();
   }
 
