@@ -31,7 +31,7 @@ class _MyDrawerState extends State<MyDrawer> {
 
   String email = "";
 
-  late String? userName;
+  late String? userName = "";
 
   @override
   void initState() {
