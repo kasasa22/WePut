@@ -401,6 +401,8 @@ class _AddPeopleSheetState extends State<_AddPeopleSheet> {
                           // Use the selectedUserIds list and messageController.text as needed
                           print('Selected Document IDs: $selectedUserIds');
                           print('Message to People: ${messageController.text}');
+                          print(
+                              "------------------------------" + widget.taskId);
                           Navigator.pop(context); // Close the bottom sheet
                         },
                         child: const Text(
