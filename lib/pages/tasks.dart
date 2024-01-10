@@ -169,7 +169,7 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
   }
 
   void showSheet(context) {
-    TextStyle(color: Colors.white, height: 1.4, fontSize: 16);
+    const TextStyle(color: Colors.white, height: 1.4, fontSize: 16);
     showModalBottomSheet(
       context: context,
       builder: (BuildContext bc) {
@@ -178,8 +178,8 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
           body: SingleChildScrollView(
             child: Container(
               color: Colors.white,
-              padding: EdgeInsets.symmetric(vertical: 0, horizontal: 5),
-              child: new Column(
+              padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 5),
+              child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   Container(
@@ -201,17 +201,17 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
-                    child: new Container(
+                    child: Container(
                       width: double.infinity,
                       height: 40,
                       decoration: myBoxDecoration(),
                       child: Stack(
                         children: [
-                          new Padding(
-                            padding: const EdgeInsets.only(left: 10.0),
-                            child: new Align(
+                          const Padding(
+                            padding: EdgeInsets.only(left: 10.0),
+                            child: Align(
                               alignment: Alignment.centerLeft,
-                              child: new Text(
+                              child: Text(
                                 "Appartment & Unit",
                                 style: TextStyle(
                                   color: Colors.black,
@@ -221,11 +221,11 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
                               ),
                             ),
                           ),
-                          new Padding(
+                          Padding(
                             padding: const EdgeInsets.only(right: 10.0),
-                            child: new Align(
+                            child: Align(
                               alignment: Alignment.centerRight,
-                              child: new Icon(
+                              child: Icon(
                                 Icons.arrow_drop_down,
                                 color: Colors.grey[700],
                               ),
@@ -239,10 +239,11 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
                     padding: const EdgeInsets.all(10.0),
                     child: Row(
                       children: <Widget>[
-                        new Flexible(
+                        Flexible(
+                          flex: 1,
                           child: Column(
                             children: <Widget>[
-                              new Padding(
+                              Padding(
                                 padding: const EdgeInsets.only(bottom: 10.0),
                                 child: Align(
                                   alignment: Alignment.centerLeft,
@@ -254,25 +255,25 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
                                   ),
                                 ),
                               ),
-                              new Container(
+                              Container(
                                 width: double.infinity,
                                 height: 40,
                                 decoration: myBoxDecoration(),
                                 child: Stack(
                                   children: [
-                                    new Padding(
-                                      padding:
-                                          const EdgeInsets.only(left: 10.0),
-                                      child: new Align(
+                                    const Padding(
+                                      padding: EdgeInsets.only(left: 10.0),
+                                      child: Align(
                                         alignment: Alignment.centerLeft,
                                         child: Text("1000"),
                                       ),
                                     ),
-                                    new Padding(
-                                      padding: EdgeInsets.only(right: 10.0),
-                                      child: new Align(
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(right: 10.0),
+                                      child: Align(
                                         alignment: Alignment.centerRight,
-                                        child: new Icon(
+                                        child: Icon(
                                           Icons.arrow_drop_down,
                                           color: Colors.grey[700],
                                         ),
@@ -283,15 +284,15 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
                               ),
                             ],
                           ),
-                          flex: 1,
                         ),
                         Container(
                           width: 40,
                         ),
-                        new Flexible(
+                        Flexible(
+                          flex: 1,
                           child: Column(
                             children: <Widget>[
-                              new Padding(
+                              Padding(
                                 padding: const EdgeInsets.only(bottom: 10.0),
                                 child: Align(
                                   alignment: Alignment.centerLeft,
@@ -303,25 +304,25 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
                                   ),
                                 ),
                               ),
-                              new Container(
+                              Container(
                                 width: double.infinity,
                                 height: 40,
                                 decoration: myBoxDecoration(),
                                 child: Stack(
                                   children: [
-                                    new Padding(
-                                      padding:
-                                          const EdgeInsets.only(left: 10.0),
-                                      child: new Align(
+                                    const Padding(
+                                      padding: EdgeInsets.only(left: 10.0),
+                                      child: Align(
                                         alignment: Alignment.centerLeft,
                                         child: Text("5000"),
                                       ),
                                     ),
-                                    new Padding(
-                                      padding: EdgeInsets.only(right: 10.0),
-                                      child: new Align(
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(right: 10.0),
+                                      child: Align(
                                         alignment: Alignment.centerRight,
-                                        child: new Icon(
+                                        child: Icon(
                                           Icons.arrow_drop_down,
                                           color: Colors.grey[700],
                                         ),
@@ -332,7 +333,6 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
                               ),
                             ],
                           ),
-                          flex: 1,
                         ),
                       ],
                     ),
@@ -341,10 +341,11 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
                     padding: const EdgeInsets.all(10.0),
                     child: Row(
                       children: <Widget>[
-                        new Flexible(
+                        Flexible(
+                          flex: 1,
                           child: Column(
                             children: <Widget>[
-                              new Padding(
+                              Padding(
                                 padding: const EdgeInsets.only(bottom: 10.0),
                                 child: Align(
                                   alignment: Alignment.centerLeft,
@@ -356,25 +357,25 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
                                   ),
                                 ),
                               ),
-                              new Container(
+                              Container(
                                 width: double.infinity,
                                 height: 40,
                                 decoration: myBoxDecoration(),
                                 child: Stack(
                                   children: [
-                                    new Padding(
-                                      padding:
-                                          const EdgeInsets.only(left: 10.0),
-                                      child: new Align(
+                                    const Padding(
+                                      padding: EdgeInsets.only(left: 10.0),
+                                      child: Align(
                                         alignment: Alignment.centerLeft,
                                         child: Text("1000"),
                                       ),
                                     ),
-                                    new Padding(
-                                      padding: EdgeInsets.only(right: 10.0),
-                                      child: new Align(
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(right: 10.0),
+                                      child: Align(
                                         alignment: Alignment.centerRight,
-                                        child: new Icon(
+                                        child: Icon(
                                           Icons.arrow_drop_down,
                                           color: Colors.grey[700],
                                         ),
@@ -385,15 +386,15 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
                               ),
                             ],
                           ),
-                          flex: 1,
                         ),
                         Container(
                           width: 40,
                         ),
-                        new Flexible(
+                        Flexible(
+                          flex: 1,
                           child: Column(
                             children: <Widget>[
-                              new Padding(
+                              Padding(
                                 padding: const EdgeInsets.only(bottom: 10.0),
                                 child: Align(
                                   alignment: Alignment.centerLeft,
@@ -405,25 +406,25 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
                                   ),
                                 ),
                               ),
-                              new Container(
+                              Container(
                                 width: double.infinity,
                                 height: 40,
                                 decoration: myBoxDecoration(),
                                 child: Stack(
                                   children: [
-                                    new Padding(
-                                      padding:
-                                          const EdgeInsets.only(left: 10.0),
-                                      child: new Align(
+                                    const Padding(
+                                      padding: EdgeInsets.only(left: 10.0),
+                                      child: Align(
                                         alignment: Alignment.centerLeft,
                                         child: Text("5000"),
                                       ),
                                     ),
-                                    new Padding(
-                                      padding: EdgeInsets.only(right: 10.0),
-                                      child: new Align(
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(right: 10.0),
+                                      child: Align(
                                         alignment: Alignment.centerRight,
-                                        child: new Icon(
+                                        child: Icon(
                                           Icons.arrow_drop_down,
                                           color: Colors.grey[700],
                                         ),
@@ -434,7 +435,6 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
                               ),
                             ],
                           ),
-                          flex: 1,
                         ),
                       ],
                     ),
@@ -455,17 +455,17 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
-                    child: new Container(
+                    child: Container(
                       width: double.infinity,
                       height: 40,
                       decoration: myBoxDecoration(),
                       child: Stack(
                         children: [
-                          new Padding(
-                            padding: const EdgeInsets.only(left: 10.0),
-                            child: new Align(
+                          const Padding(
+                            padding: EdgeInsets.only(left: 10.0),
+                            child: Align(
                               alignment: Alignment.centerLeft,
-                              child: new Text(
+                              child: Text(
                                 "400",
                                 style: TextStyle(
                                   color: Colors.black,
@@ -475,11 +475,11 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
                               ),
                             ),
                           ),
-                          new Padding(
+                          Padding(
                             padding: const EdgeInsets.only(right: 10.0),
-                            child: new Align(
+                            child: Align(
                               alignment: Alignment.centerRight,
-                              child: new Icon(
+                              child: Icon(
                                 Icons.arrow_drop_down,
                                 color: Colors.grey[700],
                               ),
@@ -497,7 +497,7 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.black,
                         ),
-                        child: Text(
+                        child: const Text(
                           "SEARCH",
                           style: TextStyle(
                             color: Colors.white,
@@ -523,7 +523,7 @@ BoxDecoration myBoxDecoration() {
       color: Colors.grey[300]!,
       width: 1.0,
     ),
-    borderRadius: BorderRadius.all(Radius.circular(5.0) //
+    borderRadius: const BorderRadius.all(Radius.circular(5.0) //
         ),
   );
 }
