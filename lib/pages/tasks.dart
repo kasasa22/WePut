@@ -343,42 +343,44 @@ class _AddPeopleSheetState extends State<_AddPeopleSheet> {
                     .toList();
                 selectedPeople = List.filled(people.length, false);
 
-                return Column(
-                  children: [
-                    for (int i = 0; i < people.length; i++)
-                      ListTile(
-                        title: Text(people[i]),
-                        leading: Checkbox(
-                          value: selectedPeople[i],
-                          onChanged: (bool? value) {
-                            setState(() {
-                              selectedPeople[i] = value!;
-                              if (value) {
-                                selectedUserIds.add(
-                                    snapshot.data!.docs[i]['uid'].toString());
-                              } else {
-                                selectedUserIds.remove(
-                                    snapshot.data!.docs[i]['uid'].toString());
-                              }
-                            });
-                          },
+                return SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      for (int i = 0; i < people.length; i++)
+                        ListTile(
+                          title: Text(people[i]),
+                          leading: Checkbox(
+                            value: selectedPeople[i],
+                            onChanged: (bool? value) {
+                              setState(() {
+                                selectedPeople[i] = value!;
+                                if (value) {
+                                  selectedUserIds.add(
+                                      snapshot.data!.docs[i]['uid'].toString());
+                                } else {
+                                  selectedUserIds.remove(
+                                      snapshot.data!.docs[i]['uid'].toString());
+                                }
+                              });
+                            },
+                          ),
+                        ),
+                      const SizedBox(height: 20),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.blue[100]),
+                        onPressed: () {
+                          // Use the selectedUserIds list as needed
+                          print('Selected User IDs: $selectedUserIds');
+                          Navigator.pop(context); // Close the bottom sheet
+                        },
+                        child: const Text(
+                          'Add Selected People',
+                          style: TextStyle(color: Colors.black),
                         ),
                       ),
-                    const SizedBox(height: 20),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blue[100]),
-                      onPressed: () {
-                        // Use the selectedUserIds list as needed
-                        print('Selected User IDs: $selectedUserIds');
-                        Navigator.pop(context); // Close the bottom sheet
-                      },
-                      child: const Text(
-                        'Add Selected People',
-                        style: TextStyle(color: Colors.black),
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 );
               },
             ),
