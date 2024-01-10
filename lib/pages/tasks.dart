@@ -35,6 +35,33 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
     super.dispose();
   }
 
+  void listenToTasks() {
+    TaskService taskService = TaskService();
+    taskService.getTasksStream().listen((QuerySnapshot snapshot) {
+      // Clear the existing items list
+      items.clear();
+
+      // Iterate through the documents in the snapshot and convert them to Task objects
+      snapshot.docs.forEach((DocumentSnapshot document) {
+        // Map the document data to a Task object
+        Task task = Task(
+          taskId: document.id,
+          title: document['title'],
+          description: document['description'],
+          // Add other fields accordingly
+        );
+
+        // Add the Task object to the items list
+        items.add(task);
+      });
+
+      // Update the UI or perform any other actions with the updated items list
+      setState(() {
+        // Update your UI here if needed
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     List<Task> items = [
