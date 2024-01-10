@@ -186,7 +186,7 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
                       leadingColor: Colors.red,
                       onAddPeople: () {
                         AddPeopleSheet(context, items.cast<User>(),
-                            assignedTasks[index].taskId!);
+                            assignedTasks[index].taskId);
                       },
                       onComplete: () {
                         updateTaskStatusNew(
@@ -205,7 +205,7 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
                       leadingColor: Colors.yellow,
                       onAddPeople: () {
                         AddPeopleSheet(context, items.cast<User>(),
-                            assignedTasks[index].taskId!);
+                            inProgressTasks[index].taskId);
                       },
                       onComplete: () {
                         updateTaskStatusOld(
