@@ -56,6 +56,7 @@ class _TeamsState extends State<Teams> {
       return const Center(child: CircularProgressIndicator());
     }
     List<Widget> gridAssignments = getGridViewAssignments(listAssignments);
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -143,9 +144,9 @@ class _TeamsState extends State<Teams> {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12),
             transform: Matrix4.translationValues(0.0, -30, 0.0),
-            child: Column(
-              children: gridAssignments,
-            ),
+            child: Column(children: List.empty()
+                //gridAssignments,
+                ),
           ),
         ]),
       ),
