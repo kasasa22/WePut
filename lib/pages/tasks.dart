@@ -413,7 +413,7 @@ class _AddPeopleSheetState extends State<_AddPeopleSheet> {
                             notificationId:
                                 '', // Assign a unique ID, or leave it empty if Firestore generates one
                             userId:
-                                'userID', // Replace 'userID' with the actual user ID
+                                '', // Leave it empty for now, it will be updated in the loop
                             message: messageController.text,
                             timestamp: Timestamp.now(),
                             viewed: false, // Set the initial viewed status
@@ -424,7 +424,7 @@ class _AddPeopleSheetState extends State<_AddPeopleSheet> {
                             assignmentId:
                                 '', // Assign a unique ID, or leave it empty if Firestore generates one
                             userId:
-                                'userID', // Replace 'userID' with the actual user ID
+                                '', // Leave it empty for now, it will be updated in the loop
                             taskId: widget.taskId,
                             assignmentTime: Timestamp.now(),
                             completionStatus:
@@ -436,16 +436,16 @@ class _AddPeopleSheetState extends State<_AddPeopleSheet> {
                             newNotification.userId = userId;
                             newAssignment.userId = userId;
 
+                            // Use the AssignmentService to add the assignment to Firebase
+                            AssignmentService assignmentService =
+                                AssignmentService();
+                            assignmentService.addAssignment(newAssignment);
+
                             // Use the NotificationService to add the notification to Firebase
                             NotificationService notificationService =
                                 NotificationService();
                             notificationService
                                 .addNotification(newNotification);
-
-                            // Use the AssignmentService to add the assignment to Firebase
-                            AssignmentService assignmentService =
-                                AssignmentService();
-                            assignmentService.addAssignment(newAssignment);
                           }
 
                           // Close the bottom sheet
