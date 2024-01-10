@@ -45,7 +45,7 @@ class MyDrawer extends StatelessWidget {
                     padding: EdgeInsets.symmetric(vertical: 40, horizontal: 14),
                     child: Icon(
                       Icons.task_alt_outlined,
-                      size: 70,
+                      size: 90,
                       color: Colors.black,
                       weight: 50,
                     ),
