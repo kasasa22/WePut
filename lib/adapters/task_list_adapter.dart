@@ -91,7 +91,7 @@ class _TaskTileState extends State<TaskTile> {
               icon: const Icon(
                 Icons.check,
                 color: Colors.green,
-                size: 30,
+                size: 22,
               ),
               onPressed: () {
                 if (widget.onComplete != null) {
@@ -103,7 +103,7 @@ class _TaskTileState extends State<TaskTile> {
             icon: const Icon(
               Icons.person_add,
               color: Colors.blue,
-              size: 30,
+              size: 22,
             ),
             onPressed: () {
               if (widget.onAddPeople != null) {
