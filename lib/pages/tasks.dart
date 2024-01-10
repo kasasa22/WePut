@@ -306,8 +306,10 @@ class _TaskSheetState extends State<TaskSheet> {
                               ))
                           .toList(),
                       onChanged: (value) {
-                        // Handle the selected priority
-                        // Implement your logic here
+                        // Update the selectedPriority variable when the value changes
+                        setState(() {
+                          selectedPriority = value!;
+                        });
                       },
                     ),
                   ),
@@ -352,8 +354,7 @@ class _TaskSheetState extends State<TaskSheet> {
           Timestamp.now(), // Set to the current date as the default due date
       status: 'New',
       assignedUserId: userId,
-      priority:
-          getSelectedPriority(), // Replace with your method to get the selected priority from the UI
+      priority: selectedPriority,
       category: 'General',
       progress: 0,
       comments: [], // Start with an empty list of comments
@@ -380,11 +381,5 @@ class _TaskSheetState extends State<TaskSheet> {
     print(
         "Current user data----------------------------------------------------------------------------------------------------------: $userData");
     return userData['uid']; // Use square brackets to access the value
-  }
-
-// Replace with your method to get the selected priority from the UI
-  String getSelectedPriority() {
-    // Your implementation to get the selected priority
-    return 'Low'; // Replace with your actual implementation
   }
 }
