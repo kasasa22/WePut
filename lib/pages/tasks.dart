@@ -342,12 +342,18 @@ class _AddPeopleSheetState extends State<_AddPeopleSheet> {
                     .toList();
                 selectedPeople = List.filled(people.length, false);
 
+                // Filter out selected names from the list
+                List<String> filteredPeople = people
+                    .where((name) => !selectedUserIds
+                        .contains(snapshot.data!.docs[people.indexOf(name)].id))
+                    .toList();
+
                 return SingleChildScrollView(
                   child: Column(
                     children: [
-                      for (int i = 0; i < people.length; i++)
+                      for (int i = 0; i < filteredPeople.length; i++)
                         ListTile(
-                          title: Text(people[i]),
+                          title: Text(filteredPeople[i]),
                           leading: Checkbox(
                             value: selectedPeople[i],
                             onChanged: (bool? value) {
