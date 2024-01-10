@@ -15,9 +15,9 @@ class PieChartWidget extends StatelessWidget {
               value: 30, // Example value for the section
               color: Colors.blue[600], // Color of the section
               title: '30%', // Title of the section (optional)
-              radius: 30, // Radius of the section (optional)
+              radius: 22, // Radius of the section (optional)
               titleStyle: const TextStyle(
-                  fontSize: 16,
+                  fontSize: 14,
                   fontWeight: FontWeight.bold,
                   color: Colors.white), // Style for the title (optional)
             ),
@@ -25,7 +25,7 @@ class PieChartWidget extends StatelessWidget {
           ],
           borderData: FlBorderData(show: false), // Hide border (optional)
           sectionsSpace: 0, // Space between sections (optional)
-          centerSpaceRadius: 40, // Radius of the center space (optional)
+          centerSpaceRadius: 18, // Radius of the center space (optional)
         ),
       ),
     );
