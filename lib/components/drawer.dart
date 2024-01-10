@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 
 import '../firebase_user.dart';
 
+// ignore: must_be_immutable
 class MyDrawer extends StatelessWidget {
-  const MyDrawer({super.key});
+  MyDrawer({super.key});
 
   void logout(BuildContext context) async {
     await FirebaseAuth.instance.signOut();
@@ -20,7 +21,7 @@ class MyDrawer extends StatelessWidget {
     return userData['email']; // Use square brackets to access the value
   }
 
-  String email;
+  String email = "";
 
   @override
   Widget build(BuildContext context) {
