@@ -121,7 +121,7 @@ class _DashboardState extends State<Dashboard> {
         ],
       ),
       // Drawer
-      drawer: MyDrawer(),
+      drawer: const MyDrawer(),
 
       // Body
       body: SingleChildScrollView(

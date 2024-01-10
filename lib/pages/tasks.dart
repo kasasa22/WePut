@@ -102,7 +102,7 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
         ],
       ),
       // Drawer
-      drawer: MyDrawer(),
+      drawer: const MyDrawer(),
 
       floatingActionButton: FloatingActionButton(
         heroTag: "fab",

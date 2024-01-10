@@ -94,7 +94,7 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
       ),
 
       //Drawer
-      drawer: MyDrawer(),
+      drawer: const MyDrawer(),
 
       body: SingleChildScrollView(
         child: Column(
