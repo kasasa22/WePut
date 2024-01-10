@@ -29,7 +29,6 @@ class _TeamsState extends State<Teams> {
       listAssignments.clear();
 
       for (var document in snapshot.docs) {
-        // Use fromJson to convert Firestore data to an Assignment instance
         Assignment assignment =
             Assignment.fromJson(document.data() as Map<String, dynamic>);
 
