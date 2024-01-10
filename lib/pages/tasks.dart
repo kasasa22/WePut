@@ -298,6 +298,8 @@ class _AddPeopleSheetState extends State<_AddPeopleSheet> {
   late List<String> people; // This will be updated with the StreamBuilder
   late List<bool> selectedPeople;
   late List<String> selectedUserIds; // New list to store checked user IDs
+  late TextEditingController
+      messageController; // New controller for the message
 
   UserService _userService = UserService();
 
@@ -309,6 +311,8 @@ class _AddPeopleSheetState extends State<_AddPeopleSheet> {
     // Fetch users from the stream
     people = []; // Initially empty until the stream updates
     selectedPeople = List.filled(people.length, false);
+    // Initialize the message controller
+    messageController = TextEditingController();
   }
 
   @override
@@ -328,6 +332,17 @@ class _AddPeopleSheetState extends State<_AddPeopleSheet> {
               ),
             ),
             const SizedBox(height: 10),
+            // Add a text box for the message
+            TextField(
+              controller: messageController,
+              decoration: InputDecoration(
+                labelText: 'Message to People',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
             StreamBuilder(
               stream: _userService.getUsers(),
               builder: (context, snapshot) {
@@ -376,8 +391,9 @@ class _AddPeopleSheetState extends State<_AddPeopleSheet> {
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.blue[100]),
                         onPressed: () {
-                          // Use the selectedUserIds list as needed
+                          // Use the selectedUserIds list and messageController.text as needed
                           print('Selected Document IDs: $selectedUserIds');
+                          print('Message to People: ${messageController.text}');
                           Navigator.pop(context); // Close the bottom sheet
                         },
                         child: const Text(
