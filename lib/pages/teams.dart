@@ -16,6 +16,7 @@ class Teams extends StatefulWidget {
 }
 
 class _TeamsState extends State<Teams> {
+  AssignmentService taskService = AssignmentService();
   List<Assignment> listAssignments = [];
 
   @override
@@ -26,7 +27,6 @@ class _TeamsState extends State<Teams> {
   }
 
   Future<void> fetchTeams() async {
-    AssignmentService taskService = AssignmentService();
     taskService.getAssignments().listen((QuerySnapshot snapshot) {
       print(
           "-----------------------------------------------------------------------------------------------------------");
