@@ -58,6 +58,14 @@ class _TaskTileState extends State<TaskTile> {
             thickness: 1,
           ),
           Text(
+            widget.task.description,
+            maxLines: 2,
+            style: TextStyle(
+              color: Colors.grey[880],
+            ),
+          ),
+
+          Text(
             'Status: ${widget.task.status}',
             style: TextStyle(
               color: Colors.grey[880],
