@@ -67,6 +67,45 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
     // Add more tasks as needed
   ];
 
+  void fetchForCurrentUser() async {
+    // Step 1: Get the current user's email
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      String userEmail = user.email!;
+
+      print(
+          'User Email-------------------------------------------------------------------------------------------------------------------------------------------------: $userEmail');
+
+      // Step 2: Query the users collection to get the user's document ID
+      QuerySnapshot userQuery = await FirebaseFirestore.instance
+          .collection('users')
+          .where('email', isEqualTo: userEmail)
+          .get();
+
+      if (userQuery.docs.isNotEmpty) {
+        // Assuming there is only one document for a unique email
+        String userId = userQuery.docs.first.id;
+
+        // Step 5: Use the obtained userId to query the user's document and get the name
+        DocumentSnapshot userDocument = await FirebaseFirestore.instance
+            .collection('users')
+            .doc(userId)
+            .get();
+
+        if (userDocument.exists) {
+          String userName = userDocument['name'];
+          print('User Name: $userName');
+        } else {
+          print('User document not found.');
+        }
+      } else {
+        print('User not found.');
+      }
+    } else {
+      print('User not authenticated.');
+    }
+  }
+
   void listenToTasks() {
     TaskService taskService = TaskService();
     taskService.getTasks().listen((QuerySnapshot snapshot) {
