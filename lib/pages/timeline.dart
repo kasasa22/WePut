@@ -275,14 +275,14 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                                     ),
                                   ),
                                   ListView.builder(
-                                    itemCount: assignedTasks.length,
+                                    itemCount: inProgressTasks.length,
                                     itemBuilder: (context, index) {
-                                      if (assignedTasks.isNotEmpty) {
+                                      if (inProgressTasks.isNotEmpty) {
                                         return CustomCard(
                                             icon: Icons.task_sharp,
                                             cardColor: Colors.lightGreenAccent,
-                                            title: assignedTasks[index].title,
-                                            taskDate: assignedTasks[index]
+                                            title: inProgressTasks[index].title,
+                                            taskDate: inProgressTasks[index]
                                                 .dueDate
                                                 .toString(),
                                             isCompleted: false,
@@ -312,14 +312,14 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                                     ),
                                   ),
                                   ListView.builder(
-                                    itemCount: assignedTasks.length,
+                                    itemCount: completedTasks.length,
                                     itemBuilder: (context, index) {
-                                      if (assignedTasks.isNotEmpty) {
+                                      if (completedTasks.isNotEmpty) {
                                         return CustomCard(
                                             icon: Icons.task_sharp,
                                             cardColor: Colors.lightGreenAccent,
-                                            title: assignedTasks[index].title,
-                                            taskDate: assignedTasks[index]
+                                            title: completedTasks[index].title,
+                                            taskDate: completedTasks[index]
                                                 .dueDate
                                                 .toString(),
                                             isCompleted: false,
