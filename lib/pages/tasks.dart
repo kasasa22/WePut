@@ -180,7 +180,7 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
         String userEmail = user.email!;
         print(
             'User Email-------------------------------------------------------------------------------------------------------------------------------------------------: $userEmail');
-
+        fetchDataForUser(userEmail);
         // Step 2: Query the users collection to get the user's document ID
         QuerySnapshot userQuery = await FirebaseFirestore.instance
             .collection('users')
