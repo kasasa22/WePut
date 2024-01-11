@@ -29,8 +29,7 @@ class _TeamsState extends State<Teams> {
 
   @override
   void initState() {
-    // Fetch teams from Firestore
-    fetchTeams();
+    //fetchTeams();
     super.initState();
   }
 
@@ -44,7 +43,7 @@ class _TeamsState extends State<Teams> {
             "----------------------------------------------------------------------------------------");
         Assignment assignment =
             Assignment.fromJson(document.data() as Map<String, dynamic>);
-        //  listAssignments.add(assignment);
+        listAssignments.add(assignment);
       }
 
       // Print the assignments for debugging
