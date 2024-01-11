@@ -431,51 +431,56 @@ class _AddPeopleSheetState extends State<_AddPeopleSheet> {
                           backgroundColor: Colors.blue[100],
                         ),
                         onPressed: () {
-                          // Use the selectedUserIds list and messageController.text as needed
-                          print('Selected Document IDs: $selectedUserIds');
-                          print('Message to People: ${messageController.text}');
-                          print(
-                              'team------------------------------------------------------------- to People: ${teamController.text}');
-                          print('Task ID: ${widget.taskId}');
+                          if (selectedPeople.isNotEmpty &&
+                              teamController.text.isNotEmpty &&
+                              messageController.text.isNotEmpty) {
+                            // Use the selectedUserIds list and messageController.text as needed
+                            print('Selected Document IDs: $selectedUserIds');
+                            print(
+                                'Message to People: ${messageController.text}');
+                            print(
+                                'team------------------------------------------------------------- to People: ${teamController.text}');
+                            print('Task ID: ${widget.taskId}');
 
-                          // Create a new Notification object
-                          Message newNotification = Message(
-                            notificationId:
-                                'notificationID', // Assign a unique ID, or leave it empty if Firestore generates one
-                            userId:
-                                '', // Leave it empty for now, it will be updated in the loop
-                            message: messageController.text,
-                            timestamp: Timestamp.now(),
-                            viewed: false, // Set the initial viewed status
-                          );
+                            // Create a new Notification object
+                            Message newNotification = Message(
+                              notificationId:
+                                  'notificationID', // Assign a unique ID, or leave it empty if Firestore generates one
+                              userId:
+                                  '', // Leave it empty for now, it will be updated in the loop
+                              message: messageController.text,
+                              timestamp: Timestamp.now(),
+                              viewed: false, // Set the initial viewed status
+                            );
 
-                          // Create a new Assignment object
-                          Assignment newAssignment = Assignment(
-                            teamName: teamController.text,
+                            // Create a new Assignment object
+                            Assignment newAssignment = Assignment(
+                              teamName: teamController.text,
 
-                            userId:
-                                '', // Leave it empty for now, it will be updated in the loop
-                            taskId: widget.taskId,
-                            assignmentTime: Timestamp.now(),
-                            completionStatus:
-                                'Pending', // You can set this to an initial status
-                          );
+                              userId:
+                                  '', // Leave it empty for now, it will be updated in the loop
+                              taskId: widget.taskId,
+                              assignmentTime: Timestamp.now(),
+                              completionStatus:
+                                  'Pending', // You can set this to an initial status
+                            );
 
-                          // Loop through selectedUserIds and add notifications and assignments for each user
-                          for (String userId in selectedUserIds) {
-                            newNotification.userId = userId;
-                            newAssignment.userId = userId;
+                            // Loop through selectedUserIds and add notifications and assignments for each user
+                            for (String userId in selectedUserIds) {
+                              newNotification.userId = userId;
+                              newAssignment.userId = userId;
 
-                            // Use the AssignmentService to add the assignment to Firebase
-                            AssignmentService assignmentService =
-                                AssignmentService();
-                            assignmentService.addAssignment(newAssignment);
+                              // Use the AssignmentService to add the assignment to Firebase
+                              AssignmentService assignmentService =
+                                  AssignmentService();
+                              assignmentService.addAssignment(newAssignment);
 
-                            // Use the NotificationService to add the notification to Firebase
-                            NotificationService notificationService =
-                                NotificationService();
-                            notificationService
-                                .addNotification(newNotification);
+                              // Use the NotificationService to add the notification to Firebase
+                              NotificationService notificationService =
+                                  NotificationService();
+                              notificationService
+                                  .addNotification(newNotification);
+                            }
                           }
 
                           // Close the bottom sheet
