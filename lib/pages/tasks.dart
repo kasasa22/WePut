@@ -67,38 +67,31 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
     // Add more tasks as needed
   ];
 
-  void fetchForCurrentUser() async {
-    // Step 1: Get the current user's email
-    User? user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
-      String userEmail = user.email!;
-
-      print(
-          'User Email-------------------------------------------------------------------------------------------------------------------------------------------------: $userEmail');
-
-      // Step 2: Query the users collection to get the user's document ID
+//-------------------------------------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------------
+  Future<String?> getUserIdByEmail(String email) async {
+    try {
       QuerySnapshot userQuery = await FirebaseFirestore.instance
           .collection('users')
-          .where('email', isEqualTo: userEmail)
+          .where('email', isEqualTo: email)
           .get();
 
       if (userQuery.docs.isNotEmpty) {
         // Assuming there is only one document for a unique email
         String userId = userQuery.docs.first.id;
-
-        // Step 5: Use the obtained userId to query the user's document and get the name
-        DocumentSnapshot userDocument = await FirebaseFirestore.instance
-            .collection('users')
-            .doc(userId)
-            .get();
+        return userId;
       } else {
-        print('User not found.');
+        // User not found
+        return null;
       }
-    } else {
-      print('User not authenticated.');
+    } catch (error) {
+      print("Error getting user ID: $error");
+      return null;
     }
   }
 
+//-------------------------------------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------------
   void listenToTasks() {
     TaskService taskService = TaskService();
     taskService.getTasks().listen((QuerySnapshot snapshot) {
