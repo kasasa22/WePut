@@ -234,23 +234,26 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                                   color: Colors.black,
                                 ),
                               ),
-                              ListView.builder(
-                                itemCount: assignedTasks.length,
-                                itemBuilder: (context, index) {
-                                  if (assignedTasks.isNotEmpty) {
-                                    return CustomCard(
-                                        icon: Icons.task_sharp,
-                                        cardColor: Colors.lightGreenAccent,
-                                        title: assignedTasks[index].title,
-                                        taskDate: assignedTasks[index]
-                                            .dueDate
-                                            .toString(),
-                                        isCompleted: false,
-                                        cardHeight: 50,
-                                        cardWidth: 300.0);
-                                  }
-                                  return null;
-                                },
+                              SizedBox(
+                                height: 100,
+                                child: ListView.builder(
+                                  itemCount: assignedTasks.length,
+                                  itemBuilder: (context, index) {
+                                    if (assignedTasks.isNotEmpty) {
+                                      return CustomCard(
+                                          icon: Icons.task_sharp,
+                                          cardColor: Colors.lightGreenAccent,
+                                          title: assignedTasks[index].title,
+                                          taskDate: assignedTasks[index]
+                                              .dueDate
+                                              .toString(),
+                                          isCompleted: false,
+                                          cardHeight: 50,
+                                          cardWidth: 300.0);
+                                    }
+                                    return null;
+                                  },
+                                ),
                               ),
                             ],
                           ),
@@ -271,23 +274,26 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                                   color: Colors.black,
                                 ),
                               ),
-                              ListView.builder(
-                                itemCount: inProgressTasks.length,
-                                itemBuilder: (context, index) {
-                                  if (inProgressTasks.isNotEmpty) {
-                                    return CustomCard(
-                                        icon: Icons.task_sharp,
-                                        cardColor: Colors.lightGreenAccent,
-                                        title: inProgressTasks[index].title,
-                                        taskDate: inProgressTasks[index]
-                                            .dueDate
-                                            .toString(),
-                                        isCompleted: false,
-                                        cardHeight: 50,
-                                        cardWidth: 300.0);
-                                  }
-                                  return null;
-                                },
+                              SizedBox(
+                                height: 100,
+                                child: ListView.builder(
+                                  itemCount: inProgressTasks.length,
+                                  itemBuilder: (context, index) {
+                                    if (inProgressTasks.isNotEmpty) {
+                                      return CustomCard(
+                                          icon: Icons.task_sharp,
+                                          cardColor: Colors.lightGreenAccent,
+                                          title: inProgressTasks[index].title,
+                                          taskDate: inProgressTasks[index]
+                                              .dueDate
+                                              .toString(),
+                                          isCompleted: false,
+                                          cardHeight: 50,
+                                          cardWidth: 300.0);
+                                    }
+                                    return null;
+                                  },
+                                ),
                               ),
                             ],
                           ),
@@ -308,23 +314,26 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                                   color: Colors.black,
                                 ),
                               ),
-                              ListView.builder(
-                                itemCount: completedTasks.length,
-                                itemBuilder: (context, index) {
-                                  if (completedTasks.isNotEmpty) {
-                                    return CustomCard(
-                                        icon: Icons.task_sharp,
-                                        cardColor: Colors.lightGreenAccent,
-                                        title: completedTasks[index].title,
-                                        taskDate: completedTasks[index]
-                                            .dueDate
-                                            .toString(),
-                                        isCompleted: false,
-                                        cardHeight: 50,
-                                        cardWidth: 300.0);
-                                  }
-                                  return null;
-                                },
+                              SizedBox(
+                                height: 100,
+                                child: ListView.builder(
+                                  itemCount: completedTasks.length,
+                                  itemBuilder: (context, index) {
+                                    if (completedTasks.isNotEmpty) {
+                                      return CustomCard(
+                                          icon: Icons.task_sharp,
+                                          cardColor: Colors.lightGreenAccent,
+                                          title: completedTasks[index].title,
+                                          taskDate: completedTasks[index]
+                                              .dueDate
+                                              .toString(),
+                                          isCompleted: false,
+                                          cardHeight: 50,
+                                          cardWidth: 300.0);
+                                    }
+                                    return null;
+                                  },
+                                ),
                               ),
                             ],
                           ),
