@@ -27,6 +27,8 @@ class _TeamsState extends State<Teams> {
     // )
   ];
 
+  Map<String, int> teamCountMap = {};
+
   @override
   void initState() {
     fetchTeams();
@@ -67,6 +69,29 @@ class _TeamsState extends State<Teams> {
 
       // Use setState to trigger a rebuild with the updated lists
       setState(() {});
+    });
+  }
+
+  void processAssignments() {
+    // Clear existing data
+    teamCountMap.clear();
+
+    // Process assignments and update teamCountMap
+    for (var assignment in listAssignments) {
+      String teamName = assignment.teamName;
+
+      if (teamCountMap.containsKey(teamName)) {
+        // Increment count if team name already exists in the map
+        teamCountMap[teamName] = teamCountMap[teamName]! + 1;
+      } else {
+        // Add team name to the map with count 1 if it doesn't exist
+        teamCountMap[teamName] = 1;
+      }
+    }
+
+    // Print the processed data for debugging
+    teamCountMap.forEach((teamName, count) {
+      print('Team: $teamName, Count: $count');
     });
   }
 
