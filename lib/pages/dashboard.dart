@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -89,7 +90,55 @@ class _DashboardState extends State<Dashboard> {
   ];
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  Future<void> fetchNotificationsForCurrentUser() async {
+    // Step 1: Get the current user's email
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      String userEmail = user.email!;
+
+      print(
+          'User Email-------------------------------------------------------------------------------------------------------------------------------------------------: $userEmail');
+
+      // Step 2: Query the users collection to get the user's document ID
+      QuerySnapshot userQuery = await FirebaseFirestore.instance
+          .collection('users')
+          .where('email', isEqualTo: userEmail)
+          .get();
+
+      if (userQuery.docs.isNotEmpty) {
+        // Assuming there is only one document for a unique email
+        String userId = userQuery.docs.first.id;
+
+        // Step 5: Use the obtained userId to query the user's document and get the name
+        DocumentSnapshot userDocument = await FirebaseFirestore.instance
+            .collection('users')
+            .doc(userId)
+            .get();
+
+        if (userDocument.exists) {
+          String userName = userDocument['name'];
+          print('User Name: $userName');
+          name = userName;
+        } else {
+          print('User document not found.');
+        }
+      } else {
+        print('User not found.');
+      }
+    } else {
+      print('User not authenticated.');
+    }
+  }
+
+  late String name = "";
+
+  @override
   Widget build(BuildContext context) {
+    name = name;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -131,18 +180,18 @@ class _DashboardState extends State<Dashboard> {
               Container(
                 height: 10,
               ),
-              const ColoredBox(
+              ColoredBox(
                 color: Colors.white10,
                 child: Padding(
-                  padding: EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Center(
                         child: Text(
-                          "Hi, Ambrose! \n Welcome to your Dashboard",
+                          "Hi, $name \n Welcome to your Dashboard",
                           textAlign: TextAlign.center,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 17,
                             fontWeight: FontWeight.bold,
                           ),
