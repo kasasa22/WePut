@@ -1,6 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:animate_do/animate_do.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -8,6 +9,7 @@ import '../components/dashboard/TaskCard.dart';
 import '../components/dashboard/pie_chart.dart';
 import '../components/drawer.dart';
 import '../models/task.dart';
+import '../services/task.dart';
 
 class Timeline extends StatefulWidget {
   const Timeline({Key? key}) : super(key: key);
@@ -20,6 +22,54 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
   List<Task> assignedTasks = [];
   List<Task> inProgressTasks = [];
   List<Task> completedTasks = [];
+
+  @override
+  void initState() {
+    // Call listenToTasks method to fetch tasks from Firebase
+    listenToTasks();
+    super.initState();
+  }
+
+  void listenToTasks() {
+    TaskService taskService = TaskService();
+    taskService.getTasks().listen((QuerySnapshot snapshot) {
+      // Clear existing lists
+      assignedTasks.clear();
+      inProgressTasks.clear();
+      completedTasks.clear();
+
+      for (var document in snapshot.docs) {
+        Task task = Task(
+          taskId: document.id,
+          title: document['title'],
+          description: document['description'],
+          dueDate: document['dueDate'],
+          status: document['status'],
+          assignedUserId: document['assignedUserId'],
+          priority: document['priority'],
+          category: document['category'],
+          progress: document['progress'],
+          comments: document['comments'],
+          startTime: document['startTime'],
+          endTime: document['endTime'],
+          evaluation: document['evaluation'],
+        );
+
+        // Categorize tasks based on their status
+        if (task.status == 'Assigned') {
+          assignedTasks.add(task);
+        } else if (task.status == 'In-Progress') {
+          inProgressTasks.add(task);
+        } else if (task.status == 'Completed') {
+          completedTasks.add(task);
+        }
+      }
+
+      // Use setState to trigger a rebuild with the updated lists
+      setState(() {});
+    });
+  }
+
   final List<dynamic> _furnitures = [
     {
       'title': 'Track your \nTasks',
