@@ -85,6 +85,9 @@ class _TeamsState extends State<Teams> {
     listAssignmentsNew.clear();
     Set<String> uniqueTeamNames = <String>{};
 
+    print(
+        "----------------------------------------------------------------------------------nehre");
+
     for (var assignmentNew in listAssignments) {
       String teamName = assignmentNew.teamName;
       if (!uniqueTeamNames.contains(teamName)) {
