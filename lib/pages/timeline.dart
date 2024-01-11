@@ -159,157 +159,102 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                       ],
                     ),
                   ),
-                  Row(
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                              color: Colors.grey,
-                              width: 0.2), // Add border color
-                        ),
-                        child: const Flexible(
-                          child: Column(
-                            children: [
-                              Text(
-                                "Scheduled",
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    color: Colors.grey,
+                                    width: 0.2), // Add border color
+                              ),
+                              child: const Flexible(
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      "Scheduled",
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    CustomCard(
+                                        icon: Icons.star,
+                                        cardColor: Colors.blue,
+                                        title: 'Star Card',
+                                        taskDate: '2024-01-08',
+                                        isCompleted: true,
+                                        cardHeight: 50,
+                                        cardWidth: 300.0),
+                                  ],
                                 ),
                               ),
-                              CustomCard(
-                                  icon: Icons.star,
-                                  cardColor: Colors.blue,
-                                  title: 'Star Card',
-                                  taskDate: '2024-01-08',
-                                  isCompleted: true,
-                                  cardHeight: 50,
-                                  cardWidth: 300.0),
-                              CustomCard(
-                                  icon: Icons.star,
-                                  cardColor: Colors.blue,
-                                  title: 'Star Card',
-                                  taskDate: '2024-01-08',
-                                  isCompleted: true,
-                                  cardHeight: 50,
-                                  cardWidth: 300.0),
-                              CustomCard(
-                                  icon: Icons.star,
-                                  cardColor: Colors.blue,
-                                  title: 'Star Card',
-                                  taskDate: '2024-01-08',
-                                  isCompleted: true,
-                                  cardHeight: 50,
-                                  cardWidth: 300.0),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                              color: Colors.grey,
-                              width: 0.2), // Add border color
-                        ),
-                        child: const Flexible(
-                          child: Column(
-                            children: [
-                              Text(
-                                "In Progress",
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    color: Colors.grey,
+                                    width: 0.2), // Add border color
+                              ),
+                              child: const Flexible(
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      "In Progress",
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    CustomCard(
+                                        icon: Icons.star,
+                                        cardColor: Colors.blue,
+                                        title: 'Star Card',
+                                        taskDate: '2024-01-08',
+                                        isCompleted: true,
+                                        cardHeight: 50,
+                                        cardWidth: 300.0),
+                                  ],
                                 ),
                               ),
-                              CustomCard(
-                                  icon: Icons.star,
-                                  cardColor: Colors.blue,
-                                  title: 'Star Card',
-                                  taskDate: '2024-01-08',
-                                  isCompleted: true,
-                                  cardHeight: 50,
-                                  cardWidth: 300.0),
-                              CustomCard(
-                                  icon: Icons.star,
-                                  cardColor: Colors.blue,
-                                  title: 'Star Card',
-                                  taskDate: '2024-01-08',
-                                  isCompleted: true,
-                                  cardHeight: 50,
-                                  cardWidth: 300.0),
-                              CustomCard(
-                                  icon: Icons.star,
-                                  cardColor: Colors.blue,
-                                  title: 'Star Card',
-                                  taskDate: '2024-01-08',
-                                  isCompleted: true,
-                                  cardHeight: 50,
-                                  cardWidth: 300.0),
-                              CustomCard(
-                                  icon: Icons.star,
-                                  cardColor: Colors.blue,
-                                  title: 'Star Card',
-                                  taskDate: '2024-01-08',
-                                  isCompleted: true,
-                                  cardHeight: 50,
-                                  cardWidth: 300.0),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                              color: Colors.grey,
-                              width: 0.2), // Add border color
-                        ),
-                        child: const Flexible(
-                          child: Column(
-                            children: [
-                              Text(
-                                "Completed",
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    color: Colors.grey,
+                                    width: 0.2), // Add border color
+                              ),
+                              child: const Flexible(
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      "Completed",
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    CustomCard(
+                                        icon: Icons.star,
+                                        cardColor: Colors.blue,
+                                        title: 'Star Card',
+                                        taskDate: '2024-01-08',
+                                        isCompleted: true,
+                                        cardHeight: 50,
+                                        cardWidth: 300.0),
+                                  ],
                                 ),
                               ),
-                              CustomCard(
-                                  icon: Icons.star,
-                                  cardColor: Colors.blue,
-                                  title: 'Star Card',
-                                  taskDate: '2024-01-08',
-                                  isCompleted: true,
-                                  cardHeight: 50,
-                                  cardWidth: 300.0),
-                              CustomCard(
-                                  icon: Icons.star,
-                                  cardColor: Colors.blue,
-                                  title: 'Star Card',
-                                  taskDate: '2024-01-08',
-                                  isCompleted: true,
-                                  cardHeight: 50,
-                                  cardWidth: 300.0),
-                              CustomCard(
-                                  icon: Icons.star,
-                                  cardColor: Colors.blue,
-                                  title: 'Star Card',
-                                  taskDate: '2024-01-08',
-                                  isCompleted: true,
-                                  cardHeight: 50,
-                                  cardWidth: 300.0),
-                              CustomCard(
-                                  icon: Icons.star,
-                                  cardColor: Colors.blue,
-                                  title: 'Star Card',
-                                  taskDate: '2024-01-08',
-                                  isCompleted: true,
-                                  cardHeight: 50,
-                                  cardWidth: 300.0),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
