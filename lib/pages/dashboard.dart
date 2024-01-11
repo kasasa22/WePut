@@ -165,7 +165,10 @@ class _DashboardState extends State<Dashboard> {
                     ),
                   ),
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      //navigate to the inbox page
+                      Navigator.pushNamed(context, '/inbox');
+                    },
                     child: const Icon(
                       Icons.notifications,
                       color: Colors.white,
@@ -185,7 +188,10 @@ class _DashboardState extends State<Dashboard> {
                     ),
                   ),
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      //navigate to the settings page
+                      Navigator.pushNamed(context, '/settings');
+                    },
                     child: const Icon(
                       Icons.settings,
                       color: Colors.white,
