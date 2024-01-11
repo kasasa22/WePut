@@ -74,6 +74,7 @@ class _MyDrawerState extends State<MyDrawer> {
 
   @override
   void initState() {
+    fetchNotificationsForCurrentUser();
     super.initState();
   }
 
