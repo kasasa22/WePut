@@ -259,8 +259,7 @@ class _DashboardState extends State<Dashboard> {
     if (user != null) {
       String userEmail = user.email!;
 
-      print(
-          'User Email-------------------------------------------------------------------------------------------------------------------------------------------------: $userEmail');
+      print('User Email-----------------------: $userEmail');
 
       // Step 2: Query the users collection to get the user's document ID
       QuerySnapshot userQuery = await FirebaseFirestore.instance
