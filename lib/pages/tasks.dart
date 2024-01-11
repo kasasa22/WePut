@@ -91,13 +91,6 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
             .collection('users')
             .doc(userId)
             .get();
-
-        if (userDocument.exists) {
-          String userName = userDocument['name'];
-          print('User Name: $userName');
-        } else {
-          print('User document not found.');
-        }
       } else {
         print('User not found.');
       }
