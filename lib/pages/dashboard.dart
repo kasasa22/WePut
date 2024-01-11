@@ -420,24 +420,24 @@ class _DashboardState extends State<Dashboard> {
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0),
               child: Row(
                 children: [
                   // Cards with an icon at the top and a word at the bottom.
                   statCard(
                     title: 'Assigned tasks',
                     icon: Icons.task_alt_sharp,
-                    subtitle: '240',
+                    subtitle: assignedTasks.length.toString(),
                   ),
                   statCard(
                     title: 'Scheduled tasks',
                     icon: Icons.task_alt_outlined,
-                    subtitle: '450',
+                    subtitle: inProgressTasks.length.toString(),
                   ),
                   statCard(
                     title: 'Completed tasks',
                     icon: Icons.add_task_sharp,
-                    subtitle: '160',
+                    subtitle: completedTasks.length.toString(),
                   ),
                   statCard(
                     title: 'Assignment Teams',
