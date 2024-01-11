@@ -32,7 +32,7 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
     _tabController = TabController(length: 3, vsync: this);
     _scrollController = ScrollController();
     // Call listenToTasks method to fetch tasks from Firebase
-    listenToTasks();
+    // listenToTasks();
     super.initState();
   }
 
@@ -48,21 +48,21 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
   List<Task> completedTasks = [];
 
   List<Task> items = [
-    // Task(
-    //   taskId: '1',
-    //   title: 'Complete Flutter App',
-    //   description: 'Finish building the Flutter app for the project.',
-    //   dueDate: Timestamp.now(),
-    //   status: 'In-Progress',
-    //   assignedUserId: 'user1',
-    //   priority: 'High',
-    //   category: 'Development',
-    //   progress: 50,
-    //   comments: ['Comment 1', 'Comment 2'],
-    //   startTime: Timestamp.now(),
-    //   endTime: Timestamp.now(),
-    //   evaluation: 4.5,
-    // ),
+    Task(
+      taskId: '1',
+      title: 'Complete Flutter App',
+      description: 'Finish building the Flutter app for the project.',
+      dueDate: Timestamp.now(),
+      status: 'In-Progress',
+      assignedUserId: 'user1',
+      priority: 'High',
+      category: 'Development',
+      progress: 50,
+      comments: ['Comment 1', 'Comment 2'],
+      startTime: Timestamp.now(),
+      endTime: Timestamp.now(),
+      evaluation: 4.5,
+    ),
 
     // Add more tasks as needed
   ];
@@ -200,23 +200,27 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
                   },
                 ),
                 // Display the in-progress tasks
-                ListView.builder(
-                  itemCount: inProgressTasks.length,
-                  itemBuilder: (context, index) {
-                    return TaskTile(
-                      index: index,
-                      task: inProgressTasks[index],
-                      leadingColor: Colors.yellow,
-                      onAddPeople: () {
-                        AddPeopleSheet(context, items.cast<User>(),
-                            inProgressTasks[index].taskId);
-                      },
-                      onComplete: () {
-                        updateTaskStatusOld(
-                            inProgressTasks[index].taskId, 'Completed');
-                      },
-                    );
-                  },
+                if (inProgressTasks.isNotEmpty)
+                  ListView.builder(
+                    itemCount: inProgressTasks.length,
+                    itemBuilder: (context, index) {
+                      return TaskTile(
+                        index: index,
+                        task: inProgressTasks[index],
+                        leadingColor: Colors.yellow,
+                        onAddPeople: () {
+                          AddPeopleSheet(context, items.cast<User>(),
+                              inProgressTasks[index].taskId);
+                        },
+                        onComplete: () {
+                          updateTaskStatusOld(
+                              inProgressTasks[index].taskId, 'Completed');
+                        },
+                      );
+                    },
+                  ),
+                Center(
+                  child: Text("No items"),
                 ),
                 // Display the completed tasks
                 ListView.builder(
