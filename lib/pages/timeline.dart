@@ -212,7 +212,7 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                                   ),
                                   CustomCard(
                                       icon: Icons.task_sharp,
-                                      cardColor: Colors.blue,
+                                      cardColor: Colors.yellowAccent,
                                       title: 'Star Card',
                                       taskDate: '2024-01-08',
                                       isCompleted: true,
@@ -238,8 +238,8 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                                     ),
                                   ),
                                   CustomCard(
-                                      icon: Icons.star,
-                                      cardColor: Colors.blue,
+                                      icon: Icons.mark_chat_read_sharp,
+                                      cardColor: Colors.greenAccent,
                                       title: 'Star Card',
                                       taskDate: '2024-01-08',
                                       isCompleted: true,
