@@ -84,14 +84,19 @@ class _TeamsState extends State<Teams> {
   void filterList() {
     listAssignmentsNew.clear();
 
-    for (var assignmentNew in listAssignments) {
-      Assignment assignment = Assignment(
-          teamName: assignmentNew.teamName,
-          userId: "USERS",
-          taskId: "TASKS",
-          assignmentTime: assignmentNew.assignmentTime,
-          completionStatus: assignmentNew.completionStatus);
-      listAssignmentsNew.add(assignment);
+    for (var assignmentNew in listAssignmentsNew) {
+      String teamName = assignmentNew.teamName;
+      if (!assignmentNew.teamName.contains(teamName)) {
+        Assignment assignment = Assignment(
+            teamName: assignmentNew.teamName,
+            userId: "USERS",
+            taskId: "TASKS",
+            assignmentTime: assignmentNew.assignmentTime,
+            completionStatus: assignmentNew.completionStatus);
+        listAssignmentsNew.add(assignment);
+      }
+
+      print(assignmentNew);
     }
   }
 
