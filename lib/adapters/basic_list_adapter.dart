@@ -93,7 +93,7 @@ class _ItemTileState extends State<ItemTile> {
             print('Notification tapped: ${widget.object.message}');
 
             // Update the viewed status
-            await notificationService.updateNotification(
+            notificationService.updateNotification(
               widget.object.notificationId,
               widget.object,
             );
