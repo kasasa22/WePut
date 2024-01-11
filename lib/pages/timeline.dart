@@ -227,9 +227,9 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                                     color: Colors.grey,
                                     width: 0.2), // Add border color
                               ),
-                              child: const Column(
+                              child: Column(
                                 children: [
-                                  Text(
+                                  const Text(
                                     "Scheduled",
                                     style: TextStyle(
                                       fontSize: 10,
@@ -237,14 +237,20 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                                       color: Colors.black,
                                     ),
                                   ),
-                                  CustomCard(
-                                      icon: Icons.task_sharp,
-                                      cardColor: Colors.lightGreenAccent,
-                                      title: 'Star Card',
-                                      taskDate: '2024-01-08',
-                                      isCompleted: false,
-                                      cardHeight: 50,
-                                      cardWidth: 300.0),
+                                  ListView.builder(
+                                      itemCount: assignedTasks.length,
+                                      itemBuilder: (context, index) {
+                                        return CustomCard(
+                                            icon: Icons.task_sharp,
+                                            cardColor: Colors.lightGreenAccent,
+                                            title: assignedTasks[index].title,
+                                            taskDate: assignedTasks[index]
+                                                .dueDate
+                                                .toString(),
+                                            isCompleted: false,
+                                            cardHeight: 50,
+                                            cardWidth: 300.0);
+                                      })
                                 ],
                               ),
                             ),
