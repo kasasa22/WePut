@@ -48,8 +48,12 @@ class _TeamsState extends State<Teams> {
         print(document["assignmentTime"]);
         print(
             "----------------------------------------------------------------------------------------");
-        Assignment assignment =
-            Assignment.fromJson(document.data() as Map<String, dynamic>);
+        Assignment assignment = Assignment(
+            teamName: document["teamName"],
+            userId: document["userId"],
+            taskId: document["taskId"],
+            assignmentTime: document["assignmentTime"],
+            completionStatus: document["completionStatus"]);
         listAssignments.add(assignment);
       }
 
