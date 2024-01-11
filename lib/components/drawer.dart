@@ -2,7 +2,6 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:maker/services/user.dart';
 
 import '../firebase_user.dart';
 
@@ -31,30 +30,10 @@ class _MyDrawerState extends State<MyDrawer> {
 
   String email = "";
 
-  late String? userName = "";
-
   @override
   void initState() {
     super.initState();
     // Call the asynchronous method to fetch user data
-    fetchUserData();
-  }
-
-  Future<void> fetchUserData() async {
-    email = getCurrentUserId();
-    UserService _userService = UserService();
-
-    // Example usage to get a user's name by email
-    String userEmail = email;
-    userName = (await _userService.getUserNameByEmail(userEmail));
-
-    // User name found
-    print("User Name: $userName");
-
-    // Ensure the widget is rebuilt after fetching data
-    if (mounted) {
-      setState(() {});
-    }
   }
 
   @override
@@ -62,7 +41,7 @@ class _MyDrawerState extends State<MyDrawer> {
     email = getCurrentUserId();
 
     // User name found
-    print("User Name: $userName");
+    print("User Name: ---------");
     return Drawer(
       child: SingleChildScrollView(
         child: Column(
@@ -96,9 +75,9 @@ class _MyDrawerState extends State<MyDrawer> {
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            userName ?? 'Welcome User',
-                            style: const TextStyle(
+                          const Text(
+                            'Welcome User',
+                            style: TextStyle(
                               color: Colors.grey,
                               fontWeight: FontWeight.bold,
                             ),
