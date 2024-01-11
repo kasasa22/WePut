@@ -107,6 +107,7 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
     }
   }
 
+// Updated getTasksForAssignments function
   Future<List<Task>> getTasksForAssignments(List<String> assignmentIds) async {
     List<Task> tasks = [];
 
@@ -145,6 +146,7 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
     }
   }
 
+// Updated fetchDataForUser function
   void fetchDataForUser(String userEmail) async {
     String? userId = await getUserIdByEmail(userEmail);
 
@@ -162,33 +164,36 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
     }
   }
 
+// New fetchCurrentUser function
   void fetchCurrentUser() async {
-    // Step 1: Get the current user's email
-    User? user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
-      String userEmail = user.email!;
+    try {
+      // Step 1: Get the current user's email
+      User? user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        String userEmail = user.email!;
+        print(
+            'User Email-------------------------------------------------------------------------------------------------------------------------------------------------: $userEmail');
 
-      print(
-          'User Email-------------------------------------------------------------------------------------------------------------------------------------------------: $userEmail');
+        // Step 2: Query the users collection to get the user's document ID
+        QuerySnapshot userQuery = await FirebaseFirestore.instance
+            .collection('users')
+            .where('email', isEqualTo: userEmail)
+            .get();
 
-      // Step 2: Query the users collection to get the user's document ID
-      QuerySnapshot userQuery = await FirebaseFirestore.instance
-          .collection('users')
-          .where('email', isEqualTo: userEmail)
-          .get();
-
-      if (userQuery.docs.isNotEmpty) {
-        // Assuming there is only one document for a unique email
-        String userId = userQuery.docs.first.id;
+        if (userQuery.docs.isNotEmpty) {
+          // Assuming there is only one document for a unique email
+          String userId = userQuery.docs.first.id;
+          print('User ID: $userId');
+        } else {
+          print('User not found.');
+        }
       } else {
-        print('User not found.');
+        print('User not authenticated.');
       }
-    } else {
-      print('User not authenticated.');
+    } catch (error) {
+      print("Error fetching current user: $error");
     }
   }
-
-  String key = "";
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
