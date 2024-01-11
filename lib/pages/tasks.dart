@@ -33,7 +33,7 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
     _scrollController = ScrollController();
     // Call listenToTasks method to fetch tasks from Firebase
     listenToTasks();
-    fetchDataForUser(key);
+
     super.initState();
   }
 
@@ -180,7 +180,6 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
       if (userQuery.docs.isNotEmpty) {
         // Assuming there is only one document for a unique email
         String userId = userQuery.docs.first.id;
-        key = userId;
       } else {
         print('User not found.');
       }
