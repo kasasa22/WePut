@@ -22,17 +22,7 @@ class _ExpandListsState extends State<ExpandLists> {
     print("onItemClick $indext");
   }
 
-  List<Message> items = [
-    Message(
-      notificationId: '1',
-      userId: 'user1',
-      message: 'Hello from user1!',
-      timestamp: Timestamp.now(),
-      viewed: false,
-    ),
-
-    // Add more messages as needed
-  ];
+  List<Message> items = [];
 
   @override
   void initState() {
@@ -65,23 +55,24 @@ class _ExpandListsState extends State<ExpandLists> {
             .where('userId', isEqualTo: userId)
             .get();
 
+        List<Message> notifications = notificationQuery.docs
+            .map((doc) => Message(
+                  notificationId: doc.id,
+                  userId: doc['userId'],
+                  message: doc['message'],
+                  timestamp: doc['timestamp'],
+                  viewed: doc['viewed'],
+                ))
+            .toList();
+
+        // Add the fetched notifications to the existing list
+        setState(() {
+          items.addAll(notifications);
+        });
+
         // Step 4: Process the notifications data
         for (var doc in notificationQuery.docs) {
           print('Notification Message: ${doc['message']}');
-          List<Message> notifications = notificationQuery.docs
-              .map((doc) => Message(
-                    notificationId: doc.id,
-                    userId: doc['userId'],
-                    message: doc['message'],
-                    timestamp: doc['timestamp'],
-                    viewed: doc['viewed'],
-                  ))
-              .toList();
-
-          // Add the fetched notifications to the existing list
-          setState(() {
-            items.addAll(notifications);
-          });
         }
       } else {
         print('User not found.');
