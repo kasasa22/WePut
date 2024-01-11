@@ -72,7 +72,7 @@ class _MyDrawerState extends State<MyDrawer> {
   }
 
   String email = "";
-  late String name;
+  late String name = "";
 
   @override
   void initState() {
