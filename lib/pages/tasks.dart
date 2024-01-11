@@ -180,56 +180,69 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
             child: TabBarView(
               controller: _tabController,
               children: [
-                // Display the assigned tasks
                 ListView.builder(
                   itemCount: assignedTasks.length,
                   itemBuilder: (context, index) {
-                    return TaskTile(
-                      index: index,
-                      task: assignedTasks[index],
-                      leadingColor: Colors.red,
-                      onAddPeople: () {
-                        AddPeopleSheet(context, items.cast<User>(),
-                            assignedTasks[index].taskId);
-                      },
-                      onComplete: () {
-                        updateTaskStatusNew(
-                            assignedTasks[index].taskId, 'In-Progress');
-                      },
+                    if (assignedTasks.isNotEmpty) {
+                      return TaskTile(
+                        index: index,
+                        task: assignedTasks[index],
+                        leadingColor: Colors.red,
+                        onAddPeople: () {
+                          AddPeopleSheet(context, items.cast<User>(),
+                              assignedTasks[index].taskId);
+                        },
+                        onComplete: () {
+                          updateTaskStatusNew(
+                              assignedTasks[index].taskId, 'In-Progress');
+                        },
+                      );
+                    }
+                    return Center(
+                      child: Text("No Tasks"),
                     );
                   },
                 ),
-                // Display the in-progress tasks
                 ListView.builder(
                   itemCount: inProgressTasks.length,
                   itemBuilder: (context, index) {
-                    return TaskTile(
-                      index: index,
-                      task: inProgressTasks[index],
-                      leadingColor: Colors.yellow,
-                      onAddPeople: () {
-                        AddPeopleSheet(context, items.cast<User>(),
-                            inProgressTasks[index].taskId);
-                      },
-                      onComplete: () {
-                        updateTaskStatusOld(
-                            inProgressTasks[index].taskId, 'Completed');
-                      },
+                    if (inProgressTasks.isNotEmpty) {
+                      return TaskTile(
+                        index: index,
+                        task: inProgressTasks[index],
+                        leadingColor: Colors.yellow,
+                        onAddPeople: () {
+                          AddPeopleSheet(context, items.cast<User>(),
+                              inProgressTasks[index].taskId);
+                        },
+                        onComplete: () {
+                          updateTaskStatusOld(
+                              inProgressTasks[index].taskId, 'Completed');
+                        },
+                      );
+                    }
+                    return Center(
+                      child: Text("No Tasks"),
                     );
                   },
                 ),
-                // Display the completed tasks
                 ListView.builder(
                   itemCount: completedTasks.length,
                   itemBuilder: (context, index) {
-                    return TaskTile(
-                      index: index,
-                      task: completedTasks[index],
-                      leadingColor: Colors.green,
-                      onComplete: () {
-                        // Handle completion action
-                      },
-                    );
+                    if (completedTasks.isNotEmpty) {
+                      return TaskTile(
+                        index: index,
+                        task: completedTasks[index],
+                        leadingColor: Colors.green,
+                        onComplete: () {
+                          // Handle completion action
+                        },
+                      );
+                    } else {
+                      return Center(
+                        child: Text("No Tasks"),
+                      );
+                    }
                   },
                 ),
               ],
@@ -418,51 +431,54 @@ class _AddPeopleSheetState extends State<_AddPeopleSheet> {
                           backgroundColor: Colors.blue[100],
                         ),
                         onPressed: () {
-                          // Use the selectedUserIds list and messageController.text as needed
-                          print('Selected Document IDs: $selectedUserIds');
-                          print('Message to People: ${messageController.text}');
-                          print(
-                              'team------------------------------------------------------------- to People: ${teamController.text}');
-                          print('Task ID: ${widget.taskId}');
+                          if (selectedPeople.isNotEmpty &&
+                              teamController.text.isNotEmpty &&
+                              messageController.text.isNotEmpty) {
+                            // Use the selectedUserIds list and messageController.text as needed
+                            print('Selected Document IDs: $selectedUserIds');
+                            print(
+                                'Message to People: ${messageController.text}');
+                            print(
+                                'team------------------------------------------------------------- to People: ${teamController.text}');
+                            print('Task ID: ${widget.taskId}');
 
-                          // Create a new Notification object
-                          Message newNotification = Message(
-                            notificationId:
-                                'notificationID', // Assign a unique ID, or leave it empty if Firestore generates one
-                            userId:
-                                '', // Leave it empty for now, it will be updated in the loop
-                            message: messageController.text,
-                            timestamp: Timestamp.now(),
-                            viewed: false, // Set the initial viewed status
-                          );
+                            // Create a new Notification object
+                            Message newNotification = Message(
+                              notificationId:
+                                  'notificationID', // Assign a unique ID, or leave it empty if Firestore generates one
+                              userId: '',
+                              message: messageController.text,
+                              timestamp: Timestamp.now(),
+                              viewed: false, // Set the initial viewed status
+                            );
 
-                          // Create a new Assignment object
-                          Assignment newAssignment = Assignment(
-                            teamName: teamController.text,
+                            // Create a new Assignment object
+                            Assignment newAssignment = Assignment(
+                              teamName: teamController.text,
 
-                            userId:
-                                '', // Leave it empty for now, it will be updated in the loop
-                            taskId: widget.taskId,
-                            assignmentTime: Timestamp.now(),
-                            completionStatus:
-                                'Pending', // You can set this to an initial status
-                          );
+                              userId: '',
+                              taskId: widget.taskId,
+                              assignmentTime: Timestamp.now(),
+                              completionStatus:
+                                  'Pending', // You can set this to an initial status
+                            );
 
-                          // Loop through selectedUserIds and add notifications and assignments for each user
-                          for (String userId in selectedUserIds) {
-                            newNotification.userId = userId;
-                            newAssignment.userId = userId;
+                            // Loop through selectedUserIds and add notifications and assignments for each user
+                            for (String userId in selectedUserIds) {
+                              newNotification.userId = userId;
+                              newAssignment.userId = userId;
 
-                            // Use the AssignmentService to add the assignment to Firebase
-                            AssignmentService assignmentService =
-                                AssignmentService();
-                            assignmentService.addAssignment(newAssignment);
+                              // Use the AssignmentService to add the assignment to Firebase
+                              AssignmentService assignmentService =
+                                  AssignmentService();
+                              assignmentService.addAssignment(newAssignment);
 
-                            // Use the NotificationService to add the notification to Firebase
-                            NotificationService notificationService =
-                                NotificationService();
-                            notificationService
-                                .addNotification(newNotification);
+                              // Use the NotificationService to add the notification to Firebase
+                              NotificationService notificationService =
+                                  NotificationService();
+                              notificationService
+                                  .addNotification(newNotification);
+                            }
                           }
 
                           // Close the bottom sheet
@@ -645,7 +661,10 @@ class _TaskSheetState extends State<TaskSheet> {
                     ),
                   ),
                   onPressed: () {
-                    _addTask();
+                    if (descriptionController.text.isNotEmpty &&
+                        titleController.text.isNotEmpty) {
+                      _addTask();
+                    }
                   },
                 ),
               ),

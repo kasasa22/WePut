@@ -1,12 +1,15 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:animate_do/animate_do.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../components/dashboard/TaskCard.dart';
 import '../components/dashboard/pie_chart.dart';
 import '../components/drawer.dart';
+import '../models/task.dart';
+import '../services/task.dart';
 
 class Timeline extends StatefulWidget {
   const Timeline({Key? key}) : super(key: key);
@@ -16,6 +19,57 @@ class Timeline extends StatefulWidget {
 }
 
 class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
+  List<Task> assignedTasks = [];
+  List<Task> inProgressTasks = [];
+  List<Task> completedTasks = [];
+
+  @override
+  void initState() {
+    // Call listenToTasks method to fetch tasks from Firebase
+    listenToTasks();
+    super.initState();
+  }
+
+  void listenToTasks() {
+    TaskService taskService = TaskService();
+    taskService.getTasks().listen((QuerySnapshot snapshot) {
+      // Clear existing lists
+      assignedTasks.clear();
+      inProgressTasks.clear();
+      completedTasks.clear();
+
+      for (var document in snapshot.docs) {
+        Task task = Task(
+          taskId: document.id,
+          title: document['title'],
+          description: document['description'],
+          dueDate: document['dueDate'],
+          status: document['status'],
+          assignedUserId: document['assignedUserId'],
+          priority: document['priority'],
+          category: document['category'],
+          progress: document['progress'],
+          comments: document['comments'],
+          startTime: document['startTime'],
+          endTime: document['endTime'],
+          evaluation: document['evaluation'],
+        );
+
+        // Categorize tasks based on their status
+        if (task.status == 'Assigned') {
+          assignedTasks.add(task);
+        } else if (task.status == 'In-Progress') {
+          inProgressTasks.add(task);
+        } else if (task.status == 'Completed') {
+          completedTasks.add(task);
+        }
+      }
+
+      // Use setState to trigger a rebuild with the updated lists
+      setState(() {});
+    });
+  }
+
   final List<dynamic> _furnitures = [
     {
       'title': 'Track your \nTasks',
@@ -159,169 +213,136 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                       ],
                     ),
                   ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: Colors.grey,
-                                    width: 0.2), // Add border color
-                              ),
-                              child: const Flexible(
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      "Scheduled",
-                                      style: TextStyle(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                    CustomCard(
-                                        icon: Icons.star,
-                                        cardColor: Colors.blue,
-                                        title: 'Star Card',
-                                        taskDate: '2024-01-08',
-                                        isCompleted: true,
-                                        cardHeight: 50,
-                                        cardWidth: 300.0),
-                                    CustomCard(
-                                        icon: Icons.star,
-                                        cardColor: Colors.blue,
-                                        title: 'Star Card',
-                                        taskDate: '2024-01-08',
-                                        isCompleted: true,
-                                        cardHeight: 50,
-                                        cardWidth: 300.0),
-                                    CustomCard(
-                                        icon: Icons.star,
-                                        cardColor: Colors.blue,
-                                        title: 'Star Card',
-                                        taskDate: '2024-01-08',
-                                        isCompleted: true,
-                                        cardHeight: 50,
-                                        cardWidth: 300.0),
-                                  ],
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.8,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                                color: Colors.grey,
+                                width: 0.2), // Add border color
+                          ),
+                          child: Column(
+                            children: [
+                              const Text(
+                                "Scheduled",
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
                                 ),
                               ),
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: Colors.grey,
-                                    width: 0.2), // Add border color
-                              ),
-                              child: const Flexible(
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      "In Progress",
-                                      style: TextStyle(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                    CustomCard(
-                                        icon: Icons.star,
-                                        cardColor: Colors.blue,
-                                        title: 'Star Card',
-                                        taskDate: '2024-01-08',
-                                        isCompleted: true,
-                                        cardHeight: 50,
-                                        cardWidth: 300.0),
-                                    CustomCard(
-                                        icon: Icons.star,
-                                        cardColor: Colors.blue,
-                                        title: 'Star Card',
-                                        taskDate: '2024-01-08',
-                                        isCompleted: true,
-                                        cardHeight: 50,
-                                        cardWidth: 300.0),
-                                    CustomCard(
-                                        icon: Icons.star,
-                                        cardColor: Colors.blue,
-                                        title: 'Star Card',
-                                        taskDate: '2024-01-08',
-                                        isCompleted: true,
-                                        cardHeight: 50,
-                                        cardWidth: 300.0),
-                                    CustomCard(
-                                        icon: Icons.star,
-                                        cardColor: Colors.blue,
-                                        title: 'Star Card',
-                                        taskDate: '2024-01-08',
-                                        isCompleted: true,
-                                        cardHeight: 50,
-                                        cardWidth: 300.0),
-                                  ],
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.6,
+                                child: ListView.builder(
+                                  itemCount: assignedTasks.length,
+                                  itemBuilder: (context, index) {
+                                    if (assignedTasks.isNotEmpty) {
+                                      return CustomCard(
+                                          icon: Icons.task_sharp,
+                                          cardColor: Colors.lightGreenAccent,
+                                          title: assignedTasks[index].title,
+                                          taskDate:
+                                              assignedTasks[index].dueDate,
+                                          isCompleted: false,
+                                          cardHeight: 50,
+                                          cardWidth: 300.0);
+                                    }
+                                    return null;
+                                  },
                                 ),
                               ),
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: Colors.grey,
-                                    width: 0.2), // Add border color
-                              ),
-                              child: const Flexible(
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      "Completed",
-                                      style: TextStyle(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                    CustomCard(
-                                        icon: Icons.star,
-                                        cardColor: Colors.blue,
-                                        title: 'Star Card',
-                                        taskDate: '2024-01-08',
-                                        isCompleted: true,
-                                        cardHeight: 50,
-                                        cardWidth: 300.0),
-                                    CustomCard(
-                                        icon: Icons.star,
-                                        cardColor: Colors.blue,
-                                        title: 'Star Card',
-                                        taskDate: '2024-01-08',
-                                        isCompleted: true,
-                                        cardHeight: 50,
-                                        cardWidth: 300.0),
-                                    CustomCard(
-                                        icon: Icons.star,
-                                        cardColor: Colors.blue,
-                                        title: 'Star Card',
-                                        taskDate: '2024-01-08',
-                                        isCompleted: true,
-                                        cardHeight: 50,
-                                        cardWidth: 300.0),
-                                    CustomCard(
-                                        icon: Icons.star,
-                                        cardColor: Colors.blue,
-                                        title: 'Star Card',
-                                        taskDate: '2024-01-08',
-                                        isCompleted: true,
-                                        cardHeight: 50,
-                                        cardWidth: 300.0),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.8,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                                color: Colors.grey,
+                                width: 0.2), // Add border color
+                          ),
+                          child: Column(
+                            children: [
+                              const Text(
+                                "In Progress",
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.6,
+                                child: ListView.builder(
+                                  itemCount: inProgressTasks.length,
+                                  itemBuilder: (context, index) {
+                                    if (inProgressTasks.isNotEmpty) {
+                                      return CustomCard(
+                                          icon: Icons.add_task_outlined,
+                                          cardColor: Colors.lightGreen,
+                                          title: inProgressTasks[index].title,
+                                          taskDate:
+                                              inProgressTasks[index].dueDate,
+                                          isCompleted: false,
+                                          cardHeight: 50,
+                                          cardWidth: 300.0);
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.8,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                                color: Colors.grey,
+                                width: 0.2), // Add border color
+                          ),
+                          child: Column(
+                            children: [
+                              const Text(
+                                "Completed",
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.6,
+                                child: ListView.builder(
+                                  itemCount: completedTasks.length,
+                                  itemBuilder: (context, index) {
+                                    if (completedTasks.isNotEmpty) {
+                                      return CustomCard(
+                                          icon: Icons.mark_chat_read_sharp,
+                                          cardColor: Colors.green,
+                                          title: completedTasks[index].title,
+                                          taskDate:
+                                              completedTasks[index].dueDate,
+                                          isCompleted: true,
+                                          cardHeight: 50,
+                                          cardWidth: 300.0);
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   )
                 ],
               ),

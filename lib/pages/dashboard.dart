@@ -1,9 +1,17 @@
+// ignore_for_file: avoid_print
+
 import 'package:animate_do/animate_do.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:maker/components/dashboard/stat_card.dart';
 import 'package:maker/components/drawer.dart';
+
+import '../models/assignment.dart';
+import '../models/task.dart';
+import '../services/assignment.dart';
+import '../services/task.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -15,52 +23,52 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   // crate list of spots for the graph by monthly, yearly of Google Stocks
   final List<FlSpot> _daylySpots = [
-    const FlSpot(0, 20.0),
-    const FlSpot(1, 20.0),
-    const FlSpot(2, 30.0),
-    const FlSpot(3, 10.0),
-    const FlSpot(4, 40.0),
-    const FlSpot(5, 60.0),
-    const FlSpot(6, 40.0),
-    const FlSpot(7, 80.0),
-    const FlSpot(8, 60.0),
-    const FlSpot(9, 70.0),
-    const FlSpot(10, 50.0),
-    const FlSpot(11, 150.0),
-    const FlSpot(12, 70.0),
-    const FlSpot(13, 80.0),
-    const FlSpot(14, 60.0),
-    const FlSpot(15, 70.0),
-    const FlSpot(16, 60.0),
-    const FlSpot(17, 80.0),
-    const FlSpot(18, 110.0),
-    const FlSpot(19, 130.0),
-    const FlSpot(20, 100.0),
-    const FlSpot(21, 130.0),
-    const FlSpot(22, 160.0),
-    const FlSpot(23, 190.0),
-    const FlSpot(24, 150.0),
-    const FlSpot(25, 170.0),
-    const FlSpot(26, 180.0),
-    const FlSpot(27, 140.0),
-    const FlSpot(28, 150.0),
-    const FlSpot(29, 150.0),
-    const FlSpot(30, 130.0)
+    const FlSpot(0, 2.0),
+    const FlSpot(1, 2.0),
+    const FlSpot(2, 3.0),
+    const FlSpot(3, 1.0),
+    const FlSpot(4, 4.0),
+    const FlSpot(5, 6.0),
+    const FlSpot(6, 4.0),
+    const FlSpot(7, 8.0),
+    const FlSpot(8, 6.0),
+    const FlSpot(9, 7.0),
+    const FlSpot(10, 5.0),
+    const FlSpot(11, 15.0),
+    const FlSpot(12, 7.0),
+    const FlSpot(13, 8.0),
+    const FlSpot(14, 6.0),
+    const FlSpot(15, 7.0),
+    const FlSpot(16, 6.0),
+    const FlSpot(17, 8.0),
+    const FlSpot(18, 11.0),
+    const FlSpot(19, 13.0),
+    const FlSpot(20, 10.0),
+    const FlSpot(21, 13.0),
+    const FlSpot(22, 16.0),
+    const FlSpot(23, 19.0),
+    const FlSpot(24, 15.0),
+    const FlSpot(25, 17.0),
+    const FlSpot(26, 18.0),
+    const FlSpot(27, 14.0),
+    const FlSpot(28, 15.0),
+    const FlSpot(29, 15.0),
+    const FlSpot(30, 13.0)
   ];
 
   final List<FlSpot> _monthlySpots = [
-    const FlSpot(0, 110.0),
-    const FlSpot(1, 110.0),
-    const FlSpot(2, 130.0),
-    const FlSpot(3, 100.0),
-    const FlSpot(4, 130.0),
-    const FlSpot(5, 160.0),
-    const FlSpot(6, 190.0),
-    const FlSpot(7, 150.0),
-    const FlSpot(8, 170.0),
-    const FlSpot(9, 180.0),
-    const FlSpot(10, 140.0),
-    const FlSpot(11, 150.0),
+    const FlSpot(0, 55.0),
+    const FlSpot(1, 55.0),
+    const FlSpot(2, 66.0),
+    const FlSpot(3, 50.0),
+    const FlSpot(4, 65.0),
+    const FlSpot(5, 80.0),
+    const FlSpot(6, 90.0),
+    const FlSpot(7, 75.0),
+    const FlSpot(8, 78.0),
+    const FlSpot(9, 80.0),
+    const FlSpot(10, 70.0),
+    const FlSpot(11, 76.0),
   ];
 
   int _currentIndex = 0;
@@ -88,8 +96,213 @@ class _DashboardState extends State<Dashboard> {
     }
   ];
 
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  late List<Assignment> listAssignments = [
+    // Assignment(
+    //   teamName: "Teams",
+    //   userId: "Teams",
+    //   taskId: "TeamsTask",
+    //   completionStatus: "Completed",
+    //   assignmentTime: Timestamp.now(),
+    // )
+  ];
+
+  late List<Assignment> listAssignmentsNew = [
+    // Assignment(
+    //   teamName: "Teams",
+    //   userId: "Teams",
+    //   taskId: "TeamsTask",
+    //   completionStatus: "Completed",
+    //   assignmentTime: Timestamp.now(),
+    // )
+  ];
+  AssignmentService taskService = AssignmentService();
+  void fetchTeams() {
+    taskService.getAssignments().listen((QuerySnapshot snapshot) {
+      // Clear existing lists
+      // listAssignments.clear();
+
+      for (var document in snapshot.docs) {
+        // print(
+        //     "-------------------------------------------------------------------------------------------------------");
+        // print(document["teamName"]);
+        // print(document["userId"]);
+        // print(document["taskId"]);
+        // print(document["completionStatus"]);
+        // print(document["assignmentTime"]);
+        // print(
+        //     "----------------------------------------------------------------------------------------");
+        Assignment assignment = Assignment(
+            teamName: document["teamName"],
+            userId: document["userId"],
+            taskId: document["taskId"],
+            assignmentTime: document["assignmentTime"],
+            completionStatus: document["completionStatus"]);
+        listAssignments.add(assignment);
+      }
+
+      // Print the assignments for debugging
+      for (var assignment in listAssignments) {
+        print('Assignment: $assignment');
+      }
+
+      // Print the length of the list
+      print('Number of assignments: ${listAssignments.length}');
+
+      filterList();
+
+      // Use setState to trigger a rebuild with the updated lists
+      setState(() {});
+    });
+  }
+
+  void filterList() {
+    listAssignmentsNew.clear();
+    Set<String> uniqueTeamNames = <String>{};
+
+    print(listAssignments);
+
+    for (var assignmentNew in listAssignments) {
+      print(
+          "----------------------------------------------------------------------------------nehre");
+      String teamName = assignmentNew.teamName;
+      if (!uniqueTeamNames.contains(teamName)) {
+        uniqueTeamNames.add(teamName);
+
+        String completionStatus = listAssignments
+            .firstWhere(
+              (a) => a.teamName == teamName,
+            )
+            .completionStatus;
+
+        Assignment assignment = Assignment(
+          teamName: teamName,
+          userId: "USERS",
+          taskId: "TASKS",
+          assignmentTime: assignmentNew.assignmentTime,
+          completionStatus: completionStatus,
+        );
+
+        listAssignmentsNew.add(assignment);
+
+        // print(
+        //     "----------------------------------------------------------------------------------");
+
+        // print(listAssignmentsNew);
+      }
+    }
+
+    // Now listAssignmentsNew contains unique team names with combined completion statuses
+    setState(() {});
+  }
+
+  List<Task> assignedTasks = [];
+  List<Task> inProgressTasks = [];
+  List<Task> completedTasks = [];
+
+  void listenToTasks() {
+    TaskService taskService = TaskService();
+    taskService.getTasks().listen((QuerySnapshot snapshot) {
+      // Clear existing lists
+      assignedTasks.clear();
+      inProgressTasks.clear();
+      completedTasks.clear();
+
+      for (var document in snapshot.docs) {
+        Task task = Task(
+          taskId: document.id,
+          title: document['title'],
+          description: document['description'],
+          dueDate: document['dueDate'],
+          status: document['status'],
+          assignedUserId: document['assignedUserId'],
+          priority: document['priority'],
+          category: document['category'],
+          progress: document['progress'],
+          comments: document['comments'],
+          startTime: document['startTime'],
+          endTime: document['endTime'],
+          evaluation: document['evaluation'],
+        );
+
+        // Categorize tasks based on their status
+        if (task.status == 'Assigned') {
+          assignedTasks.add(task);
+        } else if (task.status == 'In-Progress') {
+          inProgressTasks.add(task);
+        } else if (task.status == 'Completed') {
+          completedTasks.add(task);
+        }
+      }
+
+      // print(completedTasks);
+      // Use setState to trigger a rebuild with the updated lists
+      setState(() {});
+    });
+  }
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  @override
+  void initState() {
+    fetchNotificationsForCurrentUser();
+    fetchTeams();
+    listenToTasks();
+    super.initState();
+  }
+
+  void fetchNotificationsForCurrentUser() async {
+    // Step 1: Get the current user's email
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      String userEmail = user.email!;
+
+      print(
+          'User Email-------------------------------------------------------------------------------------------------------------------------------------------------: $userEmail');
+
+      // Step 2: Query the users collection to get the user's document ID
+      QuerySnapshot userQuery = await FirebaseFirestore.instance
+          .collection('users')
+          .where('email', isEqualTo: userEmail)
+          .get();
+
+      if (userQuery.docs.isNotEmpty) {
+        // Assuming there is only one document for a unique email
+        String userId = userQuery.docs.first.id;
+
+        // Step 5: Use the obtained userId to query the user's document and get the name
+        DocumentSnapshot userDocument = await FirebaseFirestore.instance
+            .collection('users')
+            .doc(userId)
+            .get();
+
+        if (userDocument.exists) {
+          String userName = userDocument['name'];
+          print('User Name: $userName');
+          setState(() {
+            name = userName;
+          });
+          name = userName;
+        } else {
+          print('User document not found.');
+        }
+      } else {
+        print('User not found.');
+      }
+    } else {
+      print('User not authenticated.');
+    }
+  }
+
+  String name = "";
+
   @override
   Widget build(BuildContext context) {
+    print("User Name: ---------");
+    name = name;
+    print(name);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -131,18 +344,18 @@ class _DashboardState extends State<Dashboard> {
               Container(
                 height: 10,
               ),
-              const ColoredBox(
+              ColoredBox(
                 color: Colors.white10,
                 child: Padding(
-                  padding: EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Center(
                         child: Text(
-                          "Hi, Ambrose! \n Welcome to your Dashboard",
+                          "Hi, $name \n Welcome to your Dashboard",
                           textAlign: TextAlign.center,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 17,
                             fontWeight: FontWeight.bold,
                           ),
@@ -164,9 +377,15 @@ class _DashboardState extends State<Dashboard> {
                       bottomLeft: Radius.circular(16.0),
                     ),
                   ),
-                  child: const Icon(
-                    Icons.notifications,
-                    color: Colors.white,
+                  child: InkWell(
+                    onTap: () {
+                      //navigate to the inbox page
+                      Navigator.pushNamed(context, '/inbox');
+                    },
+                    child: const Icon(
+                      Icons.notifications,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
@@ -181,9 +400,15 @@ class _DashboardState extends State<Dashboard> {
                       topRight: Radius.circular(16.0),
                     ),
                   ),
-                  child: const Icon(
-                    Icons.settings,
-                    color: Colors.white,
+                  child: InkWell(
+                    onTap: () {
+                      //navigate to the settings page
+                      Navigator.pushNamed(context, '/settings');
+                    },
+                    child: const Icon(
+                      Icons.settings,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
@@ -193,32 +418,32 @@ class _DashboardState extends State<Dashboard> {
           Container(
             height: 10,
           ),
-          const SingleChildScrollView(
+          SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0),
               child: Row(
                 children: [
                   // Cards with an icon at the top and a word at the bottom.
                   statCard(
                     title: 'Assigned tasks',
                     icon: Icons.task_alt_sharp,
-                    subtitle: '240',
-                  ),
-                  statCard(
-                    title: 'Completed tasks',
-                    icon: Icons.task_alt_outlined,
-                    subtitle: '450',
+                    subtitle: assignedTasks.length.toString(),
                   ),
                   statCard(
                     title: 'Scheduled tasks',
+                    icon: Icons.task_alt_outlined,
+                    subtitle: inProgressTasks.length.toString(),
+                  ),
+                  statCard(
+                    title: 'Completed tasks',
                     icon: Icons.add_task_sharp,
-                    subtitle: '160',
+                    subtitle: completedTasks.length.toString(),
                   ),
                   statCard(
                     title: 'Assignment Teams',
                     icon: Icons.people,
-                    subtitle: '490',
+                    subtitle: listAssignmentsNew.length.toString(),
                   ),
                 ],
               ),
@@ -256,7 +481,7 @@ class _DashboardState extends State<Dashboard> {
                               duration: const Duration(milliseconds: 1000),
                               from: 30,
                               child: const Text(
-                                '+1.5%',
+                                '+20.5%',
                                 style: TextStyle(
                                   fontSize: 18,
                                   color: Colors.green,
@@ -551,7 +776,7 @@ class _DashboardState extends State<Dashboard> {
         show: false,
       ),
       gridData: FlGridData(
-          show: false, horizontalInterval: 1.6, drawVerticalLine: false),
+          show: true, horizontalInterval: 0.4, drawVerticalLine: true),
       titlesData: FlTitlesData(
         show: false,
         rightTitles: SideTitles(showTitles: false),
@@ -606,11 +831,11 @@ class _DashboardState extends State<Dashboard> {
           getTitles: (value) {
             switch (value.toInt()) {
               case 1:
-                return '10k';
+                return '1k';
               case 3:
-                return '30k';
+                return '3k';
               case 5:
-                return '50k';
+                return '5k';
             }
             return '';
           },
@@ -659,7 +884,7 @@ class _DashboardState extends State<Dashboard> {
           getTooltipItems: (touchedSpots) {
             return touchedSpots.map((touchedSpot) {
               return LineTooltipItem(
-                '\$${touchedSpot.y.round()}.00',
+                ' ${touchedSpot.y.round()}',
                 const TextStyle(color: Colors.white, fontSize: 12.0),
               );
             }).toList();

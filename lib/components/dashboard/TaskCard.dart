@@ -1,6 +1,8 @@
 // ignore_for_file: file_names
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class CustomCard extends StatelessWidget {
   final IconData icon;
@@ -8,10 +10,10 @@ class CustomCard extends StatelessWidget {
   final String title;
   final double cardHeight;
   final double cardWidth;
-  final String taskDate;
+  final Timestamp taskDate;
   final bool isCompleted;
 
-  const CustomCard({
+  CustomCard({
     Key? key,
     required this.icon,
     required this.cardColor,
@@ -22,8 +24,12 @@ class CustomCard extends StatelessWidget {
     this.isCompleted = false,
   }) : super(key: key);
 
+  final DateFormat _dateFormat = DateFormat('dd MMMM yyyy HH:mm');
+
   @override
   Widget build(BuildContext context) {
+    Timestamp timestamp = taskDate;
+    DateTime dateTime = timestamp.toDate();
     return Card(
       elevation: 3,
       shape: RoundedRectangleBorder(
@@ -52,6 +58,8 @@ class CustomCard extends StatelessWidget {
                     children: [
                       Text(
                         title,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
@@ -59,11 +67,9 @@ class CustomCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'Task Date: $taskDate',
-                        style: const TextStyle(
-                          fontSize: 10,
-                          color: Colors.white,
-                        ),
+                        _dateFormat.format(dateTime),
+                        style:
+                            const TextStyle(color: Colors.black, fontSize: 10),
                       ),
                     ],
                   ),

@@ -37,10 +37,11 @@ class _TaskTileState extends State<TaskTile> {
         child: CircleAvatar(
           backgroundColor: widget.leadingColor ?? Colors.blue,
           child: Text(
+            // "TASK",
             widget.task.title.substring(0, 1).toUpperCase(),
             style: TextStyle(
               color: Colors.grey[880],
-              fontSize: 20,
+              fontSize: 14,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -48,17 +49,16 @@ class _TaskTileState extends State<TaskTile> {
       ),
       title: Text(
         widget.task.title,
+        maxLines: 1,
         style: TextStyle(
           color: Colors.grey[880],
+          fontWeight: FontWeight.bold,
+          wordSpacing: 2,
         ),
       ),
       subtitle: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Divider(
-            color: Colors.grey[880],
-            thickness: 1,
-          ),
           Text(
             widget.task.description,
             maxLines: 2,
@@ -69,7 +69,7 @@ class _TaskTileState extends State<TaskTile> {
           Text(
             'Priority: ${widget.task.priority}',
             style: TextStyle(
-              color: Colors.grey[880],
+              color: widget.leadingColor ?? Colors.blue,
               fontSize: 10,
             ),
           ),
@@ -77,8 +77,12 @@ class _TaskTileState extends State<TaskTile> {
             'Due Date: ${getFormattedDate(widget.task.dueDate.toDate())}',
             style: TextStyle(
               color: Colors.grey[880],
-              fontSize: 10,
+              fontSize: 8,
             ),
+          ),
+          Divider(
+            color: Colors.grey[880],
+            thickness: 1,
           ),
           // Add more details as needed
         ],
@@ -91,7 +95,7 @@ class _TaskTileState extends State<TaskTile> {
                   icon: const Icon(
                     Icons.check,
                     color: Colors.green,
-                    size: 30,
+                    size: 22,
                   ),
                   onPressed: () {
                     if (widget.onComplete != null) {
@@ -103,7 +107,7 @@ class _TaskTileState extends State<TaskTile> {
                   icon: const Icon(
                     Icons.person_add,
                     color: Colors.blue,
-                    size: 30,
+                    size: 22,
                   ),
                   onPressed: () {
                     if (widget.onAddPeople != null) {

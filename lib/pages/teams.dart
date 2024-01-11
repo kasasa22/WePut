@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, prefer_interpolation_to_compose_strings
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -17,23 +17,54 @@ class Teams extends StatefulWidget {
 
 class _TeamsState extends State<Teams> {
   AssignmentService taskService = AssignmentService();
-  late List<Assignment> listAssignments = [];
+  late List<Assignment> listAssignments = [
+    // Assignment(
+    //   teamName: "Teams",
+    //   userId: "Teams",
+    //   taskId: "TeamsTask",
+    //   completionStatus: "Completed",
+    //   assignmentTime: Timestamp.now(),
+    // )
+  ];
+
+  late List<Assignment> listAssignmentsNew = [
+    // Assignment(
+    //   teamName: "Teams",
+    //   userId: "Teams",
+    //   taskId: "TeamsTask",
+    //   completionStatus: "Completed",
+    //   assignmentTime: Timestamp.now(),
+    // )
+  ];
 
   @override
   void initState() {
-    // Fetch teams from Firestore
     fetchTeams();
+
     super.initState();
   }
 
-  Future<void> fetchTeams() async {
+  void fetchTeams() {
     taskService.getAssignments().listen((QuerySnapshot snapshot) {
       // Clear existing lists
-      listAssignments.clear();
+      // listAssignments.clear();
 
       for (var document in snapshot.docs) {
-        Assignment assignment =
-            Assignment.fromJson(document.data() as Map<String, dynamic>);
+        // print(
+        //     "-------------------------------------------------------------------------------------------------------");
+        // print(document["teamName"]);
+        // print(document["userId"]);
+        // print(document["taskId"]);
+        // print(document["completionStatus"]);
+        // print(document["assignmentTime"]);
+        // print(
+        //     "----------------------------------------------------------------------------------------");
+        Assignment assignment = Assignment(
+            teamName: document["teamName"],
+            userId: document["userId"],
+            taskId: document["taskId"],
+            assignmentTime: document["assignmentTime"],
+            completionStatus: document["completionStatus"]);
         listAssignments.add(assignment);
       }
 
@@ -45,17 +76,59 @@ class _TeamsState extends State<Teams> {
       // Print the length of the list
       print('Number of assignments: ${listAssignments.length}');
 
+      filterList();
+
       // Use setState to trigger a rebuild with the updated lists
       setState(() {});
     });
   }
 
+  void filterList() {
+    listAssignmentsNew.clear();
+    Set<String> uniqueTeamNames = <String>{};
+
+    print(listAssignments);
+
+    for (var assignmentNew in listAssignments) {
+      print(
+          "----------------------------------------------------------------------------------nehre");
+      String teamName = assignmentNew.teamName;
+      if (!uniqueTeamNames.contains(teamName)) {
+        uniqueTeamNames.add(teamName);
+
+        String completionStatus = listAssignments
+            .firstWhere(
+              (a) => a.teamName == teamName,
+            )
+            .completionStatus;
+
+        Assignment assignment = Assignment(
+          teamName: teamName,
+          userId: "USERS",
+          taskId: "TASKS",
+          assignmentTime: assignmentNew.assignmentTime,
+          completionStatus: completionStatus,
+        );
+
+        listAssignmentsNew.add(assignment);
+
+        print(
+            "----------------------------------------------------------------------------------");
+
+        print(listAssignmentsNew);
+      }
+    }
+
+    // Now listAssignmentsNew contains unique team names with combined completion statuses
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
-    if (listAssignments.isEmpty) {
+    if (listAssignmentsNew.isEmpty) {
       return const Center(child: CircularProgressIndicator());
     }
-    List<Widget> gridAssignments = getGridViewAssignments(listAssignments);
+    List<Widget> gridAssignments = getGridViewAssignments(listAssignmentsNew);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -201,16 +274,44 @@ class _TeamsState extends State<Teams> {
                   Container(
                     padding: const EdgeInsets.all(10),
                     child: Icon(
-                      Icons.task,
-                      size: 40,
+                      Icons.people_alt_sharp,
+                      size: 20,
                       color: Colors.blue[600],
                     ),
                   ),
                   Text(
-                    s.completionStatus,
+                    s.teamName,
                     textAlign: TextAlign.center,
-                    style: const TextStyle(color: Colors.black),
-                  )
+                    style: const TextStyle(
+                        color: Colors.black, fontWeight: FontWeight.bold),
+                  ),
+                  Container(
+                    height: 15,
+                  ),
+                  Row(
+                    children: [
+                      const Text(
+                        "Task Status:",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontStyle: FontStyle.italic,
+                            fontSize: 10,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Container(
+                        width: 10,
+                      ),
+                      Text(
+                        s.completionStatus,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.red[100],
+                        ),
+                      )
+                    ],
+                  ),
                 ]),
           ),
         ));
