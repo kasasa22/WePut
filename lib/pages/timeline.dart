@@ -219,7 +219,7 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Container(
-                          width: MediaQuery.of(context).size.width * 0.95,
+                          width: MediaQuery.of(context).size.width * 1.1,
                           decoration: BoxDecoration(
                             border: Border.all(
                                 color: Colors.grey,
@@ -260,7 +260,7 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                           ),
                         ),
                         Container(
-                          width: MediaQuery.of(context).size.width * 0.95,
+                          width: MediaQuery.of(context).size.width * 1.1,
                           decoration: BoxDecoration(
                             border: Border.all(
                                 color: Colors.grey,
@@ -283,8 +283,8 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                                   itemBuilder: (context, index) {
                                     if (inProgressTasks.isNotEmpty) {
                                       return CustomCard(
-                                          icon: Icons.task_sharp,
-                                          cardColor: Colors.lightGreenAccent,
+                                          icon: Icons.add_task_outlined,
+                                          cardColor: Colors.lightGreen,
                                           title: inProgressTasks[index].title,
                                           taskDate: inProgressTasks[index]
                                               .dueDate
@@ -301,7 +301,7 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                           ),
                         ),
                         Container(
-                          width: MediaQuery.of(context).size.width * 0.95,
+                          width: MediaQuery.of(context).size.width * 1.1,
                           decoration: BoxDecoration(
                             border: Border.all(
                                 color: Colors.grey,
@@ -324,13 +324,13 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                                   itemBuilder: (context, index) {
                                     if (completedTasks.isNotEmpty) {
                                       return CustomCard(
-                                          icon: Icons.task_sharp,
-                                          cardColor: Colors.lightGreenAccent,
+                                          icon: Icons.mark_chat_read_sharp,
+                                          cardColor: Colors.green,
                                           title: completedTasks[index].title,
                                           taskDate: completedTasks[index]
                                               .dueDate
                                               .toString(),
-                                          isCompleted: false,
+                                          isCompleted: true,
                                           cardHeight: 50,
                                           cardWidth: 300.0);
                                     }
