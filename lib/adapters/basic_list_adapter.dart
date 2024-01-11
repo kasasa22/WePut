@@ -76,7 +76,7 @@ class _ItemTileState extends State<ItemTile> {
           children: [
             Container(
               padding: const EdgeInsets.all(15),
-              child: Text(widget.object.message,
+              child: Text(widget.object.timestamp.toString(),
                   textAlign: TextAlign.justify,
                   style: TextStyle(
                     color: Colors.grey[880],
