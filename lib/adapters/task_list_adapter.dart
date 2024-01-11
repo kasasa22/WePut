@@ -41,7 +41,7 @@ class _TaskTileState extends State<TaskTile> {
             //widget.task.title.substring(0, 1).toUpperCase(),
             style: TextStyle(
               color: Colors.grey[880],
-              fontSize: 20,
+              fontSize: 14,
               fontWeight: FontWeight.bold,
             ),
           ),
