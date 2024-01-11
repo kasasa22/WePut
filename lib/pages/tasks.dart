@@ -116,23 +116,25 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
 
     List<String> taskIds = [];
     try {
-      print(
-          "=============================================ghfkhgdsfgjh=======================================================");
       for (String assignmentId in assignmentIds) {
-        QuerySnapshot taskQuery = (await FirebaseFirestore.instance
-            .collection('assignments') // Corrected collection name
-            .doc(assignmentId) // Use doc() to reference a specific document
+        DocumentSnapshot assignmentDoc = await FirebaseFirestore.instance
+            .collection('assignments')
+            .doc(assignmentId)
+            .get();
 
-            .get()) as QuerySnapshot<Object?>;
+        // Check if the assignment document exists
+        if (assignmentDoc.exists) {
+          // Retrieve the task ID from the assignment document
+          String taskId = assignmentDoc
+              .get('taskId'); // Replace 'taskId' with the actual field name
 
-        taskIds.addAll(
-          taskQuery.docs.map(
-            (doc) => doc.id,
-          ),
-        );
-        print(
-            "=============================================ghfkhgdsfgjh=======================================================");
-        print(taskIds);
+          // Add the task ID to the list
+          taskIds.add(taskId);
+
+          print(
+              "============+++++++++++++++++++gasrcjkghdfbmjhjg+++++++++++++++++++++++++");
+          print(taskIds);
+        }
       }
     } catch (e) {
       print(e);
