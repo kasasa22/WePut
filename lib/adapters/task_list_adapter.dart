@@ -51,6 +51,7 @@ class _TaskTileState extends State<TaskTile> {
         widget.task.title,
         style: TextStyle(
           color: Colors.grey[880],
+          fontWeight: FontWeight.bold,
         ),
       ),
       subtitle: Column(
@@ -74,7 +75,7 @@ class _TaskTileState extends State<TaskTile> {
             'Due Date: ${getFormattedDate(widget.task.dueDate.toDate())}',
             style: TextStyle(
               color: Colors.grey[880],
-              fontSize: 10,
+              fontSize: 8,
             ),
           ),
           Divider(
