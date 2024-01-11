@@ -91,10 +91,6 @@ class _ItemTileState extends State<ItemTile> {
             print('Notification tapped: ${widget.object.message}');
           },
         ),
-        Divider(
-          color: Colors.grey[300],
-          thickness: 1,
-        ),
       ],
     );
   }
