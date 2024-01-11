@@ -9,7 +9,9 @@ import 'package:maker/components/dashboard/stat_card.dart';
 import 'package:maker/components/drawer.dart';
 
 import '../models/assignment.dart';
+import '../models/task.dart';
 import '../services/assignment.dart';
+import '../services/task.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -195,6 +197,50 @@ class _DashboardState extends State<Dashboard> {
     setState(() {});
   }
 
+  List<Task> assignedTasks = [];
+  List<Task> inProgressTasks = [];
+  List<Task> completedTasks = [];
+
+  void listenToTasks() {
+    TaskService taskService = TaskService();
+    taskService.getTasks().listen((QuerySnapshot snapshot) {
+      // Clear existing lists
+      assignedTasks.clear();
+      inProgressTasks.clear();
+      completedTasks.clear();
+
+      for (var document in snapshot.docs) {
+        Task task = Task(
+          taskId: document.id,
+          title: document['title'],
+          description: document['description'],
+          dueDate: document['dueDate'],
+          status: document['status'],
+          assignedUserId: document['assignedUserId'],
+          priority: document['priority'],
+          category: document['category'],
+          progress: document['progress'],
+          comments: document['comments'],
+          startTime: document['startTime'],
+          endTime: document['endTime'],
+          evaluation: document['evaluation'],
+        );
+
+        // Categorize tasks based on their status
+        if (task.status == 'Assigned') {
+          assignedTasks.add(task);
+        } else if (task.status == 'In-Progress') {
+          inProgressTasks.add(task);
+        } else if (task.status == 'Completed') {
+          completedTasks.add(task);
+        }
+      }
+
+      // Use setState to trigger a rebuild with the updated lists
+      setState(() {});
+    });
+  }
+
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -202,6 +248,7 @@ class _DashboardState extends State<Dashboard> {
   void initState() {
     fetchNotificationsForCurrentUser();
     fetchTeams();
+    listenToTasks();
     super.initState();
   }
 
