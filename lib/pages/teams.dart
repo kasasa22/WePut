@@ -40,6 +40,9 @@ class _TeamsState extends State<Teams> {
 
       for (var document in snapshot.docs) {
         print(
+            "-------------------------------------------------------------------------------------------------------");
+        print(document);
+        print(
             "----------------------------------------------------------------------------------------");
         Assignment assignment = Assignment(
           teamName: "Teams",
