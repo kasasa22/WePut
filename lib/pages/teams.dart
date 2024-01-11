@@ -83,10 +83,11 @@ class _TeamsState extends State<Teams> {
 
   void filterList() {
     listAssignmentsNew.clear();
+    int i = 0;
 
     for (var assignmentNew in listAssignmentsNew) {
       String teamName = assignmentNew.teamName;
-      if (!listAssignmentsNew.contains(teamName)) {
+      if (!(listAssignmentsNew[i].teamName == teamName)) {
         Assignment assignment = Assignment(
             teamName: assignmentNew.teamName,
             userId: "USERS",
@@ -95,7 +96,10 @@ class _TeamsState extends State<Teams> {
             completionStatus: assignmentNew.completionStatus);
         listAssignmentsNew.add(assignment);
       }
-
+      i++;
+      if (listAssignments.length == i) {
+        break;
+      }
       print(assignmentNew);
     }
   }
