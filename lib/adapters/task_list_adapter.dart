@@ -56,10 +56,6 @@ class _TaskTileState extends State<TaskTile> {
       subtitle: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Divider(
-            color: Colors.grey[880],
-            thickness: 1,
-          ),
           Text(
             widget.task.description,
             maxLines: 2,
@@ -81,6 +77,10 @@ class _TaskTileState extends State<TaskTile> {
               fontSize: 10,
             ),
           ),
+          Divider(
+            color: Colors.grey[880],
+            thickness: 1,
+          ),
           // Add more details as needed
         ],
       ),
@@ -92,7 +92,7 @@ class _TaskTileState extends State<TaskTile> {
                   icon: const Icon(
                     Icons.check,
                     color: Colors.green,
-                    size: 30,
+                    size: 22,
                   ),
                   onPressed: () {
                     if (widget.onComplete != null) {
@@ -104,7 +104,7 @@ class _TaskTileState extends State<TaskTile> {
                   icon: const Icon(
                     Icons.person_add,
                     color: Colors.blue,
-                    size: 30,
+                    size: 22,
                   ),
                   onPressed: () {
                     if (widget.onAddPeople != null) {
