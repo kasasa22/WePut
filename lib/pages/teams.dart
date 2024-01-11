@@ -17,7 +17,15 @@ class Teams extends StatefulWidget {
 
 class _TeamsState extends State<Teams> {
   AssignmentService taskService = AssignmentService();
-  late List<Assignment> listAssignments = [];
+  late List<Assignment> listAssignments = [
+    Assignment(
+      teamName: "Teams",
+      userId: "Teams",
+      taskId: "TeamsTask",
+      completionStatus: "Completed",
+      assignmentTime: Timestamp.now(),
+    )
+  ];
 
   @override
   void initState() {
@@ -29,7 +37,7 @@ class _TeamsState extends State<Teams> {
   Future<void> fetchTeams() async {
     taskService.getAssignments().listen((QuerySnapshot snapshot) {
       // Clear existing lists
-      listAssignments.clear();
+      // listAssignments.clear();
 
       for (var document in snapshot.docs) {
         Assignment assignment =
