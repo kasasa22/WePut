@@ -8,6 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:maker/components/dashboard/stat_card.dart';
 import 'package:maker/components/drawer.dart';
 
+import '../models/assignment.dart';
+import '../services/assignment.dart';
+
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
 
@@ -91,9 +94,114 @@ class _DashboardState extends State<Dashboard> {
     }
   ];
 
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  late List<Assignment> listAssignments = [
+    // Assignment(
+    //   teamName: "Teams",
+    //   userId: "Teams",
+    //   taskId: "TeamsTask",
+    //   completionStatus: "Completed",
+    //   assignmentTime: Timestamp.now(),
+    // )
+  ];
+
+  late List<Assignment> listAssignmentsNew = [
+    // Assignment(
+    //   teamName: "Teams",
+    //   userId: "Teams",
+    //   taskId: "TeamsTask",
+    //   completionStatus: "Completed",
+    //   assignmentTime: Timestamp.now(),
+    // )
+  ];
+  AssignmentService taskService = AssignmentService();
+  void fetchTeams() {
+    taskService.getAssignments().listen((QuerySnapshot snapshot) {
+      // Clear existing lists
+      // listAssignments.clear();
+
+      for (var document in snapshot.docs) {
+        // print(
+        //     "-------------------------------------------------------------------------------------------------------");
+        // print(document["teamName"]);
+        // print(document["userId"]);
+        // print(document["taskId"]);
+        // print(document["completionStatus"]);
+        // print(document["assignmentTime"]);
+        // print(
+        //     "----------------------------------------------------------------------------------------");
+        Assignment assignment = Assignment(
+            teamName: document["teamName"],
+            userId: document["userId"],
+            taskId: document["taskId"],
+            assignmentTime: document["assignmentTime"],
+            completionStatus: document["completionStatus"]);
+        listAssignments.add(assignment);
+      }
+
+      // Print the assignments for debugging
+      for (var assignment in listAssignments) {
+        print('Assignment: $assignment');
+      }
+
+      // Print the length of the list
+      print('Number of assignments: ${listAssignments.length}');
+
+      filterList();
+
+      // Use setState to trigger a rebuild with the updated lists
+      setState(() {});
+    });
+  }
+
+  void filterList() {
+    listAssignmentsNew.clear();
+    Set<String> uniqueTeamNames = <String>{};
+
+    print(listAssignments);
+
+    for (var assignmentNew in listAssignments) {
+      print(
+          "----------------------------------------------------------------------------------nehre");
+      String teamName = assignmentNew.teamName;
+      if (!uniqueTeamNames.contains(teamName)) {
+        uniqueTeamNames.add(teamName);
+
+        String completionStatus = listAssignments
+            .firstWhere(
+              (a) => a.teamName == teamName,
+            )
+            .completionStatus;
+
+        Assignment assignment = Assignment(
+          teamName: teamName,
+          userId: "USERS",
+          taskId: "TASKS",
+          assignmentTime: assignmentNew.assignmentTime,
+          completionStatus: completionStatus,
+        );
+
+        listAssignmentsNew.add(assignment);
+
+        print(
+            "----------------------------------------------------------------------------------");
+
+        print(listAssignmentsNew);
+      }
+    }
+
+    // Now listAssignmentsNew contains unique team names with combined completion statuses
+    setState(() {});
+  }
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
   @override
   void initState() {
     fetchNotificationsForCurrentUser();
+    fetchTeams();
     super.initState();
   }
 
