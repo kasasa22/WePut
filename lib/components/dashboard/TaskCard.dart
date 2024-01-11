@@ -68,7 +68,8 @@ class CustomCard extends StatelessWidget {
                       ),
                       Text(
                         _dateFormat.format(dateTime),
-                        style: const TextStyle(color: Colors.black),
+                        style:
+                            const TextStyle(color: Colors.black, fontSize: 10),
                       ),
                     ],
                   ),
