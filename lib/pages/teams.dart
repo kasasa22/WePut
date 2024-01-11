@@ -83,24 +83,28 @@ class _TeamsState extends State<Teams> {
 
   void filterList() {
     listAssignmentsNew.clear();
-    int i = 0;
+    Set<String> uniqueTeamNames = Set<String>();
 
-    for (var assignmentNew in listAssignmentsNew) {
+    for (var assignmentNew in listAssignments) {
       String teamName = assignmentNew.teamName;
-      if (!(listAssignmentsNew[i].teamName == teamName)) {
+      if (!uniqueTeamNames.contains(teamName)) {
+        uniqueTeamNames.add(teamName);
+
+        String completionStatus = listAssignments
+            .where((a) => a.teamName == teamName)
+            .map((a) => a.completionStatus)
+            .join(', ');
+
         Assignment assignment = Assignment(
-            teamName: assignmentNew.teamName,
-            userId: "USERS",
-            taskId: "TASKS",
-            assignmentTime: assignmentNew.assignmentTime,
-            completionStatus: assignmentNew.completionStatus);
+          teamName: teamName,
+          userId: "USERS",
+          taskId: "TASKS",
+          assignmentTime: assignmentNew.assignmentTime,
+          completionStatus: completionStatus,
+        );
+
         listAssignmentsNew.add(assignment);
       }
-      i++;
-      if (listAssignments.length == i) {
-        break;
-      }
-      print(assignmentNew);
     }
 
     // Now listAssignmentsNew contains unique team names with combined completion statuses
