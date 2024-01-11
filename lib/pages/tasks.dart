@@ -90,6 +90,74 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
     }
   }
 
+  Future<List<String>> getAssignmentIdsForUser(String userId) async {
+    try {
+      QuerySnapshot assignmentQuery = await FirebaseFirestore.instance
+          .collection('assignments')
+          .where('userId', isEqualTo: userId)
+          .get();
+
+      List<String> assignmentIds =
+          assignmentQuery.docs.map((doc) => doc.id).toList();
+      return assignmentIds;
+    } catch (error) {
+      print("Error getting assignment IDs: $error");
+      return [];
+    }
+  }
+
+  Future<List<Task>> getTasksForAssignments(List<String> assignmentIds) async {
+    List<Task> tasks = [];
+
+    try {
+      for (String assignmentId in assignmentIds) {
+        QuerySnapshot taskQuery = await FirebaseFirestore.instance
+            .collection('tasks')
+            .where('assignmentId', isEqualTo: assignmentId)
+            .get();
+
+        tasks.addAll(
+          taskQuery.docs.map(
+            (doc) => Task(
+                assignedUserId: doc.id,
+                category: doc[""],
+                comments: [""],
+                description: doc[""],
+                dueDate: doc[""],
+                endTime: doc[""],
+                evaluation: doc[""],
+                priority: doc[""],
+                progress: doc[""],
+                startTime: doc[""],
+                status: doc[""],
+                taskId: doc[""],
+                title: doc[""]),
+          ),
+        );
+      }
+
+      return tasks;
+    } catch (error) {
+      print("Error getting tasks: $error");
+      return [];
+    }
+  }
+
+  void fetchDataForUser(String userEmail) async {
+    String? userId = await getUserIdByEmail(userEmail);
+
+    if (userId != null) {
+      List<String> assignmentIds = await getAssignmentIdsForUser(userId);
+      List<Task> tasks = await getTasksForAssignments(assignmentIds);
+
+      // Now 'tasks' contains all tasks associated with the user
+      // Do whatever you need with the tasks
+      print("Tasks: $tasks");
+    } else {
+      print("User not found.");
+    }
+  }
+
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
   void listenToTasks() {
