@@ -181,28 +181,28 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
               controller: _tabController,
               children: [
                 // Display the assigned tasks
-                // if (assignedTasks.isNotEmpty)
-                ListView.builder(
-                  itemCount: assignedTasks.length,
-                  itemBuilder: (context, index) {
-                    return TaskTile(
-                      index: index,
-                      task: assignedTasks[index],
-                      leadingColor: Colors.red,
-                      onAddPeople: () {
-                        AddPeopleSheet(context, items.cast<User>(),
-                            assignedTasks[index].taskId);
-                      },
-                      onComplete: () {
-                        updateTaskStatusNew(
-                            assignedTasks[index].taskId, 'In-Progress');
-                      },
-                    );
-                  },
+                if (assignedTasks.isNotEmpty)
+                  ListView.builder(
+                    itemCount: assignedTasks.length,
+                    itemBuilder: (context, index) {
+                      return TaskTile(
+                        index: index,
+                        task: assignedTasks[index],
+                        leadingColor: Colors.red,
+                        onAddPeople: () {
+                          AddPeopleSheet(context, items.cast<User>(),
+                              assignedTasks[index].taskId);
+                        },
+                        onComplete: () {
+                          updateTaskStatusNew(
+                              assignedTasks[index].taskId, 'In-Progress');
+                        },
+                      );
+                    },
+                  ),
+                Center(
+                  child: Text("No items"),
                 ),
-                // Center(
-                //   child: Text("No items"),
-                // ),
                 // Display the in-progress tasks
                 if (inProgressTasks.isNotEmpty)
                   ListView.builder(
