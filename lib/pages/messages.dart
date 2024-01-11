@@ -23,6 +23,50 @@ class _ExpandListsState extends State<ExpandLists> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    fetchNotificationsForCurrentUser();
+  }
+
+  Future<void> fetchNotificationsForCurrentUser() async {
+    // Step 1: Get the current user's email
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      String userEmail = user.email!;
+
+      print(
+          'User Email-------------------------------------------------------------------------------------------------------------------------------------------------: $userEmail');
+
+      // Step 2: Query the users collection to get the user's document ID
+      QuerySnapshot userQuery = await FirebaseFirestore.instance
+          .collection('users')
+          .where('email', isEqualTo: userEmail)
+          .get();
+
+      if (userQuery.docs.isNotEmpty) {
+        // Assuming there is only one document for a unique email
+        String userId = userQuery.docs.first.id;
+
+        // Step 3: Use the obtained userId to query notifications
+        QuerySnapshot notificationQuery = await FirebaseFirestore.instance
+            .collection('notifications')
+            .where('userId', isEqualTo: userId)
+            .get();
+
+        // Step 4: Process the notifications data
+        for (var doc in notificationQuery.docs) {
+          print('Notification Message: ${doc['message']}');
+          // Add more processing logic as needed
+        }
+      } else {
+        print('User not found.');
+      }
+    } else {
+      print('User not authenticated.');
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     this.context = context;
     List<Message> items = [
