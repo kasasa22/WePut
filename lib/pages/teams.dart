@@ -86,7 +86,7 @@ class _TeamsState extends State<Teams> {
 
     for (var assignmentNew in listAssignmentsNew) {
       String teamName = assignmentNew.teamName;
-      if (!assignmentNew.teamName.contains(teamName)) {
+      if (!listAssignmentsNew.contains(teamName)) {
         Assignment assignment = Assignment(
             teamName: assignmentNew.teamName,
             userId: "USERS",
