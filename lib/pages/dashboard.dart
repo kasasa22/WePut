@@ -127,6 +127,7 @@ class _DashboardState extends State<Dashboard> {
           setState(() {
             name = userName;
           });
+          name = userName;
         } else {
           print('User document not found.');
         }
