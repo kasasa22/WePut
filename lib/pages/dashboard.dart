@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:animate_do/animate_do.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -139,6 +141,9 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     name = name;
+
+    print("User Name: ---------");
+    print(name);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
