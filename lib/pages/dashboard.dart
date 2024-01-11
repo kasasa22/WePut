@@ -775,8 +775,8 @@ class _DashboardState extends State<Dashboard> {
       borderData: FlBorderData(
         show: false,
       ),
-      gridData: FlGridData(
-          show: false, horizontalInterval: 1.6, drawVerticalLine: false),
+      gridData:
+          FlGridData(show: true, horizontalInterval: 8, drawVerticalLine: true),
       titlesData: FlTitlesData(
         show: false,
         rightTitles: SideTitles(showTitles: false),
