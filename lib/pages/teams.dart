@@ -18,13 +18,13 @@ class Teams extends StatefulWidget {
 class _TeamsState extends State<Teams> {
   AssignmentService taskService = AssignmentService();
   late List<Assignment> listAssignments = [
-    Assignment(
-      teamName: "Teams",
-      userId: "Teams",
-      taskId: "TeamsTask",
-      completionStatus: "Completed",
-      assignmentTime: Timestamp.now(),
-    )
+    // Assignment(
+    //   teamName: "Teams",
+    //   userId: "Teams",
+    //   taskId: "TeamsTask",
+    //   completionStatus: "Completed",
+    //   assignmentTime: Timestamp.now(),
+    // )
   ];
 
   @override
@@ -42,11 +42,11 @@ class _TeamsState extends State<Teams> {
         print(
             "----------------------------------------------------------------------------------------");
         Assignment assignment = Assignment(
+          teamName: "Teams",
+          userId: "Teams",
+          taskId: "TeamsTask",
+          completionStatus: "Completed",
           assignmentTime: Timestamp.now(),
-          teamName: document["teamName"],
-          userId: document["userId"],
-          taskId: document["taskId"],
-          completionStatus: document["completionStatus"],
         );
         listAssignments.add(assignment);
       }
