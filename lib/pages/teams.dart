@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, prefer_interpolation_to_compose_strings
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -40,6 +40,7 @@ class _TeamsState extends State<Teams> {
   @override
   void initState() {
     fetchTeams();
+    filterList();
     super.initState();
   }
 
@@ -78,6 +79,30 @@ class _TeamsState extends State<Teams> {
       // Use setState to trigger a rebuild with the updated lists
       setState(() {});
     });
+  }
+
+  void filterList() {
+    listAssignments2.clear();
+    int counter = 0;
+    for (var assignment in listAssignments) {
+      //make assignments grouped with those with one name combined but then use the counter to note the number of repaetition in the group names
+      if (counter == 0) {
+        listAssignments2.add(assignment);
+        counter++;
+      } else if (assignment.teamName ==
+          listAssignments2[counter - 1].teamName) {
+        listAssignments2[counter - 1].completionStatus =
+            listAssignments2[counter - 1].completionStatus +
+                ", " +
+                assignment.completionStatus;
+        counter++;
+      } else {
+        listAssignments2.add(assignment);
+        counter++;
+      }
+    }
+    listAssignments = listAssignments2;
+    setState(() {});
   }
 
   @override
