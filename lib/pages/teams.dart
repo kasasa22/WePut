@@ -47,7 +47,7 @@ class _TeamsState extends State<Teams> {
   void fetchTeams() {
     taskService.getAssignments().listen((QuerySnapshot snapshot) {
       // Clear existing lists
-      listAssignments.clear();
+      // listAssignments.clear();
 
       for (var document in snapshot.docs) {
         // print(
@@ -85,10 +85,11 @@ class _TeamsState extends State<Teams> {
     listAssignmentsNew.clear();
     Set<String> uniqueTeamNames = <String>{};
 
-    print(
-        "----------------------------------------------------------------------------------nehre");
+    print(listAssignments);
 
     for (var assignmentNew in listAssignments) {
+      print(
+          "----------------------------------------------------------------------------------nehre");
       String teamName = assignmentNew.teamName;
       if (!uniqueTeamNames.contains(teamName)) {
         uniqueTeamNames.add(teamName);
