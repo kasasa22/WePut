@@ -213,129 +213,124 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                       ],
                     ),
                   ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: Colors.grey,
-                                    width: 0.2), // Add border color
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                                color: Colors.grey,
+                                width: 0.2), // Add border color
+                          ),
+                          child: Column(
+                            children: [
+                              const Text(
+                                "Scheduled",
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
                               ),
-                              child: Column(
-                                children: [
-                                  const Text(
-                                    "Scheduled",
-                                    style: TextStyle(
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  ListView.builder(
-                                    itemCount: assignedTasks.length,
-                                    itemBuilder: (context, index) {
-                                      if (assignedTasks.isNotEmpty) {
-                                        return CustomCard(
-                                            icon: Icons.task_sharp,
-                                            cardColor: Colors.lightGreenAccent,
-                                            title: assignedTasks[index].title,
-                                            taskDate: assignedTasks[index]
-                                                .dueDate
-                                                .toString(),
-                                            isCompleted: false,
-                                            cardHeight: 50,
-                                            cardWidth: 300.0);
-                                      }
-                                      return null;
-                                    },
-                                  ),
-                                ],
+                              ListView.builder(
+                                itemCount: assignedTasks.length,
+                                itemBuilder: (context, index) {
+                                  if (assignedTasks.isNotEmpty) {
+                                    return CustomCard(
+                                        icon: Icons.task_sharp,
+                                        cardColor: Colors.lightGreenAccent,
+                                        title: assignedTasks[index].title,
+                                        taskDate: assignedTasks[index]
+                                            .dueDate
+                                            .toString(),
+                                        isCompleted: false,
+                                        cardHeight: 50,
+                                        cardWidth: 300.0);
+                                  }
+                                  return null;
+                                },
                               ),
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: Colors.grey,
-                                    width: 0.2), // Add border color
-                              ),
-                              child: Column(
-                                children: [
-                                  const Text(
-                                    "In Progress",
-                                    style: TextStyle(
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  ListView.builder(
-                                    itemCount: inProgressTasks.length,
-                                    itemBuilder: (context, index) {
-                                      if (inProgressTasks.isNotEmpty) {
-                                        return CustomCard(
-                                            icon: Icons.task_sharp,
-                                            cardColor: Colors.lightGreenAccent,
-                                            title: inProgressTasks[index].title,
-                                            taskDate: inProgressTasks[index]
-                                                .dueDate
-                                                .toString(),
-                                            isCompleted: false,
-                                            cardHeight: 50,
-                                            cardWidth: 300.0);
-                                      }
-                                      return null;
-                                    },
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: Colors.grey,
-                                    width: 0.2), // Add border color
-                              ),
-                              child: Column(
-                                children: [
-                                  const Text(
-                                    "Completed",
-                                    style: TextStyle(
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  ListView.builder(
-                                    itemCount: completedTasks.length,
-                                    itemBuilder: (context, index) {
-                                      if (completedTasks.isNotEmpty) {
-                                        return CustomCard(
-                                            icon: Icons.task_sharp,
-                                            cardColor: Colors.lightGreenAccent,
-                                            title: completedTasks[index].title,
-                                            taskDate: completedTasks[index]
-                                                .dueDate
-                                                .toString(),
-                                            isCompleted: false,
-                                            cardHeight: 50,
-                                            cardWidth: 300.0);
-                                      }
-                                      return null;
-                                    },
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                                color: Colors.grey,
+                                width: 0.2), // Add border color
+                          ),
+                          child: Column(
+                            children: [
+                              const Text(
+                                "In Progress",
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              ListView.builder(
+                                itemCount: inProgressTasks.length,
+                                itemBuilder: (context, index) {
+                                  if (inProgressTasks.isNotEmpty) {
+                                    return CustomCard(
+                                        icon: Icons.task_sharp,
+                                        cardColor: Colors.lightGreenAccent,
+                                        title: inProgressTasks[index].title,
+                                        taskDate: inProgressTasks[index]
+                                            .dueDate
+                                            .toString(),
+                                        isCompleted: false,
+                                        cardHeight: 50,
+                                        cardWidth: 300.0);
+                                  }
+                                  return null;
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                                color: Colors.grey,
+                                width: 0.2), // Add border color
+                          ),
+                          child: Column(
+                            children: [
+                              const Text(
+                                "Completed",
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              ListView.builder(
+                                itemCount: completedTasks.length,
+                                itemBuilder: (context, index) {
+                                  if (completedTasks.isNotEmpty) {
+                                    return CustomCard(
+                                        icon: Icons.task_sharp,
+                                        cardColor: Colors.lightGreenAccent,
+                                        title: completedTasks[index].title,
+                                        taskDate: completedTasks[index]
+                                            .dueDate
+                                            .toString(),
+                                        isCompleted: false,
+                                        cardHeight: 50,
+                                        cardWidth: 300.0);
+                                  }
+                                  return null;
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   )
                 ],
               ),
