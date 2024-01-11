@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class CustomCard extends StatelessWidget {
   final IconData icon;
@@ -11,7 +12,7 @@ class CustomCard extends StatelessWidget {
   final String taskDate;
   final bool isCompleted;
 
-  const CustomCard({
+  CustomCard({
     Key? key,
     required this.icon,
     required this.cardColor,
@@ -21,6 +22,8 @@ class CustomCard extends StatelessWidget {
     required this.taskDate,
     this.isCompleted = false,
   }) : super(key: key);
+
+  final DateFormat _dateFormat = DateFormat('dd MMMM yyyy HH:mm');
 
   @override
   Widget build(BuildContext context) {
@@ -61,11 +64,9 @@ class CustomCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'Task Date: $taskDate',
-                        style: const TextStyle(
-                          fontSize: 10,
-                          color: Colors.white,
-                        ),
+                        _dateFormat.format(DateTime.parse(
+                            taskDate)), // Convert String to DateTime
+                        style: const TextStyle(color: Colors.black),
                       ),
                     ],
                   ),
