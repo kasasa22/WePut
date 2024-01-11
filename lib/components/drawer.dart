@@ -50,6 +50,7 @@ class _MyDrawerState extends State<MyDrawer> {
         if (userDocument.exists) {
           String userName = userDocument['name'];
           print('User Name: $userName');
+          name = userName;
         } else {
           print('User document not found.');
         }
@@ -69,6 +70,7 @@ class _MyDrawerState extends State<MyDrawer> {
   }
 
   String email = "";
+  String name = "";
 
   @override
   void initState() {
@@ -81,6 +83,8 @@ class _MyDrawerState extends State<MyDrawer> {
 
     // User name found
     print("User Name: ---------");
+    print(name);
+
     return Drawer(
       child: SingleChildScrollView(
         child: Column(
