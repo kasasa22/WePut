@@ -27,7 +27,7 @@ class _TeamsState extends State<Teams> {
     // )
   ];
 
-  late List<Assignment> listAssignments2 = [
+  late List<Assignment> listAssignmentsNew = [
     // Assignment(
     //   teamName: "Teams",
     //   userId: "Teams",
@@ -82,18 +82,16 @@ class _TeamsState extends State<Teams> {
   }
 
   void filterList() {
-    listAssignments2.clear();
-    int counter = 0;
+    listAssignmentsNew.clear();
+
     for (var assignmentNew in listAssignments) {
       Assignment assignment = Assignment(
           teamName: assignmentNew.teamName,
-          userId: assignmentNew.userId,
-          taskId: assignmentNew.taskId,
+          userId: "USERS",
+          taskId: "TASKS",
           assignmentTime: assignmentNew.assignmentTime,
           completionStatus: assignmentNew.completionStatus);
-      listAssignments = listAssignments2;
-
-      counter++;
+      listAssignmentsNew.add(assignment);
     }
   }
 
@@ -102,7 +100,7 @@ class _TeamsState extends State<Teams> {
     if (listAssignments.isEmpty) {
       return const Center(child: CircularProgressIndicator());
     }
-    List<Widget> gridAssignments = getGridViewAssignments(listAssignments);
+    List<Widget> gridAssignments = getGridViewAssignments(listAssignmentsNew);
 
     return Scaffold(
       backgroundColor: Colors.white,
