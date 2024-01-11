@@ -22,7 +22,7 @@ class _MyDrawerState extends State<MyDrawer> {
     Navigator.pushReplacementNamed(context, '/login_register');
   }
 
-  Future<void> fetchNotificationsForCurrentUser() async {
+  void fetchNotificationsForCurrentUser() async {
     // Step 1: Get the current user's email
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
