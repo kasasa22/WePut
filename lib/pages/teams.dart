@@ -227,9 +227,10 @@ class _TeamsState extends State<Teams> {
                     ),
                   ),
                   Text(
-                    s.completionStatus,
+                    s.teamName,
                     textAlign: TextAlign.center,
-                    style: const TextStyle(color: Colors.black),
+                    style: const TextStyle(
+                        color: Colors.black, fontWeight: FontWeight.bold),
                   )
                 ]),
           ),
