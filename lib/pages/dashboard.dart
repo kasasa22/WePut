@@ -433,7 +433,7 @@ class _DashboardState extends State<Dashboard> {
                               duration: const Duration(milliseconds: 1000),
                               from: 30,
                               child: const Text(
-                                '+1.5%',
+                                '+20.5%',
                                 style: TextStyle(
                                   fontSize: 18,
                                   color: Colors.green,
