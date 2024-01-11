@@ -40,7 +40,7 @@ class _TeamsState extends State<Teams> {
   @override
   void initState() {
     fetchTeams();
-    filterList();
+
     super.initState();
   }
 
@@ -75,6 +75,8 @@ class _TeamsState extends State<Teams> {
 
       // Print the length of the list
       print('Number of assignments: ${listAssignments.length}');
+
+      filterList();
 
       // Use setState to trigger a rebuild with the updated lists
       setState(() {});
