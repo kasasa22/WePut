@@ -138,7 +138,7 @@ class _DashboardState extends State<Dashboard> {
     }
   }
 
-  late String name = "";
+  String name = "";
 
   @override
   Widget build(BuildContext context) {
