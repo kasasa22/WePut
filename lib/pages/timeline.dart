@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import '../components/dashboard/TaskCard.dart';
 import '../components/dashboard/pie_chart.dart';
 import '../components/drawer.dart';
+import '../models/task.dart';
 
 class Timeline extends StatefulWidget {
   const Timeline({Key? key}) : super(key: key);
@@ -16,6 +17,9 @@ class Timeline extends StatefulWidget {
 }
 
 class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
+  List<Task> assignedTasks = [];
+  List<Task> inProgressTasks = [];
+  List<Task> completedTasks = [];
   final List<dynamic> _furnitures = [
     {
       'title': 'Track your \nTasks',
