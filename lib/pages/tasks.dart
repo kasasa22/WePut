@@ -180,70 +180,82 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
             child: TabBarView(
               controller: _tabController,
               children: [
-                // Display the assigned tasks
-                if (assignedTasks.isNotEmpty)
-                  ListView.builder(
-                    itemCount: assignedTasks.length,
-                    itemBuilder: (context, index) {
-                      return TaskTile(
-                        index: index,
-                        task: assignedTasks[index],
-                        leadingColor: Colors.red,
-                        onAddPeople: () {
-                          AddPeopleSheet(context, items.cast<User>(),
-                              assignedTasks[index].taskId);
+                Column(
+                  children: [
+                    // Display the assigned tasks
+                    if (assignedTasks.isNotEmpty)
+                      ListView.builder(
+                        itemCount: assignedTasks.length,
+                        itemBuilder: (context, index) {
+                          return TaskTile(
+                            index: index,
+                            task: assignedTasks[index],
+                            leadingColor: Colors.red,
+                            onAddPeople: () {
+                              AddPeopleSheet(context, items.cast<User>(),
+                                  assignedTasks[index].taskId);
+                            },
+                            onComplete: () {
+                              updateTaskStatusNew(
+                                  assignedTasks[index].taskId, 'In-Progress');
+                            },
+                          );
                         },
-                        onComplete: () {
-                          updateTaskStatusNew(
-                              assignedTasks[index].taskId, 'In-Progress');
-                        },
-                      );
-                    },
-                  ),
-                Center(
-                  child: Text("No items"),
+                      ),
+                    Center(
+                      child: Text("No items"),
+                    ),
+                  ],
                 ),
-                // Display the in-progress tasks
-                if (inProgressTasks.isNotEmpty)
-                  ListView.builder(
-                    itemCount: inProgressTasks.length,
-                    itemBuilder: (context, index) {
-                      return TaskTile(
-                        index: index,
-                        task: inProgressTasks[index],
-                        leadingColor: Colors.yellow,
-                        onAddPeople: () {
-                          AddPeopleSheet(context, items.cast<User>(),
-                              inProgressTasks[index].taskId);
+                Column(
+                  children: [
+                    // Display the in-progress tasks
+                    if (inProgressTasks.isNotEmpty)
+                      ListView.builder(
+                        itemCount: inProgressTasks.length,
+                        itemBuilder: (context, index) {
+                          return TaskTile(
+                            index: index,
+                            task: inProgressTasks[index],
+                            leadingColor: Colors.yellow,
+                            onAddPeople: () {
+                              AddPeopleSheet(context, items.cast<User>(),
+                                  inProgressTasks[index].taskId);
+                            },
+                            onComplete: () {
+                              updateTaskStatusOld(
+                                  inProgressTasks[index].taskId, 'Completed');
+                            },
+                          );
                         },
-                        onComplete: () {
-                          updateTaskStatusOld(
-                              inProgressTasks[index].taskId, 'Completed');
-                        },
-                      );
-                    },
-                  ),
-                Center(
-                  child: Text("No items"),
+                      ),
+                    Center(
+                      child: Text("No items"),
+                    ),
+                  ],
                 ),
-                // Display the completed tasks
-                if (completedTasks.isNotEmpty)
-                  ListView.builder(
-                    itemCount: completedTasks.length,
-                    itemBuilder: (context, index) {
-                      return TaskTile(
-                        index: index,
-                        task: completedTasks[index],
-                        leadingColor: Colors.green,
-                        onComplete: () {
-                          // Handle completion action
+                Column(
+                  children: [
+                    // Display the completed tasks
+                    if (completedTasks.isNotEmpty)
+                      ListView.builder(
+                        itemCount: completedTasks.length,
+                        itemBuilder: (context, index) {
+                          return TaskTile(
+                            index: index,
+                            task: completedTasks[index],
+                            leadingColor: Colors.green,
+                            onComplete: () {
+                              // Handle completion action
+                            },
+                          );
                         },
-                      );
-                    },
-                  ),
-                Center(
-                  child: Text("No items"),
-                ),
+                      ),
+                    Center(
+                      child: Text("No items"),
+                    ),
+                  ],
+                )
               ],
             ),
           ),
