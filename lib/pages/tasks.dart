@@ -33,6 +33,7 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
     _scrollController = ScrollController();
     // Call listenToTasks method to fetch tasks from Firebase
     listenToTasks();
+
     super.initState();
   }
 
@@ -152,6 +153,8 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
 
       // Now 'tasks' contains all tasks associated with the user
       // Do whatever you need with the tasks
+      print(
+          "---------------------------------------------------------------------------------------------------------------------------------");
       print("Tasks: $tasks");
     } else {
       print("User not found.");
