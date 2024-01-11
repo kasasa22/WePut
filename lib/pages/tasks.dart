@@ -645,7 +645,10 @@ class _TaskSheetState extends State<TaskSheet> {
                     ),
                   ),
                   onPressed: () {
-                    _addTask();
+                    if (descriptionController.text.isNotEmpty &&
+                        titleController.text.isNotEmpty) {
+                      _addTask();
+                    }
                   },
                 ),
               ),
