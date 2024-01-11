@@ -37,7 +37,7 @@ class _TaskTileState extends State<TaskTile> {
         child: CircleAvatar(
           backgroundColor: widget.leadingColor ?? Colors.blue,
           child: Text(
-            "T",
+            "TASK",
             //widget.task.title.substring(0, 1).toUpperCase(),
             style: TextStyle(
               color: Colors.grey[880],
