@@ -117,18 +117,20 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
     List<String> taskIds = [];
     try {
       for (String assignmentId in assignmentIds) {
-        QuerySnapshot taskQuery = await FirebaseFirestore.instance
+        QuerySnapshot taskQuery = (await FirebaseFirestore.instance
             .collection('assignments') // Corrected collection name
             .doc(assignmentId) // Use doc() to reference a specific document
-            .collection(
-                'tasks') // Assuming tasks are stored within a subcollection
-            .get();
+
+            .get()) as QuerySnapshot<Object?>;
 
         taskIds.addAll(
           taskQuery.docs.map(
             (doc) => doc.id,
           ),
         );
+        print(
+            "=============================================ghfkhgdsfgjh=======================================================");
+        print(taskIds);
       }
     } catch (e) {
       print(e);
