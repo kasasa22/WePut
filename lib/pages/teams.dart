@@ -231,7 +231,34 @@ class _TeamsState extends State<Teams> {
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                         color: Colors.black, fontWeight: FontWeight.bold),
-                  )
+                  ),
+                  Container(
+                    height: 15,
+                  ),
+                  Row(
+                    children: [
+                      const Text(
+                        "Task Status:",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontStyle: FontStyle.italic,
+                            fontSize: 10,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Container(
+                        width: 10,
+                      ),
+                      Text(
+                        s.completionStatus,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontSize: 12,
+                          color: Colors.red,
+                        ),
+                      )
+                    ],
+                  ),
                 ]),
           ),
         ));
