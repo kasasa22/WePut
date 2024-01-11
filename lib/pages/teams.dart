@@ -50,15 +50,15 @@ class _TeamsState extends State<Teams> {
       listAssignments.clear();
 
       for (var document in snapshot.docs) {
-        print(
-            "-------------------------------------------------------------------------------------------------------");
-        print(document["teamName"]);
-        print(document["userId"]);
-        print(document["taskId"]);
-        print(document["completionStatus"]);
-        print(document["assignmentTime"]);
-        print(
-            "----------------------------------------------------------------------------------------");
+        // print(
+        //     "-------------------------------------------------------------------------------------------------------");
+        // print(document["teamName"]);
+        // print(document["userId"]);
+        // print(document["taskId"]);
+        // print(document["completionStatus"]);
+        // print(document["assignmentTime"]);
+        // print(
+        //     "----------------------------------------------------------------------------------------");
         Assignment assignment = Assignment(
             teamName: document["teamName"],
             userId: document["userId"],
@@ -83,7 +83,7 @@ class _TeamsState extends State<Teams> {
 
   void filterList() {
     listAssignmentsNew.clear();
-    Set<String> uniqueTeamNames = Set<String>();
+    Set<String> uniqueTeamNames = <String>{};
 
     for (var assignmentNew in listAssignments) {
       String teamName = assignmentNew.teamName;
@@ -104,6 +104,11 @@ class _TeamsState extends State<Teams> {
         );
 
         listAssignmentsNew.add(assignment);
+
+        print(
+            "----------------------------------------------------------------------------------");
+
+        print(listAssignmentsNew);
       }
     }
 
