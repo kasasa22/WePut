@@ -27,7 +27,15 @@ class _TeamsState extends State<Teams> {
     // )
   ];
 
-  Map<String, int> teamCountMap = {};
+  late List<Assignment> listAssignments2 = [
+    // Assignment(
+    //   teamName: "Teams",
+    //   userId: "Teams",
+    //   taskId: "TeamsTask",
+    //   completionStatus: "Completed",
+    //   assignmentTime: Timestamp.now(),
+    // )
+  ];
 
   @override
   void initState() {
@@ -72,46 +80,12 @@ class _TeamsState extends State<Teams> {
     });
   }
 
-  List<Map<String, dynamic>> processAssignments() {
-    // Clear existing data
-    teamCountMap.clear();
-    int counter = 0;
-
-    // Process assignments and update teamCountMap
-    for (var assignment in listAssignments) {
-      String teamName = assignment.teamName;
-
-      if (teamCountMap.containsKey(teamName)) {
-        // Increment count if team name already exists in the map
-        counter = teamCountMap[teamName]! + 1;
-        teamCountMap[teamName] = counter;
-      } else {
-        // Add team name to the map with count 1 if it doesn't exist
-        teamCountMap[teamName] = {};
-      }
-    }
-
-    // Create a list of widgets based on the processed data
-    List<Map<String, dynamic>> result = [];
-    teamCountMap.forEach((teamName, data) {
-      result.add({
-        'teamName': teamName,
-        'count': counter,
-        'completionStatus': data['completionStatus'],
-        'assignmentTime': data['assignmentTime'],
-      });
-    });
-
-    return result;
-  }
-
   @override
   Widget build(BuildContext context) {
     if (listAssignments.isEmpty) {
       return const Center(child: CircularProgressIndicator());
     }
-    List<Map<String, dynamic>> teamDataList = processAssignments();
-    List<Widget> gridAssignments = getGridViewAssignments(teamDataList);
+    List<Widget> gridAssignments = getGridViewAssignments(listAssignments);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -209,7 +183,7 @@ class _TeamsState extends State<Teams> {
     );
   }
 
-  List<Widget> getGridViewAssignments(List<Map<String, dynamic>> lc) {
+  List<Widget> getGridViewAssignments(List<Assignment> lc) {
     List<Widget> wc = [];
 
     for (int i = 0; i < (lc.length / 2).ceil(); i++) {
@@ -239,85 +213,64 @@ class _TeamsState extends State<Teams> {
     return wc;
   }
 
-  Widget getItemViewGrid(Map<String, dynamic> s) {
+  Widget getItemViewGrid(Assignment s) {
     return Expanded(
-      flex: 1,
-      child: Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-        color: Colors.white,
-        elevation: 2,
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        child: Container(
-          alignment: Alignment.center,
-          height: 120,
-          padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                padding: const EdgeInsets.all(10),
-                child: Icon(
-                  Icons.people_alt_sharp,
-                  size: 20,
-                  color: Colors.blue[600],
-                ),
-              ),
-              Text(
-                s['teamName'],
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Container(
-                height: 15,
-              ),
-              Row(
+        flex: 1,
+        child: Card(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+          color: Colors.white,
+          elevation: 2,
+          clipBehavior: Clip.antiAliasWithSaveLayer,
+          child: Container(
+            alignment: Alignment.center,
+            height: 120,
+            padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Text(
-                    "Task Status:",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontStyle: FontStyle.italic,
-                      fontSize: 10,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
                   Container(
-                    width: 10,
+                    padding: const EdgeInsets.all(10),
+                    child: Icon(
+                      Icons.people_alt_sharp,
+                      size: 20,
+                      color: Colors.blue[600],
+                    ),
                   ),
                   Text(
-                    s['completionStatus'],
+                    s.teamName,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.red[100],
-                    ),
-                  )
-                ],
-              ),
-              Text(
-                "Count: ${s['count']}",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 12,
-                  color: Colors.black,
-                ),
-              ),
-              Text(
-                "Assignment Time: ${s['assignmentTime']}",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 12,
-                  color: Colors.black,
-                ),
-              ),
-            ],
+                    style: const TextStyle(
+                        color: Colors.black, fontWeight: FontWeight.bold),
+                  ),
+                  Container(
+                    height: 15,
+                  ),
+                  Row(
+                    children: [
+                      const Text(
+                        "Task Status:",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontStyle: FontStyle.italic,
+                            fontSize: 10,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Container(
+                        width: 10,
+                      ),
+                      Text(
+                        s.completionStatus,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.red[100],
+                        ),
+                      )
+                    ],
+                  ),
+                ]),
           ),
-        ),
-      ),
-    );
+        ));
   }
 }
