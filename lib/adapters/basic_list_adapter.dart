@@ -92,13 +92,23 @@ class _ItemTileState extends State<ItemTile> {
             // Handle tapping on the notification
             print('Notification tapped: ${widget.object.message}');
 
+            Message notification = Message(
+              userId: widget.object.userId,
+              message: widget.object.message,
+              timestamp: widget.object.timestamp,
+              viewed: true,
+              notificationId: widget.object.notificationId,
+            );
+
+            print(notification.toJson());
+
             // Update the viewed status
             notificationService.updateNotification(
               widget.object.notificationId,
-              widget.object,
+              notification,
             );
 
-            // Optionally, you can also update the UI locally
+            // Update the UI only after the asynchronous update is complete
             setState(() {
               widget.object.viewed = true;
             });
