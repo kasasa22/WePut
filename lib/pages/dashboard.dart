@@ -184,10 +184,10 @@ class _DashboardState extends State<Dashboard> {
 
         listAssignmentsNew.add(assignment);
 
-        print(
-            "----------------------------------------------------------------------------------");
+        // print(
+        //     "----------------------------------------------------------------------------------");
 
-        print(listAssignmentsNew);
+        // print(listAssignmentsNew);
       }
     }
 
@@ -370,7 +370,7 @@ class _DashboardState extends State<Dashboard> {
           Container(
             height: 10,
           ),
-          const SingleChildScrollView(
+          SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Padding(
               padding: EdgeInsets.all(8.0),
@@ -383,19 +383,19 @@ class _DashboardState extends State<Dashboard> {
                     subtitle: '240',
                   ),
                   statCard(
-                    title: 'Completed tasks',
+                    title: 'Scheduled tasks',
                     icon: Icons.task_alt_outlined,
                     subtitle: '450',
                   ),
                   statCard(
-                    title: 'Scheduled tasks',
+                    title: 'Completed tasks',
                     icon: Icons.add_task_sharp,
                     subtitle: '160',
                   ),
                   statCard(
                     title: 'Assignment Teams',
                     icon: Icons.people,
-                    subtitle: '490',
+                    subtitle: listAssignmentsNew.length.toString(),
                   ),
                 ],
               ),
