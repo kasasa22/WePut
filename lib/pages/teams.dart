@@ -33,7 +33,7 @@ class _TeamsState extends State<Teams> {
     super.initState();
   }
 
-  Future<void> fetchTeams() async {
+  void fetchTeams() {
     taskService.getAssignments().listen((QuerySnapshot snapshot) {
       // Clear existing lists
       // listAssignments.clear();
