@@ -278,7 +278,8 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                                 ),
                               ),
                               SizedBox(
-                                height: 100,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.6,
                                 child: ListView.builder(
                                   itemCount: inProgressTasks.length,
                                   itemBuilder: (context, index) {
@@ -319,7 +320,8 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                                 ),
                               ),
                               SizedBox(
-                                height: 100,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.6,
                                 child: ListView.builder(
                                   itemCount: completedTasks.length,
                                   itemBuilder: (context, index) {
