@@ -97,9 +97,10 @@ class _TeamsState extends State<Teams> {
         uniqueTeamNames.add(teamName);
 
         String completionStatus = listAssignments
-            .where((a) => a.teamName == teamName)
-            .map((a) => a.completionStatus)
-            .join(', ');
+            .firstWhere(
+              (a) => a.teamName == teamName,
+            )
+            .completionStatus;
 
         Assignment assignment = Assignment(
           teamName: teamName,
