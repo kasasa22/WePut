@@ -446,8 +446,7 @@ class _AddPeopleSheetState extends State<_AddPeopleSheet> {
                             Message newNotification = Message(
                               notificationId:
                                   'notificationID', // Assign a unique ID, or leave it empty if Firestore generates one
-                              userId:
-                                  '', // Leave it empty for now, it will be updated in the loop
+                              userId: '',
                               message: messageController.text,
                               timestamp: Timestamp.now(),
                               viewed: false, // Set the initial viewed status
@@ -457,8 +456,7 @@ class _AddPeopleSheetState extends State<_AddPeopleSheet> {
                             Assignment newAssignment = Assignment(
                               teamName: teamController.text,
 
-                              userId:
-                                  '', // Leave it empty for now, it will be updated in the loop
+                              userId: '',
                               taskId: widget.taskId,
                               assignmentTime: Timestamp.now(),
                               completionStatus:
