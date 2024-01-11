@@ -238,10 +238,11 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
                           // Handle completion action
                         },
                       );
+                    } else {
+                      return Center(
+                        child: Text("No Tasks"),
+                      );
                     }
-                    return Center(
-                      child: Text("No Tasks"),
-                    );
                   },
                 ),
               ],
