@@ -1,5 +1,6 @@
 // ignore_for_file: no_leading_underscores_for_local_identifiers, avoid_print
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -21,6 +22,45 @@ class _MyDrawerState extends State<MyDrawer> {
     Navigator.pushReplacementNamed(context, '/login_register');
   }
 
+  Future<void> fetchNotificationsForCurrentUser() async {
+    // Step 1: Get the current user's email
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      String userEmail = user.email!;
+
+      print(
+          'User Email-------------------------------------------------------------------------------------------------------------------------------------------------: $userEmail');
+
+      // Step 2: Query the users collection to get the user's document ID
+      QuerySnapshot userQuery = await FirebaseFirestore.instance
+          .collection('users')
+          .where('email', isEqualTo: userEmail)
+          .get();
+
+      if (userQuery.docs.isNotEmpty) {
+        // Assuming there is only one document for a unique email
+        String userId = userQuery.docs.first.id;
+
+        // Step 5: Use the obtained userId to query the user's document and get the name
+        DocumentSnapshot userDocument = await FirebaseFirestore.instance
+            .collection('users')
+            .doc(userId)
+            .get();
+
+        if (userDocument.exists) {
+          String userName = userDocument['name'];
+          print('User Name: $userName');
+        } else {
+          print('User document not found.');
+        }
+      } else {
+        print('User not found.');
+      }
+    } else {
+      print('User not authenticated.');
+    }
+  }
+
   // Replace with your method to get the currently logged-in user's ID
   String getCurrentUserId() {
     Map<String, dynamic> userData = getCurrentUserData();
@@ -33,7 +73,6 @@ class _MyDrawerState extends State<MyDrawer> {
   @override
   void initState() {
     super.initState();
-    // Call the asynchronous method to fetch user data
   }
 
   @override
