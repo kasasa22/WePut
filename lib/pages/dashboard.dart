@@ -164,9 +164,12 @@ class _DashboardState extends State<Dashboard> {
                       bottomLeft: Radius.circular(16.0),
                     ),
                   ),
-                  child: const Icon(
-                    Icons.notifications,
-                    color: Colors.white,
+                  child: InkWell(
+                    onTap: () {},
+                    child: const Icon(
+                      Icons.notifications,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
@@ -181,9 +184,12 @@ class _DashboardState extends State<Dashboard> {
                       topRight: Radius.circular(16.0),
                     ),
                   ),
-                  child: const Icon(
-                    Icons.settings,
-                    color: Colors.white,
+                  child: InkWell(
+                    onTap: () {},
+                    child: const Icon(
+                      Icons.settings,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
