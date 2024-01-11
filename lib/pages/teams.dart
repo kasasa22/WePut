@@ -84,25 +84,17 @@ class _TeamsState extends State<Teams> {
   void filterList() {
     listAssignments2.clear();
     int counter = 0;
-    for (var assignment in listAssignments) {
-      //make assignments grouped with those with one name combined but then use the counter to note the number of repaetition in the group names
-      if (counter == 0) {
-        listAssignments2.add(assignment);
-        counter++;
-      } else if (assignment.teamName ==
-          listAssignments2[counter - 1].teamName) {
-        listAssignments2[counter - 1].completionStatus =
-            listAssignments2[counter - 1].completionStatus +
-                ", " +
-                assignment.completionStatus;
-        counter++;
-      } else {
-        listAssignments2.add(assignment);
-        counter++;
-      }
+    for (var assignmentNew in listAssignments) {
+      Assignment assignment = Assignment(
+          teamName: assignmentNew.teamName,
+          userId: assignmentNew.userId,
+          taskId: assignmentNew.taskId,
+          assignmentTime: assignmentNew.assignmentTime,
+          completionStatus: assignmentNew.completionStatus);
+      listAssignments = listAssignments2;
+
+      counter++;
     }
-    listAssignments = listAssignments2;
-    setState(() {});
   }
 
   @override
