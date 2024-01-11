@@ -41,7 +41,11 @@ class _TeamsState extends State<Teams> {
       for (var document in snapshot.docs) {
         print(
             "-------------------------------------------------------------------------------------------------------");
-        print(document);
+        print(document["teamName"]);
+        print(document["userId"]);
+        print(document["taskId"]);
+        print(document["completionStatus"]);
+        print(document["assignmentTime"]);
         print(
             "----------------------------------------------------------------------------------------");
         Assignment assignment = Assignment(
