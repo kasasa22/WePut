@@ -33,55 +33,7 @@ class _ExpandListsState extends State<ExpandLists> {
         timestamp: Timestamp.now(),
         viewed: false,
       ),
-      Message(
-        notificationId: '2',
-        userId: 'user2',
-        message: 'How are you doing?',
-        timestamp: Timestamp.now(),
-        viewed: true,
-      ),
-      Message(
-        notificationId: '3',
-        userId: 'zuser3',
-        message: 'Flutter is awesome!',
-        timestamp: Timestamp.now(),
-        viewed: false,
-      ),
-      Message(
-        notificationId: '4',
-        userId: 'ruser4',
-        message: 'Working on a new project!',
-        timestamp: Timestamp.now(),
-        viewed: false,
-      ),
-      Message(
-        notificationId: '5',
-        userId: 'fuser5',
-        message: 'Any plans for the weekend?',
-        timestamp: Timestamp.now(),
-        viewed: true,
-      ),
-      Message(
-        notificationId: '6',
-        userId: 'huser6',
-        message: 'Learning new Flutter features!',
-        timestamp: Timestamp.now(),
-        viewed: false,
-      ),
-      Message(
-        notificationId: '7',
-        userId: 'duser7',
-        message: 'Excited about the upcoming event!',
-        timestamp: Timestamp.now(),
-        viewed: false,
-      ),
-      Message(
-        notificationId: '8',
-        userId: 'huser8',
-        message: 'Discussing project ideas with the team.',
-        timestamp: Timestamp.now(),
-        viewed: true,
-      ),
+
       // Add more messages as needed
     ];
 

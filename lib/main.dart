@@ -9,7 +9,7 @@ import 'package:maker/pages/about_us.dart';
 import 'package:maker/pages/crud_test.dart';
 import 'package:maker/pages/dashboard.dart';
 import 'package:maker/pages/home_page.dart';
-import 'package:maker/pages/inbox.dart';
+import 'package:maker/pages/messages.dart';
 import 'package:maker/pages/profile.dart';
 import 'package:maker/pages/settings.dart'
     // ignore: library_prefixes
