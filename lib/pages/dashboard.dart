@@ -776,7 +776,7 @@ class _DashboardState extends State<Dashboard> {
         show: false,
       ),
       gridData: FlGridData(
-          show: true, horizontalInterval: 0.4, drawVerticalLine: true),
+          show: true, horizontalInterval: 0.5, drawVerticalLine: true),
       titlesData: FlTitlesData(
         show: false,
         rightTitles: SideTitles(showTitles: false),
@@ -850,7 +850,7 @@ class _DashboardState extends State<Dashboard> {
                   ? _daylySpots.length - 20.toDouble()
                   : _daylySpots.length.toDouble(),
       minY: 0,
-      maxY: 200,
+      maxY: 40,
       lineTouchData: LineTouchData(
         getTouchedSpotIndicator:
             (LineChartBarData barData, List<int> spotIndexes) {
