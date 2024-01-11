@@ -221,8 +221,8 @@ class _TeamsState extends State<Teams> {
                   Container(
                     padding: const EdgeInsets.all(10),
                     child: Icon(
-                      Icons.task,
-                      size: 40,
+                      Icons.people_alt_sharp,
+                      size: 20,
                       color: Colors.blue[600],
                     ),
                   ),
