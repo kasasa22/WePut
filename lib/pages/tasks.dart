@@ -120,19 +120,20 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
         tasks.addAll(
           taskQuery.docs.map(
             (doc) => Task(
-                assignedUserId: doc.id,
-                category: doc[""],
-                comments: [""],
-                description: doc[""],
-                dueDate: doc[""],
-                endTime: doc[""],
-                evaluation: doc[""],
-                priority: doc[""],
-                progress: doc[""],
-                startTime: doc[""],
-                status: doc[""],
-                taskId: doc[""],
-                title: doc[""]),
+              assignedUserId: doc.id,
+              category: doc["category"],
+              comments: ["comments"],
+              description: doc["description"],
+              dueDate: doc["dueDate"],
+              endTime: doc["endTime"],
+              evaluation: doc["evaluation"],
+              priority: doc["priority"],
+              progress: doc["progress"],
+              startTime: doc["startTime"],
+              status: doc["status"],
+              taskId: doc["taskId"],
+              title: doc["title"],
+            ),
           ),
         );
       }
@@ -154,10 +155,36 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
       // Now 'tasks' contains all tasks associated with the user
       // Do whatever you need with the tasks
       print(
-          "---------------------------------------------------------------------------------------------------------------------------------");
+          "-----------------------------------------------------THE TASKS ----------------------------------------------------------------------------");
       print("Tasks: $tasks");
     } else {
       print("User not found.");
+    }
+  }
+
+  void fetchCurrentUser() async {
+    // Step 1: Get the current user's email
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      String userEmail = user.email!;
+
+      print(
+          'User Email-------------------------------------------------------------------------------------------------------------------------------------------------: $userEmail');
+
+      // Step 2: Query the users collection to get the user's document ID
+      QuerySnapshot userQuery = await FirebaseFirestore.instance
+          .collection('users')
+          .where('email', isEqualTo: userEmail)
+          .get();
+
+      if (userQuery.docs.isNotEmpty) {
+        // Assuming there is only one document for a unique email
+        String userId = userQuery.docs.first.id;
+      } else {
+        print('User not found.');
+      }
+    } else {
+      print('User not authenticated.');
     }
   }
 
