@@ -180,6 +180,7 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
       if (userQuery.docs.isNotEmpty) {
         // Assuming there is only one document for a unique email
         String userId = userQuery.docs.first.id;
+        key = userId;
       } else {
         print('User not found.');
       }
@@ -187,6 +188,8 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
       print('User not authenticated.');
     }
   }
+
+  String key = "";
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
