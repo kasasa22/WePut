@@ -41,8 +41,13 @@ class _TeamsState extends State<Teams> {
       for (var document in snapshot.docs) {
         print(
             "----------------------------------------------------------------------------------------");
-        Assignment assignment =
-            Assignment.fromJson(document.data() as Map<String, dynamic>);
+        Assignment assignment = Assignment(
+          assignmentTime: Timestamp.now(),
+          teamName: document["teamName"],
+          userId: document["userId"],
+          taskId: document["taskId"],
+          completionStatus: document["completionStatus"],
+        );
         listAssignments.add(assignment);
       }
 
