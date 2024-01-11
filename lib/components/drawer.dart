@@ -85,8 +85,8 @@ class _MyDrawerState extends State<MyDrawer> {
     email = getCurrentUserId();
 
     // User name found
-    print("User Name: ---------");
-    print(name);
+    // print("User Name: ---------");
+    // print(name);
 
     return Drawer(
       child: SingleChildScrollView(
@@ -121,9 +121,9 @@ class _MyDrawerState extends State<MyDrawer> {
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            'Welcome User',
-                            style: TextStyle(
+                          Text(
+                            name,
+                            style: const TextStyle(
                               color: Colors.grey,
                               fontWeight: FontWeight.bold,
                             ),
