@@ -219,7 +219,7 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Container(
-                          width: 300,
+                          width: MediaQuery.of(context).size.width * 0.8,
                           decoration: BoxDecoration(
                             border: Border.all(
                                 color: Colors.grey,
@@ -260,7 +260,7 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                           ),
                         ),
                         Container(
-                          width: 300,
+                          width: MediaQuery.of(context).size.width * 0.8,
                           decoration: BoxDecoration(
                             border: Border.all(
                                 color: Colors.grey,
@@ -301,7 +301,7 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                           ),
                         ),
                         Container(
-                          width: 300,
+                          width: MediaQuery.of(context).size.width * 0.8,
                           decoration: BoxDecoration(
                             border: Border.all(
                                 color: Colors.grey,
