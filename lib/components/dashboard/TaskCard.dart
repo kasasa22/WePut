@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -27,6 +28,8 @@ class CustomCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Timestamp timestamp = Timestamp.now();
+    DateTime dateTime = timestamp.toDate();
     return Card(
       elevation: 3,
       shape: RoundedRectangleBorder(
@@ -64,8 +67,7 @@ class CustomCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        _dateFormat.format(DateTime.parse(
-                            taskDate)), // Convert String to DateTime
+                        _dateFormat.format(dateTime),
                         style: const TextStyle(color: Colors.black),
                       ),
                     ],
