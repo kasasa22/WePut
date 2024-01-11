@@ -161,6 +161,8 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
       List<String> assignmentIds = await getAssignmentIdsForUser(userId);
       List<Task> tasks = await getTasksForAssignments(assignmentIds);
 
+      print(assignmentIds);
+
       // Now 'tasks' contains all tasks associated with the user
       // Do whatever you need with the tasks
       print(
