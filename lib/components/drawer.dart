@@ -84,8 +84,8 @@ class _MyDrawerState extends State<MyDrawer> {
     name = name;
 
     // User name found
-    // print("User Name: ---------");
-    // print(name);
+    print("User Name: ---------");
+    print(name);
 
     return Drawer(
       child: SingleChildScrollView(
