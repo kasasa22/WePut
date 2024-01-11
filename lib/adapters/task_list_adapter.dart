@@ -49,9 +49,11 @@ class _TaskTileState extends State<TaskTile> {
       ),
       title: Text(
         widget.task.title,
+        maxLines: 1,
         style: TextStyle(
           color: Colors.grey[880],
           fontWeight: FontWeight.bold,
+          wordSpacing: 2,
         ),
       ),
       subtitle: Column(
