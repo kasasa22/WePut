@@ -124,7 +124,9 @@ class _DashboardState extends State<Dashboard> {
         if (userDocument.exists) {
           String userName = userDocument['name'];
           print('User Name: $userName');
-          name = userName;
+          setState(() {
+            name = userName;
+          });
         } else {
           print('User document not found.');
         }
@@ -140,8 +142,6 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
-    name = name;
-
     print("User Name: ---------");
     print(name);
     return Scaffold(
