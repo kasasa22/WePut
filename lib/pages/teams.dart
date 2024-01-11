@@ -252,9 +252,9 @@ class _TeamsState extends State<Teams> {
                       Text(
                         s.completionStatus,
                         textAlign: TextAlign.center,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 12,
-                          color: Colors.red,
+                          color: Colors.red[100],
                         ),
                       )
                     ],
