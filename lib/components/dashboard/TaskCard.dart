@@ -10,7 +10,7 @@ class CustomCard extends StatelessWidget {
   final String title;
   final double cardHeight;
   final double cardWidth;
-  final String taskDate;
+  final Timestamp taskDate;
   final bool isCompleted;
 
   CustomCard({
@@ -28,7 +28,7 @@ class CustomCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Timestamp timestamp = Timestamp.now();
+    Timestamp timestamp = taskDate;
     DateTime dateTime = timestamp.toDate();
     return Card(
       elevation: 3,

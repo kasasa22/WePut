@@ -246,9 +246,8 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                                           icon: Icons.task_sharp,
                                           cardColor: Colors.lightGreenAccent,
                                           title: assignedTasks[index].title,
-                                          taskDate: assignedTasks[index]
-                                              .dueDate
-                                              .toString(),
+                                          taskDate:
+                                              assignedTasks[index].dueDate,
                                           isCompleted: false,
                                           cardHeight: 50,
                                           cardWidth: 300.0);
@@ -288,9 +287,8 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                                           icon: Icons.add_task_outlined,
                                           cardColor: Colors.lightGreen,
                                           title: inProgressTasks[index].title,
-                                          taskDate: inProgressTasks[index]
-                                              .dueDate
-                                              .toString(),
+                                          taskDate:
+                                              inProgressTasks[index].dueDate,
                                           isCompleted: false,
                                           cardHeight: 50,
                                           cardWidth: 300.0);
@@ -330,9 +328,8 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
                                           icon: Icons.mark_chat_read_sharp,
                                           cardColor: Colors.green,
                                           title: completedTasks[index].title,
-                                          taskDate: completedTasks[index]
-                                              .dueDate
-                                              .toString(),
+                                          taskDate:
+                                              completedTasks[index].dueDate,
                                           isCompleted: true,
                                           cardHeight: 50,
                                           cardWidth: 300.0);
