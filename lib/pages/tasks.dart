@@ -184,63 +184,69 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
                   ListView.builder(
                     itemCount: assignedTasks.length,
                     itemBuilder: (context, index) {
-                      return TaskTile(
-                        index: index,
-                        task: assignedTasks[index],
-                        leadingColor: Colors.red,
-                        onAddPeople: () {
-                          AddPeopleSheet(context, items.cast<User>(),
-                              assignedTasks[index].taskId);
-                        },
-                        onComplete: () {
-                          updateTaskStatusNew(
-                              assignedTasks[index].taskId, 'In-Progress');
-                        },
+                      if (assignedTasks.isNotEmpty) {
+                        return TaskTile(
+                          index: index,
+                          task: assignedTasks[index],
+                          leadingColor: Colors.red,
+                          onAddPeople: () {
+                            AddPeopleSheet(context, items.cast<User>(),
+                                assignedTasks[index].taskId);
+                          },
+                          onComplete: () {
+                            updateTaskStatusNew(
+                                assignedTasks[index].taskId, 'In-Progress');
+                          },
+                        );
+                      }
+                      return Center(
+                        child: Text("No Tasks"),
                       );
                     },
                   ),
-                // Center(
-                //   child: Text("No items"),
-                // ),
                 if (inProgressTasks.isNotEmpty)
                   ListView.builder(
                     itemCount: inProgressTasks.length,
                     itemBuilder: (context, index) {
-                      return TaskTile(
-                        index: index,
-                        task: inProgressTasks[index],
-                        leadingColor: Colors.yellow,
-                        onAddPeople: () {
-                          AddPeopleSheet(context, items.cast<User>(),
-                              inProgressTasks[index].taskId);
-                        },
-                        onComplete: () {
-                          updateTaskStatusOld(
-                              inProgressTasks[index].taskId, 'Completed');
-                        },
+                      if (inProgressTasks.isNotEmpty) {
+                        return TaskTile(
+                          index: index,
+                          task: inProgressTasks[index],
+                          leadingColor: Colors.yellow,
+                          onAddPeople: () {
+                            AddPeopleSheet(context, items.cast<User>(),
+                                inProgressTasks[index].taskId);
+                          },
+                          onComplete: () {
+                            updateTaskStatusOld(
+                                inProgressTasks[index].taskId, 'Completed');
+                          },
+                        );
+                      }
+                      return Center(
+                        child: Text("No Tasks"),
                       );
                     },
                   ),
-                // Center(
-                //   child: Text("No items"),
-                // ),
                 if (completedTasks.isNotEmpty)
                   ListView.builder(
                     itemCount: completedTasks.length,
                     itemBuilder: (context, index) {
-                      return TaskTile(
-                        index: index,
-                        task: completedTasks[index],
-                        leadingColor: Colors.green,
-                        onComplete: () {
-                          // Handle completion action
-                        },
+                      if (completedTasks.isNotEmpty) {
+                        return TaskTile(
+                          index: index,
+                          task: completedTasks[index],
+                          leadingColor: Colors.green,
+                          onComplete: () {
+                            // Handle completion action
+                          },
+                        );
+                      }
+                      return Center(
+                        child: Text("No Tasks"),
                       );
                     },
                   ),
-                // Center(
-                //   child: Text("No items"),
-                // )
               ],
             ),
           ),
