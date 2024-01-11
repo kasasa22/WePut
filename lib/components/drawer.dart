@@ -41,8 +41,6 @@ class _MyDrawerState extends State<MyDrawer> {
         // Assuming there is only one document for a unique email
         String userId = userQuery.docs.first.id;
 
-        print('=================================' + userId);
-
         // Step 5: Use the obtained userId to query the user's document and get the name
         DocumentSnapshot userDocument = await FirebaseFirestore.instance
             .collection('users')
