@@ -93,6 +93,7 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   void initState() {
+    fetchNotificationsForCurrentUser();
     super.initState();
   }
 
