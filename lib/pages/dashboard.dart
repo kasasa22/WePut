@@ -775,8 +775,8 @@ class _DashboardState extends State<Dashboard> {
       borderData: FlBorderData(
         show: false,
       ),
-      gridData:
-          FlGridData(show: true, horizontalInterval: 8, drawVerticalLine: true),
+      gridData: FlGridData(
+          show: true, horizontalInterval: 0.4, drawVerticalLine: true),
       titlesData: FlTitlesData(
         show: false,
         rightTitles: SideTitles(showTitles: false),
@@ -831,11 +831,11 @@ class _DashboardState extends State<Dashboard> {
           getTitles: (value) {
             switch (value.toInt()) {
               case 1:
-                return '10k';
+                return '1k';
               case 3:
-                return '30k';
+                return '3k';
               case 5:
-                return '50k';
+                return '5k';
             }
             return '';
           },
