@@ -236,7 +236,7 @@ class _DashboardState extends State<Dashboard> {
         }
       }
 
-      print(completedTasks);
+      // print(completedTasks);
       // Use setState to trigger a rebuild with the updated lists
       setState(() {});
     });
