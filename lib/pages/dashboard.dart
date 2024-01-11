@@ -836,7 +836,7 @@ class _DashboardState extends State<Dashboard> {
           getTooltipItems: (touchedSpots) {
             return touchedSpots.map((touchedSpot) {
               return LineTooltipItem(
-                '\$${touchedSpot.y.round()}.00',
+                '\$ ${touchedSpot.y.round()}',
                 const TextStyle(color: Colors.white, fontSize: 12.0),
               );
             }).toList();
