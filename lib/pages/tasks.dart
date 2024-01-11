@@ -185,20 +185,6 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
         print(
             'User Email-------------------------------------------------------------------------------------------------------------------------------------------------: $userEmail');
         fetchDataForUser(userEmail);
-        // Step 2: Query the users collection to get the user's document ID
-        QuerySnapshot userQuery = await FirebaseFirestore.instance
-            .collection('users')
-            .where('email', isEqualTo: userEmail)
-            .get();
-
-        if (userQuery.docs.isNotEmpty) {
-          // Assuming there is only one document for a unique email
-          String userId = userQuery.docs.first.id;
-
-          print('User ID: $userId');
-        } else {
-          print('User not found.');
-        }
       } else {
         print('User not authenticated.');
       }
