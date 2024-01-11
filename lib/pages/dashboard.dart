@@ -144,6 +144,7 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     print("User Name: ---------");
+    name = name;
     print(name);
     return Scaffold(
       backgroundColor: Colors.white,
