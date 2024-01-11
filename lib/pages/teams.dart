@@ -125,7 +125,7 @@ class _TeamsState extends State<Teams> {
 
   @override
   Widget build(BuildContext context) {
-    if (listAssignments.isEmpty) {
+    if (listAssignmentsNew.isEmpty) {
       return const Center(child: CircularProgressIndicator());
     }
     List<Widget> gridAssignments = getGridViewAssignments(listAssignmentsNew);
