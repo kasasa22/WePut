@@ -29,7 +29,7 @@ class _TeamsState extends State<Teams> {
 
   @override
   void initState() {
-    //fetchTeams();
+    fetchTeams();
     super.initState();
   }
 
