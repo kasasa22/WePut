@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../models/notification.dart';
+import '../services/notification.dart';
 
 class ListExpandAdapter {
   List? items = <Message>[];
@@ -46,6 +47,7 @@ class _ItemTileState extends State<ItemTile> {
     return Color(colorValue | 0xFF000000);
   }
 
+  NotificationService notificationService = NotificationService();
   @override
   Widget build(BuildContext context) {
     Color avatarColor = determineAvatarColor(widget.object.userId);
@@ -86,9 +88,20 @@ class _ItemTileState extends State<ItemTile> {
                   Icons.visibility,
                   color: Colors.blue,
                 ),
-          onTap: () {
+          onTap: () async {
             // Handle tapping on the notification
             print('Notification tapped: ${widget.object.message}');
+
+            // Update the viewed status
+            await notificationService.updateNotification(
+              widget.object.notificationId,
+              widget.object,
+            );
+
+            // Optionally, you can also update the UI locally
+            setState(() {
+              widget.object.viewed = true;
+            });
           },
         ),
       ],
