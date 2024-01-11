@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:maker/components/drawer.dart';
 import 'package:maker/services/user.dart';
 
+import '../adapters/task_list_adapter.dart';
 import '../firebase_user.dart';
 import '../models/assignment.dart';
 import '../models/notification.dart';
@@ -175,65 +176,65 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
               ),
             ],
           ),
-          // Expanded(
-          //   child: TabBarView(
-          //     controller: _tabController,
-          //     children: [
-          //       // Display the assigned tasks
-          //       ListView.builder(
-          //         itemCount: assignedTasks.length,
-          //         itemBuilder: (context, index) {
-          //           return TaskTile(
-          //             index: index,
-          //             task: assignedTasks[index],
-          //             leadingColor: Colors.red,
-          //             onAddPeople: () {
-          //               AddPeopleSheet(context, items.cast<User>(),
-          //                   assignedTasks[index].taskId);
-          //             },
-          //             onComplete: () {
-          //               updateTaskStatusNew(
-          //                   assignedTasks[index].taskId, 'In-Progress');
-          //             },
-          //           );
-          //         },
-          //       ),
-          //       // Display the in-progress tasks
-          //       ListView.builder(
-          //         itemCount: inProgressTasks.length,
-          //         itemBuilder: (context, index) {
-          //           return TaskTile(
-          //             index: index,
-          //             task: inProgressTasks[index],
-          //             leadingColor: Colors.yellow,
-          //             onAddPeople: () {
-          //               AddPeopleSheet(context, items.cast<User>(),
-          //                   inProgressTasks[index].taskId);
-          //             },
-          //             onComplete: () {
-          //               updateTaskStatusOld(
-          //                   inProgressTasks[index].taskId, 'Completed');
-          //             },
-          //           );
-          //         },
-          //       ),
-          //       // Display the completed tasks
-          //       ListView.builder(
-          //         itemCount: completedTasks.length,
-          //         itemBuilder: (context, index) {
-          //           return TaskTile(
-          //             index: index,
-          //             task: completedTasks[index],
-          //             leadingColor: Colors.green,
-          //             onComplete: () {
-          //               // Handle completion action
-          //             },
-          //           );
-          //         },
-          //       ),
-          //     ],
-          //   ),
-          // ),
+          Expanded(
+            child: TabBarView(
+              controller: _tabController,
+              children: [
+                // Display the assigned tasks
+                ListView.builder(
+                  itemCount: assignedTasks.length,
+                  itemBuilder: (context, index) {
+                    return TaskTile(
+                      index: index,
+                      task: assignedTasks[index],
+                      leadingColor: Colors.red,
+                      onAddPeople: () {
+                        AddPeopleSheet(context, items.cast<User>(),
+                            assignedTasks[index].taskId);
+                      },
+                      onComplete: () {
+                        updateTaskStatusNew(
+                            assignedTasks[index].taskId, 'In-Progress');
+                      },
+                    );
+                  },
+                ),
+                // Display the in-progress tasks
+                ListView.builder(
+                  itemCount: inProgressTasks.length,
+                  itemBuilder: (context, index) {
+                    return TaskTile(
+                      index: index,
+                      task: inProgressTasks[index],
+                      leadingColor: Colors.yellow,
+                      onAddPeople: () {
+                        AddPeopleSheet(context, items.cast<User>(),
+                            inProgressTasks[index].taskId);
+                      },
+                      onComplete: () {
+                        updateTaskStatusOld(
+                            inProgressTasks[index].taskId, 'Completed');
+                      },
+                    );
+                  },
+                ),
+                // Display the completed tasks
+                ListView.builder(
+                  itemCount: completedTasks.length,
+                  itemBuilder: (context, index) {
+                    return TaskTile(
+                      index: index,
+                      task: completedTasks[index],
+                      leadingColor: Colors.green,
+                      onComplete: () {
+                        // Handle completion action
+                      },
+                    );
+                  },
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
