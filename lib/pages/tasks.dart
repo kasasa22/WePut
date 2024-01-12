@@ -171,10 +171,6 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
       List<Task> tasks = await getTasksForAssignments(assignmentIds);
       // List<Task> newTasks = await listToNewTasks();
 
-      print(
-          "-----------------------------------------------------THE ITEMS ----------------------------------------------------------------------------");
-      print(items);
-
       // print(assignmentIds);
 
       print(
@@ -226,95 +222,7 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
 
     // Use setState to trigger a rebuild with the updated lists
     setState(() {});
-
-    // TaskService taskService = TaskService();
-    // taskService.getTasks().listen((QuerySnapshot snapshot) {
-    //   // Clear existing lists
-    //   assignedTasks.clear();
-    //   inProgressTasks.clear();
-    //   completedTasks.clear();
-
-    //   for (var document in snapshot.docs) {
-    //     Task task = Task(
-    //       taskId: document.id,
-    //       title: document['title'],
-    //       description: document['description'],
-    //       dueDate: document['dueDate'],
-    //       status: document['status'],
-    //       assignedUserId: document['assignedUserId'],
-    //       priority: document['priority'],
-    //       category: document['category'],
-    //       progress: document['progress'],
-    //       comments: document['comments'],
-    //       startTime: document['startTime'],
-    //       endTime: document['endTime'],
-    //       evaluation: document['evaluation'],
-    //     );
-
-    //     // Categorize tasks based on their status
-    //     if (task.status == 'Assigned') {
-    //       assignedTasks.add(task);
-    //     } else if (task.status == 'In-Progress') {
-    //       inProgressTasks.add(task);
-    //     } else if (task.status == 'Completed') {
-    //       completedTasks.add(task);
-    //     }
-    //   }
-
-    //   // Use setState to trigger a rebuild with the updated lists
-    //   setState(() {});
-    // });
   }
-
-  // String getCurrentUserId() {
-  //   Map<String, dynamic> userData = getCurrentUserData();
-  //   print(
-  //       "Current user data----------------------------------------------------------------------------------------------------------: $userData");
-  //   return userData['uid']; // Use square brackets to access the value
-  // }
-
-  // Future<List<Task>> listToNewTasks() async {
-  //   // Get the currently logged-in user's information
-  //   String userId = getCurrentUserId();
-
-  //   try {
-  //     QuerySnapshot newTasksQuery = await FirebaseFirestore.instance
-  //         .collection('tasks')
-  //         .where('assignedUserId', isEqualTo: userId)
-  //         .where("status", isEqualTo: "Assigned")
-  //         // .where("status", isEqualTo: "In-Progress")
-  //         // .where("status", isEqualTo: "Completed")
-  //         .get();
-
-  //     // Map the query snapshot to a List<Task>
-  //     List<Task> assignedTasks = newTasksQuery.docs.map((doc) {
-  //       return Task(
-  //         assignedUserId: doc.id,
-  //         category: doc["category"],
-  //         comments: ["comments"],
-  //         description: doc["description"],
-  //         dueDate: doc["dueDate"],
-  //         endTime: doc["endTime"],
-  //         evaluation: doc["evaluation"],
-  //         priority: doc["priority"],
-  //         progress: doc["progress"],
-  //         startTime: doc["startTime"],
-  //         status: doc["status"],
-  //         taskId: doc["taskId"],
-  //         title: doc["title"],
-  //       );
-  //     }).toList();
-
-  //     // Print or use assignedTasks as needed
-  //     print("Assigned Tasks: $assignedTasks");
-
-  //     // Return the list of assigned tasks
-  //     return assignedTasks;
-  //   } catch (error) {
-  //     print("Error :: $error");
-  //     return []; // Return an empty list in case of an error
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
