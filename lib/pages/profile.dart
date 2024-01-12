@@ -100,7 +100,7 @@ class _ProfileState extends State<Profile> {
             Container(
               height: 35,
             ),
-            Text("Alan Woods",
+            Text(name,
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.blue[900],
