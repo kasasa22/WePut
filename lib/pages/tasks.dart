@@ -384,7 +384,6 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
       taskService.updateTask(taskID, updatedTask);
     } else {
       print("Task with ID $taskID not found.");
-      // Handle the case where the task is not found.
     }
   }
 
