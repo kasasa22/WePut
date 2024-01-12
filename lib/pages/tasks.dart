@@ -291,7 +291,7 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
     return userData['uid']; // Use square brackets to access the value
   }
 
-  Future<List<Task>> listToNewTasks() async {
+  void listToNewTasks() async {
     // Get the currently logged-in user's information
     String userId = getCurrentUserId();
 
@@ -329,10 +329,9 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
       }
 
       // Return the list of assigned tasks
-      return assignedTasks;
+      print(assignedTasks);
     } catch (error) {
       print("Error :: $error");
-      return []; // Return an empty list in case of an error
     }
   }
 
