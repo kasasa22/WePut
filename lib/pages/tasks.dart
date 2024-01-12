@@ -137,6 +137,8 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
       print(superTaskIds);
       // Merge superTaskIds into taskIds
       taskIds.addAll(superTaskIds);
+      // Remove duplicates by converting the list to a set and back to a list
+      taskIds = taskIds.toSet().toList();
 
       print(
           "====================================================================================================");
