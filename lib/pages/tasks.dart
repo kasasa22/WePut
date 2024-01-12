@@ -178,7 +178,7 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
           "-----------------------------------------------------THE ITEMS ----------------------------------------------------------------------------");
       print(items);
 
-      print(assignmentIds);
+      // print(assignmentIds);
 
       // Now 'tasks' contains all tasks associated with the user
       // Do whatever you need with the tasks
