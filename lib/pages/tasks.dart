@@ -149,19 +149,19 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
 
         if (taskDoc.exists) {
           Task task = Task(
-            assignedUserId: taskDoc.get(''),
-            category: taskDoc.get(''),
-            comments: taskDoc.get(''),
-            description: taskDoc.get(''),
-            dueDate: taskDoc.get(''),
-            endTime: taskDoc.get(''),
-            evaluation: taskDoc.get(''),
-            priority: taskDoc.get(''),
-            progress: taskDoc.get(''),
-            startTime: taskDoc.get(''),
-            status: taskDoc.get(''),
-            taskId: taskDoc.get(''),
-            title: taskDoc.get(''),
+            assignedUserId: taskDoc.get('assignedUserId'),
+            category: taskDoc.get('category'),
+            comments: taskDoc.get('comments'),
+            description: taskDoc.get('description'),
+            dueDate: taskDoc.get('dueDate'),
+            endTime: taskDoc.get('endTime'),
+            evaluation: taskDoc.get('evaluation'),
+            priority: taskDoc.get('priority'),
+            progress: taskDoc.get('progress'),
+            startTime: taskDoc.get('startTime'),
+            status: taskDoc.get('status'),
+            taskId: taskDoc.get('taskId'),
+            title: taskDoc.get('title'),
           );
           tasks.add(task);
         }
