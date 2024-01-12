@@ -290,10 +290,10 @@ class _ProfileState extends State<Profile> {
                           fontSize: 25),
                     ),
                     Container(height: 5),
-                    const Text(
-                      "ateraxantonio@gmail.com",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                    Text(
+                      email,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 15),
                     ),
                   ]),
                 ),
