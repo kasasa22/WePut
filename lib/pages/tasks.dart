@@ -288,6 +288,8 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
           .collection('tasks')
           .where('assignedUserId', isEqualTo: userId)
           .where("status", isEqualTo: "Assigned")
+          .where("status", isEqualTo: "In-Progress")
+          .where("status", isEqualTo: "Completed")
           .get();
 
       // Map the query snapshot to a List<Task>
