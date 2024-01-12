@@ -213,12 +213,12 @@ class _ProfileState extends State<Profile> {
               ],
             ),
             const Divider(
-              height: 50,
+              height: 10,
             ),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Text(
-                "Hi there! I'm [Your Name], an enthusiastic [Your Profession/Interest] based in [Your Location]. I love [Hobbies/Interests] and believe in making every moment count. Whether it's exploring new ideas or enjoying some downtime with a good book, I cherish the simple joys of life. Join me on this journey, and let's create some wonderful memories together!",
+                "Hi there! I'm $name, an enthusiastic [Your Profession/Interest] based in Uganda. I love Games and Coding and believe in making every moment count. Whether it's exploring new ideas or enjoying some downtime with a good book, I cherish the simple joys of life. Join me on this journey, and let's create some wonderful memories together!",
                 textAlign: TextAlign.center,
                 selectionColor: Colors.blue[900],
               ),
