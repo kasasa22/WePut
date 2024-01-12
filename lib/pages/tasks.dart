@@ -467,6 +467,10 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
   }
 
   void updateTaskStatusNew(String taskID, String status) {
+    print(
+        "updateTaskStatusNew>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+    print(taskID);
+    print(status);
     TaskService taskService = TaskService();
     Task? updatedTask =
         assignedTasks.firstWhereOrNull((task) => task.taskId == taskID);
