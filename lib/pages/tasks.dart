@@ -289,9 +289,19 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
     return userData['uid']; // Use square brackets to access the value
   }
 
-  void listToNewTasks() {
+  Future<void> listToNewTasks() async {
     // Get the currently logged-in user's information
     String userId = getCurrentUserId();
+
+    try {
+      QuerySnapshot newTasksQuery = await FirebaseFirestore.instance
+          .collection('tasks')
+          .where('assignedUserId', isEqualTo: userId)
+          .where("status", isEqualTo: "Assigned")
+          .get();
+    } catch (error) {
+      print("Error getting assignment IDs: $error");
+    }
   }
 
   @override
