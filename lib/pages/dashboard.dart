@@ -247,13 +247,13 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   void initState() {
-    fetchNotificationsForCurrentUser();
+    fetchForCurrentUser();
     fetchTeams();
     listenToTasks();
     super.initState();
   }
 
-  void fetchNotificationsForCurrentUser() async {
+  void fetchForCurrentUser() async {
     // Step 1: Get the current user's email
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
