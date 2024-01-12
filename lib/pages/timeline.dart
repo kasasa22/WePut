@@ -4,6 +4,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:maker/firebase_user.dart';
 
 import '../components/dashboard/TaskCard.dart';
 import '../components/dashboard/pie_chart.dart';
@@ -35,7 +36,6 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
-
   Future<String?> getUserIdByEmail(String email) async {
     try {
       QuerySnapshot userQuery = await FirebaseFirestore.instance
@@ -92,11 +92,39 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
           // Add the task ID to the list
           taskIds.add(taskId);
 
-          print(
-              "============+++++++++++++++++++gasrcjkghdfbmjhjg+++++++++++++++++++++++++");
           print(taskIds);
         }
       }
+    } catch (e) {
+      print(e);
+    }
+
+    try {
+      String getCurrentUserId() {
+        Map<String, dynamic> userData = getCurrentUserData();
+        print(
+            "Current user data----------------------------------------------------------------------------------------------------------: $userData");
+        return userData['uid']; // Use square brackets to access the value
+      }
+
+      String userId = getCurrentUserId();
+
+      QuerySnapshot superTaksQuery = await FirebaseFirestore.instance
+          .collection('tasks')
+          .where('assignedUserId', isEqualTo: userId)
+          .get();
+
+      List<String> superTaskIds =
+          superTaksQuery.docs.map((doc) => doc.id).toList();
+
+      print(superTaskIds);
+      // Merge superTaskIds into taskIds
+      taskIds.addAll(superTaskIds);
+      // Remove duplicates by converting the list to a set and back to a list
+      taskIds = taskIds.toSet().toList();
+
+      print(
+          "====================================================================================================");
     } catch (e) {
       print(e);
     }
@@ -121,7 +149,7 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
             progress: taskDoc.get('progress'),
             startTime: taskDoc.get('startTime'),
             status: taskDoc.get('status'),
-            taskId: taskDoc.get('taskId'),
+            taskId: taskDoc.id,
             title: taskDoc.get('title'),
           );
           tasks.add(task);
@@ -152,16 +180,16 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
     if (userId != null) {
       List<String> assignmentIds = await getAssignmentIdsForUser(userId);
       List<Task> tasks = await getTasksForAssignments(assignmentIds);
+      // List<Task> newTasks = await listToNewTasks();
 
-      print(assignmentIds);
+      // print(assignmentIds);
 
-      // Now 'tasks' contains all tasks associated with the user
-      // Do whatever you need with the tasks
       print(
           "-----------------------------------------------------THE TASKS ----------------------------------------------------------------------------");
       print("Tasks: $tasks");
       // Call listenToTasks method to fetch tasks from Firebase
       listenToTasks();
+      // listToNewTasks();
     } else {
       print("User not found.");
     }
@@ -196,8 +224,6 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
       // Categorize tasks based on their status
       if (task.status == 'Assigned') {
         assignedTasks.add(task);
-        print(
-            "${task.description}==============================================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
       } else if (task.status == 'In-Progress') {
         inProgressTasks.add(task);
       } else if (task.status == 'Completed') {
@@ -207,44 +233,6 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
 
     // Use setState to trigger a rebuild with the updated lists
     setState(() {});
-
-    // TaskService taskService = TaskService();
-    // taskService.getTasks().listen((QuerySnapshot snapshot) {
-    //   // Clear existing lists
-    //   assignedTasks.clear();
-    //   inProgressTasks.clear();
-    //   completedTasks.clear();
-
-    //   for (var document in snapshot.docs) {
-    //     Task task = Task(
-    //       taskId: document.id,
-    //       title: document['title'],
-    //       description: document['description'],
-    //       dueDate: document['dueDate'],
-    //       status: document['status'],
-    //       assignedUserId: document['assignedUserId'],
-    //       priority: document['priority'],
-    //       category: document['category'],
-    //       progress: document['progress'],
-    //       comments: document['comments'],
-    //       startTime: document['startTime'],
-    //       endTime: document['endTime'],
-    //       evaluation: document['evaluation'],
-    //     );
-
-    //     // Categorize tasks based on their status
-    //     if (task.status == 'Assigned') {
-    //       assignedTasks.add(task);
-    //     } else if (task.status == 'In-Progress') {
-    //       inProgressTasks.add(task);
-    //     } else if (task.status == 'Completed') {
-    //       completedTasks.add(task);
-    //     }
-    //   }
-
-    //   // Use setState to trigger a rebuild with the updated lists
-    //   setState(() {});
-    // });
   }
 
   final List<dynamic> _furnitures = [
