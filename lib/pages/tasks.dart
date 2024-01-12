@@ -137,7 +137,7 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
             progress: taskDoc.get('progress'),
             startTime: taskDoc.get('startTime'),
             status: taskDoc.get('status'),
-            taskId: taskDoc.get('taskId'),
+            taskId: taskDoc.id,
             title: taskDoc.get('title'),
           );
           tasks.add(task);
