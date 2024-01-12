@@ -186,7 +186,7 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
           "-----------------------------------------------------THE TASKS ----------------------------------------------------------------------------");
       print("Tasks: $tasks");
       // Call listenToTasks method to fetch tasks from Firebase
-      listenToTasks();
+      //listenToTasks();
 
       // listToNewTasks();
       // listToNewTasks1();
