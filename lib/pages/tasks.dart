@@ -50,7 +50,7 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
   List<Task> assignedTasks = [];
   List<Task> inProgressTasks = [];
   List<Task> completedTasks = [];
-
+  List<Task> tasks = [];
   List<Task> items = [
     // Task(
     //   taskId: '1',
@@ -112,8 +112,6 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
 
 // Updated getTasksForAssignments function
   Future<List<Task>> getTasksForAssignments(List<String> assignmentIds) async {
-    List<Task> tasks = [];
-
     List<String> taskIds = [];
     try {
       for (String assignmentId in assignmentIds) {
@@ -225,43 +223,60 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
   void listenToTasks() {
-    TaskService taskService = TaskService();
-    taskService.getTasks().listen((QuerySnapshot snapshot) {
-      // Clear existing lists
-      assignedTasks.clear();
-      inProgressTasks.clear();
-      completedTasks.clear();
+    assignedTasks.clear();
+    inProgressTasks.clear();
+    completedTasks.clear();
 
-      for (var document in snapshot.docs) {
-        Task task = Task(
-          taskId: document.id,
-          title: document['title'],
-          description: document['description'],
-          dueDate: document['dueDate'],
-          status: document['status'],
-          assignedUserId: document['assignedUserId'],
-          priority: document['priority'],
-          category: document['category'],
-          progress: document['progress'],
-          comments: document['comments'],
-          startTime: document['startTime'],
-          endTime: document['endTime'],
-          evaluation: document['evaluation'],
-        );
-
-        // Categorize tasks based on their status
-        if (task.status == 'Assigned') {
-          assignedTasks.add(task);
-        } else if (task.status == 'In-Progress') {
-          inProgressTasks.add(task);
-        } else if (task.status == 'Completed') {
-          completedTasks.add(task);
-        }
+    for (var task in tasks) {
+      // Categorize tasks based on their status
+      if (task.status == 'Assigned') {
+        assignedTasks.add(task);
+      } else if (task.status == 'In-Progress') {
+        inProgressTasks.add(task);
+      } else if (task.status == 'Completed') {
+        completedTasks.add(task);
       }
+    }
+    // Use setState to trigger a rebuild with the updated lists
+    setState(() {});
 
-      // Use setState to trigger a rebuild with the updated lists
-      setState(() {});
-    });
+    // TaskService taskService = TaskService();
+    // taskService.getTasks().listen((QuerySnapshot snapshot) {
+    //   // Clear existing lists
+    //   assignedTasks.clear();
+    //   inProgressTasks.clear();
+    //   completedTasks.clear();
+
+    //   for (var document in snapshot.docs) {
+    //     Task task = Task(
+    //       taskId: document.id,
+    //       title: document['title'],
+    //       description: document['description'],
+    //       dueDate: document['dueDate'],
+    //       status: document['status'],
+    //       assignedUserId: document['assignedUserId'],
+    //       priority: document['priority'],
+    //       category: document['category'],
+    //       progress: document['progress'],
+    //       comments: document['comments'],
+    //       startTime: document['startTime'],
+    //       endTime: document['endTime'],
+    //       evaluation: document['evaluation'],
+    //     );
+
+    //     // Categorize tasks based on their status
+    //     if (task.status == 'Assigned') {
+    //       assignedTasks.add(task);
+    //     } else if (task.status == 'In-Progress') {
+    //       inProgressTasks.add(task);
+    //     } else if (task.status == 'Completed') {
+    //       completedTasks.add(task);
+    //     }
+    //   }
+
+    //   // Use setState to trigger a rebuild with the updated lists
+    //   setState(() {});
+    // });
   }
 
   @override
