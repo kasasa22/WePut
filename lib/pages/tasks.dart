@@ -186,8 +186,7 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
           "-----------------------------------------------------THE TASKS ----------------------------------------------------------------------------");
       print("Tasks: $tasks");
       // Call listenToTasks method to fetch tasks from Firebase
-      //listenToTasks();
-
+      listenToTasks();
       // listToNewTasks();
       // listToNewTasks1();
       // listToNewTasks2();
@@ -225,8 +224,6 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
       // Categorize tasks based on their status
       if (task.status == 'Assigned') {
         assignedTasks.add(task);
-        print(
-            "${task.description}==============================================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
       } else if (task.status == 'In-Progress') {
         inProgressTasks.add(task);
       } else if (task.status == 'Completed') {
