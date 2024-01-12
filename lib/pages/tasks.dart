@@ -197,6 +197,8 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
       print("Tasks: $tasks");
       // Call listenToTasks method to fetch tasks from Firebase
       listenToTasks();
+
+      listToNewTasks();
     } else {
       print("User not found.");
     }
