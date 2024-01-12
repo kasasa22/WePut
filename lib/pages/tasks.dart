@@ -169,7 +169,7 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
 
       print(
           "====================================================================================================");
-      print(tasks);
+      print(tasks.toList());
 
       return tasks;
     } catch (error) {
