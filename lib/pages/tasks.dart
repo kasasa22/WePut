@@ -282,6 +282,18 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
     // });
   }
 
+  String getCurrentUserId() {
+    Map<String, dynamic> userData = getCurrentUserData();
+    print(
+        "Current user data----------------------------------------------------------------------------------------------------------: $userData");
+    return userData['uid']; // Use square brackets to access the value
+  }
+
+  void listToNewTasks() {
+    // Get the currently logged-in user's information
+    String userId = getCurrentUserId();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
