@@ -322,6 +322,10 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
       // Print or use assignedTasks as needed
       print("Assigned Tasks: $assignedTasks");
 
+      for (var task in assignedTasks) {
+        tasks.add(task);
+      }
+
       // Return the list of assigned tasks
       return assignedTasks;
     } catch (error) {
