@@ -32,7 +32,7 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
     _tabController = TabController(length: 3, vsync: this);
     _scrollController = ScrollController();
     // Call listenToTasks method to fetch tasks from Firebase
-    listenToTasks();
+    //listenToTasks();
 
     // Fetch current user information
     fetchCurrentUser();
@@ -231,12 +231,15 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
       // Categorize tasks based on their status
       if (task.status == 'Assigned') {
         assignedTasks.add(task);
+        print(task.description +
+            "==============================================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
       } else if (task.status == 'In-Progress') {
         inProgressTasks.add(task);
       } else if (task.status == 'Completed') {
         completedTasks.add(task);
       }
     }
+
     // Use setState to trigger a rebuild with the updated lists
     setState(() {});
 
