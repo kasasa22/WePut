@@ -21,7 +21,9 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
   @override
   void initState() {
     // Call listenToTasks method to fetch tasks from Firebase
-    listenToTasks();
+    //listenToTasks();
+    // Fetch current user information
+    fetchCurrentUser();
     super.initState();
   }
 
@@ -51,6 +53,7 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
+
   Future<String?> getUserIdByEmail(String email) async {
     try {
       QuerySnapshot userQuery = await FirebaseFirestore.instance
