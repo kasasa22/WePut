@@ -289,20 +289,46 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
     return userData['uid']; // Use square brackets to access the value
   }
 
-  // Future<void> listToNewTasks() async {
-  //   // Get the currently logged-in user's information
-  //   String userId = getCurrentUserId();
+  Future<List<Task>> listToNewTasks() async {
+    // Get the currently logged-in user's information
+    String userId = getCurrentUserId();
 
-  //   try {
-  //     QuerySnapshot newTasksQuery = await FirebaseFirestore.instance
-  //         .collection('tasks')
-  //         .where('assignedUserId', isEqualTo: userId)
-  //         .where("status", isEqualTo: "Assigned")
-  //         .get();
-  //   } catch (error) {
-  //     print("Error :: $error");
-  //   }
-  // }
+    try {
+      QuerySnapshot newTasksQuery = await FirebaseFirestore.instance
+          .collection('tasks')
+          .where('assignedUserId', isEqualTo: userId)
+          .where("status", isEqualTo: "Assigned")
+          .get();
+
+      // Map the query snapshot to a List<Task>
+      List<Task> assignedTasks = newTasksQuery.docs.map((doc) {
+        return Task(
+          assignedUserId: doc.id,
+          category: doc["category"],
+          comments: ["comments"],
+          description: doc["description"],
+          dueDate: doc["dueDate"],
+          endTime: doc["endTime"],
+          evaluation: doc["evaluation"],
+          priority: doc["priority"],
+          progress: doc["progress"],
+          startTime: doc["startTime"],
+          status: doc["status"],
+          taskId: doc["taskId"],
+          title: doc["title"],
+        );
+      }).toList();
+
+      // Print or use assignedTasks as needed
+      print("Assigned Tasks: $assignedTasks");
+
+      // Return the list of assigned tasks
+      return assignedTasks;
+    } catch (error) {
+      print("Error :: $error");
+      return []; // Return an empty list in case of an error
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
