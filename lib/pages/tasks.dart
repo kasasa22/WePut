@@ -300,7 +300,7 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
           .where("status", isEqualTo: "Assigned")
           .get();
     } catch (error) {
-      print("Error getting assignment IDs: $error");
+      print("Error :: $error");
     }
   }
 
