@@ -49,6 +49,7 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
   List<Task> inProgressTasks = [];
   List<Task> completedTasks = [];
   List<Task> tasks = [];
+  List<Task> items = [];
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -169,6 +170,10 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
       List<String> assignmentIds = await getAssignmentIdsForUser(userId);
       List<Task> tasks = await getTasksForAssignments(assignmentIds);
       // List<Task> newTasks = await listToNewTasks();
+
+      print(
+          "-----------------------------------------------------THE ITEMS ----------------------------------------------------------------------------");
+      print(items);
 
       // print(assignmentIds);
 
@@ -458,6 +463,8 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
   }
 
   void updateTaskStatusNew(String taskID, String status) {
+    print(
+        "updateTaskStatusNew>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     print(taskID);
     print(status);
     TaskService taskService = TaskService();
@@ -508,6 +515,7 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext bc) {
+        // Pass the task ID to the _AddPeopleSheet widget
         return _AddPeopleSheet(taskId: taskId);
       },
     );
