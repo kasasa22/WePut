@@ -141,33 +141,30 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
     }
 
     try {
-      for (String assignmentId in assignmentIds) {
-        QuerySnapshot taskQuery = await FirebaseFirestore.instance
+      for (String taskId in taskIds) {
+        DocumentSnapshot taskDoc = await FirebaseFirestore.instance
             .collection('tasks')
-            .where('taskId', isEqualTo: assignmentId)
+            .doc(taskId)
             .get();
-        print("============++++++++++++++++++++++++++++++++++++++++++++");
-        print(assignmentId);
 
-        tasks.addAll(
-          taskQuery.docs.map(
-            (doc) => Task(
-              assignedUserId: doc.id,
-              category: doc["category"],
-              comments: ["comments"],
-              description: doc["description"],
-              dueDate: doc["dueDate"],
-              endTime: doc["endTime"],
-              evaluation: doc["evaluation"],
-              priority: doc["priority"],
-              progress: doc["progress"],
-              startTime: doc["startTime"],
-              status: doc["status"],
-              taskId: doc["taskId"],
-              title: doc["title"],
-            ),
-          ),
-        );
+        if (taskDoc.exists) {
+          Task task = Task(
+            assignedUserId: taskDoc.get(''),
+            category: taskDoc.get(''),
+            comments: taskDoc.get(''),
+            description: taskDoc.get(''),
+            dueDate: taskDoc.get(''),
+            endTime: taskDoc.get(''),
+            evaluation: taskDoc.get(''),
+            priority: taskDoc.get(''),
+            progress: taskDoc.get(''),
+            startTime: taskDoc.get(''),
+            status: taskDoc.get(''),
+            taskId: taskDoc.get(''),
+            title: taskDoc.get(''),
+          );
+          tasks.add(task);
+        }
       }
 
       print(
