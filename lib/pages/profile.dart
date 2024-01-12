@@ -13,6 +13,12 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  @override
+  void initState() {
+    fetchForCurrentUser();
+    super.initState();
+  }
+
   void fetchForCurrentUser() async {
     // Step 1: Get the current user's email
     User? user = FirebaseAuth.instance.currentUser;
