@@ -32,7 +32,7 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
     _tabController = TabController(length: 3, vsync: this);
     _scrollController = ScrollController();
     // Call listenToTasks method to fetch tasks from Firebase
-    listenToTasks();
+    //listenToTasks();
 
     // Fetch current user information
     fetchCurrentUser();
