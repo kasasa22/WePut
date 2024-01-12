@@ -167,9 +167,16 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
         }
       }
 
-      print(
-          "====================================================================================================");
-      print(tasks.toList());
+      // print(
+      //     "====================================================================================================");
+      // print(tasks.toList());
+
+      // for (var task in tasks) {
+      //   print(task.assignedUserId);
+      //   print(task.comments);
+      //   print(task.title);
+      //   print(task.priority);
+      // }
 
       return tasks;
     } catch (error) {
