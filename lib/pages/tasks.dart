@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print, library_private_types_in_public_api, prefer_final_fields, non_constant_identifier_names, prefer_const_constructors
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:maker/components/drawer.dart';
@@ -370,10 +371,16 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
   }
 
   void updateTaskStatusNew(String taskID, String status) {
+    print(
+        "updateTaskStatusNew>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+    print(taskID);
+    print(status);
     TaskService taskService = TaskService();
 
     Task? updatedTask =
         assignedTasks.firstWhere((task) => task.taskId == taskID);
+
+    print(updatedTask);
 
     updatedTask.status = status;
     taskService.updateTask(taskID, updatedTask);
@@ -382,10 +389,15 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
   void updateTaskStatusOld(String taskID, String status) {
     TaskService taskService = TaskService();
     Task? updatedTask =
-        inProgressTasks.firstWhere((task) => task.taskId == taskID);
+        inProgressTasks.firstWhereOrNull((task) => task.taskId == taskID);
 
-    updatedTask.status = status;
-    taskService.updateTask(taskID, updatedTask);
+    if (updatedTask != null) {
+      updatedTask.status = status;
+      taskService.updateTask(taskID, updatedTask);
+    } else {
+      print("Task with ID $taskID not found.");
+      // Handle the case where the task is not found.
+    }
   }
 
   void showSheet(context, List<Task> items) {
