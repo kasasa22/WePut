@@ -187,6 +187,8 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
       listenToTasks();
 
       listToNewTasks();
+      listToNewTasks1();
+      listToNewTasks2();
     } else {
       print("User not found.");
     }
