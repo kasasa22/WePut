@@ -19,6 +19,10 @@ class _ProfileState extends State<Profile> {
     if (user != null) {
       String userEmail = user.email!;
 
+      setState(() {
+        email = userEmail;
+      });
+
       print('User Email-----------------------: $userEmail');
 
       // Step 2: Query the users collection to get the user's document ID
@@ -56,6 +60,7 @@ class _ProfileState extends State<Profile> {
   }
 
   String name = "";
+  String email = "";
 
   @override
   Widget build(BuildContext context) {
@@ -109,7 +114,7 @@ class _ProfileState extends State<Profile> {
               height: 5,
             ),
             Text(
-              "Developer",
+              email,
               style: TextStyle(color: Colors.blue[60]),
             ),
             Container(height: 25),
