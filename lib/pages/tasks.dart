@@ -124,6 +124,7 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
               superTaksQuery.docs.map((doc) => doc.id).toList();
 
           print(superTaskIds);
+          print("##############################");
 
           // Add the task ID to the list
           taskIds.add(taskId);
