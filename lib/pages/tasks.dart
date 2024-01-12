@@ -33,10 +33,8 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
     _scrollController = ScrollController();
     // Call listenToTasks method to fetch tasks from Firebase
     //listenToTasks();
-
     // Fetch current user information
     fetchCurrentUser();
-
     super.initState();
   }
 
