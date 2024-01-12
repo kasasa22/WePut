@@ -106,34 +106,40 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
           String taskId = assignmentDoc
               .get('taskId'); // Replace 'taskId' with the actual field name
 
-          String getCurrentUserId() {
-            Map<String, dynamic> userData = getCurrentUserData();
-            print(
-                "Current user data----------------------------------------------------------------------------------------------------------: $userData");
-            return userData['uid']; // Use square brackets to access the value
-          }
-
-          String userId = getCurrentUserId();
-
-          QuerySnapshot superTaksQuery = await FirebaseFirestore.instance
-              .collection('tasks')
-              .where('assignedUserId', isEqualTo: userId)
-              .get();
-
-          List<String> superTaskIds =
-              superTaksQuery.docs.map((doc) => doc.id).toList();
-
-          print(superTaskIds);
           // Add the task ID to the list
           taskIds.add(taskId);
-          // Merge superTaskIds into taskIds
-          taskIds.addAll(superTaskIds);
 
-          print(
-              "====================================================================================================");
           print(taskIds);
         }
       }
+    } catch (e) {
+      print(e);
+    }
+
+    try {
+      String getCurrentUserId() {
+        Map<String, dynamic> userData = getCurrentUserData();
+        print(
+            "Current user data----------------------------------------------------------------------------------------------------------: $userData");
+        return userData['uid']; // Use square brackets to access the value
+      }
+
+      String userId = getCurrentUserId();
+
+      QuerySnapshot superTaksQuery = await FirebaseFirestore.instance
+          .collection('tasks')
+          .where('assignedUserId', isEqualTo: userId)
+          .get();
+
+      List<String> superTaskIds =
+          superTaksQuery.docs.map((doc) => doc.id).toList();
+
+      print(superTaskIds);
+      // Merge superTaskIds into taskIds
+      taskIds.addAll(superTaskIds);
+
+      print(
+          "====================================================================================================");
     } catch (e) {
       print(e);
     }
