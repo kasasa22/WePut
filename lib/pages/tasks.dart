@@ -176,9 +176,6 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
       //   print(task.priority);
       // }
 
-      // Call listenToTasks method to fetch tasks from Firebase
-      listenToTasks();
-
       return tasks;
     } catch (error) {
       print("Error getting tasks: $error");
@@ -200,6 +197,8 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
       print(
           "-----------------------------------------------------THE TASKS ----------------------------------------------------------------------------");
       print("Tasks: $tasks");
+      // Call listenToTasks method to fetch tasks from Firebase
+      listenToTasks();
     } else {
       print("User not found.");
     }
