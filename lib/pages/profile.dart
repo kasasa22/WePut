@@ -174,7 +174,7 @@ class _ProfileState extends State<Profile> {
                     const Text(
                       "Assignments",
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
                     ),
                   ]),
                 ),
@@ -190,7 +190,7 @@ class _ProfileState extends State<Profile> {
                     const Text(
                       "Teams",
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
                     ),
                   ]),
                 ),
@@ -206,7 +206,7 @@ class _ProfileState extends State<Profile> {
                     const Text(
                       "Projects",
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
                     ),
                   ]),
                 ),
