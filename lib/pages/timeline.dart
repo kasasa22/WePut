@@ -31,25 +31,7 @@ class _TimelineState extends State<Timeline> with TickerProviderStateMixin {
   List<Task> inProgressTasks = [];
   List<Task> completedTasks = [];
   List<Task> tasks = [];
-  List<Task> items = [
-    // Task(
-    //   taskId: '1',
-    //   title: 'Complete Flutter App',
-    //   description: 'Finish building the Flutter app for the project.',
-    //   dueDate: Timestamp.now(),
-    //   status: 'In-Progress',
-    //   assignedUserId: 'user1',
-    //   priority: 'High',
-    //   category: 'Development',
-    //   progress: 50,
-    //   comments: ['Comment 1', 'Comment 2'],
-    //   startTime: Timestamp.now(),
-    //   endTime: Timestamp.now(),
-    //   evaluation: 4.5,
-    // ),
-
-    // Add more tasks as needed
-  ];
+  List<Task> items = [];
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------------------------------------------------------------
