@@ -126,6 +126,8 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
           print(superTaskIds);
           // Add the task ID to the list
           taskIds.add(taskId);
+          // Merge superTaskIds into taskIds
+          taskIds.addAll(superTaskIds);
 
           print(
               "====================================================================================================");
