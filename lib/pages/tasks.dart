@@ -233,8 +233,8 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
       // Categorize tasks based on their status
       if (task.status == 'Assigned') {
         assignedTasks.add(task);
-        print(task.description +
-            "==============================================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+        print(
+            "${task.description}==============================================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
       } else if (task.status == 'In-Progress') {
         inProgressTasks.add(task);
       } else if (task.status == 'Completed') {
