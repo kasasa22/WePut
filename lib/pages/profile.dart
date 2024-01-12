@@ -59,7 +59,7 @@ class _ProfileState extends State<Profile> {
     }
   }
 
-  String name = "";
+  late String name = "";
   String email = "";
 
   @override
