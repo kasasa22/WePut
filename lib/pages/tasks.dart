@@ -170,9 +170,9 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
       List<String> assignmentIds = await getAssignmentIdsForUser(userId);
       List<Task> tasks = await getTasksForAssignments(assignmentIds);
       List<Task> newTasks = await listToNewTasks();
-      List<Task> newTasks1 = await listToNewTasks();
-      List<Task> newTasks2 = await listToNewTasks();
-      items = newTasks + tasks + newTasks1 + newTasks2;
+      // List<Task> newTasks1 = await listToNewTasks();
+      // List<Task> newTasks2 = await listToNewTasks();
+      items = newTasks + tasks;
 
       print(
           "-----------------------------------------------------THE ITEMS ----------------------------------------------------------------------------");
