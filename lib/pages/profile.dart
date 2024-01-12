@@ -226,7 +226,7 @@ class _ProfileState extends State<Profile> {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Text(
-                "Lorem ipsum dolor sit amet, consectetur adip",
+                "",
                 textAlign: TextAlign.center,
                 selectionColor: Colors.blue[900],
               ),
