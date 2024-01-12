@@ -326,6 +326,9 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
 
       for (var task in assignedTasks) {
         tasks.add(task);
+        print(
+            "====================================================================================================");
+        print(task.title);
       }
 
       // Return the list of assigned tasks
