@@ -166,13 +166,13 @@ class _ProfileState extends State<Profile> {
                   flex: 1,
                   child: Column(children: [
                     const Text(
-                      "1.5K",
+                      "20",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
                     ),
                     Container(height: 5),
                     const Text(
-                      "Followers",
+                      "Assignments",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                     ),
@@ -182,13 +182,13 @@ class _ProfileState extends State<Profile> {
                   flex: 1,
                   child: Column(children: [
                     const Text(
-                      "1.5K",
+                      "5",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
                     ),
                     Container(height: 5),
                     const Text(
-                      "Followers",
+                      "Teams",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                     ),
@@ -198,13 +198,13 @@ class _ProfileState extends State<Profile> {
                   flex: 1,
                   child: Column(children: [
                     const Text(
-                      "1.5K",
+                      "17",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
                     ),
                     Container(height: 5),
                     const Text(
-                      "Followers",
+                      "Projects",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                     ),
