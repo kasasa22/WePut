@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print, library_private_types_in_public_api, prefer_final_fields, non_constant_identifier_names, prefer_const_constructors
+// ignore_for_file: avoid_print, library_private_types_in_public_api, prefer_final_fields, non_constant_identifier_names, prefer_const_constructors, unused_element
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
@@ -105,6 +105,23 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
           // Retrieve the task ID from the assignment document
           String taskId = assignmentDoc
               .get('taskId'); // Replace 'taskId' with the actual field name
+
+          String getCurrentUserId() {
+            Map<String, dynamic> userData = getCurrentUserData();
+            print(
+                "Current user data----------------------------------------------------------------------------------------------------------: $userData");
+            return userData['uid']; // Use square brackets to access the value
+          }
+
+          String userId = getCurrentUserId();
+
+          QuerySnapshot superTaksQuery = await FirebaseFirestore.instance
+              .collection('tasks')
+              .where('assignedUserId', isEqualTo: userId)
+              .get();
+
+          List<String> assignmentIds =
+              superTaksQuery.docs.map((doc) => doc.id).toList();
 
           // Add the task ID to the list
           taskIds.add(taskId);
