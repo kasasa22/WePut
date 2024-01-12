@@ -833,6 +833,19 @@ class _TaskSheetState extends State<TaskSheet> {
     titleController.clear();
     descriptionController.clear();
 
+    // Create a new Assignment object
+    Assignment newAssignment = Assignment(
+      teamName: "Supervisor",
+
+      userId: '',
+      taskId: "",
+      assignmentTime: Timestamp.now(),
+      completionStatus: 'Pending', // You can set this to an initial status
+    );
+
+    AssignmentService assignmentService = AssignmentService();
+    assignmentService.addAssignment(newAssignment);
+
     // You can add any additional logic after the task is successfully added
     print(
         'Task added successfully!-------------------------------------------------------------------------------------------------');
