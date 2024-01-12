@@ -308,10 +308,10 @@ class _ProfileState extends State<Profile> {
                           fontSize: 25),
                     ),
                     Container(height: 5),
-                    const Text(
-                      "www.aterax.com",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                    Text(
+                      "$email.com",
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 15),
                     ),
                   ]),
                 ),
