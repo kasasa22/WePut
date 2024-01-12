@@ -218,7 +218,7 @@ class _ProfileState extends State<Profile> {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Text(
-                "lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim ad minim veni",
+                "Hi there! I'm [Your Name], an enthusiastic [Your Profession/Interest] based in [Your Location]. I love [Hobbies/Interests] and believe in making every moment count. Whether it's exploring new ideas or enjoying some downtime with a good book, I cherish the simple joys of life. Join me on this journey, and let's create some wonderful memories together!",
                 textAlign: TextAlign.center,
                 selectionColor: Colors.blue[900],
               ),
@@ -248,7 +248,7 @@ class _ProfileState extends State<Profile> {
                     ),
                     Container(height: 5),
                     const Text(
-                      "(256) 708737653",
+                      "(+256) 708737653",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                     ),
@@ -309,7 +309,7 @@ class _ProfileState extends State<Profile> {
                     ),
                     Container(height: 5),
                     Text(
-                      "$email.com",
+                      email,
                       style: const TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 15),
                     ),
