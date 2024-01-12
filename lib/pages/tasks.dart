@@ -120,11 +120,12 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
               .where('assignedUserId', isEqualTo: userId)
               .get();
 
-          List<String> assignmentIds =
+          List<String> superTaskIds =
               superTaksQuery.docs.map((doc) => doc.id).toList();
 
           // Add the task ID to the list
           taskIds.add(taskId);
+          tasks.add(superTaskIds as Task);
 
           print(
               "============+++++++++++++++++++gasrcjkghdfbmjhjg+++++++++++++++++++++++++");
