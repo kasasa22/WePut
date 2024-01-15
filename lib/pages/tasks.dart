@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print, library_private_types_in_public_api, prefer_final_fields, non_constant_identifier_names, prefer_const_constructors
+// ignore_for_file: avoid_print, library_private_types_in_public_api, prefer_final_fields, non_constant_identifier_names, prefer_const_constructors, unused_element
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
@@ -32,7 +32,9 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
     _tabController = TabController(length: 3, vsync: this);
     _scrollController = ScrollController();
     // Call listenToTasks method to fetch tasks from Firebase
-    listenToTasks();
+    //listenToTasks();
+    // Fetch current user information
+    fetchCurrentUser();
     super.initState();
   }
 
@@ -46,65 +48,208 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
   List<Task> assignedTasks = [];
   List<Task> inProgressTasks = [];
   List<Task> completedTasks = [];
+  List<Task> tasks = [];
+  List<Task> items = [];
 
-  List<Task> items = [
-    // Task(
-    //   taskId: '1',
-    //   title: 'Complete Flutter App',
-    //   description: 'Finish building the Flutter app for the project.',
-    //   dueDate: Timestamp.now(),
-    //   status: 'In-Progress',
-    //   assignedUserId: 'user1',
-    //   priority: 'High',
-    //   category: 'Development',
-    //   progress: 50,
-    //   comments: ['Comment 1', 'Comment 2'],
-    //   startTime: Timestamp.now(),
-    //   endTime: Timestamp.now(),
-    //   evaluation: 4.5,
-    // ),
+//-------------------------------------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------------
+  Future<String?> getUserIdByEmail(String email) async {
+    try {
+      QuerySnapshot userQuery = await FirebaseFirestore.instance
+          .collection('users')
+          .where('email', isEqualTo: email)
+          .get();
 
-    // Add more tasks as needed
-  ];
+      if (userQuery.docs.isNotEmpty) {
+        // Assuming there is only one document for a unique email
+        String userId = userQuery.docs.first.id;
+        return userId;
+      } else {
+        // User not found
+        return null;
+      }
+    } catch (error) {
+      print("Error getting user ID: $error");
+      return null;
+    }
+  }
 
-  void listenToTasks() {
-    TaskService taskService = TaskService();
-    taskService.getTasks().listen((QuerySnapshot snapshot) {
-      // Clear existing lists
-      assignedTasks.clear();
-      inProgressTasks.clear();
-      completedTasks.clear();
+  Future<List<String>> getAssignmentIdsForUser(String userId) async {
+    try {
+      QuerySnapshot assignmentQuery = await FirebaseFirestore.instance
+          .collection('assignments')
+          .where('userId', isEqualTo: userId)
+          .get();
 
-      for (var document in snapshot.docs) {
-        Task task = Task(
-          taskId: document.id,
-          title: document['title'],
-          description: document['description'],
-          dueDate: document['dueDate'],
-          status: document['status'],
-          assignedUserId: document['assignedUserId'],
-          priority: document['priority'],
-          category: document['category'],
-          progress: document['progress'],
-          comments: document['comments'],
-          startTime: document['startTime'],
-          endTime: document['endTime'],
-          evaluation: document['evaluation'],
-        );
+      List<String> assignmentIds =
+          assignmentQuery.docs.map((doc) => doc.id).toList();
+      return assignmentIds;
+    } catch (error) {
+      print("Error getting assignment IDs: $error");
+      return [];
+    }
+  }
 
-        // Categorize tasks based on their status
-        if (task.status == 'Assigned') {
-          assignedTasks.add(task);
-        } else if (task.status == 'In-Progress') {
-          inProgressTasks.add(task);
-        } else if (task.status == 'Completed') {
-          completedTasks.add(task);
+// Updated getTasksForAssignments function
+  Future<List<Task>> getTasksForAssignments(List<String> assignmentIds) async {
+    List<String> taskIds = [];
+    try {
+      for (String assignmentId in assignmentIds) {
+        DocumentSnapshot assignmentDoc = await FirebaseFirestore.instance
+            .collection('assignments')
+            .doc(assignmentId)
+            .get();
+
+        // Check if the assignment document exists
+        if (assignmentDoc.exists) {
+          // Retrieve the task ID from the assignment document
+          String taskId = assignmentDoc
+              .get('taskId'); // Replace 'taskId' with the actual field name
+
+          // Add the task ID to the list
+          taskIds.add(taskId);
+
+          print(taskIds);
+        }
+      }
+    } catch (e) {
+      print(e);
+    }
+
+    try {
+      String getCurrentUserId() {
+        Map<String, dynamic> userData = getCurrentUserData();
+        print(
+            "Current user data----------------------------------------------------------------------------------------------------------: $userData");
+        return userData['uid']; // Use square brackets to access the value
+      }
+
+      String userId = getCurrentUserId();
+
+      QuerySnapshot superTaksQuery = await FirebaseFirestore.instance
+          .collection('tasks')
+          .where('assignedUserId', isEqualTo: userId)
+          .get();
+
+      List<String> superTaskIds =
+          superTaksQuery.docs.map((doc) => doc.id).toList();
+
+      print(superTaskIds);
+      // Merge superTaskIds into taskIds
+      taskIds.addAll(superTaskIds);
+      // Remove duplicates by converting the list to a set and back to a list
+      taskIds = taskIds.toSet().toList();
+
+      print(
+          "====================================================================================================");
+    } catch (e) {
+      print(e);
+    }
+
+    try {
+      for (String taskId in taskIds) {
+        DocumentSnapshot taskDoc = await FirebaseFirestore.instance
+            .collection('tasks')
+            .doc(taskId)
+            .get();
+
+        if (taskDoc.exists) {
+          Task task = Task(
+            assignedUserId: taskDoc.get('assignedUserId'),
+            category: taskDoc.get('category'),
+            comments: taskDoc.get('comments'),
+            description: taskDoc.get('description'),
+            dueDate: taskDoc.get('dueDate'),
+            endTime: taskDoc.get('endTime'),
+            evaluation: taskDoc.get('evaluation'),
+            priority: taskDoc.get('priority'),
+            progress: taskDoc.get('progress'),
+            startTime: taskDoc.get('startTime'),
+            status: taskDoc.get('status'),
+            taskId: taskDoc.id,
+            title: taskDoc.get('title'),
+          );
+          tasks.add(task);
         }
       }
 
-      // Use setState to trigger a rebuild with the updated lists
-      setState(() {});
-    });
+      // print(
+      //     "====================================================================================================");
+      // print(tasks.toList());
+
+      // for (var task in tasks) {
+      //   print(task.assignedUserId);
+      //   print(task.comments);
+      //   print(task.title);
+      //   print(task.priority);
+      // }
+
+      return tasks;
+    } catch (error) {
+      print("Error getting tasks: $error");
+      return [];
+    }
+  }
+
+  void fetchDataForUser(String userEmail) async {
+    String? userId = await getUserIdByEmail(userEmail);
+
+    if (userId != null) {
+      List<String> assignmentIds = await getAssignmentIdsForUser(userId);
+      List<Task> tasks = await getTasksForAssignments(assignmentIds);
+      // List<Task> newTasks = await listToNewTasks();
+
+      // print(assignmentIds);
+
+      print(
+          "-----------------------------------------------------THE TASKS ----------------------------------------------------------------------------");
+      print("Tasks: $tasks");
+      // Call listenToTasks method to fetch tasks from Firebase
+      listenToTasks();
+      // listToNewTasks();
+    } else {
+      print("User not found.");
+    }
+  }
+
+// New fetchCurrentUser function
+  void fetchCurrentUser() async {
+    try {
+      // Step 1: Get the current user's email
+      User? user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        String userEmail = user.email!;
+        print(
+            'User Email-------------------------------------------------------------------------------------------------------------------------------------------------: $userEmail');
+        fetchDataForUser(userEmail);
+      } else {
+        print('User not authenticated.');
+      }
+    } catch (error) {
+      print("Error fetching current user: $error");
+    }
+  }
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------------
+  void listenToTasks() {
+    assignedTasks.clear();
+    inProgressTasks.clear();
+    completedTasks.clear();
+
+    for (var task in tasks) {
+      // Categorize tasks based on their status
+      if (task.status == 'Assigned') {
+        assignedTasks.add(task);
+      } else if (task.status == 'In-Progress') {
+        inProgressTasks.add(task);
+      } else if (task.status == 'Completed') {
+        completedTasks.add(task);
+      }
+    }
+
+    // Use setState to trigger a rebuild with the updated lists
+    setState(() {});
   }
 
   @override
@@ -254,17 +399,19 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
   }
 
   void updateTaskStatusNew(String taskID, String status) {
+    print(
+        "updateTaskStatusNew>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+    print(taskID);
+    print(status);
     TaskService taskService = TaskService();
-    Task? updatedTask =
-        assignedTasks.firstWhereOrNull((task) => task.taskId == taskID);
 
-    if (updatedTask != null) {
-      updatedTask.status = status;
-      taskService.updateTask(taskID, updatedTask);
-    } else {
-      print("Task with ID $taskID not found.");
-      // Handle the case where the task is not found.
-    }
+    Task? updatedTask =
+        assignedTasks.firstWhere((task) => task.taskId == taskID);
+
+    print(updatedTask);
+
+    updatedTask.status = status;
+    taskService.updateTask(taskID, updatedTask);
   }
 
   void updateTaskStatusOld(String taskID, String status) {

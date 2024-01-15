@@ -126,7 +126,44 @@ class _TeamsState extends State<Teams> {
   @override
   Widget build(BuildContext context) {
     if (listAssignmentsNew.isEmpty) {
-      return const Center(child: CircularProgressIndicator());
+      return Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          backgroundColor: Colors.blue[700],
+          title: const Text("Teams"),
+          actions: [
+            PopupMenuButton(
+              onSelected: (String value) {},
+              itemBuilder: (context) => [
+                const PopupMenuItem(
+                  value: "Settings",
+                  child: Text("Settings"),
+                ),
+                PopupMenuItem(
+                  value: "About",
+                  child: IconButton(
+                    onPressed: () {
+                      //sign out the user
+                      FirebaseAuth.instance.signOut();
+                    },
+                    icon: const Icon(
+                      Icons.logout,
+                      size: 20,
+                    ),
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
+
+        //Drawer
+        drawer: const MyDrawer(),
+
+        body: const Center(
+          child: Text("No assignments available"),
+        ),
+      );
     }
     List<Widget> gridAssignments = getGridViewAssignments(listAssignmentsNew);
 

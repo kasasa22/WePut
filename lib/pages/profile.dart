@@ -1,9 +1,72 @@
+// ignore_for_file: avoid_print
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:maker/components/drawer.dart';
 
-class Profile extends StatelessWidget {
+class Profile extends StatefulWidget {
   const Profile({super.key});
+
+  @override
+  State<Profile> createState() => _ProfileState();
+}
+
+class _ProfileState extends State<Profile> {
+  @override
+  void initState() {
+    fetchForCurrentUser();
+    super.initState();
+  }
+
+  void fetchForCurrentUser() async {
+    // Step 1: Get the current user's email
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      String userEmail = user.email!;
+
+      setState(() {
+        email = userEmail;
+      });
+
+      print('User Email-----------------------: $userEmail');
+
+      // Step 2: Query the users collection to get the user's document ID
+      QuerySnapshot userQuery = await FirebaseFirestore.instance
+          .collection('users')
+          .where('email', isEqualTo: userEmail)
+          .get();
+
+      if (userQuery.docs.isNotEmpty) {
+        // Assuming there is only one document for a unique email
+        String userId = userQuery.docs.first.id;
+
+        // Step 5: Use the obtained userId to query the user's document and get the name
+        DocumentSnapshot userDocument = await FirebaseFirestore.instance
+            .collection('users')
+            .doc(userId)
+            .get();
+
+        if (userDocument.exists) {
+          String userName = userDocument['name'];
+          print('User Name: $userName');
+          setState(() {
+            name = userName;
+          });
+          name = userName;
+        } else {
+          print('User document not found.');
+        }
+      } else {
+        print('User not found.');
+      }
+    } else {
+      print('User not authenticated.');
+    }
+  }
+
+  late String name = "";
+  String email = "";
 
   @override
   Widget build(BuildContext context) {
@@ -46,9 +109,9 @@ class Profile extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              height: 35,
+              height: 25,
             ),
-            Text("Alan Woods",
+            Text(name,
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.blue[900],
@@ -57,7 +120,7 @@ class Profile extends StatelessWidget {
               height: 5,
             ),
             Text(
-              "Developer",
+              email,
               style: TextStyle(color: Colors.blue[60]),
             ),
             Container(height: 25),
@@ -103,15 +166,15 @@ class Profile extends StatelessWidget {
                   flex: 1,
                   child: Column(children: [
                     const Text(
-                      "1.5K",
+                      "20",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
                     ),
                     Container(height: 5),
                     const Text(
-                      "Followers",
+                      "Assignments",
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
                     ),
                   ]),
                 ),
@@ -119,15 +182,15 @@ class Profile extends StatelessWidget {
                   flex: 1,
                   child: Column(children: [
                     const Text(
-                      "1.5K",
+                      "5",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
                     ),
                     Container(height: 5),
                     const Text(
-                      "Followers",
+                      "Teams",
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
                     ),
                   ]),
                 ),
@@ -135,27 +198,27 @@ class Profile extends StatelessWidget {
                   flex: 1,
                   child: Column(children: [
                     const Text(
-                      "1.5K",
+                      "17",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
                     ),
                     Container(height: 5),
                     const Text(
-                      "Followers",
+                      "Projects",
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
                     ),
                   ]),
                 ),
               ],
             ),
             const Divider(
-              height: 50,
+              height: 10,
             ),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Text(
-                "lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua Ut enim ad minim veni",
+                "Hi there! I'm $name, an enthusiastic Banker based in Uganda. I love Games and Coding and believe in making every moment count. Whether it's exploring new ideas or enjoying some downtime with a good book, I cherish the simple joys of life. Join me on this journey, and let's create some wonderful memories together!",
                 textAlign: TextAlign.center,
                 selectionColor: Colors.blue[900],
               ),
@@ -163,7 +226,7 @@ class Profile extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Text(
-                "Lorem ipsum dolor sit amet, consectetur adip",
+                "",
                 textAlign: TextAlign.center,
                 selectionColor: Colors.blue[900],
               ),
@@ -185,7 +248,7 @@ class Profile extends StatelessWidget {
                     ),
                     Container(height: 5),
                     const Text(
-                      "(256) 708737653",
+                      "(+256) 708737653",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                     ),
@@ -227,10 +290,10 @@ class Profile extends StatelessWidget {
                           fontSize: 25),
                     ),
                     Container(height: 5),
-                    const Text(
-                      "ateraxantonio@gmail.com",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                    Text(
+                      email,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 15),
                     ),
                   ]),
                 ),
@@ -245,10 +308,10 @@ class Profile extends StatelessWidget {
                           fontSize: 25),
                     ),
                     Container(height: 5),
-                    const Text(
-                      "www.aterax.com",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                    Text(
+                      email,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 15),
                     ),
                   ]),
                 ),
