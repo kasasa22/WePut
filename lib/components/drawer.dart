@@ -262,21 +262,21 @@ class _MyDrawerState extends State<MyDrawer> {
             ),
 
             // settings tile
-            ListTile(
-              leading: Icon(
-                Icons.settings,
-                color: Colors.grey[800],
-              ),
-              title: Text("S E T T I N G S",
-                  style: Theme.of(context).textTheme.titleSmall),
-              onTap: () {
-                //pop drawer
-                Navigator.pop(context);
+            // ListTile(
+            //   leading: Icon(
+            //     Icons.settings,
+            //     color: Colors.grey[800],
+            //   ),
+            //   title: Text("S E T T I N G S",
+            //       style: Theme.of(context).textTheme.titleSmall),
+            //   onTap: () {
+            //     //pop drawer
+            //     Navigator.pop(context);
 
-                //navigate to the settings page
-                Navigator.pushNamed(context, '/settings');
-              },
-            ),
+            //     //navigate to the settings page
+            //     Navigator.pushNamed(context, '/settings');
+            //   },
+            // ),
 
             // profile tile
             ListTile(
