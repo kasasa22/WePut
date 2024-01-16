@@ -65,12 +65,12 @@ dependencies:
   collection: ^1.18.0
 flutter_icons:
   android: "launcher_icon"
-  image_path: "assets/images/logo.png"
+  image_path: "assets/images/logo.jpg"
   ios: true
   adaptive_icon_background: "#ffffff"
-  adaptive_icon_foreground: "assets/images/logo.png"
+  adaptive_icon_foreground: "assets/images/logo.jpg"
   remove_alpha_ios: true 
-    
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
