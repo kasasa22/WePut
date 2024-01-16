@@ -412,6 +412,11 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
 
     updatedTask.status = status;
     taskService.updateTask(taskID, updatedTask);
+
+    setState(() {
+      assignedTasks.removeWhere((task) => task.taskId == taskID);
+      inProgressTasks.add(updatedTask);
+    });
   }
 
   void updateTaskStatusOld(String taskID, String status) {
@@ -422,6 +427,11 @@ class _TasksState extends State<Tasks> with SingleTickerProviderStateMixin {
     if (updatedTask != null) {
       updatedTask.status = status;
       taskService.updateTask(taskID, updatedTask);
+
+      setState(() {
+        inProgressTasks.removeWhere((task) => task.taskId == taskID);
+        completedTasks.add(updatedTask);
+      });
     } else {
       print("Task with ID $taskID not found.");
       // Handle the case where the task is not found.
